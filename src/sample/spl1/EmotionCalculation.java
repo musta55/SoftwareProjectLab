@@ -71,6 +71,7 @@ public class EmotionCalculation {
     public   double HAPPYCal = 0;
     public   double TrustCal = 0;
     public   double DisgustCal = 0;
+    public String sf=null;
 
 
     public void searchEmotion() throws IOException {
