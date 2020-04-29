@@ -89,7 +89,7 @@ public class EmotionCalculation {
             }
         }
 
-        System.out.println("");
+        System.out.println("Hey What's up");
 
         //   FileWriter newDb = new FileWriter("src/spl1/emotions.txt");
 
