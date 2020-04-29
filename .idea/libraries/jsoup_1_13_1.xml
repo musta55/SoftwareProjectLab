@@ -1,0 +1,42 @@
+<component name="libraryTable">
+  <library name="jsoup-1.13.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Desktop/jsoup-1.13.1.jar!/" />
+      <root url="file://$USER_HOME$/Desktop/org" />
+      <root url="file://$USER_HOME$/Desktop" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-appengine/javadoc" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-async/javadoc" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-core/javadoc" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-examples/javadoc" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-http2-support/javadoc" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-stream/javadoc" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$USER_HOME$/Desktop/ClassWork/src" />
+      <root url="file://$USER_HOME$/Desktop/SPL1/src" />
+      <root url="file://$USER_HOME$/Desktop/SPL1_SotS/src" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-appengine/src/main/java" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-appengine/src/test/java" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-async/src/main/java" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-async/src/test/java" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-core/src/internal-async/java" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-core/src/internal-http/java" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-core/src/internal-json/java" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-core/src/internal-logging/java" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-core/src/internal-util/java" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-core/src/jmx/java" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-core/src/main/java" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-core/src/test/java" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-examples/src/main/java" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-http2-support/src/main/java" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-http2-support/src/test/java" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-stream/src/main/java" />
+      <root url="file://$USER_HOME$/Desktop/twitter/twitter4j-stream/src/test/java" />
+      <root url="file://$USER_HOME$/Desktop" />
+    </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/Desktop" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Desktop" recursive="false" type="SOURCES" />
+  </library>
+</component>

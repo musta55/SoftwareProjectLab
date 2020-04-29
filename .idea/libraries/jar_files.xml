@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="jar_files">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../SPL1/selenium-api-2.53.0" />
+      <root url="file://$PROJECT_DIR$/../SPL1/jar_files" />
+      <root url="file://$PROJECT_DIR$/../SPL1" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/../SPL1/dist/javadoc" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../SPL1/src" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../SPL1" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../SPL1/jar_files" recursive="false" />
+  </library>
+</component>
