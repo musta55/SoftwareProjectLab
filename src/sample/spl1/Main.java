@@ -40,11 +40,12 @@ public class Main extends Application {
 //        //by setting this property to true, the audio will be played
 //        mediaPlayer.setAutoPlay(true);
 //        primaryStage.setTitle("Playing Audio");
-//      //  primaryStage.show();
+      //  primaryStage.show();
 
-//        DropShadow ds = new DropShadow();
-//        ds.setOffsetY(3.0f);
-//        ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
+        DropShadow ds = new DropShadow();
+        ds.setOffsetY(3.0f);
+        ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
+
 
 
         Text headning = new Text("EMOTION DETECTOR");

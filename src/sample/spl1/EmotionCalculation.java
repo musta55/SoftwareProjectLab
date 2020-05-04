@@ -61,14 +61,14 @@ public class EmotionCalculation {
 //    public  static double AngerCal = 0;
 //    public  static double SadnessCal = 0;
 //    public  static double FearCal = 0;
-//    public static  double HAPPYCal = 0;
+//    public static  double anticipationCal = 0;
 //    public static  double TrustCal = 0;
     public  double JoyCal = 0;
     public  double SurpriseCal = 0;
     public   double AngerCal = 0;
     public   double SadnessCal = 0;
     public   double FearCal = 0;
-    public   double HAPPYCal = 0;
+    public   double anticipationCal = 0;
     public   double TrustCal = 0;
     public   double DisgustCal = 0;
     public String sf=null;
@@ -147,6 +147,13 @@ public class EmotionCalculation {
         for (int w = 0; w < 8; w++) Frequency[w] = 0;
 
 
+
+
+      //      FileWriter fw=new FileWriter("sample/spl1/emotionOutput.txt");
+         //   fw.close();
+
+
+
         for (i = 0; i < Operations.outList.size(); ) {
 
             found = false;
@@ -169,8 +176,10 @@ public class EmotionCalculation {
                 for (; j < wordList.size(); j++) {
 
                     if (Operations.outList.get(i).equals(wordList.get(j))) {
-                        System.out.println("wordlist is" + wordList.get(j));
-                        //  System.out.print("Emotion :" + emotionList.get(j) + " ");
+                        System.out.print("word :" + wordList.get(j)+" ");
+                          System.out.print("Emotion :" + emotionList.get(j) + " ");
+                        //  fw.write(emotionList.get(j)+" ");
+
                         //     System.out.println("Intensity");
                         if (emotionList.get(j).equalsIgnoreCase("joy")) {
                             Frequency[0]++;
@@ -198,7 +207,7 @@ public class EmotionCalculation {
                             intensity -= 4;
                         }
 
-                        if (emotionList.get(j).equalsIgnoreCase("HAPPY")) {
+                        if (emotionList.get(j).equalsIgnoreCase("anticipation")) {
                             Frequency[6]++;
                             intensity += 2;
                             //  System.out.println("INtensity is" + intensity);
@@ -238,9 +247,9 @@ public class EmotionCalculation {
 
                         if (Operations.outList.get(i).equals(wordList.get(j))) {
 
-                            //   System.out.println("sadsa");
+                            System.out.print("Word :"+wordList.get(j));
                             System.out.print("Emotion :" + emotionList.get(j) + " ");
-                            //     System.out.println("negative");
+//                            //     System.out.println("negative");
                             if (emotionList.get(j).equalsIgnoreCase("joy")) {
                                 Frequency[5]++;
                                 intensity -= 4;
@@ -267,7 +276,7 @@ public class EmotionCalculation {
                                 intensity += 4;
                             }
 
-                            if (emotionList.get(j).equalsIgnoreCase("HAPPY")) {
+                            if (emotionList.get(j).equalsIgnoreCase("anticipation")) {
                                 Frequency[3]++;
                                 intensity -= 2;
                             }
@@ -306,7 +315,9 @@ public class EmotionCalculation {
                 for (int j = 0; j < wordList.size(); j++) {
                     if (Operations.outList.get(i).equals(wordList.get(j))) {
                         //   System.out.println("sadsa");
+                        System.out.print("Word :"+wordList.get(j)+" ");
                         System.out.print("Emotion :" + emotionList.get(j) + " ");
+                    //    fw.write(emotionList.get(j)+" ");
                         //     System.out.println("normal");
                         if (emotionList.get(j).equalsIgnoreCase("joy")) Frequency[0]+=2;
                         if (emotionList.get(j).equalsIgnoreCase("surprise")) Frequency[1]+=3;
@@ -314,7 +325,7 @@ public class EmotionCalculation {
                         if (emotionList.get(j).equalsIgnoreCase("sadness")) Frequency[3]++;
                         if (emotionList.get(j).equalsIgnoreCase("trust")) Frequency[4]++;
                         if (emotionList.get(j).equalsIgnoreCase("disgust")) Frequency[5]+=2;
-                        if (emotionList.get(j).equalsIgnoreCase("HAPPY")) Frequency[6]++;
+                        if (emotionList.get(j).equalsIgnoreCase("anticipation")) Frequency[6]++;
                         if (emotionList.get(j).equalsIgnoreCase("anger")) Frequency[7]++;
 
 
@@ -333,6 +344,7 @@ public class EmotionCalculation {
             }
             i++;
         }
+     //   fw.close();
         Operations.outList.clear();
 
     }
@@ -385,13 +397,13 @@ public class EmotionCalculation {
         SadnessCal= (Frequency[3] * 100) / tot;
         TrustCal = (Frequency[4] * 100) / tot;
         DisgustCal = (Frequency[5] * 100) / tot;
-        HAPPYCal = (Frequency[6] * 100) / tot;
+        anticipationCal = (Frequency[6] * 100) / tot;
         AngerCal = (Frequency[7] * 100) / tot;
 //
 //        Main pie=new Main();
 //        Stage stage = new Stage();
 //        pie.start(stage);
-        double[] emoArray = {JoyCal, SurpriseCal, FearCal, SadnessCal, TrustCal, DisgustCal, HAPPYCal, AngerCal};
+        double[] emoArray = {JoyCal, SurpriseCal, FearCal, SadnessCal, TrustCal, DisgustCal, anticipationCal, AngerCal};
         double SD = calculateSD(emoArray);
 
         System.out.format("Standard Deviation = %.6f\n", SD);
@@ -403,7 +415,7 @@ public class EmotionCalculation {
         System.out.println("Sadness =" + String.format("%.1f", ((Frequency[3] * 100) / tot)) + "%");
         System.out.println("Trust =" + String.format("%.1f", ((Frequency[4] * 100) / tot)) + "%");
         System.out.println("Disgust =" + String.format("%.1f", ((Frequency[5] * 100) / tot)) + "%");
-        System.out.println("HAPPY=" + String.format("%.1f", ((Frequency[6] * 100) / tot)) + "%");
+        System.out.println("anticipation=" + String.format("%.1f", ((Frequency[6] * 100) / tot)) + "%");
         System.out.println("Anger=" + String.format("%.1f", ((Frequency[7] * 100) / tot)) + "%");
 
 //     DataOutputStream();
@@ -438,7 +450,7 @@ public class EmotionCalculation {
                 System.out.println("Emotion Preference is Disgust");
             }
             if (temp == 6) {
-                System.out.println("Emotion Preference is HAPPY");
+                System.out.println("Emotion Preference is anticipation");
             }
 
             if (temp == 7) {
@@ -467,7 +479,7 @@ public class EmotionCalculation {
     public void DataOutputStream() throws IOException {
 
 
-        String[] dbuf = {String.valueOf(JoyCal), String.valueOf(SurpriseCal), String.valueOf(FearCal), String.valueOf(SadnessCal), String.valueOf(TrustCal), String.valueOf(DisgustCal), String.valueOf(HAPPYCal), String.valueOf(AngerCal)};
+        String[] dbuf = {String.valueOf(JoyCal), String.valueOf(SurpriseCal), String.valueOf(FearCal), String.valueOf(SadnessCal), String.valueOf(TrustCal), String.valueOf(DisgustCal), String.valueOf(anticipationCal), String.valueOf(AngerCal)};
 
 //Double []dbuf={JoyCal,SurpriseCal,FearCal,SadnessCal,TrustCal,DisgustCal,AngerCal};
 
@@ -531,7 +543,7 @@ public class EmotionCalculation {
                 new PieChart.Data("Joy", JoyCal),
                 new PieChart.Data("Surprise", SurpriseCal),
                 new PieChart.Data("Anger", AngerCal),
-                new PieChart.Data("HAPPY", HAPPYCal),
+                new PieChart.Data("anticipation", anticipationCal),
                 new PieChart.Data("Sadness", SadnessCal),
                 new PieChart.Data("Disgust", DisgustCal),
                 new PieChart.Data("Fear", FearCal),
@@ -672,8 +684,8 @@ public class EmotionCalculation {
         scan = new Scanner(file);
 
         Double[] out=new Double[10000];
-        Double[] sentimentPos=new Double[10000];
-        Double[] sentimentNeg=new Double[10000];
+        Double[] sentimentPos=new Double[100000];
+        Double[] sentimentNeg=new Double[100000];
         int i=0;
         int m=0;
         while (scan.hasNextLine()) {
@@ -687,7 +699,7 @@ public class EmotionCalculation {
                     if(firstSplits[m]=="NaN"||firstSplits[m]=="Infinity");
                     else {
                         out[m] = Double.parseDouble(firstSplits[m]);
-                        System.out.println(out[m]);
+                        System.out.print(out[m] +"          ");
                     }
                 }catch (Exception q)
                 {
@@ -712,7 +724,7 @@ public class EmotionCalculation {
         CategoryAxis xAxis =new CategoryAxis();
         xAxis.setLabel("EMOTIONAL PROGRESSION OVER STATUS");
 
-       // CategoryAxis xAxis = new CategoryAxis("Emotions\n"+"1.Joy\n"+"2.Surprise\n"+"3.Fear\n"+"4.Sadness\n"+"5.Trust\n"+"6.Disgust\n"+"7.HAPPY\n"+"8.Disgust\n");
+       // CategoryAxis xAxis = new CategoryAxis("Emotions\n"+"1.Joy\n"+"2.Surprise\n"+"3.Fear\n"+"4.Sadness\n"+"5.Trust\n"+"6.Disgust\n"+"7.anticipation\n"+"8.Disgust\n");
         NumberAxis yAxis = new NumberAxis("INTENSITY", 0, 100, 10);
         Button back = new Button("Back");
         back.setTranslateX(1100);
@@ -790,9 +802,9 @@ public class EmotionCalculation {
                 for(int y=5;y<48;y+=8)disgustOut+=out[y];
                 disgustOut=disgustOut/6;
 
-                double HAPPYOut=0;
-                for(int y=6;y<48;y+=8)HAPPYOut+=out[y];
-                HAPPYOut=HAPPYOut/6;
+                double anticipationOut=0;
+                for(int y=6;y<48;y+=8)anticipationOut+=out[y];
+                anticipationOut=anticipationOut/6;
 
                 double angerOut=0;
                 for(int y=7;y<48;y+=8)angerOut+=out[y];
@@ -803,7 +815,7 @@ public class EmotionCalculation {
 
         CategoryAxis xAxises = new CategoryAxis();
         xAxises.setCategories(FXCollections.<String>
-                observableArrayList(Arrays.asList("Joy", "Surprise", "Fear", "Sadness","Trust","Disgust","HAPPY","Anger")));
+                observableArrayList(Arrays.asList("Joy", "Surprise", "Fear", "Sadness","Trust","Disgust","anticipation","Anger")));
         xAxises.setLabel("EMOTION");
 
         NumberAxis yAxises = new NumberAxis();
@@ -822,7 +834,7 @@ public class EmotionCalculation {
         series1.getData().add(new XYChart.Data<>("Sadness", sadnessOut));
         series1.getData().add(new XYChart.Data<>("Trust", trustOut));
         series1.getData().add(new XYChart.Data<>("Disgust", disgustOut));
-        series1.getData().add(new XYChart.Data<>("HAPPY", HAPPYOut));
+        series1.getData().add(new XYChart.Data<>("anticipation", anticipationOut));
         series1.getData().add(new XYChart.Data<>("Anger", angerOut));
                 barChart.setTranslateX(400);
                 barChart.setTranslateY(120);
@@ -842,7 +854,7 @@ public class EmotionCalculation {
                 roots.setBackground(bg);
                 double maxa=-1,maxb=-1;
                 int temp=0,temp2=0;
-                Double[] freq = new Double[]{ joyOut,surpriseOut,fearOut,sadnessOut,trustOut,disgustOut,HAPPYOut,angerOut };
+                Double[] freq = new Double[]{ joyOut,surpriseOut,fearOut,sadnessOut,trustOut,disgustOut,anticipationOut,angerOut };
                 for (int iteration = 0; iteration < 8; iteration++) {
 //                    if (freq[iteration] > maxa) {
 //                        maxa = freq[iteration];
@@ -941,7 +953,7 @@ public class EmotionCalculation {
                 ex.printStackTrace();
             }
         });
-        String accessToken = "EAAJfo73qhKQBAHhlUFmioZBtmShEr0aa4J6GDUofefXo5jGUi69kfKWQdMVNqjHcJPQ0ZCWEV55zpjZAAdCZBKlTYzJ6WzOIhNcWvObdj1pGUQgB9HytDJVAZAHcZCyaQPZBy2Jhls9nuPTWZAKCecZALGXV8IFwZB3ZBzy0vy7ZBvJ3VAZDZD ";
+        String accessToken = "EAAJfo73qhKQBAGRA9WJ657oxyiGZBg4XirgKuCjMG9frJFmpamR15ia6osKlP2waeqVIVQpZAz7BYhHZAZC3id4D8ZAL07Ass7NZBu3G15sTczsF4uBlkuiNV65qrlBvbFlFRdsS3ZBIZCUMvxMHnrmJotU7PMzyzy3Y6hxfOEaGcB5YJmAf0EJqlwBBpm2dMQUZD ";
 
         Button status1 = new Button("Status 1");
         status1.setTranslateX(100);
@@ -1684,7 +1696,7 @@ public class EmotionCalculation {
             dataSeries6.getData().add(new XYChart.Data( e, out[w]));
 
         XYChart.Series dataSeries7 = new XYChart.Series();
-        dataSeries1.setName("HAPPY");
+        dataSeries1.setName("anticipation");
 
         for(int w=6,e=1;w<50 &&e<10;w+=8,e++)
             dataSeries7.getData().add(new XYChart.Data( e, out[w]));
@@ -1761,7 +1773,7 @@ public class EmotionCalculation {
 //
 //                )),
 //
-//                new LineChart.Series<String,Double>("HAPPY", FXCollections.observableArrayList(
+//                new LineChart.Series<String,Double>("anticipation", FXCollections.observableArrayList(
 //                        new XYChart.Data<String,Double>("Status 1",out[6]),
 //                        new XYChart.Data<String,Double>("Status 2", out[14]),
 //                        new XYChart.Data<String,Double>("Status 3", out[22]),

@@ -22,7 +22,7 @@ public class fourthPage {
 public void runs(Stage stages)
 {
 
-    String accessToken = "EAAJfo73qhKQBAHhlUFmioZBtmShEr0aa4J6GDUofefXo5jGUi69kfKWQdMVNqjHcJPQ0ZCWEV55zpjZAAdCZBKlTYzJ6WzOIhNcWvObdj1pGUQgB9HytDJVAZAHcZCyaQPZBy2Jhls9nuPTWZAKCecZALGXV8IFwZB3ZBzy0vy7ZBvJ3VAZDZD ";
+    String accessToken = "EAAJfo73qhKQBAGRA9WJ657oxyiGZBg4XirgKuCjMG9frJFmpamR15ia6osKlP2waeqVIVQpZAz7BYhHZAZC3id4D8ZAL07Ass7NZBu3G15sTczsF4uBlkuiNV65qrlBvbFlFRdsS3ZBIZCUMvxMHnrmJotU7PMzyzy3Y6hxfOEaGcB5YJmAf0EJqlwBBpm2dMQUZD ";
         Button proa = new Button("Overall Emotion");
         proa.setTranslateX(550);
         proa.setTranslateY(70);
@@ -232,7 +232,7 @@ public void runs(Stage stages)
                 for (List<Post> apost : result) {
                     for (Post aPost : apost) {
                         counter++;
-                        if (counter >= 7) {
+                        if (counter >= 5) {
                             break;
                         }
 
