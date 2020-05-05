@@ -23,7 +23,7 @@ public class fourthPage {
 public void runs(Stage stages)
 {
 
-    String accessToken = "EAAJfo73qhKQBAGRA9WJ657oxyiGZBg4XirgKuCjMG9frJFmpamR15ia6osKlP2waeqVIVQpZAz7BYhHZAZC3id4D8ZAL07Ass7NZBu3G15sTczsF4uBlkuiNV65qrlBvbFlFRdsS3ZBIZCUMvxMHnrmJotU7PMzyzy3Y6hxfOEaGcB5YJmAf0EJqlwBBpm2dMQUZD ";
+    String accessToken = "EAAJfo73qhKQBAIgS043TKS9WhcwNVIQchnhkKn8EqRKPyUvQTtEJmm7Cz8h9dXpDV69kmnT1Ju8mb1cfU1E0ZCOMGsWKZByTlwlD3zD9qq82iVc7OgR7i44J5Aeu4YDo7BWsgUTfZBSeWhXKnpzLWpZBHKBCNK5PqrWI8s8VQguyee7ckQFzc6OatGzAWSZAnWSW5Nlb7QH2mWchUpyLE ";
         Button proa = new Button("Overall Emotion");
         proa.setTranslateX(550);
         proa.setTranslateY(70);
