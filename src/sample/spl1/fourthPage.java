@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+import sample.spl1.emotioncal.EmotionCalculation;
 public class fourthPage {
     public static int counter = 0;
 public void runs(Stage stages)
@@ -186,7 +187,7 @@ public void runs(Stage stages)
 
                     //  emCal.VisualOutput(stage);
                     try {
-                        emCal.VisualOutputFacebook(stages);
+                        visualoutputfb.VisualOutputFacebook(stages);
                     } catch (FileNotFoundException aex) {
                         aex.printStackTrace();
                     }

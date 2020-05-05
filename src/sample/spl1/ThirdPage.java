@@ -23,7 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
+import sample.spl1.emotioncal.EmotionCalculation;
 public class ThirdPage {
     public void TheThird(Stage primaryStage)
     {

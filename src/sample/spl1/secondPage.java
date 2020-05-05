@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-
+import sample.spl1.emotioncal.EmotionCalculation;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
