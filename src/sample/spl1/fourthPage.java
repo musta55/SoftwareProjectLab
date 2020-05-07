@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import sample.visualOut.visualoutputfb;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,7 +24,7 @@ public class fourthPage {
 public void runs(Stage stages)
 {
 
-    String accessToken = "EAAJfo73qhKQBAIgS043TKS9WhcwNVIQchnhkKn8EqRKPyUvQTtEJmm7Cz8h9dXpDV69kmnT1Ju8mb1cfU1E0ZCOMGsWKZByTlwlD3zD9qq82iVc7OgR7i44J5Aeu4YDo7BWsgUTfZBSeWhXKnpzLWpZBHKBCNK5PqrWI8s8VQguyee7ckQFzc6OatGzAWSZAnWSW5Nlb7QH2mWchUpyLE ";
+    String accessToken = "EAAJfo73qhKQBACxb48sDXbDEzZCW8ZC1gDMzBIVmxcaD8dbnQYziIA5ZCgJErWMWNZCTM5OJyM2c06GfZArQZAJmzuqTfdhz0gqeCKuJSm4tQgPeYAwYCDwuAI0dQF8jMr9OB1gXqY2jTjY1kGK9mSnlU4jII1ZBjKxnUSiVKMGWAZDZD ";
         Button proa = new Button("Overall Emotion");
         proa.setTranslateX(550);
         proa.setTranslateY(70);

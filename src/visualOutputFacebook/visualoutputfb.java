@@ -1,4 +1,5 @@
-package sample.spl1;
+package visualOutputFacebook;
+
 
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
@@ -24,6 +25,11 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+
+import sample.spl1.Dictionary;
+import sample.spl1.Main;
+import sample.spl1.Operations;
+import sample.spl1.OperationsBangla;
 import sample.spl1.emotioncal.EmotionCalculation;
 public class visualoutputfb {
     public static String s=null;
@@ -165,8 +171,8 @@ public class visualoutputfb {
                 for(int y=7;y<48;y+=8)angerOut+=out[y];
                 angerOut=angerOut/6;
 
-             //   Image backgrounds = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
-             Image backgrounds=new Image("emotionSide.png");
+                //   Image backgrounds = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
+                Image backgrounds=new Image("emotionSide.png");
 
                 Pane roots = new Pane();
 
@@ -292,7 +298,7 @@ public class visualoutputfb {
                 ex.printStackTrace();
             }
         });
-        String accessToken = "EAAJfo73qhKQBAIgS043TKS9WhcwNVIQchnhkKn8EqRKPyUvQTtEJmm7Cz8h9dXpDV69kmnT1Ju8mb1cfU1E0ZCOMGsWKZByTlwlD3zD9qq82iVc7OgR7i44J5Aeu4YDo7BWsgUTfZBSeWhXKnpzLWpZBHKBCNK5PqrWI8s8VQguyee7ckQFzc6OatGzAWSZAnWSW5Nlb7QH2mWchUpyLE ";
+        String accessToken = "EAAJfo73qhKQBACxb48sDXbDEzZCW8ZC1gDMzBIVmxcaD8dbnQYziIA5ZCgJErWMWNZCTM5OJyM2c06GfZArQZAJmzuqTfdhz0gqeCKuJSm4tQgPeYAwYCDwuAI0dQF8jMr9OB1gXqY2jTjY1kGK9mSnlU4jII1ZBjKxnUSiVKMGWAZDZD ";
 
         Button status1 = new Button("Status 1");
         status1.setTranslateX(100);
@@ -1172,9 +1178,9 @@ public class visualoutputfb {
 
             Group roota = new Group();
             //   stage.setScene(new Scene(root));
-         //   Image backgrounda = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
+            //   Image backgrounda = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
 
-           Image backgrounda=new Image("emotionside.png");
+            Image backgrounda=new Image("emotionside.png");
             //   Image fusics = new Image("fusics.png");
             Canvas canvasa = new Canvas(1800,900);
 
