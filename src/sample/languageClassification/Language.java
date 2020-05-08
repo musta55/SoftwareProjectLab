@@ -85,109 +85,23 @@ public class Language {
 
 
         ab.setOnAction(e -> {
+            Bengali bang =new Bengali();
+            {
+                bang.ban(primaryStage);
+            }
 
         });
 
 
         exp.setOnAction(e->{
-            try{
-                Button backs = new Button("Back");
-                backs.setTranslateX(50);
-                backs.setTranslateY(20);
-                setStyle(backs);
-                backs.setPrefSize(60, 30);
 
-
-                Operations operations=new Operations();
-                primaryStage.setTitle("User Input");
-
-                TextArea textField = new TextArea();
-
-
-                Button button = new Button("Enter");
-                button.setTextFill(Color.WHITE);
-                setStyle(button);
-                button.setTranslateX(620);
-                button.setTranslateY(350);
-                button.setPrefSize(150,70);
-                button.setOnAction(action -> {
-
-                    try {
-                        operations.splitInput(textField.getText());
-                    } catch (FileNotFoundException exc) {
-                        exc.printStackTrace();
-                    }
-                    try {
-                        operations.removeWord();
-                    } catch (FileNotFoundException exc) {
-                        exc.printStackTrace();
-                    }
-                    operations.search();
-
-                    try {
-                        EmotionCalculation emCal = new EmotionCalculation();
-                        // launch(args);
-                        emCal.searchEmotion();
-                        // launch(args);
-                        emCal.emotionCalc(primaryStage);
-                        emCal.VisualOutput(primaryStage);
-
-                    } catch (Exception ex)
-                    {
-                        ex.printStackTrace();
-
-                    }
-
-
-                }); try {
-                    Text headning = new Text("USER INPUT");
-                    headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 11));
-                    headning.setFill(Color.DARKBLUE);
-                    headning.setScaleX(6);
-                    headning.setScaleY(6);
-                    headning.setTranslateX(650);
-                    headning.setTranslateY(90);
-
-                    Image backgrounds = new Image(getClass().getClassLoader().getResource("emotion(16-9).png").toString(), true);
-                    Canvas canvas = new Canvas(1400,750);
-                    GraphicsContext gc = canvas.getGraphicsContext2D();
-                    //gc.drawImage(backgrounds,0,0);
-
-                    textField.setLayoutX(150);
-                    textField.setLayoutY(180);
-                    textField.setPrefRowCount(5);
-                    textField.setPrefColumnCount(6);
-                    textField.setWrapText(true);
-                    textField.setMinSize(1125,150);
-                    Pane roots = new Pane();
-                    BackgroundImage bi = new BackgroundImage(backgrounds,
-                            BackgroundRepeat.NO_REPEAT,
-                            BackgroundRepeat.NO_REPEAT,
-                            BackgroundPosition.DEFAULT,
-                            BackgroundSize.DEFAULT);
-                    Background bg = new Background(bi);
-                    roots.setBackground(bg);
-                    roots.getChildren().addAll(canvas,textField,button,headning);
-                    Scene scene = new Scene(roots,1400,750);
-                    primaryStage.setScene(scene);
-                    //primaryStage.setFullScreen(true);
-                    primaryStage.show();
-                }catch (Exception ex)
-                {
-                    System.out.println("Picture url Problem");
-                }
-
-//
-//                        VBox vbox = new VBox(textField, button);
-//
-//                        Scene scene = new Scene(vbox, 1600, 800);
-//                        primaryStage.setScene(scene);
-//                        primaryStage.show();
-
-
-            } catch (Exception excep) {
-                excep.printStackTrace();
+            English en =new English();
+            {
+                en.Eng(primaryStage);
             }
+
+
+
         });
 
 
