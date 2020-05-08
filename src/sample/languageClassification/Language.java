@@ -1,4 +1,8 @@
-package sample.spl1;
+package sample.languageClassification;
+
+
+
+
 
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
@@ -23,8 +27,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+import sample.spl1.Dictionary;
+import sample.spl1.Operations;
+import sample.spl1.OperationsBangla;
 import sample.spl1.emotioncal.EmotionCalculation;
-public class ThirdPage {
+import sample.spl1.secondPage;
+
+public class Language {
     public void TheThird(Stage primaryStage)
     {
 
@@ -70,7 +80,7 @@ public class ThirdPage {
         Image background = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
         Pane root = new Pane();
         root.getChildren().addAll(exp,back,ab,abi);
- //       TextField nameInput=new TextField();
+        //       TextField nameInput=new TextField();
 
 
         abi.setOnAction(e -> {
@@ -314,13 +324,13 @@ public class ThirdPage {
                     for (int j = 0; j < inArray.length; j++) {
                         //    System.out.println("askdas");
                         inArray2[j] = operationsBangla.searchBan(inArray[j]);
-                    //    System.out.print("Bangla Language is ###################"+inArray2[j] + " ");
+                        //    System.out.print("Bangla Language is ###################"+inArray2[j] + " ");
                     }
                     String inp = "";
                     for (int j = 0; j < inArray.length; j++) {
 
                         //  System.out.print(inArray[j]+" ");
-                       //   System.out.print(dictionary.search("\n\n\nDictionary search kore PAIiiiiiiiiiiiii"+inArray[j])+" ");
+                        //   System.out.print(dictionary.search("\n\n\nDictionary search kore PAIiiiiiiiiiiiii"+inArray[j])+" ");
                         inArray2[j] = dictionary.search(inArray[j]);
                         //  inListBan.add(inArray2[j]);
 
@@ -335,7 +345,7 @@ public class ThirdPage {
                     }
 
 
-            //        System.out.println("\n\n\nTotal input in Bilingual is :"+inp);
+                    //        System.out.println("\n\n\nTotal input in Bilingual is :"+inp);
                     try {
                         operations.splitInput(inp);
                     } catch (FileNotFoundException ex) {
@@ -375,7 +385,7 @@ public class ThirdPage {
 
 
 
-               //     System.out.println("\n"+textFields.getText());
+                    //     System.out.println("\n"+textFields.getText());
                 });
 //
 //              //  VBox vbox = new VBox(textField, button);
@@ -401,47 +411,47 @@ public class ThirdPage {
 
 
                 Operations operations=new Operations();
-                        primaryStage.setTitle("User Input");
+                primaryStage.setTitle("User Input");
 
-                        TextArea textField = new TextArea();
-
-
-                        Button button = new Button("Enter");
-                        button.setTextFill(Color.WHITE);
-                        setStyle(button);
-                        button.setTranslateX(620);
-                         button.setTranslateY(350);
-                         button.setPrefSize(150,70);
-                        button.setOnAction(action -> {
-
-                            try {
-                                operations.splitInput(textField.getText());
-                            } catch (FileNotFoundException exc) {
-                                exc.printStackTrace();
-                            }
-                            try {
-                                operations.removeWord();
-                            } catch (FileNotFoundException exc) {
-                                exc.printStackTrace();
-                            }
-                            operations.search();
-
-                            try {
-                                EmotionCalculation emCal = new EmotionCalculation();
-                                // launch(args);
-                                emCal.searchEmotion();
-                                // launch(args);
-                                emCal.emotionCalc(primaryStage);
-                                emCal.VisualOutput(primaryStage);
-
-                            } catch (Exception ex)
-                            {
-                                ex.printStackTrace();
-
-                            }
+                TextArea textField = new TextArea();
 
 
-                        }); try {
+                Button button = new Button("Enter");
+                button.setTextFill(Color.WHITE);
+                setStyle(button);
+                button.setTranslateX(620);
+                button.setTranslateY(350);
+                button.setPrefSize(150,70);
+                button.setOnAction(action -> {
+
+                    try {
+                        operations.splitInput(textField.getText());
+                    } catch (FileNotFoundException exc) {
+                        exc.printStackTrace();
+                    }
+                    try {
+                        operations.removeWord();
+                    } catch (FileNotFoundException exc) {
+                        exc.printStackTrace();
+                    }
+                    operations.search();
+
+                    try {
+                        EmotionCalculation emCal = new EmotionCalculation();
+                        // launch(args);
+                        emCal.searchEmotion();
+                        // launch(args);
+                        emCal.emotionCalc(primaryStage);
+                        emCal.VisualOutput(primaryStage);
+
+                    } catch (Exception ex)
+                    {
+                        ex.printStackTrace();
+
+                    }
+
+
+                }); try {
                     Text headning = new Text("USER INPUT");
                     headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 11));
                     headning.setFill(Color.DARKBLUE);
@@ -487,10 +497,10 @@ public class ThirdPage {
 //                        primaryStage.show();
 
 
-                    } catch (Exception excep) {
-                        excep.printStackTrace();
-                    }
-                });
+            } catch (Exception excep) {
+                excep.printStackTrace();
+            }
+        });
 
 
         back.setOnAction(e->{

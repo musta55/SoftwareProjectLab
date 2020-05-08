@@ -1,11 +1,5 @@
 package sample.spl1;
 
-
-import com.restfb.Connection;
-import com.restfb.DefaultFacebookClient;
-import com.restfb.FacebookClient;
-import com.restfb.types.Post;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -22,6 +16,7 @@ import javafx.stage.Stage;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import sample.languageClassification.Language;
 import sample.spl1.emotioncal.EmotionCalculation;
 import java.io.*;
 import java.util.ArrayList;
@@ -31,14 +26,8 @@ import java.util.Scanner;
 
 public class secondPage {
 
-    InputStream is = null;
-    DataInputStream dis = null;
-    FileOutputStream fos = null;
-    DataOutputStream dos = null;
     public void TheSecond(Stage stage) {
-        DropShadow ds = new DropShadow();
-        ds.setOffsetY(3.0f);
-        ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
+
 
         Text headning = new Text("Menu");
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
@@ -47,7 +36,6 @@ public class secondPage {
         headning.setTranslateX(630);
         headning.setTranslateY(70);
         headning.setFill(Color.DARKBLUE);
-     //   headning.setEffect(ds);
 
         Button pro = new Button("User Input");
         pro.setTranslateX(500);
@@ -95,7 +83,7 @@ public class secondPage {
         pro.setOnAction(e -> {
             try {
 
-                ThirdPage PMenu = new ThirdPage();
+                Language PMenu = new Language();
                 PMenu.TheThird(stage);
             } catch (Exception excep) {
                 excep.printStackTrace();

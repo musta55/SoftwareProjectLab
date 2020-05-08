@@ -115,7 +115,8 @@ public class Operations {
     public void splitInput(String inputString) throws FileNotFoundException{
 
         String[] inArray=null;
-          inArray = inputString.split("[ ,/;>.*'|\"(){+></@$%^&_=}]",0);
+       //   inArray = inputString.split("[ ,/;>.*'|\"(){+></@$%^&_=}]",0);
+        inArray = inputString.split("[ ]",0);
         for(int j=0;j<inArray.length;j++){
             //inArray[j].
 
