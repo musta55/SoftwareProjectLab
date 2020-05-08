@@ -66,22 +66,9 @@ public class Progression {
 
 
                         System.out.println("The post is English\n");
-
-                        operations.splitInput(aPost.getMessage());
-
-
-                        aPost.getMessage().replaceAll(aPost.getMessage(), "");
-                        operations.removeWord();
-                        operations.search();
+                    }
 
 
-                        //   EmotionCalculation emCal = new EmotionCalculation();
-                        emCal.searchEmotion();
-                        emCal.emotionCalc(stages);
-                        emCal.DataOutputStream();
-
-
-                    } else {
                         System.out.println("The Post is Bangla");
                         OperationsBangla operationsBangla = new OperationsBangla();
 
@@ -130,7 +117,7 @@ public class Progression {
                         //  System.out.println(dictionary.search("সত্য"));
 
 
-                    }
+
 
 
                     //    System.out.println("fb.com/"+aPost.getId());

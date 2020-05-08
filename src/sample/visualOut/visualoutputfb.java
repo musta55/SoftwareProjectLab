@@ -1,8 +1,5 @@
 package sample.visualOut;
 
-
-
-
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
@@ -36,8 +33,6 @@ import sample.spl1.emotioncal.EmotionCalculation;
 public class visualoutputfb {
     public static String s=null;
     public static void VisualOutputFacebook(Stage stage) throws FileNotFoundException {
-
-
 
         Scanner scan;
         File file = null;

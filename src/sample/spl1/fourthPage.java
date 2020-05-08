@@ -1,9 +1,5 @@
 package sample.spl1;
 
-import com.restfb.Connection;
-import com.restfb.DefaultFacebookClient;
-import com.restfb.FacebookClient;
-import com.restfb.types.Post;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -14,16 +10,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sample.visualOut.Progression;
 import sample.visualOut.overAll;
-import sample.visualOut.visualoutputfb;
 
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.List;
-
-import sample.spl1.emotioncal.EmotionCalculation;
 public class fourthPage {
-    
+
 public void runs(Stage stages)
 {
 
