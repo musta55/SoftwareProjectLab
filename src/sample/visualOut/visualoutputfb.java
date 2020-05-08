@@ -72,10 +72,10 @@ public class visualoutputfb {
         Group root = new Group();
         //   stage.setScene(new Scene(root));
 
-        // Image background = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
+         Image background = new Image(visualoutputfb.class.getClassLoader().getResource("emotionSide.png").toString(), true);
         //   Image fusics = new Image("fusics.png");
 
-        Image background=new Image("emotionSide.png");
+     //   Image background=new Image("sample/spl1/oldPaper.jpg");
         Canvas canvas = new Canvas(1800,900);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
