@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.openqa.selenium.WebDriver;
 import sample.languageClassification.Language;
 import sample.spl1.emotioncal.EmotionCalculation;
 import java.io.*;
@@ -82,7 +83,6 @@ public class secondPage {
         root.getChildren().addAll(socialMedia,back,pro,headning,liveUrl);
         pro.setOnAction(e -> {
             try {
-
                 Language PMenu = new Language();
                 PMenu.TheThird(stage);
             } catch (Exception excep) {
@@ -112,68 +112,10 @@ public class secondPage {
 
         });
        liveUrl.setOnAction(e -> {
-            try {
-                System.out.println("running...");
-                Document document;
-                try {
-                    //Get Document object after parsing the html from given url.
-                    document = Jsoup.connect("https://www.thedailystar.net/frontpage/news/pm-warns-global-food-shortage-1895131").get();
+           WebPage wb=new WebPage();
+           wb.web(stage);
 
-              //      document = Jsoup.connect("google.com").get();
-
-
-                    String title = document.text(); //Get title
-                    System.out.println("  Title: " + title); //Print title.
-
-                    Operations operations=new Operations();
-
-                        operations.splitInput(title);
-
-
-
-                    operations.removeWord();
-                    operations.search();
-
-
-                    EmotionCalculation emCal = new EmotionCalculation();
-
-                    emCal.searchEmotion();
-                    emCal.emotionCalc(stage);
-
-                    emCal.VisualOutput(stage);
-
-                    Elements price = document.select(".zsg-photo-card-price:contains($)"); //Get price
-                    Elements address = document.select("span[itemprop]:contains(DenverCO)"); //Get address
-
-                    FileOutputStream fout=new FileOutputStream("output_zillow.csv");
-                    PrintStream csv=new PrintStream(fout);
-                    csv.println("name	price	number sold");
-
-                  for (int i=0; i < price.size()-2; i++)
-                    {
-                        csv.println(address.get(i).text() + "	" + price.get(i).text());
-                    }
-                    fout.close();
-
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-
-
-
-
-
-
-            } catch (Exception excep) {
-                excep.printStackTrace();
-            }
         });
-
-
-
-
-
-
 
         Canvas canvas = new Canvas(1400,750);
         GraphicsContext gc = canvas.getGraphicsContext2D();

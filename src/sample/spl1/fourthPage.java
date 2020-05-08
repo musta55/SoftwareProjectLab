@@ -24,7 +24,7 @@ public class fourthPage {
 public void runs(Stage stages)
 {
 
-    String accessToken = "EAAJfo73qhKQBACxb48sDXbDEzZCW8ZC1gDMzBIVmxcaD8dbnQYziIA5ZCgJErWMWNZCTM5OJyM2c06GfZArQZAJmzuqTfdhz0gqeCKuJSm4tQgPeYAwYCDwuAI0dQF8jMr9OB1gXqY2jTjY1kGK9mSnlU4jII1ZBjKxnUSiVKMGWAZDZD ";
+    String accessToken = "EAAJfo73qhKQBAIZAaqTJfb0SNJKQfl7hEYV5FZAR8jJZCTCehjlBll24KiqYwT4eAZBkFQgZBfbMcw3ZA9WkhzKR5T8UoSoBG0Y7Afkqg5L1GTKPV0Fz8Wb2bUDDWS826t7NaZBdF10dYAjzwBZANrnOBbUehBtxxcVuJgBmRR26iwZDZD ";
         Button proa = new Button("Overall Emotion");
         proa.setTranslateX(550);
         proa.setTranslateY(70);
@@ -378,8 +378,5 @@ public void runs(Stage stages)
                 "    -fx-font-size: 2.1em;");
         return b;
     }
-
-
-
 
 }
