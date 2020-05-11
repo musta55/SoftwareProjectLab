@@ -1,5 +1,9 @@
 package sample.spl1;
 
+import com.restfb.Connection;
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.types.Post;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -8,15 +12,18 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import sample.spl1.emotioncal.EmotionCalculation;
 import sample.visualOut.Progression;
 import sample.visualOut.overAll;
+
+import java.util.List;
 
 public class fourthPage {
 
 public void runs(Stage stages)
 {
 
-    String accessToken = "EAAJfo73qhKQBAIZAaqTJfb0SNJKQfl7hEYV5FZAR8jJZCTCehjlBll24KiqYwT4eAZBkFQgZBfbMcw3ZA9WkhzKR5T8UoSoBG0Y7Afkqg5L1GTKPV0Fz8Wb2bUDDWS826t7NaZBdF10dYAjzwBZANrnOBbUehBtxxcVuJgBmRR26iwZDZD ";
+    String accessToken = "EAAJfo73qhKQBAHtwYac1rCXNJzBFirEyBCfbVgqzClZCif08X7iI5ZBX2SZBZA8TjwnCWvhzgt3HLZBCLxWYgtIgOBOIKxd5n57jKs3OrgUPJpX9plsXfJYeyRvtAKXgeXEOCz7CqDQuU6COm9ZCN5nZB40P25gnioFCLi5UdXbvZAXz1ZBlK5OM2eHnLjtn51h4ZD ";
         Button proa = new Button("Overall Emotion");
         proa.setTranslateX(550);
         proa.setTranslateY(70);
@@ -31,6 +38,13 @@ public void runs(Stage stages)
         progression.setPrefSize(300, 80);
         progression.setTextFill(Color.WHITE);
 
+
+    Button Status = new Button("Status");
+    Status.setTranslateX(250);
+    Status.setTranslateY(220);
+    setStyle(Status);
+    Status.setPrefSize(300, 80);
+    Status.setTextFill(Color.WHITE);
 
 
         Button backs = new Button("Back");
@@ -69,8 +83,13 @@ public void runs(Stage stages)
             {
                 overAll  over =new overAll();
                 over.overall(stages,accessToken);
+            }
+    );
 
-
+    Status.setOnAction(e->
+            {
+                firstPost fp=new firstPost();
+                fp.firstpost(stages);
             }
     );
 
@@ -95,7 +114,7 @@ public void runs(Stage stages)
     Background bg = new Background(bi);
     roots.setBackground(bg);
 
-    roots.getChildren().addAll(backs,proa,progression);
+    roots.getChildren().addAll(backs,proa,progression,Status);
 
 }
 

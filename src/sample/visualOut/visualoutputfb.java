@@ -295,123 +295,8 @@ public class visualoutputfb {
                 ex.printStackTrace();
             }
         });
-        String accessToken = "EAAJfo73qhKQBACxb48sDXbDEzZCW8ZC1gDMzBIVmxcaD8dbnQYziIA5ZCgJErWMWNZCTM5OJyM2c06GfZArQZAJmzuqTfdhz0gqeCKuJSm4tQgPeYAwYCDwuAI0dQF8jMr9OB1gXqY2jTjY1kGK9mSnlU4jII1ZBjKxnUSiVKMGWAZDZD ";
 
-        Button status1 = new Button("Status 1");
-        status1.setTranslateX(100);
-        status1.setTranslateY(620);
-        status1.setStyle("-fx-padding: 8 15 15 15;\n" +
-                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                "    -fx-background-radius: 8;\n" +
-                "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
-                "        #030B21,\n" +
-                "        #0B2058,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
-                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 1.5em;");
-        status1.setPrefSize(100, 30);
-        status1.setTextFill(Color.WHITE);
-
-
-
-
-
-
-        status1.setOnAction(e->
-                {
-                    Operations operations = new Operations();
-
-
-                    FacebookClient fbClient = new DefaultFacebookClient(accessToken);
-                    //   FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("668106823992484 ", "f63f747f31e390a44f93891920364794");
-
-                    Connection<Post> result;
-                    result = fbClient.fetchConnection("me/feed", Post.class);
-
-
-                    String userInput = null;
-                    EmotionCalculation emCal = new EmotionCalculation();
-                    emCal.fileOpen();
-                    int counter=0;
-                    for (List<Post> apost : result) {
-                        for (Post aPost : apost) {
-                            counter++;
-                            if (counter == 1) {
-
-                                try {
-                                    int number=aPost.getMessage().length();
-                                    s=aPost.getMessage().substring(0,number/16);
-                                    s+=aPost.getMessage().substring((number/16)+1,number/8);
-                                    s+="\n";
-                                    s+=aPost.getMessage().substring((number/8)+1,number/4);
-                                    s+="\n";
-                                    s+=aPost.getMessage().substring((number/4)+1,number/2);
-                                    s+="\n";
-                                    s+=aPost.getMessage().substring((number/2)+1,number);
-                                    s+="\n";
-                                    //     s+=aPost.getMessage().substring(2100,number);
-
-
-
-
-                                    char c;
-                                    c = aPost.getMessage().charAt(0);
-                                    char d;
-                                    d=aPost.getMessage().charAt(1);
-
-                                    if (((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') )&&((d >= 'a' && d <= 'z') || (d >= 'A' && d <= 'Z'))) {
-
-                                        operations.splitInput(aPost.getMessage());
-                                        aPost.getMessage().replaceAll(aPost.getMessage(), "");
-
-
-
-                                    } else {
-                                        System.out.println("The Post is Bangla");
-                                        OperationsBangla operationsBangla = new OperationsBangla();
-                                        operationsBangla.splitInputBangla();
-                                        String[] inArray = null;
-                                        String[] inArray2 = new String[10000];
-                                        Dictionary dictionary = new Dictionary("src/sample/spl1/Translation.txt");
-
-                                        inArray = aPost.getMessage().split("[ ,/;>.*'|\"(){+></@$%^&_=}]", 0);
-
-                                        aPost.getMessage().replaceAll(aPost.getMessage(), "");
-                                        for (int j = 0; j < inArray.length; j++) {
-                                            inArray2[j] = operationsBangla.searchBan(inArray[j]);
-                                        }
-                                        String inp = "";
-                                        for (int j = 0; j < inArray.length; j++) {
-                                            inArray2[j] = dictionary.search(inArray[j]);
-
-                                            inp = inp + inArray2[j] + " ";
-
-
-                                        }
-                                        operations.splitInput(inp);
-                                    }
-                                    operations.removeWord();
-                                    operations.search();
-                                    emCal.searchEmotion();
-                                    emCal.emotionCalc(stage);
-                                    emCal.DataOutputStream();
-
-                                } catch (Exception ea) {
-                                    System.out.println("");
-                                }
-                                emCal.VisualOutput(stage);
-
-                                break;
-                            }
-                        }
-
-                    }
-
-                }
-        );
-
+        String accessToken = "EAAJfo73qhKQBAHtwYac1rCXNJzBFirEyBCfbVgqzClZCif08X7iI5ZBX2SZBZA8TjwnCWvhzgt3HLZBCLxWYgtIgOBOIKxd5n57jKs3OrgUPJpX9plsXfJYeyRvtAKXgeXEOCz7CqDQuU6COm9ZCN5nZB40P25gnioFCLi5UdXbvZAXz1ZBlK5OM2eHnLjtn51h4ZD ";
 
         Button status2 = new Button("Status 2");
         status2.setTranslateX(280);
@@ -1250,7 +1135,7 @@ public class visualoutputfb {
 
 
 
-        root.getChildren().addAll(canvas,lineChart,more,status1,status2,status3,status4,status5,status6,moreSenti);
+        root.getChildren().addAll(canvas,lineChart,more,status2,status3,status4,status5,status6,moreSenti);
         //   scan.nextLine();
 //
 //        for(int a=0,k=0;k<m;a++,k++)

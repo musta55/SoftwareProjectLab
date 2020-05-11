@@ -12,5 +12,6 @@
     <orderEntry type="library" name="selenium-api-2.53" level="project" />
     <orderEntry type="library" name="javax.json-api-1.0" level="project" />
     <orderEntry type="library" name="jsoup-1.13" level="project" />
+    <orderEntry type="library" name="json-jena-1" level="project" />
   </component>
 </module>

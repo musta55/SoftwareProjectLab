@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="json-jena-1">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../SPL1/json-jena-1.0" />
+      <root url="file://$PROJECT_DIR$/../SPL1/java-jsons" />
+      <root url="file://$PROJECT_DIR$/../SPL1/json-jena-1.0.jar" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../SPL1/java-jsons/java-json" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../SPL1/json-jena-1.0.jar" recursive="false" />
+  </library>
+</component>
