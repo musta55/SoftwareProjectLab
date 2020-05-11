@@ -14,9 +14,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class postOne {
+    int[] integers = new int[100];
 
-
-    public void postone(Stage stages,String accessToken)
+    public void postone(Stage stages,String accessToken,int numbers)
     {
 
         Operations operations = new Operations();
@@ -36,10 +36,10 @@ public class postOne {
 //        for (List<Post> apost : result) {
 //            for (Post aPost : apost) {
 //                counter++;
-//                if (counter == 42) {
-//
+
+
         List<Post> apost=result.getData();
-        Post aPost=apost.get(12);
+        Post aPost=apost.get(numbers);
 
 
                    System.out.println("Post is :\n"+ aPost.getMessage());
@@ -98,12 +98,19 @@ public class postOne {
                             }
                         }
                         String[] reaction={"Haha","Angry","Sad","Like","Love","Wow"};
-                        int[] integers = new int[100];
-                        System.out.println("wow is "+string2[5]);
 
+                      //  System.out.println("wow is "+string2[5]);
+
+                        int sum=0;
                         for (int i = 0; i < eq; i++) {
                             //     System.out.println(string2[i]);
                             integers[i] = Integer.parseInt(string2[i]);
+                            sum+=integers[i];
+
+                        }
+                        for (int i = 0; i < eq; i++) {
+                            //     System.out.println(string2[i]);
+                         integers[i]=(integers[i]*100)/sum;
 
                         }
 
@@ -111,20 +118,8 @@ public class postOne {
 
                         for (int i = 0; i < 6; i++) {
 
-                            System.out.println(reaction[i] +" : "+ integers[i]);
+                            System.out.println(reaction[i] +" : "+ integers[i]+"%");
                         }
-
-
-
-
-
-
-
-
-
-
-
-
 
                         OperationsBangla operationsBangla = new OperationsBangla();
                         operationsBangla.splitInputBangla();
@@ -157,13 +152,13 @@ public class postOne {
                     } catch (Exception ea) {
                         System.out.println("");
                     }
-                    emCal.VisualOutput(stages);
+                    emCal.VisualOutputs(stages,integers[0],integers[1],integers[2],integers[3],integers[4],integers[5]);
 
 //                    break;
 //                }
 //            }
 //
-//        }
+
 
 
 

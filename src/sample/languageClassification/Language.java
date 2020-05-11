@@ -100,8 +100,6 @@ public class Language {
                 en.Eng(primaryStage);
             }
 
-
-
         });
 
 

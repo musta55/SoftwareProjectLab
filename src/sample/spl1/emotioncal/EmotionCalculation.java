@@ -663,6 +663,116 @@ public class EmotionCalculation {
 //        stage.show();
 
     }
+
+
+    public void VisualOutputs(Stage stage,int haha,int angry,int sad,int like ,int love,int wow) {
+
+        Button back = new Button("Back");
+        back.setTranslateX(1100);
+        back.setTranslateY(650);
+        back.setStyle("-fx-padding: 8 15 15 15;\n" +
+                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
+                "    -fx-background-radius: 8;\n" +
+                "    -fx-background-color: \n" +
+                "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
+                "        #8d9092,\n" +
+                "        #717375,\n" +
+                "        radial-gradient(center 50% 50%, radius 100%, #ffffff, #a1a3a6);\n" +
+                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
+                "    -fx-font-weight: bold;\n" +
+                "    -fx-font-size: 1.1em;");
+        back.setPrefSize(60, 30);
+
+        Image background = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
+        back.setOnAction(e -> {
+            try {
+                Main goBack = new Main();
+                goBack.start(stage);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        stage.show();
+        back.setOnAction(e -> {
+            try {
+                Main goBack = new Main();
+                goBack.start(stage);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+
+        BackgroundImage bi = new BackgroundImage(background,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        Background bg = new Background(bi);
+
+        stage.show();
+
+
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setCategories(FXCollections.<String>
+                observableArrayList(Arrays.asList("Joy", "Surprise", "Anger", "Sadness","Fear","Love","Trust","Disgust")));
+        xAxis.setLabel("category");
+
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("score");
+
+        //Creating the Bar chart
+        BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
+        barChart.setTitle("Comparison between emotion and reaction");
+
+        //Prepare XYChart.Series objects by setting data
+        XYChart.Series<String, Number> series1 = new XYChart.Series<>();
+        series1.setName("Emotion");
+        series1.getData().add(new XYChart.Data<>("Joy", JoyCal));
+        series1.getData().add(new XYChart.Data<>("Surprise", SurpriseCal));
+        series1.getData().add(new XYChart.Data<>("Anger", AngerCal));
+        series1.getData().add(new XYChart.Data<>("Sadness", SadnessCal));
+        series1.getData().add(new XYChart.Data<>("Fear", FearCal));
+        series1.getData().add(new XYChart.Data<>("Love", anticipationCal));
+        series1.getData().add(new XYChart.Data<>("Trust", TrustCal));
+        series1.getData().add(new XYChart.Data<>("Disgust", DisgustCal));
+
+
+        XYChart.Series<String, Number> series2 = new XYChart.Series<>();
+        series2.setName("Reaction");
+        series2.getData().add(new XYChart.Data<>("Joy", haha));
+        series2.getData().add(new XYChart.Data<>("Surprise", wow));
+        series2.getData().add(new XYChart.Data<>("Anger", angry));
+        series2.getData().add(new XYChart.Data<>("Sadness", sad));
+        series2.getData().add(new XYChart.Data<>("Fear", sad));
+        series2.getData().add(new XYChart.Data<>("Love", love));
+        series2.getData().add(new XYChart.Data<>("Trust", like));
+        series2.getData().add(new XYChart.Data<>("Disgust", angry));
+
+
+
+
+        //Setting the data to bar chart
+        barChart.getData().addAll(series1, series2);
+        barChart.setPrefSize(1400,600);
+
+        //Creating a Group object
+        Group root = new Group(barChart);
+
+        //Creating a scene object
+        Scene scene = new Scene(root, 2000, 900);
+
+        //Setting title to the Stage
+        stage.setTitle("Bar Chart");
+
+        //Adding scene to the stage
+        stage.setScene(scene);
+
+        //Displaying the contents of the stage
+        stage.show();
+
+    }
 }
 
 
