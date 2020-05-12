@@ -33,18 +33,21 @@ public class postOne {
         EmotionCalculation emCal = new EmotionCalculation();
         emCal.fileOpen();
         int counter=0;
+        String status=null;
 //        for (List<Post> apost : result) {
 //            for (Post aPost : apost) {
 //                counter++;
-
-
+//
+//
         List<Post> apost=result.getData();
         Post aPost=apost.get(numbers);
+//
+//                if (counter == numbers) {
 
-
-                   System.out.println("Post is :\n"+ aPost.getMessage());
+                    System.out.println("Post is :\n" + aPost.getMessage());
+                    status=aPost.getMessage();
                     try {
-                        int number=aPost.getMessage().length();
+                        int number = aPost.getMessage().length();
 //                                            s=aPost.getMessage().substring(0,number/16);
 //                                            s+=aPost.getMessage().substring((number/16)+1,number/8);
 //                                            s+="\n";
@@ -57,14 +60,13 @@ public class postOne {
                         //     s+=aPost.getMessage().substring(2100,number);
 
 
-
 //                                                operations.splitInput(aPost.getMessage());
 //                                                aPost.getMessage().replaceAll(aPost.getMessage(), "");
 
                         // System.out.println("The Post is Bangla");
 
-                        System.out.println("Date is :"+aPost.getCreatedTime());
-                   //     counter++;
+                        System.out.println("Date is :" + aPost.getCreatedTime());
+                        //     counter++;
 
 //                        PostWithDetailedReactions post =
 //                                fbClient.fetchObject(aPost.getId() + "/reactions", PostWithDetailedReactions.class, Parameter.with("fields", fields));
@@ -80,45 +82,42 @@ public class postOne {
 
 
                         //   System.out.println("REACTIONS ARE:" + obj.toString());
-                        String str=obj.toString();
+                        String str = obj.toString();
                         str = str.replaceAll("[^-?0-9]+", " ");
                         System.out.println(Arrays.asList(str.trim().split(" ")));
 //                str=str.replace('[',' ');
 //                str=str.replace(']',' ');
 
                         String[] integerStrings = str.split("[ ]");
-                        String[] string2=new String[10];
-                        int eq=0;
-                        for(int k=1;k<integerStrings.length;k++)
-                        {
-                            if(k==6 || k==5);
-                            else
-                            {
-                                string2[eq++]=integerStrings[k];
+                        String[] string2 = new String[10];
+                        int eq = 0;
+                        for (int k = 1; k < integerStrings.length; k++) {
+                            if (k == 6 || k == 5) ;
+                            else {
+                                string2[eq++] = integerStrings[k];
                             }
                         }
-                        String[] reaction={"Haha","Angry","Sad","Like","Love","Wow"};
+                        String[] reaction = {"Haha", "Angry", "Sad", "Like", "Love", "Wow"};
 
-                      //  System.out.println("wow is "+string2[5]);
+                        //  System.out.println("wow is "+string2[5]);
 
-                        int sum=0;
+                        int sum = 0;
                         for (int i = 0; i < eq; i++) {
                             //     System.out.println(string2[i]);
                             integers[i] = Integer.parseInt(string2[i]);
-                            sum+=integers[i];
+                            sum += integers[i];
 
                         }
                         for (int i = 0; i < eq; i++) {
                             //     System.out.println(string2[i]);
-                         integers[i]=(integers[i]*100)/sum;
+                            integers[i] = (integers[i] * 100) / sum;
 
                         }
-
 
 
                         for (int i = 0; i < 6; i++) {
 
-                            System.out.println(reaction[i] +" : "+ integers[i]+"%");
+                            System.out.println(reaction[i] + " : " + integers[i] + "%");
                         }
 
                         OperationsBangla operationsBangla = new OperationsBangla();
@@ -152,13 +151,13 @@ public class postOne {
                     } catch (Exception ea) {
                         System.out.println("");
                     }
-                    emCal.VisualOutputs(stages,integers[0],integers[1],integers[2],integers[3],integers[4],integers[5]);
-
+                    emCal.VisualOutputs(stages,status, integers[0], integers[1], integers[2], integers[3], integers[4], integers[5]);
+//
 //                    break;
 //                }
 //            }
 //
-
+//        }
 
 
 

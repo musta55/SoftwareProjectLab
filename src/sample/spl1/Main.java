@@ -42,11 +42,6 @@ public class Main extends Application {
 //        primaryStage.setTitle("Playing Audio");
       //  primaryStage.show();
 
-        DropShadow ds = new DropShadow();
-        ds.setOffsetY(3.0f);
-        ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
-
-
 
         Text headning = new Text("EMOTION DETECTOR");
         headning.setScaleX(6);
@@ -56,21 +51,9 @@ public class Main extends Application {
         headning.setFill(Color.DARKBLUE);
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
 
-     //   headning.setEffect(ds);
+
 
         headning.setCache(true);
-
-//
-//        headning.setFont(Font.font(null, FontWeight.BOLD, 14));
-//
-//        Reflection r = new Reflection();
-//        r.setFraction(0.8f);
-//
-//        headning.setEffect(r);
-
-     //   headning.setTranslateY(400);
-
-
 
 
 
@@ -112,14 +95,7 @@ public class Main extends Application {
             scene.setFill(Color.BLACK);
 
             primaryStage.setScene(scene);
-            //primaryStage.setFullScreen(true);
-     //   primaryStage.initStyle(TRANSPARENT);
             primaryStage.show();
-//        }catch (Exception e)
-//        {
-//            System.out.println("Picture url Problem");
-//        }
-      //  Image fusics = new Image("sample/spl1/emoji.png");
 
 
         Start.setOnAction(e->{
@@ -132,11 +108,7 @@ public class Main extends Application {
                 excep.printStackTrace();
             }
         });
-
-     //   gc.drawImage(fusics,450,150);
-
-
-    }
+  }
 
 
     public static void main(String[] args) {

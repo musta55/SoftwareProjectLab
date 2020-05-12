@@ -22,6 +22,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -33,6 +34,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import sample.spl1.Main;
 import sample.spl1.Operations;
+import sample.spl1.textField;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -609,63 +611,10 @@ public class EmotionCalculation {
         //primaryStage.setFullScreen(true);
         stage.show();
 
-
-//        CategoryAxis xAxis = new CategoryAxis();
-//        xAxis.setCategories(FXCollections.<String>
-//                observableArrayList(Arrays.asList("Speed", "User rating", "Milage", "Safety")));
-//        xAxis.setLabel("category");
-//
-//        NumberAxis yAxis = new NumberAxis();
-//        yAxis.setLabel("score");
-//
-//        //Creating the Bar chart
-//        BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
-//        barChart.setTitle("Comparison between various cars");
-//
-//        //Prepare XYChart.Series objects by setting data
-//        XYChart.Series<String, Number> series1 = new XYChart.Series<>();
-//        series1.setName("Fiat");
-//        series1.getData().add(new XYChart.Data<>("Speed", 1.0));
-//        series1.getData().add(new XYChart.Data<>("User rating", 3.0));
-//        series1.getData().add(new XYChart.Data<>("Milage", 5.0));
-//        series1.getData().add(new XYChart.Data<>("Safety", 5.0));
-//
-//        XYChart.Series<String, Number> series2 = new XYChart.Series<>();
-//        series2.setName("Audi");
-//        series2.getData().add(new XYChart.Data<>("Speed", 5.0));
-//        series2.getData().add(new XYChart.Data<>("User rating", 6.0));
-//        series2.getData().add(new XYChart.Data<>("Milage", 10.0));
-//        series2.getData().add(new XYChart.Data<>("Safety", 4.0));
-//
-//        XYChart.Series<String, Number> series3 = new XYChart.Series<>();
-//        series3.setName("Ford");
-//        series3.getData().add(new XYChart.Data<>("Speed", 4.0));
-//        series3.getData().add(new XYChart.Data<>("User rating", 2.0));
-//        series3.getData().add(new XYChart.Data<>("Milage", 3.0));
-//        series3.getData().add(new XYChart.Data<>("Safety", 6.0));
-//
-//        //Setting the data to bar chart
-//        barChart.getData().addAll(series1, series2, series3);
-//
-//        //Creating a Group object
-//        Group root = new Group(barChart);
-//
-//        //Creating a scene object
-//        Scene scene = new Scene(root, 600, 400);
-//
-//        //Setting title to the Stage
-//        stage.setTitle("Bar Chart");
-//
-//        //Adding scene to the stage
-//        stage.setScene(scene);
-//
-//        //Displaying the contents of the stage
-//        stage.show();
-
     }
 
 
-    public void VisualOutputs(Stage stage,int haha,int angry,int sad,int like ,int love,int wow) {
+    public void VisualOutputs(Stage stage,String status,int haha,int angry,int sad,int like ,int love,int wow) {
 
         Button back = new Button("Back");
         back.setTranslateX(1100);
@@ -715,6 +664,8 @@ public class EmotionCalculation {
 
 
         CategoryAxis xAxis = new CategoryAxis();
+        xAxis.autosize();
+
         xAxis.setCategories(FXCollections.<String>
                 observableArrayList(Arrays.asList("Joy", "Surprise", "Anger", "Sadness","Fear","Love","Trust","Disgust")));
         xAxis.setLabel("category");
@@ -724,7 +675,12 @@ public class EmotionCalculation {
 
         //Creating the Bar chart
         BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
-        barChart.setTitle("Comparison between emotion and reaction");
+        barChart.setBarGap(1);
+        barChart.setCategoryGap(65);
+        barChart.getAnimated();
+
+        barChart.setTitle("Comparison between EMOTION and REACTION");
+
 
         //Prepare XYChart.Series objects by setting data
         XYChart.Series<String, Number> series1 = new XYChart.Series<>();
@@ -740,6 +696,7 @@ public class EmotionCalculation {
 
 
         XYChart.Series<String, Number> series2 = new XYChart.Series<>();
+
         series2.setName("Reaction");
         series2.getData().add(new XYChart.Data<>("Joy", haha));
         series2.getData().add(new XYChart.Data<>("Surprise", wow));
@@ -755,10 +712,24 @@ public class EmotionCalculation {
 
         //Setting the data to bar chart
         barChart.getData().addAll(series1, series2);
-        barChart.setPrefSize(1400,600);
+        barChart.setPrefSize(1200,600);
+        Hyperlink link = new Hyperlink("See Post");
+        link.setScaleX(6);
+        link.setScaleY(6);
+        link.setTranslateX(900);
+        link.setTranslateY(650);
+        link.setOnAction(e -> {
+            Stage stagea=new Stage();
+
+            textField tf=new textField();
+            tf.text(stage,status);
+
+
+        });
 
         //Creating a Group object
-        Group root = new Group(barChart);
+        Pane root = new Pane();
+        root.getChildren().addAll(back,barChart,link);
 
         //Creating a scene object
         Scene scene = new Scene(root, 2000, 900);

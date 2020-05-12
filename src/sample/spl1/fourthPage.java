@@ -23,8 +23,10 @@ public class fourthPage {
 public void runs(Stage stages)
 {
 
-    String accessToken = "EAAJfo73qhKQBAPTqcW4SDLfFVmOnd3WSpfsapFSaIXcq7tjaaGeLkPU3pykfu64thCEfPipr8jRJYZCdvPv5ZBJi2hsjpZBw0vvZCCKklcYZB6uZBJZBbf1Ri0eoZCJrjX65Q2Ew8lW7ZCZBfXiWkh9CXqZC2Im8ahp7JjoN4zu61ZAN17uQBs6t9gCgVlTmFTIDEUhMOZBq0ZCnBmtukdY77PEB3U ";
-        Button proa = new Button("Overall Emotion");
+    String accessToken = "EAAJfo73qhKQBANHzEeoz2M9b65iITDjxuNFl0SdjX89k8m4nWBaB9js1qnCteR497lZCqugbwlcsNE1psqD7BPY71jf8zLXqdLqVMkb15q7UVNSSpwjowelEFz4YYJ7uyZCQUkqmYrDZAmBjU0fZBGtmPStPkqftSMm5ErNH9cQgzdBPiHNU4K3JyxTKXaJKRTebSwtvYhHasQp07uEe ";
+    FacebookClient fbClient = new DefaultFacebookClient(accessToken);
+    FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("668106823992484 ", "f63f747f31e390a44f93891920364794");
+    Button proa = new Button("Overall Emotion");
         proa.setTranslateX(550);
         proa.setTranslateY(70);
         setStyle(proa);
@@ -40,8 +42,8 @@ public void runs(Stage stages)
 
 
     Button Status = new Button("Status");
-    Status.setTranslateX(250);
-    Status.setTranslateY(220);
+    Status.setTranslateX(550);
+    Status.setTranslateY(370);
     setStyle(Status);
     Status.setPrefSize(300, 80);
     Status.setTextFill(Color.WHITE);
@@ -49,7 +51,7 @@ public void runs(Stage stages)
 
         Button backs = new Button("Back");
         backs.setTranslateX(550);
-        backs.setTranslateY(370);
+        backs.setTranslateY(520);
         setStyle(backs);
         backs.setPrefSize(300, 80);
         backs.setTextFill(Color.WHITE);
@@ -71,18 +73,15 @@ public void runs(Stage stages)
     progression.setOnAction(e->
             {
                 Progression statusProg =new Progression();
-                statusProg.statusProgress(stages,accessToken);
+                statusProg.statusProgress(stages,exAccessToken.getAccessToken());
 
             }
     );
 
-
-
-
     proa.setOnAction(e->
             {
                 overAll  over =new overAll();
-                over.overall(stages,accessToken);
+                over.overall(stages,exAccessToken.getAccessToken());
             }
     );
 
@@ -99,7 +98,7 @@ public void runs(Stage stages)
     stages.setScene(scene);
     //stages.setFullScreen(true);
     stages.show();
-    Image background = new Image(getClass().getClassLoader().getResource("emotion(16-9).png").toString(), true);
+    Image background = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
 
 
 

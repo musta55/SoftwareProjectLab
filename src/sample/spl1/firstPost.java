@@ -23,7 +23,15 @@ public class firstPost {
     {
         Pane stat = new Pane();
         Scene scen = new Scene(stat, 2000, 900);
-        String accessToken = "EAAJfo73qhKQBAPTqcW4SDLfFVmOnd3WSpfsapFSaIXcq7tjaaGeLkPU3pykfu64thCEfPipr8jRJYZCdvPv5ZBJi2hsjpZBw0vvZCCKklcYZB6uZBJZBbf1Ri0eoZCJrjX65Q2Ew8lW7ZCZBfXiWkh9CXqZC2Im8ahp7JjoN4zu61ZAN17uQBs6t9gCgVlTmFTIDEUhMOZBq0ZCnBmtukdY77PEB3U ";
+
+
+        String accessToken = "EAAJfo73qhKQBANHzEeoz2M9b65iITDjxuNFl0SdjX89k8m4nWBaB9js1qnCteR497lZCqugbwlcsNE1psqD7BPY71jf8zLXqdLqVMkb15q7UVNSSpwjowelEFz4YYJ7uyZCQUkqmYrDZAmBjU0fZBGtmPStPkqftSMm5ErNH9cQgzdBPiHNU4K3JyxTKXaJKRTebSwtvYhHasQp07uEe ";
+        FacebookClient fbClient = new DefaultFacebookClient(accessToken);
+        FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("668106823992484 ", "f63f747f31e390a44f93891920364794");
+
+        System.out.println(exAccessToken.getExpires());
+        System.out.println(exAccessToken.getAccessToken());
+
 
 
         Button status1 = new Button("Status 1");
@@ -63,7 +71,7 @@ public class firstPost {
 
                     try {
                         postOne po = new postOne();
-                        po.postone(stages, accessToken, Integer.parseInt(textField.getText()));
+                        po.postone(stages, exAccessToken.getAccessToken(), Integer.parseInt(textField.getText()));
                     } catch (Exception exc) {
                         exc.printStackTrace();
                     }
