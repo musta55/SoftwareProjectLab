@@ -12,6 +12,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.spl1.emotioncal.EmotionCalculation;
 
@@ -60,6 +63,18 @@ public class firstPost {
         textField.setWrapText(true);
         textField.setMinSize(1125,150);
 
+        Text headning = new Text("Enter Status No");
+        headning.setScaleX(3);
+        headning.setScaleY(3);
+        headning.setTranslateX(650);
+        headning.setTranslateY(100);
+        headning.setFill(Color.BLACK);
+        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
+
+
+
+        headning.setCache(true);
+
 
         Button button = new Button("Enter");
         button.setTextFill(Color.WHITE);
@@ -91,7 +106,7 @@ public class firstPost {
         //    stages.setFullScreen(true);
         stages.show();
         stages.setTitle("STATUS 1 With Reaction");
-        stat.getChildren().addAll(button,textField);
+        stat.getChildren().addAll(button,textField,headning);
         Image background = new Image(getClass().getClassLoader().getResource("emotion(16-9).png").toString(), true);
 
 

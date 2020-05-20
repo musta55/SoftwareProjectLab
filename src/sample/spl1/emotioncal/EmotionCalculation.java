@@ -714,10 +714,13 @@ public class EmotionCalculation {
         barChart.getData().addAll(series1, series2);
         barChart.setPrefSize(1200,600);
         Hyperlink link = new Hyperlink("See Post");
-        link.setScaleX(6);
-        link.setScaleY(6);
-        link.setTranslateX(900);
-        link.setTranslateY(650);
+        link.setScaleX(4);
+        link.setScaleY(4);
+        link.setTranslateX(1000);
+        link.setTranslateY(500);
+        link.applyCss();
+        link.fire();
+
         link.setOnAction(e -> {
             Stage stagea=new Stage();
 
