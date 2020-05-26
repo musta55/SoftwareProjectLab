@@ -740,7 +740,7 @@ public class EmotionCalculation {
         //Setting title to the Stage
         stage.setTitle("Bar Chart");
 
-        //Adding scene to the stage
+        //Adding scene to the stage 
         stage.setScene(scene);
 
         //Displaying the contents of the stage

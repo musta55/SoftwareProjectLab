@@ -19,9 +19,6 @@ public class Progression {
     public void statusProgress(Stage stages,String accessToken)
     {
 
-
-
-
         System.out.println("Progression is :");
         Operations operations = new Operations();
 
@@ -114,13 +111,6 @@ public class Progression {
                         emCal.emotionCalc(stages);
                         emCal.DataOutputStream();
 
-                        //  System.out.println(dictionary.search("সত্য"));
-
-
-
-
-
-                    //    System.out.println("fb.com/"+aPost.getId());
 
                 } catch (Exception ea) {
                     System.out.println("");
@@ -144,7 +134,7 @@ public class Progression {
         //    root.getChildren().addAll(,back,pro,headning,liveUrl);
 
         File file = new File("sample/spl1/out.txt");
-        file.delete();
+       // file.delete();
 
     }
 
