@@ -12,6 +12,12 @@ import sample.spl1.emotioncal.EmotionCalculation;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 
 public class Progression {
@@ -58,6 +64,23 @@ public class Progression {
 
                     char c;
                     c = aPost.getMessage().charAt(0);
+
+                    System.out.println("Post date is :"+aPost.getCreatedTime());
+
+                    try {
+                        //  FileWriter fw = new FileWriter("src/sample/spl1/out.txt");
+                        Path path = Paths.get("date.txt");
+                        //    fw.write("Files in Java might be tricky, but it is fun enough!");
+                        //  fw.write(dbuf[0]+"#"+dbuf[1]+"#"+dbuf[2]+"#"+dbuf[3]+"#"+dbuf[4]+"#"+dbuf[5]+"#"+dbuf[6]+"#"+dbuf[7]+"#");
+                      //  String textToAppend = aPost.getCreatedTime();
+                        Files.write(path, (Iterable<? extends CharSequence>) aPost.getCreatedTime(), StandardOpenOption.APPEND);
+                        //   fw.close();
+                        System.out.println("Successfully wrote to the file.");
+                    } catch (IOException e) {
+                        System.out.println("An error occurred.");
+                        e.printStackTrace();
+                    }
+
 
                     if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
 

@@ -25,10 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import sample.spl1.Dictionary;
-import sample.spl1.Main;
-import sample.spl1.Operations;
-import sample.spl1.OperationsBangla;
+import sample.spl1.*;
 import sample.spl1.emotioncal.EmotionCalculation;
 public class visualoutputfb {
     public static String s=null;
@@ -104,8 +101,8 @@ public class visualoutputfb {
 
         back.setOnAction(e -> {
             try {
-                Main goBack = new Main();
-                goBack.start(stage);
+               fourthPage fp=new fourthPage();
+               fp.runs(stage);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -129,9 +126,6 @@ public class visualoutputfb {
 
         more.setOnAction(e->{
             try {
-
-
-
 
                 double joyOut=0;
 
@@ -284,7 +278,7 @@ public class visualoutputfb {
                 texts.setFill(Color.DARKCYAN);
 
 
-                roots.getChildren().addAll(barChart,texts);
+                roots.getChildren().addAll(barChart,texts,back);
                 Scene scenea = new Scene(roots, 1400, 750);
                 // Scene scene = new Scene(root, 1600, 800);
                 stage.setScene(scenea);
@@ -874,7 +868,7 @@ public class visualoutputfb {
 //                }
 //        );
 
-        NumberAxis xAxisq = new NumberAxis();
+        CategoryAxis xAxisq = new CategoryAxis();
         xAxisq.setLabel("Status");
 
         NumberAxis yAxisq = new NumberAxis();
@@ -887,7 +881,7 @@ public class visualoutputfb {
         dataSeries1.setName("JOY");
 
         for(int w=0,e=1;w<50 &&e<10;w+=8,e++)
-            dataSeries1.getData().add(new XYChart.Data( e, out[w]));
+            dataSeries1.getData().add(new XYChart.Data("Post "+ e, out[w]));
 
 
 
@@ -895,12 +889,12 @@ public class visualoutputfb {
         dataSeries2.setName("SURPRISE");
 
         for(int w=1,e=1;w<50 &&e<10;w+=8,e++)
-            dataSeries2.getData().add(new XYChart.Data( e, out[w]));
+            dataSeries2.getData().add(new XYChart.Data( "Post "+ e, out[w]));
 
         XYChart.Series dataSeries3 = new XYChart.Series();
         dataSeries3.setName("FEAR");
         for(int w=2,e=1;w<50 &&e<10;w+=8,e++)
-            dataSeries3.getData().add(new XYChart.Data( e, out[w]));
+            dataSeries3.getData().add(new XYChart.Data( "Post "+ e, out[w]));
 
 
 
@@ -908,26 +902,26 @@ public class visualoutputfb {
         dataSeries4.setName("SADNESS");
 
         for(int w=3,e=1;w<50 &&e<10;w+=8,e++)
-            dataSeries4.getData().add(new XYChart.Data( e, out[w]));
+            dataSeries4.getData().add(new XYChart.Data( "Post "+ e, out[w]));
 
 
         XYChart.Series dataSeries5 = new XYChart.Series();
         dataSeries5.setName("TRUST");
 
         for(int w=0,e=1;w<50 &&e<10;w+=8,e++)
-            dataSeries5.getData().add(new XYChart.Data( e, out[w]));
+            dataSeries5.getData().add(new XYChart.Data( "Post "+ e, out[w]));
 
         XYChart.Series dataSeries6 = new XYChart.Series();
         dataSeries6.setName("DISGUST");
 
         for(int w=5,e=1;w<50 &&e<10;w+=8,e++)
-            dataSeries6.getData().add(new XYChart.Data( e, out[w]));
+            dataSeries6.getData().add(new XYChart.Data( "Post "+ e, out[w]));
 
         XYChart.Series dataSeries7 = new XYChart.Series();
-        dataSeries1.setName("anticipation");
+        dataSeries7.setName("ANTICIPATION");
 
         for(int w=6,e=1;w<50 &&e<10;w+=8,e++)
-            dataSeries7.getData().add(new XYChart.Data( e, out[w]));
+            dataSeries7.getData().add(new XYChart.Data( "Post "+ e, out[w]));
 
 
 
@@ -935,7 +929,7 @@ public class visualoutputfb {
         dataSeries8.setName("ANGER");
 
         for(int w=7,e=1;w<50 &&e<10;w+=8,e++)
-            dataSeries8.getData().add(new XYChart.Data( e, out[w]));
+            dataSeries8.getData().add(new XYChart.Data( "Post "+ e, out[w]));
 
 
         lineChart.getData().addAll(dataSeries1,dataSeries2,dataSeries3,dataSeries4,dataSeries5,dataSeries6,dataSeries7,dataSeries8);
@@ -1064,7 +1058,7 @@ public class visualoutputfb {
             //   stage.setScene(new Scene(root));
             //   Image backgrounda = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
 
-            Image backgrounda=new Image("emotionside.png");
+            Image backgrounda=new Image("sample/spl1/purssianBlue.jpg");
             //   Image fusics = new Image("fusics.png");
             Canvas canvasa = new Canvas(1800,900);
 
@@ -1086,8 +1080,8 @@ public class visualoutputfb {
             backa.setPrefSize(60, 30);
             backa.setOnAction(ed -> {
                 try {
-                    Main goBack = new Main();
-                    goBack.start(stage);
+                    fourthPage fp=new fourthPage();
+                    fp.runs(stage);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -1137,14 +1131,14 @@ public class visualoutputfb {
             xAxis.setLabel("No of status");
 
             NumberAxis yAxisa = new NumberAxis();
-            yAxis.setLabel("Intensity");
+            yAxis.setLabel("Overall Sentiment Score");
 
             ScatterChart scatterChart = new ScatterChart(xAxisa, yAxisa);
 
             XYChart.Series dataSeriessenti = new XYChart.Series();
-            dataSeriessenti.setName("INTENSITY");
+            dataSeriessenti.setName("SENTIMENT SCORE");
 
-            for(int t=1;t<=15;t++)
+            for(int t=1;t<=7;t++)
             dataSeriessenti.getData().add(new XYChart.Data( t, sentimentTot[t]));
 
 

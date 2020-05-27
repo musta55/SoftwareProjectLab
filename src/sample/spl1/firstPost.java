@@ -28,7 +28,7 @@ public class firstPost {
         Scene scen = new Scene(stat, 2000, 900);
 
 
-        String accessToken = "EAAMF6lCN2rABANCDNKJ69iDx3ckONNpAEwEjRMUXtlo4eVseW9mxrYp3vwZAMbygZCleHfBjNdrlZCSvZCf2VapMocm6ScNhrQZBIviPXDihZB6iKwvOW3OZCOP1YlcXADGfMHlmC0dZASCXXzqcZBZBYMSt3gXCy2t2jNDRwas6jMv6DN2qMkufAZASM0onLyYFKNRkPDWkl6e8G5wYj68XD32 ";
+        String accessToken = "EAAMF6lCN2rABAF5ZALQJ8p9eyqINZBTQOuji84isnkmHzCW3ZBdTEU1egFZCSZA6DZCT8yeTs9aZBOsV1ymLgAScVyoDiHrEZBDXx30omZC0P4jUk4eI7XOaoqjFJYkomwDTsBv1b0zVqxMpcwVehfSVEKV7WDqwxw5WvbGd2VzZAgf5n9nI65pXI0n9nBn6PlcBak6RgRUZA8UasA03WGAXKAw2pmChGPtjCaAE5PWPjBMfQbyTbxqt00e ";
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("850928862091952", "ddb4cbe10a995e95acc505c91c9e73d5");
 
@@ -56,18 +56,18 @@ public class firstPost {
 
         int numbers=0;
         TextArea textField = new TextArea();
-        textField.setLayoutX(150);
-        textField.setLayoutY(180);
+        textField.setLayoutX(650);
+        textField.setLayoutY(220);
         textField.setPrefRowCount(2);
-        textField.setPrefColumnCount(6);
+        textField.setPrefColumnCount(2);
         textField.setWrapText(true);
-        textField.setMinSize(125,15);
+        textField.setMinSize(105,3);
 
         Text headning = new Text("Enter Status No.");
         headning.setScaleX(3);
         headning.setScaleY(3);
-        headning.setTranslateX(650);
-        headning.setTranslateY(100);
+        headning.setTranslateX(400);
+        headning.setTranslateY(250);
         headning.setFill(Color.BLACK);
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
 
@@ -75,6 +75,32 @@ public class firstPost {
 
         headning.setCache(true);
 
+        Button back = new Button("Back");
+        back.setTranslateX(1200);
+        back.setTranslateY(350);
+        back.setStyle("-fx-padding: 8 15 15 15;\n" +
+                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
+                "    -fx-background-radius: 8;\n" +
+                "    -fx-background-color: \n" +
+                "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
+                "        #8d9092,\n" +
+                "        #717375,\n" +
+                "         radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
+                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
+                "    -fx-font-weight: bold;\n" +
+                "    -fx-font-size: 1.1em;");
+        back.setPrefSize(80, 30);
+
+
+        back.setTextFill(Color.WHITE);
+        back.setOnAction(e -> {
+            try {
+                fourthPage fp=new fourthPage();
+                fp.runs(stages);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
 
         Button button = new Button("Enter");
         button.setTextFill(Color.WHITE);
@@ -92,21 +118,12 @@ public class firstPost {
                     }
                 }
             );
-//        status1.setOnAction(es->
-//                {
-//
-//
-//                }
-//
-//
-//
-//        );
 
         stages.setScene(scen);
         //    stages.setFullScreen(true);
         stages.show();
         stages.setTitle("STATUS 1 With Reaction");
-        stat.getChildren().addAll(button,textField,headning);
+        stat.getChildren().addAll(button,textField,headning,back);
         Image background = new Image(getClass().getClassLoader().getResource("emotion(16-9).png").toString(), true);
 
 
