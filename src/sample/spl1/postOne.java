@@ -6,7 +6,9 @@ import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import com.restfb.json.JsonObject;
 import com.restfb.types.Post;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sample.spl1.emotioncal.EmotionCalculation;
 
@@ -18,6 +20,7 @@ public class postOne {
 
     public void postone(Stage stages,String accessToken,int numbers)
     {
+
 
         Operations operations = new Operations();
 
@@ -153,6 +156,7 @@ public class postOne {
                     }
                     emCal.VisualOutputs(stages,status, integers[0], integers[1], integers[2], integers[3], integers[4], integers[5]);
 //
+
 //                    break;
 //                }
 //            }

@@ -34,6 +34,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import sample.spl1.Main;
 import sample.spl1.Operations;
+import sample.spl1.firstPost;
 import sample.spl1.textField;
 
 import java.io.FileOutputStream;
@@ -168,7 +169,7 @@ public class EmotionCalculation {
 
                 int q = 0;
                 //   System.out.println("intensity");
-                while (q < 5) {
+                while (q < 3) {
 
                     // i++;
                     System.out.println(Operations.outList.get(i));
@@ -616,6 +617,7 @@ public class EmotionCalculation {
 
     public void VisualOutputs(Stage stage,String status,int haha,int angry,int sad,int like ,int love,int wow) {
 
+
         Button back = new Button("Back");
         back.setTranslateX(1100);
         back.setTranslateY(650);
@@ -635,22 +637,15 @@ public class EmotionCalculation {
         Image background = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
         back.setOnAction(e -> {
             try {
-                Main goBack = new Main();
-                goBack.start(stage);
+
+                firstPost  fp=new firstPost();
+                fp.firstpost(stage);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         });
 
         stage.show();
-        back.setOnAction(e -> {
-            try {
-                Main goBack = new Main();
-                goBack.start(stage);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        });
 
 
         BackgroundImage bi = new BackgroundImage(background,
@@ -713,17 +708,14 @@ public class EmotionCalculation {
         //Setting the data to bar chart
         barChart.getData().addAll(series1, series2);
         barChart.setPrefSize(1200,600);
-        Hyperlink link = new Hyperlink("See Post");
-        link.setScaleX(4);
-        link.setScaleY(4);
-        link.setTranslateX(1000);
-        link.setTranslateY(500);
-        link.applyCss();
-        link.fire();
+        Hyperlink link = new Hyperlink("Click Post");
+        link.setScaleX(2);
+        link.setScaleY(2);
+        link.setTranslateX(1060);
+        link.setTranslateY(600);
+
 
         link.setOnAction(e -> {
-            Stage stagea=new Stage();
-
             textField tf=new textField();
             tf.text(stage,status);
 
@@ -732,7 +724,7 @@ public class EmotionCalculation {
 
         //Creating a Group object
         Pane root = new Pane();
-        root.getChildren().addAll(back,barChart,link);
+        root.getChildren().addAll(barChart,link,back);
 
         //Creating a scene object
         Scene scene = new Scene(root, 2000, 900);

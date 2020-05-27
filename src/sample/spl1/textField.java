@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 public class textField {
     public void text(Stage primaryStage,String status)
     {
-        Text headning = new Text("POST ");
+        Text headning = new Text("POST");
         headning.setScaleX(6);
         headning.setScaleY(6);
         headning.setTranslateX(650);
@@ -22,6 +22,33 @@ public class textField {
         headning.setFill(Color.WHITE);
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
 
+
+
+        Button back = new Button("Back");
+        back.setTranslateX(1100);
+        back.setTranslateY(650);
+        back.setStyle("-fx-padding: 8 15 15 15;\n" +
+                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
+                "    -fx-background-radius: 8;\n" +
+                "    -fx-background-color: \n" +
+                "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
+                "        #8d9092,\n" +
+                "        #717375,\n" +
+                "        radial-gradient(center 50% 50%, radius 100%, #ffffff, #a1a3a6);\n" +
+                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
+                "    -fx-font-weight: bold;\n" +
+                "    -fx-font-size: 1.1em;");
+        back.setPrefSize(60, 30);
+
+        back.setOnAction(e -> {
+            try {
+
+                firstPost  fp=new firstPost();
+                fp.firstpost(primaryStage);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
 
 
         headning.setCache(true);
@@ -53,12 +80,13 @@ public class textField {
                 BackgroundSize.DEFAULT);
         Background bg = new Background(bi);
         root.setBackground(bg);
-        root.getChildren().addAll(canvas,headning,sa);
-        Scene scene = new Scene(root,1400,760);
+        root.getChildren().addAll(canvas,headning,sa,back);
+        Scene scene = new Scene(root,1000,460);
         scene.setFill(Color.BLACK);
 
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        Stage st=new Stage();
+        st.setScene(scene);
+        st.show();
 
 
     }

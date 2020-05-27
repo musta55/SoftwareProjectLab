@@ -30,7 +30,7 @@ public class secondPage {
     public void TheSecond(Stage stage) {
 
 
-        Text headning = new Text("Menu");
+        Text headning = new Text("Entry Section");
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
         headning.setScaleX(5);
         headning.setScaleY(5);
@@ -45,14 +45,14 @@ public class secondPage {
         pro.setPrefSize(300, 80);
         pro.setTextFill(Color.WHITE);
 
-        Button socialMedia = new Button("Social Media");
+        Button socialMedia = new Button("Facebook Post");
         socialMedia.setTranslateX(500);
         socialMedia.setTranslateY(350);
         setStyle(socialMedia);
         socialMedia.setPrefSize(300, 80);
         socialMedia.setTextFill(Color.WHITE);
 
-        Button liveUrl = new Button(" Web Page");
+        Button liveUrl = new Button("Web Page");
         liveUrl.setTranslateX(500);
         liveUrl.setTranslateY(530);
         setStyle(liveUrl);
@@ -107,7 +107,7 @@ public class secondPage {
                 fPage.runs(stage);
             }catch (Exception ea)
             {
-                System.out.println("Hello");
+                System.out.println("Fourth Page Problem");
             }
 
         });

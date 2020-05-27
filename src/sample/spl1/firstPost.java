@@ -28,9 +28,9 @@ public class firstPost {
         Scene scen = new Scene(stat, 2000, 900);
 
 
-        String accessToken = "EAAJfo73qhKQBANHzEeoz2M9b65iITDjxuNFl0SdjX89k8m4nWBaB9js1qnCteR497lZCqugbwlcsNE1psqD7BPY71jf8zLXqdLqVMkb15q7UVNSSpwjowelEFz4YYJ7uyZCQUkqmYrDZAmBjU0fZBGtmPStPkqftSMm5ErNH9cQgzdBPiHNU4K3JyxTKXaJKRTebSwtvYhHasQp07uEe ";
+        String accessToken = "EAAMF6lCN2rABANCDNKJ69iDx3ckONNpAEwEjRMUXtlo4eVseW9mxrYp3vwZAMbygZCleHfBjNdrlZCSvZCf2VapMocm6ScNhrQZBIviPXDihZB6iKwvOW3OZCOP1YlcXADGfMHlmC0dZASCXXzqcZBZBYMSt3gXCy2t2jNDRwas6jMv6DN2qMkufAZASM0onLyYFKNRkPDWkl6e8G5wYj68XD32 ";
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
-        FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("668106823992484 ", "f63f747f31e390a44f93891920364794");
+        FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("850928862091952", "ddb4cbe10a995e95acc505c91c9e73d5");
 
         System.out.println(exAccessToken.getExpires());
         System.out.println(exAccessToken.getAccessToken());
@@ -58,12 +58,12 @@ public class firstPost {
         TextArea textField = new TextArea();
         textField.setLayoutX(150);
         textField.setLayoutY(180);
-        textField.setPrefRowCount(5);
+        textField.setPrefRowCount(2);
         textField.setPrefColumnCount(6);
         textField.setWrapText(true);
-        textField.setMinSize(1125,150);
+        textField.setMinSize(125,15);
 
-        Text headning = new Text("Enter Status No");
+        Text headning = new Text("Enter Status No.");
         headning.setScaleX(3);
         headning.setScaleY(3);
         headning.setTranslateX(650);
@@ -86,7 +86,7 @@ public class firstPost {
 
                     try {
                         postOne po = new postOne();
-                        po.postone(stages, exAccessToken.getAccessToken(), Integer.parseInt(textField.getText()));
+                        po.postone(stages, exAccessToken.getAccessToken(), Integer.parseInt(textField.getText())-1);
                     } catch (Exception exc) {
                         exc.printStackTrace();
                     }

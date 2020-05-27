@@ -23,17 +23,17 @@ public class fourthPage {
 public void runs(Stage stages)
 {
 
-    String accessToken = "EAAJfo73qhKQBANHzEeoz2M9b65iITDjxuNFl0SdjX89k8m4nWBaB9js1qnCteR497lZCqugbwlcsNE1psqD7BPY71jf8zLXqdLqVMkb15q7UVNSSpwjowelEFz4YYJ7uyZCQUkqmYrDZAmBjU0fZBGtmPStPkqftSMm5ErNH9cQgzdBPiHNU4K3JyxTKXaJKRTebSwtvYhHasQp07uEe ";
+    String accessToken = "EAAMF6lCN2rABANCDNKJ69iDx3ckONNpAEwEjRMUXtlo4eVseW9mxrYp3vwZAMbygZCleHfBjNdrlZCSvZCf2VapMocm6ScNhrQZBIviPXDihZB6iKwvOW3OZCOP1YlcXADGfMHlmC0dZASCXXzqcZBZBYMSt3gXCy2t2jNDRwas6jMv6DN2qMkufAZASM0onLyYFKNRkPDWkl6e8G5wYj68XD32";
     FacebookClient fbClient = new DefaultFacebookClient(accessToken);
-    FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("668106823992484 ", "f63f747f31e390a44f93891920364794");
-    Button proa = new Button("Overall Emotion");
+    FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("850928862091952", "ddb4cbe10a995e95acc505c91c9e73d5");
+    Button proa = new Button("Total Emotion");
         proa.setTranslateX(550);
         proa.setTranslateY(70);
         setStyle(proa);
         proa.setPrefSize(300, 80);
         proa.setTextFill(Color.WHITE);
 
-        Button progression = new Button("Progress");
+        Button progression = new Button("Emotional Progress");
         progression.setTranslateX(550);
         progression.setTranslateY(220);
         setStyle(progression);
@@ -41,7 +41,7 @@ public void runs(Stage stages)
         progression.setTextFill(Color.WHITE);
 
 
-    Button Status = new Button("Status");
+    Button Status = new Button("Emotion with Reaction");
     Status.setTranslateX(550);
     Status.setTranslateY(370);
     setStyle(Status);

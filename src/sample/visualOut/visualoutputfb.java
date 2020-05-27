@@ -39,8 +39,9 @@ public class visualoutputfb {
         file = new File("src/sample/spl1/out.txt");
         scan = new Scanner(file);
         Double[] out=new Double[10000];
-        Double[] sentimentPos=new Double[100000];
-        Double[] sentimentNeg=new Double[100000];
+        Double[] sentimentPos=new Double[10000];
+        Double[] sentimentNeg=new Double[10000];
+        Double[] sentimentTot=new Double[10000];
         int i=0;
         int m=0;
         while (scan.hasNextLine()) {
@@ -296,7 +297,7 @@ public class visualoutputfb {
             }
         });
 
-        String accessToken = "EAAJfo73qhKQBAPTqcW4SDLfFVmOnd3WSpfsapFSaIXcq7tjaaGeLkPU3pykfu64thCEfPipr8jRJYZCdvPv5ZBJi2hsjpZBw0vvZCCKklcYZB6uZBJZBbf1Ri0eoZCJrjX65Q2Ew8lW7ZCZBfXiWkh9CXqZC2Im8ahp7JjoN4zu61ZAN17uQBs6t9gCgVlTmFTIDEUhMOZBq0ZCnBmtukdY77PEB3U ";
+        String accessToken = "EAAJfo73qhKQBAPTqcW4SDLEAAMF6lCN2rABAK3H577LmAEvfLcJaQWkHnf8YUbZCeTPk5U44PiuC1cXO4vhJwqhKcIg7na6ddgocHZAhu43MVOgVwLZA1DA7nZBj937VOVANZA2ZAJZBLflCjp1ZBr76ZBNGUBJoQZCZBsi56ZBdAHS8XT0VFLn7XyQxEZBUNivOV8QcRx6IeGn2J1hoPeNoumOM8LcbNjP8livHdwZDZDfFVmOnd3WSpfsapFSaIXcq7tjaaGeLkPU3pykfu64thCEfPipr8jRJYZCdvPv5ZBJi2hsjpZBw0vvZCCKklcYZB6uZBJZBbf1Ri0eoZCJrjX65Q2Ew8lW7ZCZBfXiWkh9CXqZC2Im8ahp7JjoN4zu61ZAN17uQBs6t9gCgVlTmFTIDEUhMOZBq0ZCnBmtukdY77PEB3U ";
 
 //        Button status2 = new Button("Status 2");
 //        status2.setTranslateX(280);
@@ -1022,15 +1023,16 @@ public class visualoutputfb {
 //        );
 
 
-        for(int s=0,t=1;t<=10;s+=8,t++)
+        for(int s=0,t=1;t<=15;s+=8,t++)
         {
             sentimentPos[t]=out[s]+out[s+1]+out[s+4]+out[s+6];
         }
 
-        for(int s=0,t=1;t<=10;s+=8,t++)
+        for(int s=0,t=1;t<=15;s+=8,t++)
         {
             sentimentNeg[t]=out[s+2]+out[s+3]+out[s+5]+out[s+7];
         }
+        for(int t=1;t<=15;t++)sentimentTot[t]=sentimentPos[t]-sentimentNeg[t];
 
 
         //LineChart chart = new LineChart(xAxis, yAxis, lineChart);
@@ -1098,37 +1100,63 @@ public class visualoutputfb {
             stage.show();
             stage.setTitle("Sentiment Analysis");
 
-            CategoryAxis xAxiss = new CategoryAxis();
-            xAxiss.setLabel("Sentiment");
-            xAxiss.getCategories().addAll("Positive", "Negative");
+//            CategoryAxis xAxiss = new CategoryAxis();
+//            xAxiss.setLabel("Sentiment");
+//            xAxiss.getCategories().addAll("Positive", "Negative");
+//
+//            NumberAxis yAxiss = new NumberAxis();
+//            yAxiss.setLabel("Intensity");
+//
+//            StackedBarChart    stackedBarChart = new StackedBarChart(xAxiss, yAxiss);
+//            stackedBarChart.getAnimated();
+//
+//            XYChart.Series dataSeriesSenti1 = new XYChart.Series();
+//            dataSeriesSenti1.setName("Positive Sentiment");
+//
+//            for(int a=1;a<10;a++)
+//                dataSeriesSenti1.getData().add(new XYChart.Data("Status "+a, sentimentPos[a]));
+//            //    dataSeries1.getData().add(new XYChart.Data("Negative", 540));
+//
+//            stackedBarChart.getData().add(dataSeriesSenti1);
+//
+//
+//            XYChart.Series dataSeriesSenti2 = new XYChart.Series();
+//            dataSeriesSenti2.setName("Negative Sentiment");
+//            for(int a=1;a<10 ;a++)
+//                dataSeriesSenti2.getData().add(new XYChart.Data("Status "+a  ,sentimentNeg[a]));
+//
+//
+//            stackedBarChart.getData().add(dataSeriesSenti2);
+//
+//            stackedBarChart.setPrefSize(1100,700);
+           // roota.getChildren().addAll(canvasa,stackedBarChart,backa);
 
-            NumberAxis yAxiss = new NumberAxis();
-            yAxiss.setLabel("Intensity");
+            stage.setTitle("Sentiment Progression Over Status");
 
-            StackedBarChart    stackedBarChart = new StackedBarChart(xAxiss, yAxiss);
-            stackedBarChart.getAnimated();
+            NumberAxis xAxisa = new NumberAxis();
+            xAxis.setLabel("No of status");
 
-            XYChart.Series dataSeriesSenti1 = new XYChart.Series();
-            dataSeriesSenti1.setName("Positive Sentiment");
+            NumberAxis yAxisa = new NumberAxis();
+            yAxis.setLabel("Intensity");
 
-            for(int a=1;a<10;a++)
-                dataSeriesSenti1.getData().add(new XYChart.Data("Status "+a, sentimentPos[a]));
-            //    dataSeries1.getData().add(new XYChart.Data("Negative", 540));
+            ScatterChart scatterChart = new ScatterChart(xAxisa, yAxisa);
 
-            stackedBarChart.getData().add(dataSeriesSenti1);
+            XYChart.Series dataSeriessenti = new XYChart.Series();
+            dataSeriessenti.setName("INTENSITY");
 
-
-            XYChart.Series dataSeriesSenti2 = new XYChart.Series();
-            dataSeriesSenti2.setName("Negative Sentiment");
-            for(int a=1;a<10 ;a++)
-                dataSeriesSenti2.getData().add(new XYChart.Data("Status "+a  ,sentimentNeg[a]));
+            for(int t=1;t<=15;t++)
+            dataSeriessenti.getData().add(new XYChart.Data( t, sentimentTot[t]));
 
 
-            stackedBarChart.getData().add(dataSeriesSenti2);
+            scatterChart.getData().add(dataSeriessenti);
 
-            stackedBarChart.setPrefSize(1100,700);
-            roota.getChildren().addAll(canvasa,stackedBarChart,backa);
+            scatterChart.setPrefSize(1000,700);
 
+
+
+
+
+            roota.getChildren().addAll(canvasa,backa,scatterChart);
 
         });
 

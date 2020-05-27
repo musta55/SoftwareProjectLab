@@ -39,7 +39,7 @@ public class overAll {
         for (List<Post> apost : result) {
             for (Post aPost : apost) {
                 counter++;
-                if (counter >= 5) {
+                if (counter >= 8) {
                     break;
                 }
 
