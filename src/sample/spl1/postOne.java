@@ -12,7 +12,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sample.spl1.emotioncal.EmotionCalculation;
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class postOne {
@@ -68,7 +72,17 @@ public class postOne {
 
                         // System.out.println("The Post is Bangla");
 
-                        System.out.println("Date is :" + aPost.getCreatedTime());
+
+
+                        Date textToAppend = aPost.getCreatedTime();
+
+                        BufferedWriter writer = new BufferedWriter(
+                                new FileWriter("src/sample/spl1/date.txt", true)  //Set true for append mode
+                        );
+                        writer.newLine();   //Add new line
+                        writer.write(String.valueOf(textToAppend));
+                        writer.close();
+
                         //     counter++;
 
 //                        PostWithDetailedReactions post =

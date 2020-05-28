@@ -35,10 +35,10 @@ public class visualoutputfb {
         File file = null;
         file = new File("src/sample/spl1/out.txt");
         scan = new Scanner(file);
-        Double[] out=new Double[10000];
-        Double[] sentimentPos=new Double[10000];
-        Double[] sentimentNeg=new Double[10000];
-        Double[] sentimentTot=new Double[10000];
+        double[] out=new double[10000];
+        double[] sentimentPos=new double[1000];
+        double[] sentimentNeg=new double[1000];
+        double[] sentimentTot=new double[1000];
         int i=0;
         int m=0;
         while (scan.hasNextLine()) {
@@ -1019,12 +1019,12 @@ public class visualoutputfb {
 
         for(int s=0,t=1;t<=15;s+=8,t++)
         {
-            sentimentPos[t]=out[s]+out[s+1]+out[s+4]+out[s+6];
+           sentimentPos[t]=out[s]+out[s+1]+out[s+4]+out[s+6];
         }
 
         for(int s=0,t=1;t<=15;s+=8,t++)
         {
-            sentimentNeg[t]=out[s+2]+out[s+3]+out[s+5]+out[s+7];
+           sentimentNeg[t]=out[s+2]+out[s+3]+out[s+5]+out[s+7];
         }
         for(int t=1;t<=15;t++)sentimentTot[t]=sentimentPos[t]-sentimentNeg[t];
 
