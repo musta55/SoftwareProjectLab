@@ -39,6 +39,7 @@ public class visualoutputfb {
         double[] sentimentPos=new double[1000];
         double[] sentimentNeg=new double[1000];
         double[] sentimentTot=new double[1000];
+        double tempTotal;
         int i=0;
         int m=0;
         while (scan.hasNextLine()) {
@@ -1028,6 +1029,9 @@ public class visualoutputfb {
         }
         for(int t=1;t<=15;t++)sentimentTot[t]=sentimentPos[t]-sentimentNeg[t];
 
+        tempTotal=0;
+        for(int t=1;t<=15;t++)tempTotal+=sentimentTot[t];
+        tempTotal/=7;
 
         //LineChart chart = new LineChart(xAxis, yAxis, lineChart);
         lineChart.setPrefSize(1200,700);
@@ -1051,6 +1055,7 @@ public class visualoutputfb {
                 "    -fx-font-size: 1.5em;");
         moreSenti.setPrefSize(360, 40);
         moreSenti.setTextFill(Color.WHITE);
+        double finalTempTotal = tempTotal;
         moreSenti.setOnAction(e->
         {
 
@@ -1058,7 +1063,7 @@ public class visualoutputfb {
             //   stage.setScene(new Scene(root));
             //   Image backgrounda = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
 
-            Image backgrounda=new Image("sample/spl1/purssianBlue.jpg");
+        //    Image backgrounda=new Image("emotion(16-8).png");
             //   Image fusics = new Image("fusics.png");
             Canvas canvasa = new Canvas(1800,900);
 
@@ -1087,7 +1092,7 @@ public class visualoutputfb {
                 }
             });
             GraphicsContext gca = canvasa.getGraphicsContext2D();
-            gca.drawImage(backgrounda,0,0);
+      //      gca.drawImage(backgrounda,0,0);
             Scene scenea = new Scene(roota, 2000, 900);
             stage.setScene(scenea);
             stage.setFullScreen(true);
@@ -1128,29 +1133,39 @@ public class visualoutputfb {
             stage.setTitle("Sentiment Progression Over Status");
 
             NumberAxis xAxisa = new NumberAxis();
-            xAxis.setLabel("No of status");
+            xAxisa.setLabel("No of status");
 
             NumberAxis yAxisa = new NumberAxis();
-            yAxis.setLabel("Overall Sentiment Score");
+            yAxisa.setLabel("Overall Sentiment Score");
 
             ScatterChart scatterChart = new ScatterChart(xAxisa, yAxisa);
 
+            LineChart linechart =new LineChart(xAxisa, yAxisa);
             XYChart.Series dataSeriessenti = new XYChart.Series();
             dataSeriessenti.setName("SENTIMENT SCORE");
 
+            XYChart.Series dataSeriessenti2 = new XYChart.Series();
+
+            dataSeriessenti2.setName("MEAN VALUE");
+
+            for(int t=1;t<=7;t++)
+                dataSeriessenti2.getData().add(new XYChart.Data( t, finalTempTotal));
             for(int t=1;t<=7;t++)
             dataSeriessenti.getData().add(new XYChart.Data( t, sentimentTot[t]));
 
 
-            scatterChart.getData().add(dataSeriessenti);
+            linechart.getData().addAll(dataSeriessenti2);
+            scatterChart.getData().addAll(dataSeriessenti);
 
+            linechart.setPrefSize(1000,700);
             scatterChart.setPrefSize(1000,700);
+//            linechart.setOpacity(0.7);
+//            scatterChart.setOpacity(6.2);
+          //  linechart.lookup(".default-color0.chart-series-line").setStyle("-fxstroke: transparent");
+            scatterChart.lookup(".default-color0.chart-series-line").setStyle("-fxstroke: transparent");
 
 
-
-
-
-            roota.getChildren().addAll(canvasa,backa,scatterChart);
+            roota.getChildren().addAll(canvasa,backa,scatterChart,linechart);
 
         });
 

@@ -1,5 +1,6 @@
 package sample.spl1;
 
+import demo.sphinx.helloworld.HelloWorld;
 import javafx.application.Application;
 //import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,7 +19,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.File;
 
 import static javafx.stage.StageStyle.TRANSPARENT;
@@ -58,8 +58,8 @@ public class Main extends Application {
 
 
 
-        Button Start = new Button("LET'S GO");
-        Start.setTranslateX(530);
+        Button Start = new Button("From Text");
+        Start.setTranslateX(230);
         Start.setTranslateY(220);
 
         Start.setTextFill(Color.WHITE);
@@ -82,6 +82,26 @@ public class Main extends Application {
 //            GraphicsContext gc = canvas.getGraphicsContext2D();
 //            gc.drawImage(background,0,0);
 
+        Button speech = new Button("From Speech");
+        speech.setTranslateX(830);
+        speech.setTranslateY(220);
+
+        speech.setTextFill(Color.WHITE);
+        speech.setStyle("-fx-padding: 8 15 15 15;\n" +
+                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
+                "    -fx-background-radius: 8;\n" +
+                "    -fx-background-color: \n" +
+                "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
+                "        #030B21,\n" +
+                "        #0B2058,\n" +
+                "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
+                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
+                "    -fx-font-weight: bold;\n" +
+                "    -fx-font-size: 2.1em;");
+        speech.setPrefSize(280,120);
+
+
+
             Pane root = new Pane();
         BackgroundImage bi = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,
@@ -90,13 +110,25 @@ public class Main extends Application {
                 BackgroundSize.DEFAULT);
         Background bg = new Background(bi);
         root.setBackground(bg);
-            root.getChildren().addAll(canvas,Start,headning);
+            root.getChildren().addAll(canvas,Start,headning,speech);
             Scene scene = new Scene(root,1400,760);
             scene.setFill(Color.BLACK);
 
             primaryStage.setScene(scene);
             primaryStage.show();
 
+
+        speech.setOnAction(e->{
+            try {
+                HelloWorld hl=new HelloWorld();
+                hl.speech(primaryStage);
+
+            }
+            catch (Exception excep)
+            {
+                excep.printStackTrace();
+            }
+        });
 
         Start.setOnAction(e->{
             try {

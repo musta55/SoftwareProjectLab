@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="jsapi">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../voice/jsapi.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../voice/sphinx4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../voice/TIDIGITS_8gau_13dCep_16k_40mel_130Hz_6800Hz.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../voice/WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -13,5 +13,8 @@
     <orderEntry type="library" name="javax.json-api-1.0" level="project" />
     <orderEntry type="library" name="jsoup-1.13" level="project" />
     <orderEntry type="library" name="json-jena-1" level="project" />
+    <orderEntry type="library" name="voice" level="project" />
+    <orderEntry type="library" name="Java-Speech-Recognizer-Tutorial--Calculator-master" level="project" />
+    <orderEntry type="library" name="jsapi" level="project" />
   </component>
 </module>
