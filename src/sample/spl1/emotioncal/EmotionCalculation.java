@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import com.restfb.Connection;
@@ -36,13 +37,13 @@ import sample.spl1.Main;
 import sample.spl1.Operations;
 import sample.spl1.firstPost;
 import sample.spl1.textField;
+import sample.visualOut.LinearRegression;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Stream;
+
+import static sample.visualOut.visualoutputfb.setStyle;
 
 public class EmotionCalculation {
 
@@ -707,6 +708,45 @@ public class EmotionCalculation {
 
         //Setting the data to bar chart
         barChart.getData().addAll(series1, series2);
+        double []a={JoyCal,SurpriseCal,AngerCal,SadnessCal,FearCal,anticipationCal,TrustCal,DisgustCal};
+        double []b ={haha,wow,angry, sad, sad,love,like,angry};
+
+        LinearRegression lr=   new LinearRegression(a,b);
+        System.out.println("Linear Regression is :"+ lr.toString());
+
+
+        final LineChart<Number, Number> sc = new LineChart<>(new NumberAxis(), new NumberAxis());
+
+        XYChart.Series seriess1 = new XYChart.Series();
+        seriess1.setName("Sentimental Progress");
+        for (int t = 0; t <= 7; t++) {
+
+            double q=(lr.slope()*b[t] + (lr.intercept()));
+            DecimalFormat df = new DecimalFormat("####0.00");
+            System.out.println("Value: " + df.format(q));
+
+            seriess1.getData().add(new XYChart.Data(b[t],df.format(q)));
+
+        }
+
+        XYChart.Series seriess2 = new XYChart.Series();
+        seriess2.setName("Emotion And Reaction");
+        for(int t=0;t<8;t++)
+        seriess2.getData().add(new XYChart.Data<>(a[t], b[t]));
+
+
+
+
+
+        sc.setAnimated(false);
+        sc.setCreateSymbols(true);
+
+        sc.getData().addAll(seriess2,seriess1);
+        sc.setPrefSize(1000, 700);
+      //  setStyle(sc);
+
+
+
         barChart.setPrefSize(1200,600);
         Hyperlink link = new Hyperlink("Click Post");
         link.setScaleX(2);
@@ -724,8 +764,8 @@ public class EmotionCalculation {
 
         //Creating a Group object
         Pane root = new Pane();
-        root.getChildren().addAll(barChart,link,back);
-
+  //      root.getChildren().addAll(barChart,link,back);
+        root.getChildren().addAll(sc,link,back);
         //Creating a scene object
         Scene scene = new Scene(root, 2000, 900);
 

@@ -28,7 +28,7 @@ public class firstPost {
         Scene scen = new Scene(stat, 2000, 900);
 
 
-        String accessToken = "EAAMF6lCN2rABAM03JJRwkb53d9Cgj4npgviOZC3ZBIhJsZAKrsg0K72KXwFPgYsGd8o09cv6kn797I1HjtFVxG883ZB92mKpNMomyQXX1w4wxEj0TSCJQSuOZB08ZCLkJHsh89irdzzKMgEtaRSA0Q1hcxQH4syBeGD9ms3Qrh18HX7APofh9k9rqGrX5b7xocOAFHHWZAK1B5NFkitJOqZAdY7o9XgBvOtonB4VMZA60SZC60aDtpBmDZA ";
+        String accessToken = "EAAMF6lCN2rABACCTi1iFLNqGn5uZCMSytm6ZAbTbSBqOD7ZBtSlEirQ6HZCnZBFG0R6glrlZCYanrtUrXjyIp5s4KOqQ6y8PzbzAMlQM0YvuLiOlTZAspNDcBSROGEl44uaFa0jCMZBKhAhnMiDddWwi0zsLXBSG11hN6TJaTaJBrrcqw2Cwsprv9cdrDMCHRNYIGPmanEd9kq4kFHiQd8DyS7qeKjw3hpeKouHcym8Nd2baq2F0GEku ";
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("850928862091952", "ddb4cbe10a995e95acc505c91c9e73d5");
 

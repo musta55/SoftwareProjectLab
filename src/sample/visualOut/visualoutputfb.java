@@ -28,36 +28,36 @@ import java.util.Scanner;
 import sample.spl1.*;
 import sample.spl1.emotioncal.EmotionCalculation;
 public class visualoutputfb {
-    public static String s=null;
+    public static String s = null;
+
     public static void VisualOutputFacebook(Stage stage) throws FileNotFoundException {
 
         Scanner scan;
         File file = null;
         file = new File("src/sample/spl1/out.txt");
         scan = new Scanner(file);
-        double[] out=new double[10000];
-        double[] sentimentPos=new double[1000];
-        double[] sentimentNeg=new double[1000];
-        double[] sentimentTot=new double[1000];
+        double[] out = new double[10000];
+        double[] sentimentPos = new double[1000];
+        double[] sentimentNeg = new double[1000];
+        double[] sentimentTot = new double[1000];
         double tempTotal;
-        int i=0;
-        int m=0;
+        int i = 0;
+        int m = 0;
         while (scan.hasNextLine()) {
             //
-            String currentLine=scan.nextLine();
+            String currentLine = scan.nextLine();
             // System.out.println("Current Line "+currentLine);
             String[] firstSplits = currentLine.split(" ", 0);
-            for(;m<firstSplits.length;m++) {
+            for (; m < firstSplits.length; m++) {
                 //     System.out.println("String is " + firstSplits[m]);
                 try {
-                    if(firstSplits[m]=="NaN"||firstSplits[m]=="Infinity");
+                    if (firstSplits[m] == "NaN" || firstSplits[m] == "Infinity") ;
                     else {
                         out[m] = Double.parseDouble(firstSplits[m]);
-                        System.out.print(out[m] +"          ");
+                        System.out.print(out[m] + "          ");
                     }
-                }catch (Exception q)
-                {
-                    out[m]=0.000;
+                } catch (Exception q) {
+                    out[m] = 0.000;
                 }
                 //     System.out.println("Value is " + out[m]);
             }
@@ -66,19 +66,19 @@ public class visualoutputfb {
         Group root = new Group();
         //   stage.setScene(new Scene(root));
 
-         Image background = new Image(visualoutputfb.class.getClassLoader().getResource("emotionSide.png").toString(), true);
+        Image background = new Image(visualoutputfb.class.getClassLoader().getResource("emotionSide.png").toString(), true);
         //   Image fusics = new Image("fusics.png");
 
-     //   Image background=new Image("sample/spl1/oldPaper.jpg");
-        Canvas canvas = new Canvas(1800,900);
+        //   Image background=new Image("sample/spl1/oldPaper.jpg");
+        Canvas canvas = new Canvas(1800, 900);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.drawImage(background,0,0);
+        gc.drawImage(background, 0, 0);
         Scene scene = new Scene(root, 2000, 900);
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.show();
-        CategoryAxis xAxis =new CategoryAxis();
+        CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("EMOTIONAL PROGRESSION OVER STATUS");
 
         // CategoryAxis xAxis = new CategoryAxis("Emotions\n"+"1.Joy\n"+"2.Surprise\n"+"3.Fear\n"+"4.Sadness\n"+"5.Trust\n"+"6.Disgust\n"+"7.anticipation\n"+"8.Disgust\n");
@@ -102,8 +102,8 @@ public class visualoutputfb {
 
         back.setOnAction(e -> {
             try {
-               fourthPage fp=new fourthPage();
-               fp.runs(stage);
+                fourthPage fp = new fourthPage();
+                fp.runs(stage);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -125,53 +125,51 @@ public class visualoutputfb {
         more.setPrefSize(160, 40);
         more.setTextFill(Color.WHITE);
 
-        more.setOnAction(e->{
+        more.setOnAction(e -> {
             try {
 
-                double joyOut=0;
+                double joyOut = 0;
 
-                for(int y=0;y<46;y+=8)joyOut+=out[y];
-                joyOut=joyOut/6;
-
-
+                for (int y = 0; y < 46; y += 8) joyOut += out[y];
+                joyOut = joyOut / 6;
 
 
-                double surpriseOut=0;
-                for(int y=1;y<46;y+=8)surpriseOut+=out[y];
-                surpriseOut=surpriseOut/6;
+                double surpriseOut = 0;
+                for (int y = 1; y < 46; y += 8) surpriseOut += out[y];
+                surpriseOut = surpriseOut / 6;
 
-                double fearOut=0;
-                for(int y=2;y<46;y+=8)fearOut+=out[y];
-                fearOut=fearOut/6;
+                double fearOut = 0;
+                for (int y = 2; y < 46; y += 8) fearOut += out[y];
+                fearOut = fearOut / 6;
 
-                double sadnessOut=0;
-                for(int y=3;y<46;y+=8)sadnessOut+=out[y];
-                sadnessOut=sadnessOut/6;
+                double sadnessOut = 0;
+                for (int y = 3; y < 46; y += 8) sadnessOut += out[y];
+                sadnessOut = sadnessOut / 6;
 
-                double trustOut=0;
-                for(int y=4;y<46;y+=8)trustOut+=out[y];
-                trustOut=trustOut/6;
+                double trustOut = 0;
+                for (int y = 4; y < 46; y += 8) trustOut += out[y];
+                trustOut = trustOut / 6;
 
-                double disgustOut=0;
-                for(int y=5;y<48;y+=8)disgustOut+=out[y];
-                disgustOut=disgustOut/6;
+                double disgustOut = 0;
+                for (int y = 5; y < 48; y += 8) disgustOut += out[y];
+                disgustOut = disgustOut / 6;
 
-                double anticipationOut=0;
-                for(int y=6;y<48;y+=8)anticipationOut+=out[y];
-                anticipationOut=anticipationOut/6;
+                double anticipationOut = 0;
+                for (int y = 6; y < 48; y += 8) anticipationOut += out[y];
+                anticipationOut = anticipationOut / 6;
 
-                double angerOut=0;
-                for(int y=7;y<48;y+=8)angerOut+=out[y];
-                angerOut=angerOut/6;
+                double angerOut = 0;
+                for (int y = 7; y < 48; y += 8) angerOut += out[y];
+                angerOut = angerOut / 6;
 
                 //   Image backgrounds = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
-                Image backgrounds=new Image("emotionSide.png");
+                Image backgrounds = new Image("emotionSide.png");
 
                 Pane roots = new Pane();
 
                 CategoryAxis xAxises = new CategoryAxis();
                 xAxises.setCategories(FXCollections.<String>
-                        observableArrayList(Arrays.asList("Joy", "Surprise", "Fear", "Sadness","Trust","Disgust","anticipation","Anger")));
+                        observableArrayList(Arrays.asList("Joy", "Surprise", "Fear", "Sadness", "Trust", "Disgust", "anticipation", "Anger")));
                 xAxises.setLabel("EMOTION");
 
                 NumberAxis yAxises = new NumberAxis();
@@ -208,65 +206,49 @@ public class visualoutputfb {
                         BackgroundSize.DEFAULT);
                 Background bg = new Background(bi);
                 roots.setBackground(bg);
-                double maxa=-1,maxb=-1;
-                int temp=0,temp2=0;
-                Double[] freq = new Double[]{ joyOut,surpriseOut,fearOut,sadnessOut,trustOut,disgustOut,anticipationOut,angerOut };
+                double maxa = -1, maxb = -1;
+                int temp = 0, temp2 = 0;
+                Double[] freq = new Double[]{joyOut, surpriseOut, fearOut, sadnessOut, trustOut, disgustOut, anticipationOut, angerOut};
                 for (int iteration = 0; iteration < 8; iteration++) {
 //                    if (freq[iteration] > maxa) {
 //                        maxa = freq[iteration];
 //                        temp = iteration;
 
-                    if (freq[iteration] > maxa)
-                    {
+                    if (freq[iteration] > maxa) {
                         maxb = maxa;
                         maxa = freq[iteration];
-                        temp=iteration;
+                        temp = iteration;
                     }
 
         /* If arr[i] is in between first and
            second then update second  */
                     else if (freq[iteration] > maxb && freq[iteration] != maxa) {
                         maxb = freq[iteration];
-                        temp2=iteration;
+                        temp2 = iteration;
                     }
 
 
                 }
-                System.out.println("Highest is "+temp+"Second is "+temp2);
-                String text=null;
+                System.out.println("Highest is " + temp + "Second is " + temp2);
+                String text = null;
 
 
-                if(temp==0)
-                {
-                    text="This person has a kind heart and jolly mind.Her post is full of serenity and ecstasy";
-                }
-                else if(temp==1)
-                {
-                    text="As a person,you are curious.Surprising things happening around you.Live with amazement";
-                }
-                else if(temp==2)
-                {
-                    text="Some terrible things is happening in your mind.Stay safe and sound";
-                }
-                else if(temp==3)
-                {
-                    text="Sadness grabs you severely.But remember, heavy hearts , like heavy clouds in the sky, are best relieved by the letting of a little water";
-                }
-                else if(temp==4 )
-                {
-                    text="You accept and adapt things happening around you wisely.Have enough courage to trust love one more time and always one more time";
-                }
-                else if(temp==5 )
-                {
-                    text="Disgust and boredom is the key of your status";
-                }
-                else if(temp==6 )
-                {
-                    text="Keep smiling that reflects on your posts.Spread positivity and be optimistic";
-                }
-                else if(temp==7 )
-                {
-                    text="Keep smiling that reflects on your posts.Spread positivity and be optimistic";
+                if (temp == 0) {
+                    text = "This person has a kind heart and jolly mind.Her post is full of serenity and ecstasy";
+                } else if (temp == 1) {
+                    text = "As a person,you are curious.Surprising things happening around you.Live with amazement";
+                } else if (temp == 2) {
+                    text = "Some terrible things is happening in your mind.Stay safe and sound";
+                } else if (temp == 3) {
+                    text = "Sadness grabs you severely.But remember, heavy hearts , like heavy clouds in the sky, are best relieved by the letting of a little water";
+                } else if (temp == 4) {
+                    text = "You accept and adapt things happening around you wisely.Have enough courage to trust love one more time and always one more time";
+                } else if (temp == 5) {
+                    text = "Disgust and boredom is the key of your status";
+                } else if (temp == 6) {
+                    text = "Keep smiling that reflects on your posts.Spread positivity and be optimistic";
+                } else if (temp == 7) {
+                    text = "Keep smiling that reflects on your posts.Spread positivity and be optimistic";
 
                 }
                 Text texts = new Text(text);
@@ -279,15 +261,14 @@ public class visualoutputfb {
                 texts.setFill(Color.DARKCYAN);
 
 
-                roots.getChildren().addAll(barChart,texts,back);
+                roots.getChildren().addAll(barChart, texts, back);
                 Scene scenea = new Scene(roots, 1400, 750);
                 // Scene scene = new Scene(root, 1600, 800);
                 stage.setScene(scenea);
                 //primaryStage.setFullScreen(true);
                 stage.show();
 
-            }catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
         });
@@ -881,61 +862,56 @@ public class visualoutputfb {
         XYChart.Series dataSeries1 = new XYChart.Series();
         dataSeries1.setName("JOY");
 
-        for(int w=0,e=1;w<50 &&e<10;w+=8,e++)
-            dataSeries1.getData().add(new XYChart.Data("Post "+ e, out[w]));
-
+        for (int w = 0, e = 1; w < 50 && e < 10; w += 8, e++)
+            dataSeries1.getData().add(new XYChart.Data("Post " + e, out[w]));
 
 
         XYChart.Series dataSeries2 = new XYChart.Series();
         dataSeries2.setName("SURPRISE");
 
-        for(int w=1,e=1;w<50 &&e<10;w+=8,e++)
-            dataSeries2.getData().add(new XYChart.Data( "Post "+ e, out[w]));
+        for (int w = 1, e = 1; w < 50 && e < 10; w += 8, e++)
+            dataSeries2.getData().add(new XYChart.Data("Post " + e, out[w]));
 
         XYChart.Series dataSeries3 = new XYChart.Series();
         dataSeries3.setName("FEAR");
-        for(int w=2,e=1;w<50 &&e<10;w+=8,e++)
-            dataSeries3.getData().add(new XYChart.Data( "Post "+ e, out[w]));
-
+        for (int w = 2, e = 1; w < 50 && e < 10; w += 8, e++)
+            dataSeries3.getData().add(new XYChart.Data("Post " + e, out[w]));
 
 
         XYChart.Series dataSeries4 = new XYChart.Series();
         dataSeries4.setName("SADNESS");
 
-        for(int w=3,e=1;w<50 &&e<10;w+=8,e++)
-            dataSeries4.getData().add(new XYChart.Data( "Post "+ e, out[w]));
+        for (int w = 3, e = 1; w < 50 && e < 10; w += 8, e++)
+            dataSeries4.getData().add(new XYChart.Data("Post " + e, out[w]));
 
 
         XYChart.Series dataSeries5 = new XYChart.Series();
         dataSeries5.setName("TRUST");
 
-        for(int w=0,e=1;w<50 &&e<10;w+=8,e++)
-            dataSeries5.getData().add(new XYChart.Data( "Post "+ e, out[w]));
+        for (int w = 0, e = 1; w < 50 && e < 10; w += 8, e++)
+            dataSeries5.getData().add(new XYChart.Data("Post " + e, out[w]));
 
         XYChart.Series dataSeries6 = new XYChart.Series();
         dataSeries6.setName("DISGUST");
 
-        for(int w=5,e=1;w<50 &&e<10;w+=8,e++)
-            dataSeries6.getData().add(new XYChart.Data( "Post "+ e, out[w]));
+        for (int w = 5, e = 1; w < 50 && e < 10; w += 8, e++)
+            dataSeries6.getData().add(new XYChart.Data("Post " + e, out[w]));
 
         XYChart.Series dataSeries7 = new XYChart.Series();
         dataSeries7.setName("ANTICIPATION");
 
-        for(int w=6,e=1;w<50 &&e<10;w+=8,e++)
-            dataSeries7.getData().add(new XYChart.Data( "Post "+ e, out[w]));
-
+        for (int w = 6, e = 1; w < 50 && e < 10; w += 8, e++)
+            dataSeries7.getData().add(new XYChart.Data("Post " + e, out[w]));
 
 
         XYChart.Series dataSeries8 = new XYChart.Series();
         dataSeries8.setName("ANGER");
 
-        for(int w=7,e=1;w<50 &&e<10;w+=8,e++)
-            dataSeries8.getData().add(new XYChart.Data( "Post "+ e, out[w]));
+        for (int w = 7, e = 1; w < 50 && e < 10; w += 8, e++)
+            dataSeries8.getData().add(new XYChart.Data("Post " + e, out[w]));
 
 
-        lineChart.getData().addAll(dataSeries1,dataSeries2,dataSeries3,dataSeries4,dataSeries5,dataSeries6,dataSeries7,dataSeries8);
-
-
+        lineChart.getData().addAll(dataSeries1, dataSeries2, dataSeries3, dataSeries4, dataSeries5, dataSeries6, dataSeries7, dataSeries8);
 
 
 //
@@ -1018,25 +994,21 @@ public class visualoutputfb {
 //        );
 
 
-        for(int s=0,t=1;t<=15;s+=8,t++)
-        {
-           sentimentPos[t]=out[s]+out[s+1]+out[s+4]+out[s+6];
+        for (int s = 0, t = 1; t <= 15; s += 8, t++) {
+            sentimentPos[t] = out[s] + out[s + 1] + out[s + 4] + out[s + 6];
         }
 
-        for(int s=0,t=1;t<=15;s+=8,t++)
-        {
-           sentimentNeg[t]=out[s+2]+out[s+3]+out[s+5]+out[s+7];
+        for (int s = 0, t = 1; t <= 15; s += 8, t++) {
+            sentimentNeg[t] = out[s + 2] + out[s + 3] + out[s + 5] + out[s + 7];
         }
-        for(int t=1;t<=15;t++)sentimentTot[t]=sentimentPos[t]-sentimentNeg[t];
+        for (int t = 1; t <= 15; t++) sentimentTot[t] = sentimentPos[t] - sentimentNeg[t];
 
-        tempTotal=0;
-        for(int t=1;t<=15;t++)tempTotal+=sentimentTot[t];
-        tempTotal/=7;
+        tempTotal = 0;
+        for (int t = 1; t <= 15; t++) tempTotal += sentimentTot[t];
+        tempTotal /= 7;
 
         //LineChart chart = new LineChart(xAxis, yAxis, lineChart);
-        lineChart.setPrefSize(1200,700);
-
-
+        lineChart.setPrefSize(1200, 700);
 
 
         Button moreSenti = new Button("Sentiment Analysis");
@@ -1056,16 +1028,16 @@ public class visualoutputfb {
         moreSenti.setPrefSize(360, 40);
         moreSenti.setTextFill(Color.WHITE);
         double finalTempTotal = tempTotal;
-        moreSenti.setOnAction(e->
+        moreSenti.setOnAction(e ->
         {
 
             Group roota = new Group();
             //   stage.setScene(new Scene(root));
             //   Image backgrounda = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
 
-        //    Image backgrounda=new Image("emotion(16-8).png");
+            //    Image backgrounda=new Image("emotion(16-8).png");
             //   Image fusics = new Image("fusics.png");
-            Canvas canvasa = new Canvas(1800,900);
+            Canvas canvasa = new Canvas(1800, 900);
 
 
             Button backa = new Button("Back");
@@ -1085,14 +1057,14 @@ public class visualoutputfb {
             backa.setPrefSize(60, 30);
             backa.setOnAction(ed -> {
                 try {
-                    fourthPage fp=new fourthPage();
+                    fourthPage fp = new fourthPage();
                     fp.runs(stage);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             });
             GraphicsContext gca = canvasa.getGraphicsContext2D();
-      //      gca.drawImage(backgrounda,0,0);
+            //      gca.drawImage(backgrounda,0,0);
             Scene scenea = new Scene(roota, 2000, 900);
             stage.setScene(scenea);
             stage.setFullScreen(true);
@@ -1128,58 +1100,103 @@ public class visualoutputfb {
 //            stackedBarChart.getData().add(dataSeriesSenti2);
 //
 //            stackedBarChart.setPrefSize(1100,700);
-           // roota.getChildren().addAll(canvasa,stackedBarChart,backa);
+            // roota.getChildren().addAll(canvasa,stackedBarChart,backa);
 
             stage.setTitle("Sentiment Progression Over Status");
 
-            NumberAxis xAxisa = new NumberAxis();
-            xAxisa.setLabel("No of status");
+//            NumberAxis xAxisa = new NumberAxis();
+//            xAxisa.setLabel("No of status");
+//
+//            NumberAxis yAxisa = new NumberAxis();
+//            yAxisa.setLabel("Overall Sentiment Score");
+//
+//            ScatterChart scatterChart = new ScatterChart(xAxisa, yAxisa);
+//
+//            LineChart linechart =new LineChart(xAxisa, yAxisa);
+//            XYChart.Series dataSeriessenti = new XYChart.Series();
+//            dataSeriessenti.setName("SENTIMENT SCORE");
+//
+//            XYChart.Series dataSeriessenti2 = new XYChart.Series();
+//
+//            dataSeriessenti2.setName("MEAN VALUE");
+//
+//            for(int t=1;t<=7;t++)
+//                dataSeriessenti2.getData().add(new XYChart.Data( t, finalTempTotal));
+//            for(int t=1;t<=7;t++)
+//            dataSeriessenti.getData().add(new XYChart.Data( t, sentimentTot[t]));
+//
+//
+//            linechart.getData().addAll(dataSeriessenti2);
+//            scatterChart.getData().addAll(dataSeriessenti);
+//
+//            linechart.setPrefSize(1000,700);
+//            scatterChart.setPrefSize(1000,700);
 
-            NumberAxis yAxisa = new NumberAxis();
-            yAxisa.setLabel("Overall Sentiment Score");
 
-            ScatterChart scatterChart = new ScatterChart(xAxisa, yAxisa);
+            final LineChart<Number, Number> sc = new LineChart<>(new NumberAxis(), new NumberAxis());
 
-            LineChart linechart =new LineChart(xAxisa, yAxisa);
-            XYChart.Series dataSeriessenti = new XYChart.Series();
-            dataSeriessenti.setName("SENTIMENT SCORE");
-
-            XYChart.Series dataSeriessenti2 = new XYChart.Series();
-
-            dataSeriessenti2.setName("MEAN VALUE");
-
-            for(int t=1;t<=7;t++)
-                dataSeriessenti2.getData().add(new XYChart.Data( t, finalTempTotal));
-            for(int t=1;t<=7;t++)
-            dataSeriessenti.getData().add(new XYChart.Data( t, sentimentTot[t]));
+            XYChart.Series series1 = new XYChart.Series();
+            series1.setName("Sentimental Progress");
+            for (int t = 1; t <= 7; t++)
+                series1.getData().add(new XYChart.Data(t - 1, sentimentTot[t]));
 
 
-            linechart.getData().addAll(dataSeriessenti2);
-            scatterChart.getData().addAll(dataSeriessenti);
+            XYChart.Series series2 = new XYChart.Series();
+            series2.setName("Mean Emotion");
+            for (int t = 1; t <= 7; t++)
+                series2.getData().add(new XYChart.Data(t - 1, finalTempTotal));
 
-            linechart.setPrefSize(1000,700);
-            scatterChart.setPrefSize(1000,700);
+
+
+
+            sc.setAnimated(false);
+            sc.setCreateSymbols(true);
+
+            sc.getData().addAll(series1, series2);
+            sc.setPrefSize(1000, 700);
+            setStyle(sc);
+         //   sc.setOpacity(0.5);
+
+       //    scenea.getStylesheets().add(visualoutputfb.class.getResource("sample/visualOut/root").toExternalForm());
+     //       scenea.getStylesheets().add(visualoutputfb.class.getResource("sample/visualOut/root").toExternalForm());
+         //        sc.lookup(".default-color0.chart-series-line").setStyle("-fxstroke: transparent");
+
+
 //            linechart.setOpacity(0.7);
 //            scatterChart.setOpacity(6.2);
-          //  linechart.lookup(".default-color0.chart-series-line").setStyle("-fxstroke: transparent");
-            scatterChart.lookup(".default-color0.chart-series-line").setStyle("-fxstroke: transparent");
+            //       linechart.lookup(".default-color0.chart-series-line").setStyle("-fxstroke: transparent");
+            //    scatterChart.lookup(".default-color0.chart-series-line").setStyle("-fxstroke: transparent");
 
 
-            roota.getChildren().addAll(canvasa,backa,scatterChart,linechart);
-
+            //    roota.getChildren().addAll(canvasa,backa,scatterChart,linechart);
+            roota.getChildren().addAll(canvasa, backa, sc);
         });
 
 
-
-
-     //   root.getChildren().addAll(canvas,lineChart,more,status2,status3,status4,status5,status6,moreSenti);
-        root.getChildren().addAll(canvas,lineChart,more,moreSenti);
-
-
+        //   root.getChildren().addAll(canvas,lineChart,more,status2,status3,status4,status5,status6,moreSenti);
+        root.getChildren().addAll(canvas, lineChart, more, moreSenti);
 
 
     }
 
 
-
+    public static LineChart setStyle(LineChart b) {
+        b.setStyle(".default-color0.chart-series-line { -fx-stroke: transparent; }\n" +
+                ".default-color1.chart-series-line { -fx-stroke: red; }\n" +
+                "\n" +
+                ".default-color0.chart-line-symbol { \n" +
+                "    -fx-background-color: white, green; \n" +
+                "}\n" +
+                ".default-color1.chart-line-symbol { \n" +
+                "    -fx-background-color: transparent, transparent; \n" +
+                "}\n" +
+                "\n" +
+                ".default-color0.chart-legend-item-symbol{\n" +
+                "    -fx-background-color: green;\n" +
+                " }\n" +
+                ".default-color1.chart-legend-item-symbol{\n" +
+                "    -fx-background-color: red;\n" +
+                " }");
+        return b;
+    }
 }
