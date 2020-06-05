@@ -646,6 +646,24 @@ public class EmotionCalculation {
             }
         });
 
+
+        Button regression = new Button("Regression Analysis");
+        regression.setTranslateX(510);
+        regression.setTranslateY(600);
+        regression.setStyle("-fx-padding: 8 15 15 15;\n" +
+                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
+                "    -fx-background-radius: 8;\n" +
+                "    -fx-background-color: \n" +
+                "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
+                "        #8d9092,\n" +
+                "        #717375,\n" +
+                "        radial-gradient(center 50% 50%, radius 100%, #ffffff, #a1a3a6);\n" +
+                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
+                "    -fx-font-weight: bold;\n" +
+                "    -fx-font-size: 1.1em;");
+        regression.setPrefSize(300, 70);
+
+
         stage.show();
 
 
@@ -708,44 +726,27 @@ public class EmotionCalculation {
 
         //Setting the data to bar chart
         barChart.getData().addAll(series1, series2);
+
+
+
         double []a={JoyCal,SurpriseCal,AngerCal,SadnessCal,FearCal,anticipationCal,TrustCal,DisgustCal};
         double []b ={haha,wow,angry, sad, sad,love,like,angry};
 
-        LinearRegression lr=   new LinearRegression(a,b);
-        System.out.println("Linear Regression is :"+ lr.toString());
-
-
-        final LineChart<Number, Number> sc = new LineChart<>(new NumberAxis(), new NumberAxis());
-
-        XYChart.Series seriess1 = new XYChart.Series();
-        seriess1.setName("Sentimental Progress");
-        for (int t = 0; t <= 7; t++) {
-
-            double q=(lr.slope()*b[t] + (lr.intercept()));
-            DecimalFormat df = new DecimalFormat("####0.00");
-            System.out.println("Value: " + df.format(q));
-
-            seriess1.getData().add(new XYChart.Data(b[t],df.format(q)));
-
-        }
-
-        XYChart.Series seriess2 = new XYChart.Series();
-        seriess2.setName("Emotion And Reaction");
-        for(int t=0;t<8;t++)
-        seriess2.getData().add(new XYChart.Data<>(a[t], b[t]));
 
 
 
+        regression.setOnAction(e -> {
+            try {
+                RegressionOut ro=new RegressionOut(stage,a,b);
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
 
 
-        sc.setAnimated(false);
-        sc.setCreateSymbols(true);
 
-        sc.getData().addAll(seriess2,seriess1);
-        sc.setPrefSize(1000, 700);
-      //  setStyle(sc);
-
-
+        //  setStyle(sc);
 
         barChart.setPrefSize(1200,600);
         Hyperlink link = new Hyperlink("Click Post");
@@ -758,14 +759,12 @@ public class EmotionCalculation {
         link.setOnAction(e -> {
             textField tf=new textField();
             tf.text(stage,status);
-
-
         });
 
         //Creating a Group object
         Pane root = new Pane();
-  //      root.getChildren().addAll(barChart,link,back);
-        root.getChildren().addAll(sc,link,back);
+        root.getChildren().addAll(barChart,link,back,regression);
+     //   root.getChildren().addAll(sc,link,back);
         //Creating a scene object
         Scene scene = new Scene(root, 2000, 900);
 

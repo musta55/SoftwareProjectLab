@@ -23,7 +23,7 @@ public class fourthPage {
 public void runs(Stage stages)
 {
 
-    String accessToken = "EAAMF6lCN2rABACCTi1iFLNqGn5uZCMSytm6ZAbTbSBqOD7ZBtSlEirQ6HZCnZBFG0R6glrlZCYanrtUrXjyIp5s4KOqQ6y8PzbzAMlQM0YvuLiOlTZAspNDcBSROGEl44uaFa0jCMZBKhAhnMiDddWwi0zsLXBSG11hN6TJaTaJBrrcqw2Cwsprv9cdrDMCHRNYIGPmanEd9kq4kFHiQd8DyS7qeKjw3hpeKouHcym8Nd2baq2F0GEku";
+    String accessToken = "EAAMF6lCN2rABALhSZBlo9l6BDb1nkxmwsxZA6dvJSLvwuOEQulO0b6wnSOMdM7i60fDa0KMGDCNIS56764AMcjK82WIP3x8nKs36QkBOQJpvRPuEtknyqsZBY4nAVYl0yKYyxN7TcI7iT0P70DEv2EPmOV6e31fDvPgxxxHqfGGUgtI5ZACSRCxb07C5PZB1PkkSx3L1rQ14lGa4yV9ECdp2KFQR6ZAiEGZA4EWQ725ZAgZDZD";
     FacebookClient fbClient = new DefaultFacebookClient(accessToken);
     FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("850928862091952", "ddb4cbe10a995e95acc505c91c9e73d5");
     Button proa = new Button("Total Emotion");

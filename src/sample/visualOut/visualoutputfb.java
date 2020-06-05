@@ -857,7 +857,7 @@ public class visualoutputfb {
         yAxisq.setLabel("Emotion Intensity");
 
 
-        LineChart lineChart = new LineChart(xAxisq, yAxisq);
+        StackedBarChart lineChart = new StackedBarChart(xAxisq, yAxisq);
 
         XYChart.Series dataSeries1 = new XYChart.Series();
         dataSeries1.setName("JOY");

@@ -5,13 +5,6 @@ public class LinearRegression {
     private final double r2;
     private final double svar0, svar1;
 
-    /**
-     * Performs a linear regression on the data points {@code (y[i], x[i])}.
-     *
-     * @param  x the values of the predictor variable
-     * @param  y the corresponding values of the response variable
-     * @throws IllegalArgumentException if the lengths of the two arrays are not equal
-     */
     public LinearRegression(double[] x, double[] y) {
         if (x.length != y.length) {
             throw new IllegalArgumentException("array lengths are not equal");
