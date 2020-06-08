@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 public class postOne {
-    int[] integers = new int[100];
+    int[] integers = new int[1000];
 
     public void postone(Stage stages,String accessToken,int numbers)
     {
@@ -41,15 +41,15 @@ public class postOne {
         emCal.fileOpen();
         int counter=0;
         String status=null;
-//        for (List<Post> apost : result) {
-//            for (Post aPost : apost) {
-//                counter++;
+        for (List<Post> apost : result) {
+            for (Post aPost : apost) {
+                counter++;
+
 //
-//
-        List<Post> apost=result.getData();
-        Post aPost=apost.get(numbers);
-//
-//                if (counter == numbers) {
+//        List<Post> apost=result.getData();
+//        Post aPost=apost.get(numbers);
+
+                if (counter == numbers) {
 
                     System.out.println("Post is :\n" + aPost.getMessage());
                     status=aPost.getMessage();
@@ -169,13 +169,13 @@ public class postOne {
                         System.out.println("");
                     }
                     emCal.VisualOutputs(stages,status, integers[0], integers[1], integers[2], integers[3], integers[4], integers[5]);
-//
 
-//                    break;
-//                }
-//            }
-//
-//        }
+
+                    break;
+                }
+            }
+
+        }
 
 
 

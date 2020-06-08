@@ -28,26 +28,25 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import sample.spl1.Main;
-import sample.spl1.Operations;
-import sample.spl1.firstPost;
-import sample.spl1.textField;
+import sample.spl1.*;
 import sample.visualOut.LinearRegression;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
+import static java.lang.Math.abs;
 import static sample.visualOut.visualoutputfb.setStyle;
 
 public class EmotionCalculation {
 
-
+    private static DecimalFormat df = new DecimalFormat("0.00");
     InputStream is = null;
     DataInputStream dis = null;
     FileOutputStream fos = null;
@@ -606,6 +605,165 @@ public class EmotionCalculation {
                 BackgroundSize.DEFAULT);
         Background bg = new Background(bi);
         root.setBackground(bg);
+
+
+        // Scene scene = new Scene(root, 1600, 800);
+        stage.setScene(scene);
+        //primaryStage.setFullScreen(true);
+        stage.show();
+
+    }
+
+    public void VisualOutputPred(Stage stage,double[]a,double[]b) {
+
+        Button back = new Button("Back");
+        back.setTranslateX(1300);
+        back.setTranslateY(650);
+        back.setStyle("-fx-padding: 8 15 15 15;\n" +
+                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
+                "    -fx-background-radius: 8;\n" +
+                "    -fx-background-color: \n" +
+                "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
+                "        #8d9092,\n" +
+                "        #717375,\n" +
+                "        radial-gradient(center 50% 50%, radius 100%, #ffffff, #a1a3a6);\n" +
+                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
+                "    -fx-font-weight: bold;\n" +
+                "    -fx-font-size: 1.1em;");
+        back.setPrefSize(60, 30);
+
+  //      Image background = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
+        Pane root = new Pane();
+        back.setOnAction(e -> {
+            try {
+
+                firstPost fp=new firstPost();
+                fp.firstpost(stage);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+        LinearRegression lr=new LinearRegression(a,b);
+
+
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Haha",abs(lr.predict(JoyCal))),
+                new PieChart.Data("Wow", abs(lr.predict(SurpriseCal))),
+                new PieChart.Data("Angry",  abs(lr.predict(AngerCal)+lr.predict(DisgustCal))),
+                new PieChart.Data("Love", abs(lr.predict( anticipationCal))),
+                new PieChart.Data("Sad", abs(lr.predict (SadnessCal)+ lr.predict(FearCal))),
+                new PieChart.Data("Like", abs( lr.predict(TrustCal))));
+
+        Text text = new Text();
+
+        //Setting the text to be added.
+        text.setText("    "+ df.format(lr.predict(JoyCal))+"%                "+  df.format(lr.predict(SurpriseCal))+"%                "+ df.format(lr.predict(AngerCal)+lr.predict(DisgustCal))+"%                "+ df.format(lr.predict( anticipationCal))+"%                "+ df.format(lr.predict (SadnessCal)+ lr.predict(FearCal))+"%                "+  df.format(lr.predict(TrustCal))+"%");
+
+        //setting the position of the text
+        text.setX(30);
+        text.setY(690);
+
+        Line line = new Line();
+        line.setStartX(640.0);
+        line.setStartY(0);
+        line.setEndX(640.0);
+        line.setEndY(1400.0);
+        ObservableList<PieChart.Data> pieChartData2 = FXCollections.observableArrayList(
+                new PieChart.Data("Joy", JoyCal),
+                new PieChart.Data("Surprise", SurpriseCal),
+                new PieChart.Data("Anger", AngerCal),
+                new PieChart.Data("anticipation", anticipationCal),
+                new PieChart.Data("Sadness", SadnessCal),
+                new PieChart.Data("Disgust", DisgustCal),
+                new PieChart.Data("Fear", FearCal),
+                new PieChart.Data("Trust", TrustCal));
+
+
+        //Creating a Pie chart
+        PieChart pieChart1 = new PieChart(pieChartData);
+
+        //Setting the title of the Pie chart
+        pieChart1.setTitle("Predicted Reaction");
+
+
+        //setting the direction to arrange the data
+        pieChart1.setClockwise(true);
+
+        //Setting the length of the label line
+        pieChart1.setLabelLineLength(70);
+
+        //Setting the labels of the pie chart visible
+        pieChart1.setLabelsVisible(true);
+
+        //Setting the start angle of the pie chart
+        pieChart1.setStartAngle(180);
+
+        pieChart1.setTranslateX(50);
+        pieChart1.setTranslateY(160);
+        pieChart1.setScaleX(1.5);
+        pieChart1.setScaleY(1.5);
+
+
+
+        //Creating a Pie chart
+        PieChart pieChart2 = new PieChart(pieChartData2);
+
+        //Setting the title of the Pie chart
+        pieChart2.setTitle("Emotion ");
+
+
+        //setting the direction to arrange the data
+        pieChart2.setClockwise(true);
+
+        //Setting the length of the label line
+        pieChart2.setLabelLineLength(70);
+
+        //Setting the labels of the pie chart visible
+        pieChart2.setLabelsVisible(true);
+
+        //Setting the start angle of the pie chart
+        pieChart2.setStartAngle(180);
+
+        pieChart2.setTranslateX(710);
+        pieChart2.setTranslateY(160);
+        pieChart2.setScaleX(1.5);
+        pieChart2.setScaleY(1.5);
+
+
+
+
+
+
+
+        //Creating a scene object
+        Scene scene = new Scene(root, 1400, 750);
+
+        //Setting title to the Stage
+        stage.setTitle("Pie Chart");
+        root.getChildren().addAll(pieChart1,pieChart2,line,text, back);
+        //Adding scene to the stage
+        stage.setScene(scene);
+
+        //Displaying the contents of the stage
+        stage.show();
+        back.setOnAction(e -> {
+            try {
+
+                firstPost fp=new firstPost();
+                fp.firstpost(stage);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+//
+//        BackgroundImage bi = new BackgroundImage(background,
+//                BackgroundRepeat.NO_REPEAT,
+//                BackgroundRepeat.NO_REPEAT,
+//                BackgroundPosition.DEFAULT,
+//                BackgroundSize.DEFAULT);
+//        Background bg = new Background(bi);
+//        root.setBackground(bg);
 
 
         // Scene scene = new Scene(root, 1600, 800);
