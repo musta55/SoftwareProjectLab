@@ -28,7 +28,7 @@ public class firstPost {
         Scene scen = new Scene(stat, 2000, 900);
 
 
-        String accessToken = "EAAMF6lCN2rABAGYjeWMsTzPl2l7DehUI7sFnJIULz4EXlnpKOZCfCxmePAIxuNZC0gGzjPUE36xL36aEVJFh2ymzGZBuZCHv9AqVLS6kUAC9Gg3x37g0WHsjVYAM7uvllQdnmwZBCWgOgQSl45O17PjZBOCMm4PpDKZB49q0ESjyEBUaVjq6hF0e97fulFZA1SGwbJD9BfEtjAZDZD ";
+        String accessToken = "EAAMF6lCN2rABAL6ZCqIhEAzejYUMuQyccpK5G9Kq1rsvZAghc6Bac8OeVpzL0seJ6BpmaN2FNx5QkIjs7yom44YzruiPdwJISFImQsMAXGt9RG2THGAnaX9WBeBZCq7KBBSQku7pAlXobTZCZCKHThvIGAlePRNXRvekSC2kYJgZDZD ";
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("850928862091952", "ddb4cbe10a995e95acc505c91c9e73d5");
 
@@ -112,7 +112,7 @@ public class firstPost {
 
                     try {
                         postOne po = new postOne();
-                        po.postone(stages, exAccessToken.getAccessToken(), Integer.parseInt(textField.getText())-1);
+                        po.postone(stages, accessToken, Integer.parseInt(textField.getText())-1);
                     } catch (Exception exc) {
                         exc.printStackTrace();
                     }

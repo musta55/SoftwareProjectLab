@@ -58,8 +58,8 @@ public class Main extends Application {
 
 
 
-        Button Start = new Button("From Text");
-        Start.setTranslateX(230);
+        Button Start = new Button("Let's Start");
+        Start.setTranslateX(530);
         Start.setTranslateY(220);
 
         Start.setTextFill(Color.WHITE);
@@ -110,7 +110,7 @@ public class Main extends Application {
                 BackgroundSize.DEFAULT);
         Background bg = new Background(bi);
         root.setBackground(bg);
-            root.getChildren().addAll(canvas,Start,headning,speech);
+            root.getChildren().addAll(canvas,Start,headning);
             Scene scene = new Scene(root,1400,760);
             scene.setFill(Color.BLACK);
 

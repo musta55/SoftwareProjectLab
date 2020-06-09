@@ -19,14 +19,16 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 import sample.spl1.*;
 import sample.spl1.emotioncal.EmotionCalculation;
+
+import static java.lang.Math.abs;
+
 public class visualoutputfb {
     public static String s = null;
 
@@ -130,37 +132,37 @@ public class visualoutputfb {
 
                 double joyOut = 0;
 
-                for (int y = 0; y < 46; y += 8) joyOut += out[y];
-                joyOut = joyOut / 6;
+                for (int y = 0; y < 80; y += 8) joyOut += out[y];
+                joyOut = joyOut / 10;
 
 
                 double surpriseOut = 0;
-                for (int y = 1; y < 46; y += 8) surpriseOut += out[y];
-                surpriseOut = surpriseOut / 6;
+                for (int y = 1; y < 80; y += 8) surpriseOut += out[y];
+                surpriseOut = surpriseOut / 10;
 
                 double fearOut = 0;
-                for (int y = 2; y < 46; y += 8) fearOut += out[y];
-                fearOut = fearOut / 6;
+                for (int y = 2; y < 80; y += 8) fearOut += out[y];
+                fearOut = fearOut / 10;
 
                 double sadnessOut = 0;
-                for (int y = 3; y < 46; y += 8) sadnessOut += out[y];
-                sadnessOut = sadnessOut / 6;
+                for (int y = 3; y < 80; y += 8) sadnessOut += out[y];
+                sadnessOut = sadnessOut / 10;
 
                 double trustOut = 0;
-                for (int y = 4; y < 46; y += 8) trustOut += out[y];
-                trustOut = trustOut / 6;
+                for (int y = 4; y < 80; y += 8) trustOut += out[y];
+                trustOut = trustOut / 10;
 
                 double disgustOut = 0;
-                for (int y = 5; y < 48; y += 8) disgustOut += out[y];
-                disgustOut = disgustOut / 6;
+                for (int y = 5; y < 80; y += 8) disgustOut += out[y];
+                disgustOut = disgustOut / 10;
 
                 double anticipationOut = 0;
-                for (int y = 6; y < 48; y += 8) anticipationOut += out[y];
-                anticipationOut = anticipationOut / 6;
+                for (int y = 6; y < 80; y += 8) anticipationOut += out[y];
+                anticipationOut = anticipationOut / 10;
 
                 double angerOut = 0;
-                for (int y = 7; y < 48; y += 8) angerOut += out[y];
-                angerOut = angerOut / 6;
+                for (int y = 7; y < 80; y += 8) angerOut += out[y];
+                angerOut = angerOut / 10;
 
                 //   Image backgrounds = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
                 Image backgrounds = new Image("emotionSide.png");
@@ -862,52 +864,66 @@ public class visualoutputfb {
         XYChart.Series dataSeries1 = new XYChart.Series();
         dataSeries1.setName("JOY");
 
-        for (int w = 0, e = 1; w < 50 && e < 10; w += 8, e++)
+        for (int w = 0, e = 1; w < 80 && e <= 10; w += 8, e++)
             dataSeries1.getData().add(new XYChart.Data("Post " + e, out[w]));
 
 
         XYChart.Series dataSeries2 = new XYChart.Series();
         dataSeries2.setName("SURPRISE");
 
-        for (int w = 1, e = 1; w < 50 && e < 10; w += 8, e++)
+        for (int w = 1, e = 1; w < 80 && e <= 10; w += 8, e++)
             dataSeries2.getData().add(new XYChart.Data("Post " + e, out[w]));
 
         XYChart.Series dataSeries3 = new XYChart.Series();
         dataSeries3.setName("FEAR");
-        for (int w = 2, e = 1; w < 50 && e < 10; w += 8, e++)
+        for (int w = 2, e = 1; w < 80 && e <= 10; w += 8, e++)
             dataSeries3.getData().add(new XYChart.Data("Post " + e, out[w]));
 
 
         XYChart.Series dataSeries4 = new XYChart.Series();
         dataSeries4.setName("SADNESS");
 
-        for (int w = 3, e = 1; w < 50 && e < 10; w += 8, e++)
+        for (int w = 3, e = 1; w < 80 && e <= 10; w += 8, e++)
             dataSeries4.getData().add(new XYChart.Data("Post " + e, out[w]));
 
 
         XYChart.Series dataSeries5 = new XYChart.Series();
         dataSeries5.setName("TRUST");
 
-        for (int w = 0, e = 1; w < 50 && e < 10; w += 8, e++)
+        File fileDate = new File("sample/spl1/date.txt");
+
+        BufferedReader br = new BufferedReader(new FileReader(file));
+
+        String str;
+        while (true) {
+            try {
+                if (!((str = br.readLine()) != null)) break;
+                System.out.println(str);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        for (int w = 0, e = 1; w < 80 && e <= 10; w += 8, e++)
             dataSeries5.getData().add(new XYChart.Data("Post " + e, out[w]));
 
         XYChart.Series dataSeries6 = new XYChart.Series();
         dataSeries6.setName("DISGUST");
 
-        for (int w = 5, e = 1; w < 50 && e < 10; w += 8, e++)
+        for (int w = 5, e = 1; w < 80 && e <= 10; w += 8, e++)
             dataSeries6.getData().add(new XYChart.Data("Post " + e, out[w]));
 
         XYChart.Series dataSeries7 = new XYChart.Series();
         dataSeries7.setName("ANTICIPATION");
 
-        for (int w = 6, e = 1; w < 50 && e < 10; w += 8, e++)
+        for (int w = 6, e = 1; w < 80 && e <= 10; w += 8, e++)
             dataSeries7.getData().add(new XYChart.Data("Post " + e, out[w]));
 
 
         XYChart.Series dataSeries8 = new XYChart.Series();
         dataSeries8.setName("ANGER");
 
-        for (int w = 7, e = 1; w < 50 && e < 10; w += 8, e++)
+        for (int w = 7, e = 1; w < 80 && e <= 10; w += 8, e++)
             dataSeries8.getData().add(new XYChart.Data("Post " + e, out[w]));
 
 
@@ -1005,13 +1021,13 @@ public class visualoutputfb {
 
         tempTotal = 0;
         for (int t = 1; t <= 15; t++) tempTotal += sentimentTot[t];
-        tempTotal /= 7;
+        tempTotal /= 10;
 
         //LineChart chart = new LineChart(xAxis, yAxis, lineChart);
         lineChart.setPrefSize(1200, 700);
 
 
-        Button moreSenti = new Button("Sentiment Analysis");
+        Button moreSenti = new Button("Final Report");
         moreSenti.setTranslateX(450);
         moreSenti.setTranslateY(700);
         moreSenti.setStyle("-fx-padding: 8 15 15 15;\n" +
@@ -1134,27 +1150,206 @@ public class visualoutputfb {
 
 
             final LineChart<Number, Number> sc = new LineChart<>(new NumberAxis(), new NumberAxis());
+            sc.setPrefSize(400,400);
 
             XYChart.Series series1 = new XYChart.Series();
             series1.setName("Sentimental Progress");
-            for (int t = 1; t <= 7; t++)
+            for (int t = 1; t <= 10; t++)
                 series1.getData().add(new XYChart.Data(t - 1, sentimentTot[t]));
+            double [] slope=new double[100];
+            for(int k=0;k<10;k++)
+            {
+                slope[k]=(sentimentTot[k+1]-sentimentTot[k])/((k+1)-k);
+                System.out.println("Slopes are "+slope[k]);
+            }
+            Text textInt = new Text();
+            String txt="";
+
+            if(abs(finalTempTotal)<18)txt= "Sentimental Intensity : Low";
+          else  if(abs(finalTempTotal)<40)txt= "Sentimental Intensity : Medium";
+          else txt= "Sentimental Intensity : High";
+
+            textInt.setText(txt);
+            textInt.setFill(Color.GREEN);
+            textInt.setScaleX(1.5);
+            textInt.setScaleY(3);
+            textInt.setX(800);
+            textInt.setY(150);
+
+            int highSt=0,lowSt=0,mediumSt=0;
+            Text textStab= new Text();
+            String txtstab="";
+            for(int l=0;l<10;l++)
+            {
+                if(abs(slope[l])>100)highSt++;
+           else if(abs(slope[l])>50)mediumSt++;
+                else if(abs(slope[l])>=0)lowSt++;
+
+            }
+
+            if(highSt>=mediumSt && highSt>=lowSt )
+            {
+                txtstab="Stability : Unstable";
+            }
+            else
+            {
+                if(mediumSt>=lowSt) txtstab="Stability : Medium";
+                else if(mediumSt<lowSt) txtstab="Stability : Stable";
+            }
+
+
+
+
+            textStab.setText(txtstab);
+            textStab.setFill(Color.GREEN);
+            textStab.setScaleX(1.5);
+            textStab.setScaleY(3);
+            textStab.setX(800);
+            textStab.setY(280);
+
+
+            String txtmean="";
+            if(finalTempTotal<=25 && finalTempTotal>=0)txtmean= "Ultimate Emotion :Anticipation";
+            else  if(finalTempTotal<=50 && finalTempTotal>=26)txtmean= "Ultimate Emotion :Surprise";
+            else  if(finalTempTotal<=75 && finalTempTotal>50)txtmean= "Ultimate Emotion :Trust";
+            else  if(finalTempTotal<=100 && finalTempTotal>75)txtmean= "Ultimate Emotion :Joy";
+            else  if(finalTempTotal<0 && finalTempTotal>=-25)txtmean= "Ultimate Emotion :Sadness";
+            else  if(finalTempTotal<-25 && finalTempTotal>=-50)txtmean= "Ultimate Emotion :Fear";
+            else  if(finalTempTotal<-50 && finalTempTotal>=-75)txtmean= "Ultimate Emotion :Anger";
+            else  if(finalTempTotal<-75 && finalTempTotal>=-100)txtmean= "Ultimate Emotion :Disgust";
+
+
+
+            Text textMean= new Text();
+            textMean.setText(txtmean);
+            textMean.setFill(Color.GREEN);
+            textMean.setScaleX(1.5);
+            textMean.setScaleY(3);
+            textMean.setX(800);
+            textMean.setY(450);
+
+
+
+String txtRec="";
+if(sentimentTot[0]>=0)txtRec="Recent Post : Positive";
+else txtRec="Recent Post : Negative";
+            Text textRec= new Text();
+
+
+
+            textRec.setFill(Color.GREEN);
+            textRec.setScaleX(1.5);
+            textRec.setScaleY(3);
+            textRec.setText(txtRec);
+            textRec.setX(800);
+            textRec.setY(550);
+
+
+
+
+            String txtCon="";
+            int pos=0,neg=0;
+            for(int k=0;k<10;k++)
+            {
+                if(pos<=3 || neg<=3) txtCon = "Consistency : No Consistency";
+                if(slope[k]>=0)pos++;
+                else {
+                    pos=0;
+                }
+                if(pos>=3) {
+                    txtCon="";
+                    txtCon = "Consistency : Positive";
+                    break;
+
+                }
+
+
+                if(slope[k]<0)neg++;
+                else {
+                    neg=0;
+                }
+                if(neg>=3) {
+                    txtCon="";
+                    txtCon = "Consistency : Negative";
+                    break;
+                }
+
+            }
+
+
+            Text textCon= new Text();
+            textCon.setText(txtCon);
+
+            textCon.setFill(Color.GREEN);
+            textCon.setScaleX(1.5);
+            textCon.setScaleY(3);
+            textCon.setX(800);
+            textCon.setY(650);
+
+
+            Text HeadText= new Text();
+            HeadText.setText("Your Final Report");
+
+            HeadText.setFill(Color.DARKRED);
+            HeadText.setScaleX(3.4);
+            HeadText.setScaleY(4.4);
+            HeadText.setX(900);
+            HeadText.setY(50);
+
+
 
 
             XYChart.Series series2 = new XYChart.Series();
             series2.setName("Mean Emotion");
-            for (int t = 1; t <= 7; t++)
+            for (int t = 1; t <= 10; t++)
                 series2.getData().add(new XYChart.Data(t - 1, finalTempTotal));
 
+            CategoryAxis xAxisStab    = new CategoryAxis();
+            xAxisStab.setLabel("Stability");
+
+            NumberAxis yAxisStab = new NumberAxis();
+            yAxisStab.setLabel("Value");
+
+          BarChart   barChart = new BarChart(xAxisStab, yAxisStab);
+         //   final BarChart<Number, Number> barChart = new BarChart<>(new CategoryAxis(), new NumberAxis());
+            barChart.setPrefSize(70,50);
+            XYChart.Series dataSeriesStab = new XYChart.Series();
 
 
+            dataSeriesStab.setName("Stability");
 
+
+            dataSeriesStab.getData().add(new XYChart.Data("Unstable", highSt));
+            dataSeriesStab.getData().add(new XYChart.Data("Medium"  , mediumSt));
+            dataSeriesStab.getData().add(new XYChart.Data("Stable"  , lowSt));
+
+           barChart.setPrefSize(50,50);
+
+
+            barChart.setScaleX(1.5);
+            barChart.setScaleY(1.5);
+            barChart.setLayoutX(1000);
+            barChart.setLayoutY(200);
+
+            barChart.getData().add(dataSeriesStab);
+            barChart.setAnimated(false);
             sc.setAnimated(false);
             sc.setCreateSymbols(true);
 
+
             sc.getData().addAll(series1, series2);
-            sc.setPrefSize(1000, 700);
+            sc.setPrefSize(650, 700);
             setStyle(sc);
+
+
+
+
+
+
+
+
+
+            roota.getChildren().addAll(canvasa,sc,backa,textInt,barChart,textStab,textMean,textRec,textCon,HeadText);
          //   sc.setOpacity(0.5);
 
        //    scenea.getStylesheets().add(visualoutputfb.class.getResource("sample/visualOut/root").toExternalForm());
@@ -1169,7 +1364,7 @@ public class visualoutputfb {
 
 
             //    roota.getChildren().addAll(canvasa,backa,scatterChart,linechart);
-            roota.getChildren().addAll(canvasa, backa, sc);
+
         });
 
 
