@@ -218,8 +218,6 @@ public class EmotionCalculation {
                                 Frequency[7]++;
                                 intensity -= 3;
                             }
-
-
                             found = true;
                             //  break NEW;
                         } else {
@@ -384,16 +382,19 @@ public class EmotionCalculation {
         for (int i = 0; i < 8; i++) {
             tot += Frequency[i];
         }
+        tot+=exClaimCount;
 
 
-        JoyCal = (Frequency[0] * 100) / tot;
-        SurpriseCal = ((Frequency[1] + exClaimCount) * 100) / tot;
-        FearCal = (Frequency[2] * 100) / tot;
-        SadnessCal = (Frequency[3] * 100) / tot;
-        TrustCal = (Frequency[4] * 100) / tot;
-        DisgustCal = (Frequency[5] * 100) / tot;
-        anticipationCal = (Frequency[6] * 100) / tot;
-        AngerCal = (Frequency[7] * 100) / tot;
+
+        JoyCal =  Math.round((Frequency[0] * 100) / tot * 100.0) / 100.0;
+        SurpriseCal =Math.round(((Frequency[1]+exClaimCount) * 100) / tot * 100.0) / 100.0;
+        FearCal =Math.round((Frequency[2] * 100) / tot * 100.0) / 100.0;
+        SadnessCal = Math.round((Frequency[3] * 100) / tot * 100.0) / 100.0;
+        TrustCal =Math.round((Frequency[4] * 100) / tot * 100.0) / 100.0;
+        DisgustCal =Math.round((Frequency[5] * 100) / tot * 100.0) / 100.0;
+        anticipationCal = Math.round((Frequency[6] * 100) / tot * 100.0) / 100.0;
+        AngerCal = Math.round((Frequency[7] * 100) / tot * 100.0) / 100.0;
+
 //
 //        Main pie=new Main();
 //        Stage stage = new Stage();
@@ -472,6 +473,7 @@ public class EmotionCalculation {
     }
 
     public void DataOutputStream() throws IOException {
+
 
 
         String[] dbuf = {String.valueOf(JoyCal), String.valueOf(SurpriseCal), String.valueOf(FearCal), String.valueOf(SadnessCal), String.valueOf(TrustCal), String.valueOf(DisgustCal), String.valueOf(anticipationCal), String.valueOf(AngerCal)};

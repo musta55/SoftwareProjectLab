@@ -41,8 +41,7 @@ public class Progression {
 
 
         String userInput = null;
-        EmotionCalculation emCal = new EmotionCalculation();
-        emCal.fileOpen();
+
         //     emCal.DataOutputStream();
 
 
@@ -52,8 +51,9 @@ public class Progression {
                 if (counter >= 10) {
                     break;
                 }
+                EmotionCalculation emCal = new EmotionCalculation();
 
-
+                emCal.fileOpen();
 
                 System.out.println(aPost.getMessage());
                 System.out.println("Post like is :"+aPost.getLikesCount());
@@ -61,35 +61,6 @@ public class Progression {
                 System.out.println("Post link is :"+aPost.getLink());
                 try {
 
-
-                    char c;
-                    c = aPost.getMessage().charAt(0);
-
-                    System.out.println("Post date is :"+aPost.getCreatedTime());
-
-                    try {
-                        //  FileWriter fw = new FileWriter("src/sample/spl1/out.txt");
-                        Path path = Paths.get("date.txt");
-                        //    fw.write("Files in Java might be tricky, but it is fun enough!");
-                        //  fw.write(dbuf[0]+"#"+dbuf[1]+"#"+dbuf[2]+"#"+dbuf[3]+"#"+dbuf[4]+"#"+dbuf[5]+"#"+dbuf[6]+"#"+dbuf[7]+"#");
-                      //  String textToAppend = aPost.getCreatedTime();
-                        Files.write(path, (Iterable<? extends CharSequence>) aPost.getCreatedTime(), StandardOpenOption.APPEND);
-                        //   fw.close();
-                        System.out.println("Successfully wrote to the file.");
-                    } catch (IOException e) {
-                        System.out.println("An error occurred.");
-                        e.printStackTrace();
-                    }
-
-
-                    if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
-
-
-                        System.out.println("The post is English\n");
-                    }
-
-
-                        System.out.println("The Post is Bangla");
                         OperationsBangla operationsBangla = new OperationsBangla();
 
                         operationsBangla.splitInputBangla();
@@ -135,6 +106,25 @@ public class Progression {
                         emCal.DataOutputStream();
 
 
+
+
+
+
+                    System.out.println("Post date is :"+aPost.getCreatedTime());
+
+                    try {
+                        //  FileWriter fw = new FileWriter("src/sample/spl1/out.txt");
+                        Path path = Paths.get("date.txt");
+                        //    fw.write("Files in Java might be tricky, but it is fun enough!");
+                        //  fw.write(dbuf[0]+"#"+dbuf[1]+"#"+dbuf[2]+"#"+dbuf[3]+"#"+dbuf[4]+"#"+dbuf[5]+"#"+dbuf[6]+"#"+dbuf[7]+"#");
+                        //  String textToAppend = aPost.getCreatedTime();
+                        Files.write(path, (Iterable<? extends CharSequence>) aPost.getCreatedTime(), StandardOpenOption.APPEND);
+                        //   fw.close();
+                        System.out.println("Successfully wrote to the file.");
+                    } catch (IOException e) {
+                        System.out.println("An error occurred.");
+                        e.printStackTrace();
+                    }
                 } catch (Exception ea) {
                     System.out.println("");
                 }
@@ -144,12 +134,12 @@ public class Progression {
 
 
             //  emCal.VisualOutput(stage);
-            try {
-                visualoutputfb.VisualOutputFacebook(stages);
-            } catch (FileNotFoundException aex) {
-                aex.printStackTrace();
-            }
-            break;
+
+        }
+        try {
+            visualoutputfb.VisualOutputFacebook(stages);
+        } catch (FileNotFoundException aex) {
+            aex.printStackTrace();
         }
 
 

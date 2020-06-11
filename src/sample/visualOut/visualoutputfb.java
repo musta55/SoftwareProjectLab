@@ -20,6 +20,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -34,6 +35,7 @@ public class visualoutputfb {
 
     public static void VisualOutputFacebook(Stage stage) throws FileNotFoundException {
 
+        DecimalFormat df = new DecimalFormat("0.00");
         Scanner scan;
         File file = null;
         file = new File("src/sample/spl1/out.txt");
@@ -137,31 +139,31 @@ public class visualoutputfb {
 
 
                 double surpriseOut = 0;
-                for (int y = 1; y < 80; y += 8) surpriseOut += out[y];
+                for (int y = 1; y < 81; y += 8) surpriseOut += out[y];
                 surpriseOut = surpriseOut / 10;
 
                 double fearOut = 0;
-                for (int y = 2; y < 80; y += 8) fearOut += out[y];
+                for (int y = 2; y < 82; y += 8) fearOut += out[y];
                 fearOut = fearOut / 10;
 
                 double sadnessOut = 0;
-                for (int y = 3; y < 80; y += 8) sadnessOut += out[y];
+                for (int y = 3; y < 83; y += 8) sadnessOut += out[y];
                 sadnessOut = sadnessOut / 10;
 
                 double trustOut = 0;
-                for (int y = 4; y < 80; y += 8) trustOut += out[y];
+                for (int y = 4; y < 84; y += 8) trustOut += out[y];
                 trustOut = trustOut / 10;
 
                 double disgustOut = 0;
-                for (int y = 5; y < 80; y += 8) disgustOut += out[y];
+                for (int y = 5; y < 85; y += 8) disgustOut += out[y];
                 disgustOut = disgustOut / 10;
 
                 double anticipationOut = 0;
-                for (int y = 6; y < 80; y += 8) anticipationOut += out[y];
+                for (int y = 6; y < 86; y += 8) anticipationOut += out[y];
                 anticipationOut = anticipationOut / 10;
 
                 double angerOut = 0;
-                for (int y = 7; y < 80; y += 8) angerOut += out[y];
+                for (int y = 7; y < 87; y += 8) angerOut += out[y];
                 angerOut = angerOut / 10;
 
                 //   Image backgrounds = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
@@ -871,24 +873,52 @@ public class visualoutputfb {
         XYChart.Series dataSeries2 = new XYChart.Series();
         dataSeries2.setName("SURPRISE");
 
-        for (int w = 1, e = 1; w < 80 && e <= 10; w += 8, e++)
+        for (int w = 1, e = 1; w < 81 && e <= 10; w += 8, e++)
             dataSeries2.getData().add(new XYChart.Data("Post " + e, out[w]));
 
         XYChart.Series dataSeries3 = new XYChart.Series();
         dataSeries3.setName("FEAR");
-        for (int w = 2, e = 1; w < 80 && e <= 10; w += 8, e++)
+        for (int w = 2, e = 1; w < 82 && e <= 10; w += 8, e++)
             dataSeries3.getData().add(new XYChart.Data("Post " + e, out[w]));
 
 
         XYChart.Series dataSeries4 = new XYChart.Series();
         dataSeries4.setName("SADNESS");
 
-        for (int w = 3, e = 1; w < 80 && e <= 10; w += 8, e++)
+        for (int w = 3, e = 1; w < 83 && e <= 10; w += 8, e++)
             dataSeries4.getData().add(new XYChart.Data("Post " + e, out[w]));
 
 
         XYChart.Series dataSeries5 = new XYChart.Series();
         dataSeries5.setName("TRUST");
+
+        for (int w = 0, e = 1; w < 84 && e <= 10; w += 8, e++)
+            dataSeries5.getData().add(new XYChart.Data("Post " + e, out[w]));
+
+        XYChart.Series dataSeries6 = new XYChart.Series();
+        dataSeries6.setName("DISGUST");
+
+        for (int w = 5, e = 1; w < 85 && e <= 10; w += 8, e++)
+            dataSeries6.getData().add(new XYChart.Data("Post " + e, out[w]));
+
+        XYChart.Series dataSeries7 = new XYChart.Series();
+        dataSeries7.setName("ANTICIPATION");
+
+        for (int w = 6, e = 1; w < 86 && e <= 10; w += 8, e++)
+            dataSeries7.getData().add(new XYChart.Data("Post " + e, out[w]));
+
+
+        XYChart.Series dataSeries8 = new XYChart.Series();
+        dataSeries8.setName("ANGER");
+
+        for (int w = 7, e = 1; w < 87 && e <= 10; w += 8, e++)
+            dataSeries8.getData().add(new XYChart.Data("Post " + e, out[w]));
+
+
+        lineChart.getData().addAll(dataSeries1, dataSeries2, dataSeries3, dataSeries4, dataSeries5, dataSeries6, dataSeries7, dataSeries8);
+
+
+
 
         File fileDate = new File("sample/spl1/date.txt");
 
@@ -904,31 +934,6 @@ public class visualoutputfb {
             }
 
         }
-        for (int w = 0, e = 1; w < 80 && e <= 10; w += 8, e++)
-            dataSeries5.getData().add(new XYChart.Data("Post " + e, out[w]));
-
-        XYChart.Series dataSeries6 = new XYChart.Series();
-        dataSeries6.setName("DISGUST");
-
-        for (int w = 5, e = 1; w < 80 && e <= 10; w += 8, e++)
-            dataSeries6.getData().add(new XYChart.Data("Post " + e, out[w]));
-
-        XYChart.Series dataSeries7 = new XYChart.Series();
-        dataSeries7.setName("ANTICIPATION");
-
-        for (int w = 6, e = 1; w < 80 && e <= 10; w += 8, e++)
-            dataSeries7.getData().add(new XYChart.Data("Post " + e, out[w]));
-
-
-        XYChart.Series dataSeries8 = new XYChart.Series();
-        dataSeries8.setName("ANGER");
-
-        for (int w = 7, e = 1; w < 80 && e <= 10; w += 8, e++)
-            dataSeries8.getData().add(new XYChart.Data("Post " + e, out[w]));
-
-
-        lineChart.getData().addAll(dataSeries1, dataSeries2, dataSeries3, dataSeries4, dataSeries5, dataSeries6, dataSeries7, dataSeries8);
-
 
 //
 //
@@ -1157,7 +1162,7 @@ public class visualoutputfb {
             for (int t = 1; t <= 10; t++)
                 series1.getData().add(new XYChart.Data(t - 1, sentimentTot[t]));
             double [] slope=new double[100];
-            for(int k=0;k<10;k++)
+            for(int k=1;k<9;k++)
             {
                 slope[k]=(sentimentTot[k+1]-sentimentTot[k])/((k+1)-k);
                 System.out.println("Slopes are "+slope[k]);
@@ -1165,9 +1170,13 @@ public class visualoutputfb {
             Text textInt = new Text();
             String txt="";
 
-            if(abs(finalTempTotal)<18)txt= "Sentimental Intensity : Low";
-          else  if(abs(finalTempTotal)<40)txt= "Sentimental Intensity : Medium";
-          else txt= "Sentimental Intensity : High";
+            EmotionCalculation emcal=new EmotionCalculation();
+           double stdDev= emcal.calculateSD(sentimentTot);
+            System.out.println("std dev is :"+stdDev);
+
+            if(stdDev<1)txt= "Sentimental Intensity : Low ("+df.format(stdDev)+")";
+          else  if(stdDev<5)txt= "Sentimental Intensity : Medium ("+df.format(stdDev)+")";
+          else txt= "Sentimental Intensity : High  ("+df.format(stdDev)+")";
 
             textInt.setText(txt);
             textInt.setFill(Color.GREEN);
@@ -1179,10 +1188,10 @@ public class visualoutputfb {
             int highSt=0,lowSt=0,mediumSt=0;
             Text textStab= new Text();
             String txtstab="";
-            for(int l=0;l<10;l++)
+            for(int l=1;l<9;l++)
             {
-                if(abs(slope[l])>100)highSt++;
-           else if(abs(slope[l])>50)mediumSt++;
+                if(abs(slope[l])>=100)highSt++;
+           else if(abs(slope[l])>=40)mediumSt++;
                 else if(abs(slope[l])>=0)lowSt++;
 
             }
@@ -1231,7 +1240,7 @@ public class visualoutputfb {
 
 
 String txtRec="";
-if(sentimentTot[0]>=0)txtRec="Recent Post : Positive";
+if(sentimentTot[1]>=0)txtRec="Recent Post : Positive";
 else txtRec="Recent Post : Negative";
             Text textRec= new Text();
 

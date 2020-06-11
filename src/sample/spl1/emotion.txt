@@ -14,6 +14,12 @@ abacus	disgust	0
 abacus	fear	0
 abacus	joy	0
 abacus	negative	0
+kill	anger	1
+kill	fear	1
+kill	sadness	1
+killed	anger	1
+killed	fear	1
+killed	sadness	1
 abacus	positive	0
 abacus	sadness	0
 abacus	surprise	0
