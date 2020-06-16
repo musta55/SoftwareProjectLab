@@ -60,7 +60,7 @@ public class WebPage {
                 textFields.setPrefRowCount(5);
                 textFields.setPrefColumnCount(6);
                 textFields.setWrapText(true);
-                textFields.setMinSize(865,50);
+                textFields.setMinSize(865,35);
                 Pane roots = new Pane();
                 BackgroundImage bi = new BackgroundImage(backgrounds,
                         BackgroundRepeat.NO_REPEAT,
@@ -87,9 +87,17 @@ public class WebPage {
                 try {
                     Operations operations=new Operations();
                     document = Jsoup.connect(textFields.getText()).get();
-                    String title = document.text(); //Get title
-                    System.out.println("  Title: " + title); //Print title.
-                    operations.splitInput(title);
+                    int x=document.text().length();
+                    String s=document.text().substring(700,x-551-1872);
+                    String t=null;
+                   String text[]= s.split("[.,]",0);
+                    for(int i=0;i<text.length;i++)
+                    {
+                      t=t+text[i]+"\n";
+                    }
+
+                    System.out.println("  Title: " + t); //Print title.
+                    operations.splitInput(t);
                     operations.removeWord();
                     operations.search();
                 } catch (IOException e) {
