@@ -48,7 +48,7 @@ public class Main extends Application {
         headning.setScaleY(6);
         headning.setTranslateX(650);
         headning.setTranslateY(100);
-        headning.setFill(Color.DARKBLUE);
+        headning.setFill(Color.rgb(21, 27, 81   ));
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
 
 
@@ -67,10 +67,10 @@ public class Main extends Application {
                 "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
                 "    -fx-background-radius: 8;\n" +
                 "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
-                "        #030B21,\n" +
-                "        #0B2058,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
+                "        linear-gradient(from 0% 63% to 0% 100%, #000000 0%, #000000 100%),\n" +
+                "        #000000,\n" +
+                "        #000000,\n" +
+                "        radial-gradient(center 50% 50%, radius 70%, #2471A3    , #17202A);\n" +
                 "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
                 "    -fx-font-weight: bold;\n" +
                 "    -fx-font-size: 2.1em;");
@@ -118,17 +118,7 @@ public class Main extends Application {
             primaryStage.show();
 
 
-        speech.setOnAction(e->{
-            try {
-                HelloWorld hl=new HelloWorld();
-                hl.speech(primaryStage);
 
-            }
-            catch (Exception excep)
-            {
-                excep.printStackTrace();
-            }
-        });
 
         Start.setOnAction(e->{
             try {

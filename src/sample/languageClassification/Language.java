@@ -31,23 +31,32 @@ public class Language {
     public void TheThird(Stage primaryStage)
     {
 
+        Text headning = new Text("User Input");
+        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
+        headning.setScaleX(5);
+        headning.setScaleY(5);
+        headning.setTranslateX(630);
+        headning.setTranslateY(70);
+        headning.setFill(Color.rgb(21, 27, 81  ));
+
+
         Button ab = new Button("Bengali Language");
-        ab.setTranslateX(520);
-        ab.setTranslateY(100);
+        ab.setTranslateX(480);
+        ab.setTranslateY(150);
         setStyle(ab);
         ab.setPrefSize(370, 100);
         ab.setTextFill(Color.WHITE);
 
         Button abi = new Button("Bilingual");
-        abi.setTranslateX(520);
-        abi.setTranslateY(500);
+        abi.setTranslateX(480);
+        abi.setTranslateY(550);
         setStyle(abi);
         abi.setPrefSize(370, 100);
         abi.setTextFill(Color.WHITE);
 
         Button exp = new Button("English Language");
-        exp.setTranslateX(520);
-        exp.setTranslateY(300);
+        exp.setTranslateX(480);
+        exp.setTranslateY(350);
         setStyle(exp);
         exp.setPrefSize(370, 100);
         exp.setTextFill(Color.WHITE);
@@ -63,7 +72,7 @@ public class Language {
                 "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
                 "        #030B21,\n" +
                 "        #0B2058,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
+                "        radial-gradient(center 50% 50%, radius 100%, #2471A3    , #17202A);\n" +
                 "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
                 "    -fx-font-weight: bold;\n" +
                 "    -fx-font-size: 1.5em;");
@@ -72,7 +81,7 @@ public class Language {
 
         Image background = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
         Pane root = new Pane();
-        root.getChildren().addAll(exp,back,ab,abi);
+        root.getChildren().addAll(exp,back,ab,abi,headning);
         //       TextField nameInput=new TextField();
 
 
@@ -137,7 +146,7 @@ public class Language {
                 "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
                 "        #030B21,\n" +
                 "        #0B2058,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
+                "        radial-gradient(center 50% 50%, radius 100%,#2471A3    , #17202A);\n" +
                 "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
                 "    -fx-font-weight: bold;\n" +
                 "    -fx-font-size: 2.1em;");

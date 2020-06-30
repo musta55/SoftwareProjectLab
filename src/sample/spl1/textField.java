@@ -58,7 +58,7 @@ public class textField {
 
         Image background = new Image(getClass().getClassLoader().getResource("sample/spl1/purssianBlue.jpg").toString(), true);
         //    Image background = new Image(getClass().getResource("sample/spl1/emotion.jpg").toExternalForm());
-        Canvas canvas = new Canvas(1400,760);
+        Canvas canvas = new Canvas(1200,800);
 //            GraphicsContext gc = canvas.getGraphicsContext2D();
 //            gc.drawImage(background,0,0);
 
@@ -81,7 +81,7 @@ public class textField {
         Background bg = new Background(bi);
         root.setBackground(bg);
         root.getChildren().addAll(canvas,headning,sa,back);
-        Scene scene = new Scene(root,1000,460);
+        Scene scene = new Scene(root,1200,800);
         scene.setFill(Color.BLACK);
 
         Stage st=new Stage();

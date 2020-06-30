@@ -132,6 +132,36 @@ public class visualoutputfb {
         more.setOnAction(e -> {
             try {
 
+                Button backs = new Button("Back");
+                backs.setTranslateX(1100);
+                backs.setTranslateY(650);
+                backs.setStyle("-fx-padding: 8 15 15 15;\n" +
+                        "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
+                        "    -fx-background-radius: 8;\n" +
+                        "    -fx-background-color: \n" +
+                        "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
+                        "        #8d9092,\n" +
+                        "        #717375,\n" +
+                        "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
+                        "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
+                        "    -fx-font-weight: bold;\n" +
+                        "    -fx-font-size: 1.1em;");
+                backs.setPrefSize(60, 30);
+
+
+                backs.setOnAction(ea-> {
+                    try {
+                        Progression statusProg =new Progression();
+
+                        String accessToken="EAAMF6lCN2rABAL6ZCqIhEAzejYUMuQyccpK5G9Kq1rsvZAghc6Bac8OeVpzL0seJ6BpmaN2FNx5QkIjs7yom44YzruiPdwJISFImQsMAXGt9RG2THGAnaX9WBeBZCq7KBBSQku7pAlXobTZCZCKHThvIGAlePRNXRvekSC2kYJgZDZD";
+                        statusProg.statusProgress(stage,accessToken);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                });
+
+
+
                 double joyOut = 0;
 
                 for (int y = 0; y < 80; y += 8) joyOut += out[y];

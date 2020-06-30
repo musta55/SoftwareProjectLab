@@ -1,5 +1,6 @@
 package sample.spl1;
 
+import demo.sphinx.helloworld.HelloWorld;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -36,28 +37,30 @@ public class secondPage {
         headning.setScaleY(5);
         headning.setTranslateX(630);
         headning.setTranslateY(70);
-        headning.setFill(Color.DARKBLUE);
+        headning.setFill(Color.rgb(21, 27, 81  ));
 
-        Button pro = new Button("User Input");
+        Button pro = new Button("Experiment");
         pro.setTranslateX(500);
         pro.setTranslateY(170);
         setStyle(pro);
         pro.setPrefSize(300, 80);
         pro.setTextFill(Color.WHITE);
 
-        Button socialMedia = new Button("Facebook Post");
-        socialMedia.setTranslateX(500);
-        socialMedia.setTranslateY(350);
-        setStyle(socialMedia);
-        socialMedia.setPrefSize(300, 80);
-        socialMedia.setTextFill(Color.WHITE);
 
-        Button liveUrl = new Button("Web Page");
-        liveUrl.setTranslateX(500);
-        liveUrl.setTranslateY(530);
-        setStyle(liveUrl);
-        liveUrl.setPrefSize(300, 80);
-        liveUrl.setTextFill(Color.WHITE);
+        Button others = new Button("Others");
+        others.setTranslateX(500);
+        others.setTranslateY(570);
+        setStyle(others);
+        others.setPrefSize(300, 80);
+        others.setTextFill(Color.WHITE);
+
+        Button application = new Button("Application");
+        application.setTranslateX(500);
+        application.setTranslateY(370);
+        setStyle(application);
+        application.setPrefSize(300, 80);
+        application.setTextFill(Color.WHITE);
+
 
 
         Button back = new Button("Back");
@@ -70,17 +73,41 @@ public class secondPage {
                 "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
                 "        #030B21,\n" +
                 "        #0B2058,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
+                "        radial-gradient(center 50% 50%, radius 100%, #2471A3    , #17202A);\n" +
                 "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
                 "    -fx-font-weight: bold;\n" +
                 "    -fx-font-size: 1.5em;");
         back.setPrefSize(80, 40);
         back.setTextFill(Color.WHITE);
 
+        application.setOnAction(e -> {
+            try {
+                thirdPage tp=new thirdPage();
+                tp.app(stage);
+            } catch (Exception excep) {
+                excep.printStackTrace();
+            }
+        });
+        others.setOnAction(e -> {
+
+                try {
+                    HelloWorld hl=new HelloWorld();
+                    hl.speech(stage);
+
+                }
+                catch (Exception excep)
+                {
+                    excep.printStackTrace();
+                }
+            });
+
+
+
+
         Image background = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
         Pane root = new Pane();
 
-        root.getChildren().addAll(socialMedia,back,pro,headning,liveUrl);
+        root.getChildren().addAll(back,pro,headning,application,others);
         pro.setOnAction(e -> {
             try {
                 Language PMenu = new Language();
@@ -98,23 +125,6 @@ public class secondPage {
             {
                 ex.printStackTrace();
             }
-        });
-
-        socialMedia.setOnAction(e -> {
-            try
-            {
-                fourthPage fPage=new fourthPage();
-                fPage.runs(stage);
-            }catch (Exception ea)
-            {
-                System.out.println("Fourth Page Problem");
-            }
-
-        });
-       liveUrl.setOnAction(e -> {
-           WebPage wb=new WebPage();
-           wb.web(stage);
-
         });
 
         Canvas canvas = new Canvas(1400,750);
@@ -144,7 +154,7 @@ public class secondPage {
                 "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
                 "        #030B21,\n" +
                 "        #0B2058,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
+                "        radial-gradient(center 50% 50%, radius 100%, #2471A3    , #17202A);\n" +
                 "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
                 "    -fx-font-weight: bold;\n" +
                 "    -fx-font-size: 2.1em;");

@@ -28,14 +28,14 @@ public void runs(Stage stages)
     FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("850928862091952", "ddb4cbe10a995e95acc505c91c9e73d5");
     Button proa = new Button("Total Emotion");
         proa.setTranslateX(550);
-        proa.setTranslateY(70);
+        proa.setTranslateY(370);
         setStyle(proa);
         proa.setPrefSize(300, 80);
         proa.setTextFill(Color.WHITE);
 
         Button progression = new Button("Emotional Progress");
         progression.setTranslateX(550);
-        progression.setTranslateY(220);
+        progression.setTranslateY(70);
         setStyle(progression);
         progression.setPrefSize(300, 80);
         progression.setTextFill(Color.WHITE);
@@ -43,7 +43,7 @@ public void runs(Stage stages)
 
     Button Status = new Button("Emotion with Reaction");
     Status.setTranslateX(550);
-    Status.setTranslateY(370);
+    Status.setTranslateY(220);
     setStyle(Status);
     Status.setPrefSize(300, 80);
     Status.setTextFill(Color.WHITE);
@@ -128,7 +128,7 @@ public void runs(Stage stages)
                 "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
                 "        #030B21,\n" +
                 "        #0B2058,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
+                "        radial-gradient(center 50% 50%, radius 100%, #2471A3    , #17202A);\n" +
                 "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
                 "    -fx-font-weight: bold;\n" +
                 "    -fx-font-size: 2.1em;");

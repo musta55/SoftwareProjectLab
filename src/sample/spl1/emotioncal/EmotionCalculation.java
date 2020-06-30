@@ -909,12 +909,12 @@ public class EmotionCalculation {
         //  setStyle(sc);
 
         barChart.setPrefSize(1200,600);
-        Hyperlink link = new Hyperlink("Click Post");
+        Hyperlink link = new Hyperlink("Click For The Post");
         link.setScaleX(2);
-        link.setScaleY(2);
         link.setTranslateX(1060);
         link.setTranslateY(600);
 
+        link.setScaleY(2);
 
         link.setOnAction(e -> {
             textField tf=new textField();

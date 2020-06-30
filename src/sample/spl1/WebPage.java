@@ -96,6 +96,7 @@ public class WebPage {
                       t=t+text[i]+"\n";
                     }
 
+
                     System.out.println("  Title: " + t); //Print title.
                     operations.splitInput(t);
                     operations.removeWord();
