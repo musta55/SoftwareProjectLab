@@ -161,7 +161,7 @@ public class biLingual {
                     ex.printStackTrace();
                 }
                 try {
-                    emCal.VisualOutput(primaryStage);
+                    emCal.VisualOutput(primaryStage,inp);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

@@ -111,9 +111,5 @@ public class RegressionOut {
         //Displaying the contents of the stage
         stage.show();
 
-
-
-
-
     }
 }

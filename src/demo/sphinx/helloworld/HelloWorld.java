@@ -137,7 +137,7 @@ public class HelloWorld {
                                 emCal.searchEmotion();
                                 // launch(args);
                                 emCal.emotionCalc(primaryStage);
-                                emCal.VisualOutput(primaryStage);
+                                emCal.VisualOutput(primaryStage,resultText);
 
                             } catch (Exception ex) {
                                 ex.printStackTrace();

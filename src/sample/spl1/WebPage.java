@@ -89,6 +89,7 @@ public class WebPage {
                     document = Jsoup.connect(textFields.getText()).get();
                     int x=document.text().length();
                     String s=document.text().substring(700,x-551-1872);
+
                     String t=null;
                    String text[]= s.split("[.,]",0);
                     for(int i=0;i<text.length;i++)
@@ -101,7 +102,22 @@ public class WebPage {
                     operations.splitInput(t);
                     operations.removeWord();
                     operations.search();
+
+
+                    EmotionCalculation emCal = new EmotionCalculation();
+
+
+                        emCal.searchEmotion();
+
+                        emCal.emotionCalc(stage);
+
+                    emCal.VisualOutput(stage,t);
+
+
+
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -112,20 +128,6 @@ public class WebPage {
 
 
 
-            EmotionCalculation emCal = new EmotionCalculation();
-
-                try {
-                    emCal.searchEmotion();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    emCal.emotionCalc(stage);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                emCal.VisualOutput(stage);
 
             Elements price = document.select(".zsg-photo-card-price:contains($)"); //Get price
             Elements address = document.select("span[itemprop]:contains(DenverCO)"); //Get address

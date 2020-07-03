@@ -25,6 +25,7 @@ import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -502,11 +503,20 @@ public class EmotionCalculation {
     }
 
 
-    public void VisualOutput(Stage stage) {
+    public void VisualOutput(Stage stage,String status) {
+        Text headning = new Text("Text");
+        headning.setScaleX(2);
+        headning.setScaleY(2);
+        headning.setTranslateX(140);
+        headning.setTranslateY(40);
+        headning.setFill(Color.rgb(150, 170, 130 ));
+        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
+
 
         Button back = new Button("Back");
         back.setTranslateX(1100);
         back.setTranslateY(650);
+        back.setTextFill(Color.WHITE);
         back.setStyle("-fx-padding: 8 15 15 15;\n" +
                 "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
                 "    -fx-background-radius: 8;\n" +
@@ -514,22 +524,34 @@ public class EmotionCalculation {
                 "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
                 "        #8d9092,\n" +
                 "        #717375,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #ffffff, #a1a3a6);\n" +
+                "        radial-gradient(center 50% 50%, radius 100%, #2471A3    , #17202A);\n" +
                 "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
                 "    -fx-font-weight: bold;\n" +
                 "    -fx-font-size: 1.1em;");
         back.setPrefSize(60, 30);
 
-        Image background = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("sample/spl1/star.jpg").toString(), true);
         Pane root = new Pane();
         back.setOnAction(e -> {
             try {
-                Main goBack = new Main();
-                goBack.start(stage);
+                secondPage sp=new secondPage();
+                sp.TheSecond(stage);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         });
+
+
+        TextArea textField = new TextArea();
+        textField.setLayoutX(130);
+        textField.setLayoutY(60);
+        textField.setPrefRowCount(5);
+        textField.setPrefColumnCount(6);
+        textField.setWrapText(true);
+        textField.setMinSize(525, 650);
+        textField.setText(status);
+
+
 
 
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
@@ -561,30 +583,24 @@ public class EmotionCalculation {
         //Setting the start angle of the pie chart
         pieChart.setStartAngle(180);
 
-        pieChart.setTranslateX(300);
-        pieChart.setTranslateY(200);
+        pieChart.setTranslateX(750);
+        pieChart.setTranslateY(150);
         pieChart.setScaleX(1.5);
         pieChart.setScaleY(1.5);
-
-        //Creating a Group object
-        Group roots = new Group(pieChart);
-
-
-//        Text headning = new Text(s);
-//        s=null;
-//        headning.setFont(Font.font(Font.getFontNames().get(7), FontPosture.REGULAR, 12));
-//        headning.setScaleX(1);
-//        headning.setScaleY(1);
-//        headning.setTranslateX(50);
-//        headning.setTranslateY(40);
-//        headning.setFill(Color.DARKCYAN);
 
         //Creating a scene object
         Scene scene = new Scene(root, 1400, 750);
 
         //Setting title to the Stage
+        BackgroundImage bi = new BackgroundImage(background,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        Background bg = new Background(bi);
+        root.setBackground(bg);
         stage.setTitle("Pie Chart");
-        root.getChildren().addAll(pieChart, back);
+        root.getChildren().addAll(pieChart, back,textField,headning);
         //Adding scene to the stage
         stage.setScene(scene);
 
@@ -598,15 +614,6 @@ public class EmotionCalculation {
                 ex.printStackTrace();
             }
         });
-
-
-        BackgroundImage bi = new BackgroundImage(background,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);
-        Background bg = new Background(bi);
-        root.setBackground(bg);
 
 
         // Scene scene = new Scene(root, 1600, 800);
@@ -917,6 +924,7 @@ public class EmotionCalculation {
         link.setScaleY(2);
 
         link.setOnAction(e -> {
+            System.out.println("Eta asche");
             textField tf=new textField();
             tf.text(stage,status);
         });

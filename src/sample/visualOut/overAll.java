@@ -114,7 +114,7 @@ public class overAll {
                         //launch(args);
                         emCal.searchEmotion();
                         emCal.emotionCalc(stages);
-
+                        emCal.VisualOutput(stages,inp);
                         //  System.out.println(dictionary.search("সত্য"));
 
 
@@ -134,7 +134,7 @@ public class overAll {
 
         }
 
-        emCal.VisualOutput(stages);
+
 
         //    root.getChildren().addAll(,back,pro,headning,liveUrl);
 

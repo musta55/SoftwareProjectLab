@@ -34,7 +34,12 @@ public class English {
             primaryStage.setTitle("User Input");
 
             TextArea textField = new TextArea();
-
+            textField.setLayoutX(150);
+            textField.setLayoutY(180);
+            textField.setPrefRowCount(5);
+            textField.setPrefColumnCount(6);
+            textField.setWrapText(true);
+            textField.setMinSize(1125,150);
 
             Button button = new Button("Enter");
             button.setTextFill(Color.WHITE);
@@ -62,7 +67,7 @@ public class English {
                     emCal.searchEmotion();
                     // launch(args);
                     emCal.emotionCalc(primaryStage);
-                    emCal.VisualOutput(primaryStage);
+                    emCal.VisualOutput(primaryStage,textField.getText());
 
                 } catch (Exception ex)
                 {
@@ -85,12 +90,7 @@ public class English {
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);
 
-                textField.setLayoutX(150);
-                textField.setLayoutY(180);
-                textField.setPrefRowCount(5);
-                textField.setPrefColumnCount(6);
-                textField.setWrapText(true);
-                textField.setMinSize(1125,150);
+
                 Pane roots = new Pane();
                 BackgroundImage bi = new BackgroundImage(backgrounds,
                         BackgroundRepeat.NO_REPEAT,
@@ -98,7 +98,7 @@ public class English {
                         BackgroundPosition.DEFAULT,
                         BackgroundSize.DEFAULT);
                 Background bg = new Background(bi);
-                roots.setBackground(bg);
+              //  roots.setBackground(bg);
                 roots.getChildren().addAll(canvas,textField,button,headning);
                 Scene scene = new Scene(roots,1400,750);
                 primaryStage.setScene(scene);
