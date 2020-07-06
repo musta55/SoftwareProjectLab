@@ -77,6 +77,18 @@ public class Main extends Application {
         Start.setPrefSize(280,120);
 //        try {
            Image background = new Image(getClass().getClassLoader().getResource("emotion(16-9).png").toString(), true);
+
+        BackgroundImage bi = new BackgroundImage(background,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        Background bg = new Background(bi);
+
+
+
+
+
     //    Image background = new Image(getClass().getResource("sample/spl1/emotion.jpg").toExternalForm());
             Canvas canvas = new Canvas(1400,750);
 //            GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -103,12 +115,7 @@ public class Main extends Application {
 
 
             Pane root = new Pane();
-        BackgroundImage bi = new BackgroundImage(background,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);
-        Background bg = new Background(bi);
+
         root.setBackground(bg);
             root.getChildren().addAll(canvas,Start,headning);
             Scene scene = new Scene(root,1400,760);

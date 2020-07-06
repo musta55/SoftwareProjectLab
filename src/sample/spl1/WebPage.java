@@ -88,7 +88,7 @@ public class WebPage {
                     Operations operations=new Operations();
                     document = Jsoup.connect(textFields.getText()).get();
                     int x=document.text().length();
-                    String s=document.text().substring(700,x-551-1872);
+                    String s=document.text().substring(700,x-551-1852);
 
                     String t=null;
                    String text[]= s.split("[.,]",0);

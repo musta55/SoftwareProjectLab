@@ -146,7 +146,7 @@ public class Bengali {
                     ex.printStackTrace();
                 }
                 try {
-                    emCal.VisualOutput(primaryStage,inp);
+                    emCal.VisualOutput(primaryStage,textFields.getText());
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

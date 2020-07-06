@@ -104,6 +104,7 @@ public class secondPage {
 
 
 
+
         Image background = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
         Pane root = new Pane();
 

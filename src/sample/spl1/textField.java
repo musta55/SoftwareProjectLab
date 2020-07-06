@@ -16,18 +16,18 @@ public class textField {
     public void text(Stage primaryStage,String status)
     {
         Text headning = new Text("POST");
-        headning.setScaleX(6);
-        headning.setScaleY(6);
+        headning.setScaleX(3);
+        headning.setScaleY(3);
         headning.setTranslateX(650);
-        headning.setTranslateY(100);
-        headning.setFill(Color.WHITE);
+        headning.setTranslateY(30);
+        headning.setFill(Color.BLUE);
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
 
 
 
         Button back = new Button("Back");
-        back.setTranslateX(1100);
-        back.setTranslateY(650);
+        back.setTranslateX(870);
+        back.setTranslateY(620);
         back.setStyle("-fx-padding: 8 15 15 15;\n" +
                 "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
                 "    -fx-background-radius: 8;\n" +
@@ -35,11 +35,12 @@ public class textField {
                 "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
                 "        #8d9092,\n" +
                 "        #717375,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #ffffff, #a1a3a6);\n" +
+                "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
                 "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
                 "    -fx-font-weight: bold;\n" +
                 "    -fx-font-size: 1.1em;");
         back.setPrefSize(60, 30);
+        back.setTextFill(Color.WHITE);
 
         back.setOnAction(e -> {
             try {
@@ -68,12 +69,12 @@ public class textField {
 //            gc.drawImage(background,0,0);
 
                TextArea textField = new TextArea();
-               textField.setLayoutX(430);
+               textField.setLayoutX(427);
                textField.setLayoutY(130);
                textField.setPrefRowCount(5);
                textField.setPrefColumnCount(6);
                textField.setWrapText(true);
-               textField.setMinSize(525, 650);
+               textField.setMinSize(525, 550);
                textField.setText(status);
 //        Text sa=new Text();
 //        sa.setText(status);
@@ -94,12 +95,13 @@ public class textField {
                Background bg = new Background(bi);
               root.setBackground(bg);
                root.getChildren().addAll(canvas, headning, textField, back);
-               Scene scene = new Scene(root, 1400, 750);
+               Scene scene = new Scene(root, 1200, 800);
                scene.setFill(Color.BLACK);
 
                Stage st = new Stage();
                st.setScene(scene);
 
+               st.show();
 
     }
 
