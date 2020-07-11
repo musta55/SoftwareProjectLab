@@ -60,12 +60,8 @@ public class RegressionOut {
         prediction.setPrefSize(150, 40);
 
         prediction.setOnAction(e -> {
-            try {
-                regressionPrediction rp=new regressionPrediction();
-                rp.prediction(stage,a,b);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            RegressionOut ro=new RegressionOut(stage,a,b);
+
         });
 
 

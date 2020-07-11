@@ -17,16 +17,13 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import sample.spl1.emotioncal.EmotionCalculation;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
 
 import static demo.sphinx.helloworld.HelloWorld.setStyle;
 
 public class WebPage {
 
-    public void web(Stage stage)
+    public void web(Stage stage,String Name)
     {
 
 
@@ -104,12 +101,13 @@ public class WebPage {
                     operations.search();
 
 
-                    EmotionCalculation emCal = new EmotionCalculation();
+                    EmotionCalculation emCal = new EmotionCalculation(Name);
 
 
                         emCal.searchEmotion();
 
                         emCal.emotionCalc(stage);
+                        emCal.DataOutputStreamProf();
 
                     emCal.VisualOutput(stage,t);
 

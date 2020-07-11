@@ -13,8 +13,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.languageClassification.Language;
 
+import java.io.FileWriter;
+
 public class thirdPage {
-    public void app(Stage stage)
+    public void app(Stage stage,String Name)
     {
 
 
@@ -92,7 +94,7 @@ public class thirdPage {
                 });
                 liveUrl.setOnAction(e -> {
                     WebPage wb=new WebPage();
-                    wb.web(stage);
+                    wb.web(stage,Name);
 
                 });
 

@@ -81,9 +81,14 @@ public class secondPage {
         back.setTextFill(Color.WHITE);
 
         application.setOnAction(e -> {
+
+
+
             try {
-                thirdPage tp=new thirdPage();
-                tp.app(stage);
+
+                RegistrationFrormApplication reg=new RegistrationFrormApplication();
+                reg.registration(stage);
+
             } catch (Exception excep) {
                 excep.printStackTrace();
             }

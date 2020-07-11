@@ -47,6 +47,16 @@ import static sample.visualOut.visualoutputfb.setStyle;
 
 public class EmotionCalculation {
 
+    private String Name;
+    public EmotionCalculation(String profileName)
+    {
+        this.Name=profileName;
+    }
+    public EmotionCalculation()
+    {
+
+    }
+
     private static DecimalFormat df = new DecimalFormat("0.00");
     InputStream is = null;
     DataInputStream dis = null;
@@ -415,6 +425,12 @@ public class EmotionCalculation {
         System.out.println("anticipation=" + String.format("%.1f", ((Frequency[6] * 100) / tot)) + "%");
         System.out.println("Anger=" + String.format("%.1f", ((Frequency[7] * 100) / tot)) + "%");
 
+
+        FileWriter fw=new FileWriter(Name);
+
+
+
+
 //     DataOutputStream();
 
         // pieChartExample.start(Stage stage);
@@ -472,6 +488,28 @@ public class EmotionCalculation {
         }
 
     }
+
+    public void DataOutputStreamProf() throws IOException {
+
+
+
+        String[] dbuf = {String.valueOf(JoyCal), String.valueOf(SurpriseCal), String.valueOf(FearCal), String.valueOf(SadnessCal), String.valueOf(TrustCal), String.valueOf(DisgustCal), String.valueOf(anticipationCal), String.valueOf(AngerCal)};
+
+        String textToAppend = dbuf[0] + " " + dbuf[1] + " " + dbuf[2] + " " + dbuf[3] + " " + dbuf[4] + " " + dbuf[5] + " " + dbuf[6] + " " + dbuf[7] + " ";
+
+
+        try {
+            Path path = Paths.get(Name);
+            Files.write(path, textToAppend.getBytes(), StandardOpenOption.APPEND);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
 
     public void DataOutputStream() throws IOException {
 
@@ -904,7 +942,13 @@ public class EmotionCalculation {
 
         regression.setOnAction(e -> {
             try {
-                RegressionOut ro=new RegressionOut(stage,a,b);
+
+                try {
+                    regressionPrediction rp=new regressionPrediction();
+                    rp.prediction(stage,a,b);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
 
             } catch (Exception ex) {
                 ex.printStackTrace();
