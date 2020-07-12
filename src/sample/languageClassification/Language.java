@@ -88,7 +88,8 @@ public class Language {
         abi.setOnAction(e -> {
           biLingual bl =new biLingual();
           {
-              bl.biLanguage(primaryStage);
+              String nul=null;
+              bl.biLanguage(primaryStage,nul);
           }
         });
 

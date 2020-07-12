@@ -9,11 +9,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -32,16 +35,16 @@ public class RegistrationFrormApplication  {
         addUIControls(gridPane,stage);
         // Create a scene with registration form grid pane as the root node
         Scene scene = new Scene(gridPane, 800, 500);
-    //    Image background = new Image(getClass().getClassLoader().getResource("src/Photo/grey.jpg").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("sample/spl1/star.jpg").toString(), true);
 
-//        BackgroundImage bi = new BackgroundImage(background,
-//                BackgroundRepeat.NO_REPEAT,
-//                BackgroundRepeat.NO_REPEAT,
-//                BackgroundPosition.DEFAULT,
-//                BackgroundSize.DEFAULT);
-//        Background bg = new Background(bi);
+        BackgroundImage bi = new BackgroundImage(background,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        Background bg = new Background(bi);
 
-       // gridPane.setBackground(bg);
+        gridPane.setBackground(bg);
         // Set the scene in primary stage
         primaryStage.setScene(scene);
 
@@ -84,12 +87,14 @@ public class RegistrationFrormApplication  {
         // Add Header
         Label headerLabel = new Label("Registration Form");
         headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+        headerLabel.setTextFill(Color.WHITE);
         gridPane.add(headerLabel, 0,0,2,1);
         GridPane.setHalignment(headerLabel, HPos.CENTER);
         GridPane.setMargin(headerLabel, new Insets(20, 0,20,0));
 
         // Add Name Label
         Label nameLabel = new Label("Full Name : ");
+        nameLabel.setTextFill(Color.WHITE);
         gridPane.add(nameLabel, 0,1);
 
         // Add Name Text Field
@@ -100,6 +105,7 @@ public class RegistrationFrormApplication  {
 
         // Add Email Label
         Label emailLabel = new Label("Email ID : ");
+        emailLabel.setTextFill(Color.WHITE);
         gridPane.add(emailLabel, 0, 2);
 
         // Add Email Text Field
@@ -109,6 +115,7 @@ public class RegistrationFrormApplication  {
 
         // Add Password Label
         Label passwordLabel = new Label("Password : ");
+        passwordLabel.setTextFill(Color.WHITE);
         gridPane.add(passwordLabel, 0, 3);
 
         // Add Password Field
@@ -160,19 +167,36 @@ public class RegistrationFrormApplication  {
 
                 String s=nameField.getText();
                 System.out.println(s);
-                try {
-                    FileWriter fw = new FileWriter(s+".txt");
-                    fw.append(s+"\n");
-                    fw.append(emailField.getText()+"\n");
-                    fw.append(passwordField.getText()+"\n");
+//                BufferedWriter out = null;
+//                try {
+//                    out = new BufferedWriter(
+//                            new FileWriter(s+".txt", true));
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                try {
+//                    out.append(s+"\n"+emailField.getText()+"\n"+passwordField.getText()+"\n");
+//
+//                    out.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
 
+
+                FileWriter fw = null;
+                try {
+                    fw = new FileWriter(s+".txt");
+                    fw.write(s+"\n"+emailField.getText()+"\n"+passwordField.getText()+"\n");
                     fw.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
+
+
                 try {
                     thirdPage tp=new thirdPage();
-                    tp.app(stage,s+".txt");
+                    tp.app(stage,s+passwordField.getText()+".txt");
                 } catch (Exception excep) {
                     excep.printStackTrace();
                 }

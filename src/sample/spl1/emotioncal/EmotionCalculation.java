@@ -498,11 +498,28 @@ public class EmotionCalculation {
         String textToAppend = dbuf[0] + " " + dbuf[1] + " " + dbuf[2] + " " + dbuf[3] + " " + dbuf[4] + " " + dbuf[5] + " " + dbuf[6] + " " + dbuf[7] + " ";
 
 
-        try {
-            Path path = Paths.get(Name);
-            Files.write(path, textToAppend.getBytes(), StandardOpenOption.APPEND);
+        //                       Path path = Paths.get(Name);
+//            Files.write(path, textToAppend.getBytes(), StandardOpenOption.APPEND);
 
+//            File file = new File(Name);
+//            FileWriter fr = new FileWriter(file, true);
+//            fr.write(textToAppend);
+//            fr.close();
+
+
+        BufferedWriter outa = null;
+        try {
+            outa = new BufferedWriter(
+                    new FileWriter(Name, true));
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            outa.write(textToAppend+"\n");
+
+            outa.close();
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -568,17 +585,47 @@ public class EmotionCalculation {
                 "    -fx-font-size: 1.1em;");
         back.setPrefSize(60, 30);
 
-        Image background = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("sample/spl1/bg.jpg").toString(), true);
         Pane root = new Pane();
         back.setOnAction(e -> {
             try {
-                secondPage sp=new secondPage();
-                sp.TheSecond(stage);
+
+                thirdPage tp=new thirdPage();
+                tp.app(stage,Name);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         });
 
+
+
+
+        Button result = new Button("Final Score");
+        result.setTranslateX(800);
+        result.setTranslateY(650);
+        result.setTextFill(Color.WHITE);
+        result.setStyle("-fx-padding: 8 15 15 15;\n" +
+                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
+                "    -fx-background-radius: 8;\n" +
+                "    -fx-background-color: \n" +
+                "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
+                "        #8d9092,\n" +
+                "        #717375,\n" +
+                "        radial-gradient(center 50% 50%, radius 100%, #2471A3    , #17202A);\n" +
+                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
+                "    -fx-font-weight: bold;\n" +
+                "    -fx-font-size: 1.1em;");
+        result.setPrefSize(60, 30);
+
+
+        result.setOnAction(e -> {
+            try {
+               EmotionProfile emp=new EmotionProfile(Name);
+               emp.profileScore();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
 
         TextArea textField = new TextArea();
         textField.setLayoutX(130);
@@ -638,7 +685,7 @@ public class EmotionCalculation {
         Background bg = new Background(bi);
         root.setBackground(bg);
         stage.setTitle("Pie Chart");
-        root.getChildren().addAll(pieChart, back,textField,headning);
+        root.getChildren().addAll(pieChart, back,textField,headning,result);
         //Adding scene to the stage
         stage.setScene(scene);
 
@@ -646,8 +693,8 @@ public class EmotionCalculation {
         stage.show();
         back.setOnAction(e -> {
             try {
-                Main goBack = new Main();
-                goBack.start(stage);
+                thirdPage tp=new thirdPage();
+                tp.app(stage,Name);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

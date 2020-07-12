@@ -24,7 +24,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class biLingual {
-    public void biLanguage(Stage primaryStage)
+    public void biLanguage(Stage primaryStage,String Name)
     {
         try {
             primaryStage.setTitle("Text Input");
@@ -146,9 +146,7 @@ public class biLingual {
                     ex.printStackTrace();
                 }
                 operations.search();
-
-
-                EmotionCalculation emCal = new EmotionCalculation();
+                EmotionCalculation emCal = new EmotionCalculation(Name);
 
                 try {
                     emCal.searchEmotion();
@@ -157,6 +155,8 @@ public class biLingual {
                 }
                 try {
                     emCal.emotionCalc(primaryStage);
+                    if(Name!=null)
+                    emCal.DataOutputStreamProf();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
