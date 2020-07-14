@@ -47,10 +47,10 @@ import static sample.visualOut.visualoutputfb.setStyle;
 
 public class EmotionCalculation {
 
-    private String Name;
+    private String Names;
     public EmotionCalculation(String profileName)
     {
-        this.Name=profileName;
+        this.Names=profileName;
     }
     public EmotionCalculation()
     {
@@ -426,7 +426,6 @@ public class EmotionCalculation {
         System.out.println("Anger=" + String.format("%.1f", ((Frequency[7] * 100) / tot)) + "%");
 
 
-        FileWriter fw=new FileWriter(Name);
 
 
 
@@ -497,32 +496,18 @@ public class EmotionCalculation {
 
         String textToAppend = dbuf[0] + " " + dbuf[1] + " " + dbuf[2] + " " + dbuf[3] + " " + dbuf[4] + " " + dbuf[5] + " " + dbuf[6] + " " + dbuf[7] + " ";
 
+        try
+        {
 
-        //                       Path path = Paths.get(Name);
-//            Files.write(path, textToAppend.getBytes(), StandardOpenOption.APPEND);
+            FileWriter fw = new FileWriter(Names,true); //the true will append the new data
 
-//            File file = new File(Name);
-//            FileWriter fr = new FileWriter(file, true);
-//            fr.write(textToAppend);
-//            fr.close();
-
-
-        BufferedWriter outa = null;
-        try {
-            outa = new BufferedWriter(
-                    new FileWriter(Name, true));
-        } catch (IOException e) {
-            e.printStackTrace();
+            fw.write(textToAppend+" ");//appends the string to the file
+            fw.close();
         }
-        try {
-            outa.write(textToAppend+"\n");
-
-            outa.close();
+        catch(IOException ioe)
+        {
+            System.err.println("IOException: " + ioe.getMessage());
         }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
 
     }
 
@@ -585,22 +570,19 @@ public class EmotionCalculation {
                 "    -fx-font-size: 1.1em;");
         back.setPrefSize(60, 30);
 
-        Image background = new Image(getClass().getClassLoader().getResource("sample/spl1/bg.jpg").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("sample/spl1/emotioncal/emotionSide.png").toString(), true);
         Pane root = new Pane();
         back.setOnAction(e -> {
             try {
 
                 thirdPage tp=new thirdPage();
-                tp.app(stage,Name);
+                tp.app(stage,Names);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         });
 
-
-
-
-        Button result = new Button("Final Score");
+       Button result = new Button("Final Score");
         result.setTranslateX(800);
         result.setTranslateY(650);
         result.setTextFill(Color.WHITE);
@@ -615,12 +597,12 @@ public class EmotionCalculation {
                 "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
                 "    -fx-font-weight: bold;\n" +
                 "    -fx-font-size: 1.1em;");
-        result.setPrefSize(60, 30);
+        result.setPrefSize(130, 30);
 
 
         result.setOnAction(e -> {
             try {
-               EmotionProfile emp=new EmotionProfile(Name);
+               EmotionProfile emp=new EmotionProfile(Names);
                emp.profileScore();
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -636,14 +618,11 @@ public class EmotionCalculation {
         textField.setMinSize(525, 650);
         textField.setText(status);
 
-
-
-
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Joy", JoyCal),
                 new PieChart.Data("Surprise", SurpriseCal),
                 new PieChart.Data("Anger", AngerCal),
-                new PieChart.Data("anticipation", anticipationCal),
+                new PieChart.Data("Anticipation", anticipationCal),
                 new PieChart.Data("Sadness", SadnessCal),
                 new PieChart.Data("Disgust", DisgustCal),
                 new PieChart.Data("Fear", FearCal),
@@ -694,7 +673,7 @@ public class EmotionCalculation {
         back.setOnAction(e -> {
             try {
                 thirdPage tp=new thirdPage();
-                tp.app(stage,Name);
+                tp.app(stage,Names);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

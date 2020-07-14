@@ -1,31 +1,29 @@
 package sample.spl1;
 
-import demo.sphinx.helloworld.HelloWorld;
 import javafx.application.Application;
-//import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Reflection;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import java.io.File;
 
-import static javafx.stage.StageStyle.TRANSPARENT;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+
+//import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application {
-
+    private ImageIcon danPic;
     @Override
     public void start(Stage primaryStage) throws Exception{
 //
@@ -76,23 +74,19 @@ public class Main extends Application {
                 "    -fx-font-size: 2.1em;");
         Start.setPrefSize(280,120);
 //        try {
-           Image background = new Image(getClass().getClassLoader().getResource("emotion(16-9).png").toString(), true);
-
-        BackgroundImage bi = new BackgroundImage(background,
+         Image background = new Image(getClass().getClassLoader().getResource("9.jpg").toString(), true);
+//
+       BackgroundImage bi = new BackgroundImage(background,
+              BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);
+              BackgroundPosition.DEFAULT,
+               BackgroundSize.DEFAULT);
         Background bg = new Background(bi);
 
-
-
-
-
-    //    Image background = new Image(getClass().getResource("sample/spl1/emotion.jpg").toExternalForm());
+    //    Image background = new Image(getClass().getResource("9.jpg").toExternalForm());
             Canvas canvas = new Canvas(1400,750);
-//            GraphicsContext gc = canvas.getGraphicsContext2D();
-//            gc.drawImage(background,0,0);
+       //     GraphicsContext gc = canvas.getGraphicsContext2D();
+        //   gc.drawImage(background,0,0);
 
         Button speech = new Button("From Speech");
         speech.setTranslateX(830);
