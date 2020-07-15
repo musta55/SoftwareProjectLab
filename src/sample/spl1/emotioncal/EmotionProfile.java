@@ -85,27 +85,44 @@ public class EmotionProfile {
 
         double maxa = -1, maxb = -1;
         int temp = 0, temp2 = 0;
-        for (int iteration = 0; iteration < 8; iteration++) {
-//                    if (freq[iteration] > maxa) {
-//                        maxa = freq[iteration];
-//                        temp = iteration;
 
-            if (emo[iteration] > maxa) {
-                maxb = maxa;
-                maxa = emo[iteration];
-                temp = iteration;
-            }
+        double t=0;
 
-        /* If arr[i] is in between first and
-           second then update second  */
-            else if (emo[iteration] > maxb && emo[iteration] != maxa) {
-                maxb = emo[iteration];
-                temp2 = iteration;
-            }
+        maxa = emo[0];
+        maxb = emo[1];
 
-
+        if (maxa < maxb)
+        {
+            t = maxa;
+            maxa = maxb;
+            maxb = t;
+            temp=1;
+            temp2=0;
         }
-        System.out.println("Highest is " + temp + "Second is " + temp2);
+
+        for (int i = 2; i < 8; i++)
+        {
+            if (emo[i] > maxa)
+            {
+                maxb = maxa;
+                maxa = emo[i];
+                temp=i;
+            }
+            else if (emo[i] > maxb && emo[i] != maxa)
+            {
+                maxb = emo[i];
+                temp2=i;
+            }
+        }
+
+
+
+
+
+
+
+
+        System.out.println("Highest is " + temp + " Second is " + temp2);
         String text = null;
 
 
@@ -190,7 +207,7 @@ public class EmotionProfile {
                 "    -fx-font-size: 1.1em;");
         back.setPrefSize(60, 30);
 
-     Image background = new Image(getClass().getClassLoader().getResource("emotion(16-8).png").toString(), true);
+     Image background = new Image(getClass().getClassLoader().getResource("sample/spl1/9.jpg").toString(), true);
         Pane root = new Pane();
         back.setOnAction(e -> {
             try {
@@ -240,12 +257,11 @@ public class EmotionProfile {
         barChart.setTranslateY(120);
         barChart.setScaleX(1.2);
         barChart.setScaleY(1.2);
-        barChart.setStyle(".default-color0.chart-bar\n"+
-                "-fx-bar-fill: blue;\n+" );
 
-//        for(Node n:barChart.lookupAll(".default-color0.chart-bar")) {
-//            n.setStyle("-fx-bar-fill: blue;");
-//        }
+
+        for(Node n:barChart.lookupAll(".default-color0.chart-bar")) {
+            n.setStyle("-fx-bar-fill: blue;");
+        }
 //        //second bar color
 //        for(Node n:barChart.lookupAll(".default-color1.chart-bar")) {
 //            n.setStyle("-fx-bar-fill: green;");

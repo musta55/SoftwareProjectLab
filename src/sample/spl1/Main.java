@@ -74,7 +74,7 @@ public class Main extends Application {
                 "    -fx-font-size: 2.1em;");
         Start.setPrefSize(280,120);
 //        try {
-         Image background = new Image(getClass().getClassLoader().getResource("9.jpg").toString(), true);
+         Image background = new Image(getClass().getClassLoader().getResource("lovw.jpg").toString(), true);
 //
        BackgroundImage bi = new BackgroundImage(background,
               BackgroundRepeat.NO_REPEAT,
