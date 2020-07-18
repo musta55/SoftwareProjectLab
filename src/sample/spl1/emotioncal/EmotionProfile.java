@@ -20,6 +20,7 @@ import sample.spl1.thirdPage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -82,45 +83,18 @@ public class EmotionProfile {
         System.out.println("anticipation=" + emo[6]);
         System.out.println("Anger=" +emo[7] );
 
+        double em[]=emo;
+        Arrays.sort(emo);
 
-        double maxa = -1, maxb = -1;
+
         int temp = 0, temp2 = 0;
 
-        double t=0;
-
-        maxa = emo[0];
-        maxb = emo[1];
-
-        if (maxa < maxb)
+        for (int i = 0; i < 8; i++)
         {
-            t = maxa;
-            maxa = maxb;
-            maxb = t;
-            temp=1;
-            temp2=0;
+            if(emo[7]==em[i])temp=i;
+
+            if (emo[6]==em[i])temp2=i;
         }
-
-        for (int i = 2; i < 8; i++)
-        {
-            if (emo[i] > maxa)
-            {
-                maxb = maxa;
-                maxa = emo[i];
-                temp=i;
-            }
-            else if (emo[i] > maxb && emo[i] != maxa)
-            {
-                maxb = emo[i];
-                temp2=i;
-            }
-        }
-
-
-
-
-
-
-
 
         System.out.println("Highest is " + temp + " Second is " + temp2);
         String text = null;
@@ -254,7 +228,7 @@ public class EmotionProfile {
         series1.getData().add(new XYChart.Data<>("anticipation",  em[6]));
         series1.getData().add(new XYChart.Data<>("Anger",  em[7]));
         barChart.setTranslateX(40);
-        barChart.setTranslateY(120);
+        barChart.setTranslateY(140);
         barChart.setScaleX(1.2);
         barChart.setScaleY(1.2);
 
@@ -267,34 +241,13 @@ public class EmotionProfile {
 //            n.setStyle("-fx-bar-fill: green;");
 //        }
 
-//               Image image = null;
-//        try {
-//            image = new Image(new FileInputStream("Photo/15.jpg"));
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//
-//        //Setting the image view
-//        ImageView imageView = new ImageView(image);
-//
-//        //Setting the position of the image
-//        imageView.setX(50);
-//        imageView.setY(25);
-//
-//        //setting the fit height and width of the image view
-//        imageView.setFitHeight(855);
-//        imageView.setFitWidth(1400);
-//
-//        //Setting the preserve ratio of the image view
-//        imageView.setPreserveRatio(true);
-
 
 
 
         barChart.getData().addAll(series1);
 
         //Creating a scene object
-        Scene scene = new Scene(root, 1400, 855);
+        Scene scene = new Scene(root, 1400, 755);
 
 
         BackgroundImage bi = new BackgroundImage(background,

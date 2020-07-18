@@ -82,8 +82,6 @@ public class secondPage {
 
         application.setOnAction(e -> {
 
-
-
             try {
 
                 RegistrationFrormApplication reg=new RegistrationFrormApplication();

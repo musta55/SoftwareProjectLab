@@ -46,7 +46,7 @@ public class Main extends Application {
         headning.setScaleY(6);
         headning.setTranslateX(650);
         headning.setTranslateY(100);
-        headning.setFill(Color.rgb(21, 27, 81   ));
+        headning.setFill(Color.WHEAT);
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
 
 
@@ -74,7 +74,7 @@ public class Main extends Application {
                 "    -fx-font-size: 2.1em;");
         Start.setPrefSize(280,120);
 //        try {
-         Image background = new Image(getClass().getClassLoader().getResource("lovw.jpg").toString(), true);
+         Image background = new Image(getClass().getClassLoader().getResource("Pictures/emotioon.jpg").toString(), true);
 //
        BackgroundImage bi = new BackgroundImage(background,
               BackgroundRepeat.NO_REPEAT,

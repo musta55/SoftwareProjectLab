@@ -75,10 +75,7 @@ public class thirdPage {
 
         article.setOnAction(e->{
             try {
-                biLingual bl =new biLingual();
-                {
-                    bl.biLanguage(stage,Name);
-                }
+                biLingual bl =new biLingual(stage,Name);
 
 
             }catch (Exception ex)

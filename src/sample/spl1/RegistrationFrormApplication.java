@@ -34,8 +34,8 @@ public class RegistrationFrormApplication  {
         // Add UI controls to the registration form grid pane
         addUIControls(gridPane,stage);
         // Create a scene with registration form grid pane as the root node
-        Scene scene = new Scene(gridPane, 800, 500);
-        Image background = new Image(getClass().getClassLoader().getResource("sample/spl1/star.jpg").toString(), true);
+        Scene scene = new Scene(gridPane, 1400, 760);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/ad.jpg").toString(), true);
 
         BackgroundImage bi = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,
@@ -49,6 +49,7 @@ public class RegistrationFrormApplication  {
         primaryStage.setScene(scene);
 
         primaryStage.show();
+
     }
 
 
@@ -57,7 +58,7 @@ public class RegistrationFrormApplication  {
         GridPane gridPane = new GridPane();
 
         // Position the pane at the center of the screen, both vertically and horizontally
-        gridPane.setAlignment(Pos.CENTER);
+        gridPane.setAlignment(Pos.TOP_CENTER);
 
         // Set a padding of 20px on each side
         gridPane.setPadding(new Insets(40, 40, 40, 40));
@@ -118,17 +119,29 @@ public class RegistrationFrormApplication  {
         passwordLabel.setTextFill(Color.WHITE);
         gridPane.add(passwordLabel, 0, 3);
 
-        // Add Password Field
+        // Add Age Field
         PasswordField passwordField = new PasswordField();
         passwordField.setPrefHeight(40);
         gridPane.add(passwordField, 1, 3);
+
+
+        // Add Password Label
+        Label ageLabel = new Label("Age : ");
+        ageLabel.setTextFill(Color.WHITE);
+        gridPane.add(ageLabel, 0, 4);
+
+        // Add Password Field
+        PasswordField ageField = new PasswordField();
+        ageField.setPrefHeight(40);
+        gridPane.add(ageField, 1, 4);
+
 
         // Add Submit Button
         Button submitButton = new Button("Submit");
         submitButton.setPrefHeight(40);
         submitButton.setDefaultButton(true);
         submitButton.setPrefWidth(100);
-        gridPane.add(submitButton, 0, 4, 2, 1);
+        gridPane.add(submitButton, 0, 5, 2, 1);
         GridPane.setHalignment(submitButton, HPos.CENTER);
         GridPane.setMargin(submitButton, new Insets(20, 0,20,0));
 
@@ -157,30 +170,26 @@ public class RegistrationFrormApplication  {
                     return;
                 }
 
+                if(ageField.getText().isEmpty()) {
+                   
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter your age");
+                    return;
+                }
 
 
 
 
 
-                showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Registration Successful!", "Welcome " + nameField.getText());
+else
+                {
+                    showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Registration Successful!", "Welcome " + nameField.getText());
+                    stage.close();
+                }
+
 
 
                 String s=nameField.getText();
                 System.out.println(s);
-//                BufferedWriter out = null;
-//                try {
-//                    out = new BufferedWriter(
-//                            new FileWriter(s+".txt", true));
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                try {
-//                    out.append(s+"\n"+emailField.getText()+"\n"+passwordField.getText()+"\n");
-//
-//                    out.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
 
 
                 FileWriter fw = null;

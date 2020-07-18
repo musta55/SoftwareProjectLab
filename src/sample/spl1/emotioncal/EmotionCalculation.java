@@ -543,6 +543,7 @@ public class EmotionCalculation {
     }
 
 
+
     public void VisualOutput(Stage stage,String status) {
         Text headning = new Text("Text");
         headning.setScaleX(2);
@@ -570,7 +571,127 @@ public class EmotionCalculation {
                 "    -fx-font-size: 1.1em;");
         back.setPrefSize(60, 30);
 
-        Image background = new Image(getClass().getClassLoader().getResource("sample/spl1/emotioncal/emotionSide.png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/image-from-rawpixel-id-594694-jpeg (1).jpg").toString(), true);
+        Pane root = new Pane();
+        back.setOnAction(e -> {
+            try {
+                Main goBack = new Main();
+                goBack.start(stage);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        TextArea textField = new TextArea();
+        textField.setLayoutX(130);
+        textField.setLayoutY(60);
+        textField.setPrefRowCount(5);
+        textField.setPrefColumnCount(6);
+        textField.setWrapText(true);
+        textField.setMinSize(525, 650);
+        textField.setText(status);
+
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Joy", JoyCal),
+                new PieChart.Data("Surprise", SurpriseCal),
+                new PieChart.Data("Anger", AngerCal),
+                new PieChart.Data("Anticipation", anticipationCal),
+                new PieChart.Data("Sadness", SadnessCal),
+                new PieChart.Data("Disgust", DisgustCal),
+                new PieChart.Data("Fear", FearCal),
+                new PieChart.Data("Trust", TrustCal));
+
+        //Creating a Pie chart
+        PieChart pieChart = new PieChart(pieChartData);
+
+        //Setting the title of the Pie chart
+        pieChart.setTitle("Emotion ");
+
+
+
+        pieChart.setStyle("-fx-pie-fill: white;");
+
+
+        //setting the direction to arrange the data
+        pieChart.setClockwise(true);
+
+        //Setting the length of the label line
+        pieChart.setLabelLineLength(70);
+
+        //Setting the labels of the pie chart visible
+        pieChart.setLabelsVisible(true);
+
+        //Setting the start angle of the pie chart
+        pieChart.setStartAngle(180);
+
+        pieChart.setTranslateX(750);
+        pieChart.setTranslateY(150);
+        pieChart.setScaleX(1.5);
+        pieChart.setScaleY(1.5);
+
+        //Creating a scene object
+        Scene scene = new Scene(root, 1400, 750);
+
+        //Setting title to the Stage
+        BackgroundImage bi = new BackgroundImage(background,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        Background bg = new Background(bi);
+        root.setBackground(bg);
+        stage.setTitle("Pie Chart");
+        root.getChildren().addAll(pieChart, back,textField,headning);
+        //Adding scene to the stage
+        stage.setScene(scene);
+
+        //Displaying the contents of the stage
+        stage.show();
+        back.setOnAction(e -> {
+            try {
+                thirdPage tp=new thirdPage();
+                tp.app(stage,Names);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+
+        // Scene scene = new Scene(root, 1600, 800);
+        stage.setScene(scene);
+        //primaryStage.setFullScreen(true);
+        stage.show();
+
+    }
+
+    public void VisualOutputProf(Stage stage,String status) {
+        Text headning = new Text("Text");
+        headning.setScaleX(2);
+        headning.setScaleY(2);
+        headning.setTranslateX(140);
+        headning.setTranslateY(40);
+        headning.setFill(Color.rgb(150, 170, 130 ));
+        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
+
+
+        Button back = new Button("Back");
+        back.setTranslateX(1100);
+        back.setTranslateY(650);
+        back.setTextFill(Color.WHITE);
+        back.setStyle("-fx-padding: 8 15 15 15;\n" +
+                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
+                "    -fx-background-radius: 8;\n" +
+                "    -fx-background-color: \n" +
+                "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
+                "        #8d9092,\n" +
+                "        #717375,\n" +
+                "        radial-gradient(center 50% 50%, radius 100%, #2471A3    , #17202A);\n" +
+                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
+                "    -fx-font-weight: bold;\n" +
+                "    -fx-font-size: 1.1em;");
+        back.setPrefSize(60, 30);
+
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/v478-wan-12-technology_1.jpg").toString(), true);
         Pane root = new Pane();
         back.setOnAction(e -> {
             try {
@@ -582,7 +703,7 @@ public class EmotionCalculation {
             }
         });
 
-       Button result = new Button("Final Score");
+        Button result = new Button("Final Score");
         result.setTranslateX(800);
         result.setTranslateY(650);
         result.setTextFill(Color.WHITE);
@@ -602,8 +723,8 @@ public class EmotionCalculation {
 
         result.setOnAction(e -> {
             try {
-               EmotionProfile emp=new EmotionProfile(Names);
-               emp.profileScore();
+                EmotionProfile emp=new EmotionProfile(Names);
+                emp.profileScore();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -686,6 +807,8 @@ public class EmotionCalculation {
         stage.show();
 
     }
+
+
 
     public void VisualOutputPred(Stage stage,double[]a,double[]b) {
 
