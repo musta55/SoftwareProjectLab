@@ -137,7 +137,7 @@ public class Progression {
 
         }
         try {
-            visualoutputfb.VisualOutputFacebook(stages);
+            visualoutputfb.VisualOutputFacebook(stages,accessToken);
         } catch (FileNotFoundException aex) {
             aex.printStackTrace();
         }

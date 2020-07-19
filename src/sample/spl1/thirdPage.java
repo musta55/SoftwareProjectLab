@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.languageClassification.Language;
 import sample.languageClassification.biLingual;
+import sample.visualOut.accessToken;
 
 import java.io.FileWriter;
 
@@ -106,8 +107,9 @@ public class thirdPage {
         socialMedia.setOnAction(e -> {
             try
             {
-                fourthPage fPage=new fourthPage();
-                fPage.runs(stage);
+
+               accessToken at=new accessToken();
+               at.token(stage,Name);
             }catch (Exception ea)
             {
                 System.out.println("Fourth Page Problem");

@@ -33,7 +33,7 @@ import static java.lang.Math.abs;
 public class visualoutputfb {
     public static String s = null;
 
-    public static void VisualOutputFacebook(Stage stage) throws FileNotFoundException {
+    public static void VisualOutputFacebook(Stage stage,String accessToken) throws FileNotFoundException {
 
         DecimalFormat df = new DecimalFormat("0.00");
         Scanner scan;
@@ -106,8 +106,9 @@ public class visualoutputfb {
 
         back.setOnAction(e -> {
             try {
+                String Name=null;
                 fourthPage fp = new fourthPage();
-                fp.runs(stage);
+                fp.runs(stage,accessToken,Name);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -153,7 +154,7 @@ public class visualoutputfb {
                     try {
                         Progression statusProg =new Progression();
 
-                        String accessToken="EAAMF6lCN2rABAL6ZCqIhEAzejYUMuQyccpK5G9Kq1rsvZAghc6Bac8OeVpzL0seJ6BpmaN2FNx5QkIjs7yom44YzruiPdwJISFImQsMAXGt9RG2THGAnaX9WBeBZCq7KBBSQku7pAlXobTZCZCKHThvIGAlePRNXRvekSC2kYJgZDZD";
+                      //  String accessToken="EAAMF6lCN2rABAL6ZCqIhEAzejYUMuQyccpK5G9Kq1rsvZAghc6Bac8OeVpzL0seJ6BpmaN2FNx5QkIjs7yom44YzruiPdwJISFImQsMAXGt9RG2THGAnaX9WBeBZCq7KBBSQku7pAlXobTZCZCKHThvIGAlePRNXRvekSC2kYJgZDZD";
                         statusProg.statusProgress(stage,accessToken);
                     } catch (Exception ex) {
                         ex.printStackTrace();
@@ -307,7 +308,7 @@ public class visualoutputfb {
             }
         });
 
-        String accessToken = "EAAJfo73qhKQBAPTqcW4SDLEAAMF6lCN2rABAK3H577LmAEvfLcJaQWkHnf8YUbZCeTPk5U44PiuC1cXO4vhJwqhKcIg7na6ddgocHZAhu43MVOgVwLZA1DA7nZBj937VOVANZA2ZAJZBLflCjp1ZBr76ZBNGUBJoQZCZBsi56ZBdAHS8XT0VFLn7XyQxEZBUNivOV8QcRx6IeGn2J1hoPeNoumOM8LcbNjP8livHdwZDZDfFVmOnd3WSpfsapFSaIXcq7tjaaGeLkPU3pykfu64thCEfPipr8jRJYZCdvPv5ZBJi2hsjpZBw0vvZCCKklcYZB6uZBJZBbf1Ri0eoZCJrjX65Q2Ew8lW7ZCZBfXiWkh9CXqZC2Im8ahp7JjoN4zu61ZAN17uQBs6t9gCgVlTmFTIDEUhMOZBq0ZCnBmtukdY77PEB3U ";
+  //      String accessToken = "EAAJfo73qhKQBAPTqcW4SDLEAAMF6lCN2rABAK3H577LmAEvfLcJaQWkHnf8YUbZCeTPk5U44PiuC1cXO4vhJwqhKcIg7na6ddgocHZAhu43MVOgVwLZA1DA7nZBj937VOVANZA2ZAJZBLflCjp1ZBr76ZBNGUBJoQZCZBsi56ZBdAHS8XT0VFLn7XyQxEZBUNivOV8QcRx6IeGn2J1hoPeNoumOM8LcbNjP8livHdwZDZDfFVmOnd3WSpfsapFSaIXcq7tjaaGeLkPU3pykfu64thCEfPipr8jRJYZCdvPv5ZBJi2hsjpZBw0vvZCCKklcYZB6uZBJZBbf1Ri0eoZCJrjX65Q2Ew8lW7ZCZBfXiWkh9CXqZC2Im8ahp7JjoN4zu61ZAN17uQBs6t9gCgVlTmFTIDEUhMOZBq0ZCnBmtukdY77PEB3U ";
 
 //        Button status2 = new Button("Status 2");
 //        status2.setTranslateX(280);
@@ -1108,8 +1109,9 @@ public class visualoutputfb {
             backa.setPrefSize(60, 30);
             backa.setOnAction(ed -> {
                 try {
+                    String Name=null;
                     fourthPage fp = new fourthPage();
-                    fp.runs(stage);
+                    fp.runs(stage,accessToken,Name);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

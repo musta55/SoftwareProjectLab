@@ -83,17 +83,24 @@ public class EmotionProfile {
         System.out.println("anticipation=" + emo[6]);
         System.out.println("Anger=" +emo[7] );
 
-        double em[]=emo;
-        Arrays.sort(emo);
+
 
 
         int temp = 0, temp2 = 0;
 
-        for (int i = 0; i < 8; i++)
-        {
-            if(emo[7]==em[i])temp=i;
 
-            if (emo[6]==em[i])temp2=i;
+        double firstNum = 0;
+        double secondNum = 0;
+
+        for(int i = 0; i <8; i++){
+            if(firstNum < emo[i]){
+                secondNum = firstNum;
+                firstNum = emo[i];
+                temp=i;
+            }else if(secondNum < emo[i]){
+                secondNum = emo[i];
+                temp2=i;
+            }
         }
 
         System.out.println("Highest is " + temp + " Second is " + temp2);
@@ -159,7 +166,7 @@ public class EmotionProfile {
         headning.setScaleX(2);
         headning.setScaleY(2);
         headning.setTranslateX(640);
-        headning.setTranslateY(60);
+        headning.setTranslateY(90);
         headning.setFill(Color.rgb(150, 170, 130 ));
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
 
@@ -181,7 +188,7 @@ public class EmotionProfile {
                 "    -fx-font-size: 1.1em;");
         back.setPrefSize(60, 30);
 
-     Image background = new Image(getClass().getClassLoader().getResource("sample/spl1/9.jpg").toString(), true);
+     Image background = new Image(getClass().getClassLoader().getResource("Pictures/image-from-rawpixel-id-593093-jpeg.jpg").toString(), true);
         Pane root = new Pane();
         back.setOnAction(e -> {
             try {
@@ -197,7 +204,7 @@ public class EmotionProfile {
 
         TextArea textField = new TextArea();
         textField.setLayoutX(630);
-        textField.setLayoutY(80);
+        textField.setLayoutY(140);
         textField.setPrefRowCount(5);
         textField.setPrefColumnCount(6);
         textField.setWrapText(true);
@@ -215,10 +222,10 @@ public class EmotionProfile {
         //Creating the Bar chart
         BarChart<String, Number> barChart = new BarChart<>(xAxises, yAxises);
         barChart.setTitle("Final Emotion");
-
         //Prepare XYChart.Series objects by setting data
         XYChart.Series<String, Number> series1 = new XYChart.Series<>();
         series1.setName("EMOTION");
+
         series1.getData().add(new XYChart.Data<>("Joy", em[0]));
         series1.getData().add(new XYChart.Data<>("Surprise",  em[1]));
         series1.getData().add(new XYChart.Data<>("Fear",  em[2]));
@@ -232,10 +239,19 @@ public class EmotionProfile {
         barChart.setScaleX(1.2);
         barChart.setScaleY(1.2);
 
+        barChart.setStyle("\"-fx-padding: 8 15 15 15;\\n\" +\n" +
+                "                \"    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\\n\" +\n" +
+                "                \"    -fx-background-radius: 8;\\n\" +\n" +
+                "                \"    -fx-background-color: \\n\" +\n" +
+                "                \"        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\\n\" +\n" +
+                "                \"        #8d9092,\\n\" +\n" +
+                "                \"        #717375,\\n\" +\n" +
+                "                \"        radial-gradient(center 50% 50%, radius 100%, #2471A3    , #17202A);\\n\" +\n" +
+                "                \"    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\\n\" +\n" +
+                "                \"    -fx-font-weight: bold;\\n\" +\n" +
+                "                \"    -fx-font-size: 1.1em;\"");
 
-        for(Node n:barChart.lookupAll(".default-color0.chart-bar")) {
-            n.setStyle("-fx-bar-fill: blue;");
-        }
+
 //        //second bar color
 //        for(Node n:barChart.lookupAll(".default-color1.chart-bar")) {
 //            n.setStyle("-fx-bar-fill: green;");

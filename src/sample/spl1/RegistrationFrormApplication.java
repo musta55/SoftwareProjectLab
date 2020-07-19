@@ -34,8 +34,8 @@ public class RegistrationFrormApplication  {
         // Add UI controls to the registration form grid pane
         addUIControls(gridPane,stage);
         // Create a scene with registration form grid pane as the root node
-        Scene scene = new Scene(gridPane, 1400, 760);
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/ad.jpg").toString(), true);
+        Scene scene = new Scene(gridPane, 800, 660);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/image.jpg").toString(), true);
 
         BackgroundImage bi = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,
@@ -131,7 +131,7 @@ public class RegistrationFrormApplication  {
         gridPane.add(ageLabel, 0, 4);
 
         // Add Password Field
-        PasswordField ageField = new PasswordField();
+        TextField ageField = new TextField();
         ageField.setPrefHeight(40);
         gridPane.add(ageField, 1, 4);
 
@@ -161,6 +161,11 @@ public class RegistrationFrormApplication  {
                     showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter your valid email id");
                     return;
                 }
+                if(regexChecker("^\\d*[1-9]\\d*$",ageField.getText())!=1) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter your valid age (Integer)");
+                    return;
+                }
+
                 if(emailField.getText().isEmpty()) {
                     showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter your email id");
                     return;
@@ -195,7 +200,7 @@ else
                 FileWriter fw = null;
                 try {
                     fw = new FileWriter(s+".txt");
-                    fw.write(s+"\n"+emailField.getText()+"\n"+passwordField.getText()+"\n");
+                    fw.write(s+"\n"+emailField.getText()+"\n"+passwordField.getText()+"\n"+ageField.getText()+"\n");
                     fw.close();
                 } catch (IOException e) {
                     e.printStackTrace();

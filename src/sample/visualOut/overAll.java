@@ -10,36 +10,27 @@ import sample.spl1.Operations;
 import sample.spl1.OperationsBangla;
 import sample.spl1.emotioncal.EmotionCalculation;
 
+import java.io.IOException;
 import java.util.List;
 
 public class overAll {
     public static int counter = 0;
-    public void overall(Stage stages,String accessToken)
-    {
+    String OverAllText=null;
+    public void overall(Stage stages,String accessToken) throws IOException {
         Operations operations = new Operations();
-        //   String accessToken = "EAAMF6lCN2rABAOZAGaFrHah3HNe51Hy6nxOli799Keg9NdZBsneHR1Ed8OOHNJdjUmJxWEJtUoJ88Ymz8nfYpSNdbThXRjbC4RJkyDn1nwCNfzpmrZA7vqCki1AYryTeRACVEZB7bZAnjvUcaw8sR8BnWizYa5ZAC0IUyxn8uGtwXZCij6xO3Lbeg3W8MWrnkEwrOYmzxDyqCLXTnCuKL0j ";
 
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
-        //   FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("668106823992484 ", "f63f747f31e390a44f93891920364794");
-
-
-        //Fetch Data from pages It's ok
-
 
         Connection<Post> result;
         result = fbClient.fetchConnection("me/feed", Post.class);
 
 
-        String userInput = null;
-        EmotionCalculation emCal = new EmotionCalculation();
-        emCal.fileOpen();
-        //     emCal.DataOutputStream();
 
 
         for (List<Post> apost : result) {
             for (Post aPost : apost) {
                 counter++;
-                if (counter >= 8) {
+                if (counter >= 10) {
                     break;
                 }
 
@@ -65,8 +56,8 @@ public class overAll {
 
 
 
-                        emCal.searchEmotion();
-                        emCal.emotionCalc(stages);
+//                        emCal.searchEmotion();
+//                        emCal.emotionCalc(stages);
 
 
 
@@ -102,6 +93,8 @@ public class overAll {
                         }
                         operations.splitInput(inp);
 
+                        OverAllText+=inp;
+
 
                         // inputStringBan = in.readLine();
                         //  inputStringBan= "আমি সত্য ভালবাসা";
@@ -112,9 +105,7 @@ public class overAll {
 
 
                         //launch(args);
-                        emCal.searchEmotion();
-                        emCal.emotionCalc(stages);
-                        emCal.VisualOutput(stages,inp);
+
                         //  System.out.println(dictionary.search("সত্য"));
 
 
@@ -133,6 +124,18 @@ public class overAll {
 
 
         }
+
+        EmotionCalculation emCal = new EmotionCalculation();
+        emCal.fileOpen();
+
+
+        emCal.searchEmotion();
+        try {
+            emCal.emotionCalc(stages);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        emCal.VisualOutputProf(stages,OverAllText);
 
 
 

@@ -18,22 +18,32 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.spl1.emotioncal.EmotionCalculation;
 
+
 import java.io.FileNotFoundException;
 import java.util.List;
 
 public class firstPost {
+    private String  accessToken;
+    public firstPost()
+    {
+
+    }
+   public   firstPost(String accessToken)
+    {
+            this.accessToken=accessToken;
+    }
     public void firstpost(Stage stages)
     {
         Pane stat = new Pane();
         Scene scen = new Scene(stat, 2000, 900);
 
 
-        String accessToken = "EAAMF6lCN2rABAL6ZCqIhEAzejYUMuQyccpK5G9Kq1rsvZAghc6Bac8OeVpzL0seJ6BpmaN2FNx5QkIjs7yom44YzruiPdwJISFImQsMAXGt9RG2THGAnaX9WBeBZCq7KBBSQku7pAlXobTZCZCKHThvIGAlePRNXRvekSC2kYJgZDZD ";
-        FacebookClient fbClient = new DefaultFacebookClient(accessToken);
-        FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("850928862091952", "ddb4cbe10a995e95acc505c91c9e73d5");
+   //     String accessToken = "EAAMF6lCN2rABAL6ZCqIhEAzejYUMuQyccpK5G9Kq1rsvZAghc6Bac8OeVpzL0seJ6BpmaN2FNx5QkIjs7yom44YzruiPdwJISFImQsMAXGt9RG2THGAnaX9WBeBZCq7KBBSQku7pAlXobTZCZCKHThvIGAlePRNXRvekSC2kYJgZDZD ";
+//        FacebookClient fbClient = new DefaultFacebookClient(accessToken);
+//        FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("850928862091952", "ddb4cbe10a995e95acc505c91c9e73d5");
 
-        System.out.println(exAccessToken.getExpires());
-        System.out.println(exAccessToken.getAccessToken());
+//        System.out.println(exAccessToken.getExpires());
+//        System.out.println(exAccessToken.getAccessToken());
 
 
 
@@ -95,8 +105,9 @@ public class firstPost {
         back.setTextFill(Color.WHITE);
         back.setOnAction(e -> {
             try {
+                String Name=null;
                 fourthPage fp=new fourthPage();
-                fp.runs(stages);
+                fp.runs(stages,accessToken,Name);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
