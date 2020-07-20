@@ -22,8 +22,6 @@ import java.io.FileWriter;
 public class thirdPage {
     public void app(Stage stage,String Name)
     {
-
-
         Text headning = new Text("Entry Section");
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
         headning.setScaleX(5);
@@ -77,8 +75,6 @@ public class thirdPage {
         article.setOnAction(e->{
             try {
                 biLingual bl =new biLingual(stage,Name);
-
-
             }catch (Exception ex)
             {
                 ex.printStackTrace();
@@ -107,7 +103,6 @@ public class thirdPage {
         socialMedia.setOnAction(e -> {
             try
             {
-
                accessToken at=new accessToken();
                at.token(stage,Name);
             }catch (Exception ea)

@@ -84,7 +84,7 @@ public void runs(Stage stages,String accessToken,String Name)
             {
                 overAll  over =new overAll();
                 try {
-                    over.overall(stages,accessToken);
+                    over.overall(stages,accessToken,Name);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }

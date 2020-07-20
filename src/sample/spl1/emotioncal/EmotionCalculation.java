@@ -48,9 +48,11 @@ import static sample.visualOut.visualoutputfb.setStyle;
 public class EmotionCalculation {
 
     private String Names;
-    public EmotionCalculation(String profileName)
+    private int fileLine;
+    public EmotionCalculation(String profileName,int fileLine)
     {
         this.Names=profileName;
+        this.fileLine=fileLine;
     }
     public EmotionCalculation()
     {
@@ -500,8 +502,18 @@ public class EmotionCalculation {
         {
 
             FileWriter fw = new FileWriter(Names,true); //the true will append the new data
-
+            if(fileLine==1)
             fw.write(textToAppend+" ");//appends the string to the file
+            else  if(fileLine==2)
+            {
+                fw.write("\n"+textToAppend+" ");
+
+            }
+            else  if(fileLine==3)
+            {
+                fw.write("\n\n"+textToAppend+" ");
+            }
+
             fw.close();
         }
         catch(IOException ioe)
@@ -749,25 +761,12 @@ public class EmotionCalculation {
                 new PieChart.Data("Fear", FearCal),
                 new PieChart.Data("Trust", TrustCal));
 
-        //Creating a Pie chart
         PieChart pieChart = new PieChart(pieChartData);
-
-        //Setting the title of the Pie chart
         pieChart.setTitle("Emotion ");
-
-
-        //setting the direction to arrange the data
         pieChart.setClockwise(true);
-
-        //Setting the length of the label line
         pieChart.setLabelLineLength(70);
-
-        //Setting the labels of the pie chart visible
         pieChart.setLabelsVisible(true);
-
-        //Setting the start angle of the pie chart
         pieChart.setStartAngle(180);
-
         pieChart.setTranslateX(750);
         pieChart.setTranslateY(150);
         pieChart.setScaleX(1.5);
@@ -810,7 +809,7 @@ public class EmotionCalculation {
 
 
 
-    public void VisualOutputPred(Stage stage,double[]a,double[]b) {
+    public void VisualOutputPred(Stage stage,double[]a,double[]b)  {
 
         Button back = new Button("Back");
         back.setTranslateX(1300);

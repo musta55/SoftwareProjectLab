@@ -101,7 +101,7 @@ public class WebPage {
                     operations.search();
 
 
-                    EmotionCalculation emCal = new EmotionCalculation(Name);
+                    EmotionCalculation emCal = new EmotionCalculation(Name,2);
 
 
                         emCal.searchEmotion();

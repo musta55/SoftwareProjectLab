@@ -16,7 +16,7 @@ import java.util.List;
 public class overAll {
     public static int counter = 0;
     String OverAllText=null;
-    public void overall(Stage stages,String accessToken) throws IOException {
+    public void overall(Stage stages,String accessToken,String Name) throws IOException {
         Operations operations = new Operations();
 
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
@@ -121,21 +121,44 @@ public class overAll {
 //                    if(counter>=7)
 //                   break;
 
-
-
         }
 
-        EmotionCalculation emCal = new EmotionCalculation();
-        emCal.fileOpen();
-
-
-        emCal.searchEmotion();
+        EmotionCalculation emCal = new EmotionCalculation(Name,3);
+        try {
+            emCal.searchEmotion();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         try {
             emCal.emotionCalc(stages);
-        } catch (Exception e) {
-            e.printStackTrace();
+            if(Name!=null)
+                emCal.DataOutputStreamProf();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        emCal.VisualOutputProf(stages,OverAllText);
+        try {
+            emCal.VisualOutputProf(stages,OverAllText);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+
+
+
+
+
+//
+//        EmotionCalculation emCal = new EmotionCalculation();
+//        emCal.fileOpen();
+//
+//
+//        emCal.searchEmotion();
+//        try {
+//            emCal.emotionCalc(stages);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        emCal.VisualOutputProf(stages,OverAllText);
 
 
 

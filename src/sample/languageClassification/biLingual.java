@@ -28,6 +28,7 @@ public class biLingual {
     private Stage primaryStage;
     public String texts=null;
 
+
     public void biLanguage()
     {
 
@@ -161,7 +162,7 @@ public class biLingual {
  public   biLingual(Stage primaryStage,String Name)
     {
         this.Name=Name;
-        this.primaryStage=primaryStage;
+
 
         try {
             primaryStage.setTitle("Text Input");
@@ -275,7 +276,7 @@ public class biLingual {
                 }
                 operations.search();
                 texts=textFields.getText();
-                EmotionCalculation emCal = new EmotionCalculation(Name);
+                EmotionCalculation emCal = new EmotionCalculation(Name,1);
                 try {
                     emCal.searchEmotion();
                 } catch (IOException ex) {
@@ -448,16 +449,8 @@ public    biLingual(Stage primaryStage)
         } catch (Exception excep) {
             excep.printStackTrace();
         }
-
-
-
     }
 
-
-    public void fake()
-    {
-
-    }
     public Button setStyle ( Button b)
     {
         b.setStyle("-fx-padding: 8 15 15 15;\n" +

@@ -42,14 +42,14 @@ public class accessToken {
             setStyle(button);
             button.setTranslateX(620);
             button.setTranslateY(350);
-            button.setPrefSize(60,30);
+            button.setPrefSize(120,30);
 
             try {
                 Text headning = new Text("Enter Access token");
                 headning.setFont(Font.font(Font.getFontNames().get(6), FontPosture.REGULAR, 5));
                 headning.setFill(Color.DARKBLUE);
-                headning.setScaleX(2);
-                headning.setScaleY(2);
+                headning.setScaleX(4);
+                headning.setScaleY(4);
                 headning.setTranslateX(50);
                 headning.setTranslateY(90);
                 Image backgrounds = new Image(getClass().getClassLoader().getResource("emotion(16-9).png").toString(), true);

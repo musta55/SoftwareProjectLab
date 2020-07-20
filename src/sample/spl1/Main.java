@@ -1,12 +1,14 @@
 package sample.spl1;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -46,7 +48,7 @@ public class Main extends Application {
         headning.setScaleY(6);
         headning.setTranslateX(650);
         headning.setTranslateY(100);
-        headning.setFill(Color.WHEAT);
+        headning.setFill(Color.rgb(35,37,181));
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
 
 
@@ -56,7 +58,9 @@ public class Main extends Application {
 
 
 
-        Button Start = new Button("Let's Start");
+        Button Start = new Button("");
+        Start.setGraphic(new ImageView("Pictures/reg1.jpg"));
+        Start.setPadding(Insets.EMPTY);
         Start.setTranslateX(530);
         Start.setTranslateY(220);
 
@@ -68,13 +72,13 @@ public class Main extends Application {
                 "        linear-gradient(from 0% 63% to 0% 100%, #000000 0%, #000000 100%),\n" +
                 "        #000000,\n" +
                 "        #000000,\n" +
-                "        radial-gradient(center 50% 50%, radius 70%, #2471A3    , #17202A);\n" +
+                "        radial-gradient(center 50% 50%, radius 70%, #2765B5    , #17202A);\n" +
                 "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
                 "    -fx-font-weight: bold;\n" +
                 "    -fx-font-size: 2.1em;");
-        Start.setPrefSize(280,120);
+        Start.setPrefSize(180,120);
 //        try {
-         Image background = new Image(getClass().getClassLoader().getResource("Pictures/emotioon.jpg").toString(), true);
+         Image background = new Image(getClass().getClassLoader().getResource("emotion(16-9).png").toString(), true);
 //
        BackgroundImage bi = new BackgroundImage(background,
               BackgroundRepeat.NO_REPEAT,
