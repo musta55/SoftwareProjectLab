@@ -50,19 +50,20 @@ public class firstPost {
         Button status1 = new Button("Status 1");
         status1.setTranslateX(300);
         status1.setTranslateY(320);
-        status1.setStyle("-fx-padding: 8 15 15 15;\n" +
-                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                "    -fx-background-radius: 8;\n" +
-                "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
-                "        #030B21,\n" +
-                "        #0B2058,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
-                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
+        status1.setStyle("-fx-background-color: \n" +
+                "        linear-gradient(#ffd65b, #e68400),\n" +
+                "        linear-gradient(#ffef84, #f2ba44),\n" +
+                "        linear-gradient(#ffea6a, #efaa22),\n" +
+                "        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\n" +
+                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
+                "    -fx-background-radius: 30;\n" +
+                "    -fx-background-insets: 0,1,2,3,0;\n" +
+                "    -fx-text-fill: #654b00;\n" +
                 "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 1.5em;");
+                "    -fx-font-size: 2.1em;\n" +
+                "    -fx-padding: 10 20 10 20;");
         status1.setPrefSize(100, 30);
-        status1.setTextFill(Color.WHITE);
+        status1.setTextFill(Color.rgb(237, 134, 18));
 
         int numbers=0;
         TextArea textField = new TextArea();
@@ -88,17 +89,18 @@ public class firstPost {
         Button back = new Button("Back");
         back.setTranslateX(1200);
         back.setTranslateY(350);
-        back.setStyle("-fx-padding: 8 15 15 15;\n" +
-                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                "    -fx-background-radius: 8;\n" +
-                "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
-                "        #8d9092,\n" +
-                "        #717375,\n" +
-                "         radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
-                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
+        back.setStyle("-fx-background-color: \n" +
+                "        linear-gradient(#ffd65b, #e68400),\n" +
+                "        linear-gradient(#ffef84, #f2ba44),\n" +
+                "        linear-gradient(#ffea6a, #efaa22),\n" +
+                "        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\n" +
+                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
+                "    -fx-background-radius: 30;\n" +
+                "    -fx-background-insets: 0,1,2,3,0;\n" +
+                "    -fx-text-fill: #654b00;\n" +
                 "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 1.1em;");
+                "    -fx-font-size: 2.1em;\n" +
+                "    -fx-padding: 10 20 10 20;");
         back.setPrefSize(80, 30);
 
 
@@ -135,7 +137,7 @@ public class firstPost {
         stages.show();
         stages.setTitle("STATUS 1 With Reaction");
         stat.getChildren().addAll(button,textField,headning,back);
-        Image background = new Image(getClass().getClassLoader().getResource("emotion(16-9).png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("src/Pictures/pngfuel.com.png").toString(), true);
 
 
 
@@ -154,17 +156,18 @@ public class firstPost {
     }
     public Button setStyle ( Button b)
     {
-        b.setStyle("-fx-padding: 8 15 15 15;\n" +
-                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                "    -fx-background-radius: 8;\n" +
-                "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
-                "        #030B21,\n" +
-                "        #0B2058,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #2471A3    , #17202A);\n" +
-                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
+        b.setStyle("-fx-background-color: \n" +
+                "        linear-gradient(#ffd65b, #e68400),\n" +
+                "        linear-gradient(#ffef84, #f2ba44),\n" +
+                "        linear-gradient(#ffea6a, #efaa22),\n" +
+                "        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\n" +
+                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
+                "    -fx-background-radius: 30;\n" +
+                "    -fx-background-insets: 0,1,2,3,0;\n" +
+                "    -fx-text-fill: #654b00;\n" +
                 "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 2.1em;");
+                "    -fx-font-size: 2.1em;\n" +
+                "    -fx-padding: 10 20 10 20;");
         return b;
     }
 

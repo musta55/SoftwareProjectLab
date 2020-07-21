@@ -36,24 +36,23 @@ public class accessToken {
             stage.setTitle("Text Input");
 
             TextArea textFields = new TextArea();
-
             Button button = new Button("Enter");
             button.setTextFill(Color.WHITE);
             setStyle(button);
             button.setTranslateX(620);
             button.setTranslateY(350);
-            button.setPrefSize(120,30);
+            button.setPrefSize(150,70);
 
             try {
-                Text headning = new Text("Enter Access token");
-                headning.setFont(Font.font(Font.getFontNames().get(6), FontPosture.REGULAR, 5));
-                headning.setFill(Color.DARKBLUE);
-                headning.setScaleX(4);
-                headning.setScaleY(4);
-                headning.setTranslateX(50);
+                Text headning = new Text("TEXT INPUT");
+                headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 11));
+                headning.setFill(Color.WHITE);
+                headning.setScaleX(6);
+                headning.setScaleY(6);
+                headning.setTranslateX(650);
                 headning.setTranslateY(90);
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("emotion(16-9).png").toString(), true);
-                Canvas canvas = new Canvas(700,650);
+                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/pngfuel.com.png").toString(), true);
+                Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);
 
@@ -62,7 +61,9 @@ public class accessToken {
                 textFields.setPrefRowCount(5);
                 textFields.setPrefColumnCount(6);
                 textFields.setWrapText(true);
-                textFields.setMinSize(465,15);
+                textFields.setMinSize(1125,150);
+
+
                 Pane roots = new Pane();
                 BackgroundImage bi = new BackgroundImage(backgrounds,
                         BackgroundRepeat.NO_REPEAT,
@@ -72,7 +73,7 @@ public class accessToken {
                 Background bg = new Background(bi);
                 roots.setBackground(bg);
                 roots.getChildren().addAll(canvas,textFields,button,headning);
-                Scene scene = new Scene(roots,700,650);
+                Scene scene = new Scene(roots,1400,750);
                 stage.setScene(scene);
                 //primaryStage.setFullScreen(true);
                 stage.show();

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -48,37 +49,36 @@ public class Main extends Application {
         headning.setScaleY(6);
         headning.setTranslateX(650);
         headning.setTranslateY(100);
-        headning.setFill(Color.rgb(35,37,181));
-        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
+        headning.setFill(Color.rgb(237, 134, 18));
+        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.ITALIC, 12));
 
 
 
         headning.setCache(true);
 
 
-
-
-        Button Start = new Button("");
-        Start.setGraphic(new ImageView("Pictures/reg1.jpg"));
+        Button Start = new Button("Start");
+     //   Start.setGraphic(new ImageView("Pictures/backArrow.png"));
         Start.setPadding(Insets.EMPTY);
-        Start.setTranslateX(530);
+        Start.setTranslateX(630);
         Start.setTranslateY(220);
 
-        Start.setTextFill(Color.WHITE);
-        Start.setStyle("-fx-padding: 8 15 15 15;\n" +
-                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                "    -fx-background-radius: 8;\n" +
-                "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 63% to 0% 100%, #000000 0%, #000000 100%),\n" +
-                "        #000000,\n" +
-                "        #000000,\n" +
-                "        radial-gradient(center 50% 50%, radius 70%, #2765B5    , #17202A);\n" +
-                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
+        Start.setTextFill(Color.BLACK);
+        Start.setStyle("-fx-background-color: \n" +
+                "        linear-gradient(#ffd65b, #e68400),\n" +
+                "        linear-gradient(#ffef84, #f2ba44),\n" +
+                "        linear-gradient(#ffea6a, #efaa22),\n" +
+                "        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\n" +
+                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
+                "    -fx-background-radius: 30;\n" +
+                "    -fx-background-insets: 0,1,2,3,0;\n" +
+                "    -fx-text-fill: #654b00;\n" +
                 "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 2.1em;");
-        Start.setPrefSize(180,120);
+                "    -fx-font-size: 2.1em;\n" +
+                "    -fx-padding: 10 20 10 20;");
+        Start.setPrefSize(180,100);
 //        try {
-         Image background = new Image(getClass().getClassLoader().getResource("emotion(16-9).png").toString(), true);
+         Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/Artboard 1.png").toString(), true);
 //
        BackgroundImage bi = new BackgroundImage(background,
               BackgroundRepeat.NO_REPEAT,
@@ -113,6 +113,7 @@ public class Main extends Application {
 
 
             Pane root = new Pane();
+
 
         root.setBackground(bg);
             root.getChildren().addAll(canvas,Start,headning);

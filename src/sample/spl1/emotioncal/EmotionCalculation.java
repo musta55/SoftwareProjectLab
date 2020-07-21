@@ -583,7 +583,7 @@ public class EmotionCalculation {
                 "    -fx-font-size: 1.1em;");
         back.setPrefSize(60, 30);
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/image-from-rawpixel-id-594694-jpeg (1).jpg").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/clipper.jpg").toString(), true);
         Pane root = new Pane();
         back.setOnAction(e -> {
             try {
@@ -600,6 +600,7 @@ public class EmotionCalculation {
         textField.setPrefRowCount(5);
         textField.setPrefColumnCount(6);
         textField.setWrapText(true);
+        textField.setStyle("-fx-text-inner-color: blue;");
         textField.setMinSize(525, 650);
         textField.setText(status);
 
@@ -621,7 +622,7 @@ public class EmotionCalculation {
 
 
 
-        pieChart.setStyle("-fx-pie-fill: white;");
+        pieChart.setStyle("-fx-pie-fill: red;");
 
 
         //setting the direction to arrange the data

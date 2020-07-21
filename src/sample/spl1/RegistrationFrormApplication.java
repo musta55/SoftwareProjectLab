@@ -35,7 +35,7 @@ public class RegistrationFrormApplication  {
         addUIControls(gridPane,stage);
         // Create a scene with registration form grid pane as the root node
         Scene scene = new Scene(gridPane, 800, 660);
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/image.jpg").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/pngfuel.com.png").toString(), true);
 
         BackgroundImage bi = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,
