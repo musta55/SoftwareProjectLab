@@ -43,12 +43,12 @@ public class Bengali {
             try {
                 Text headning = new Text("TEXT INPUT");
                 headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 11));
-                headning.setFill(Color.WHITE);
+                headning.setFill(Color.rgb(237, 134, 18));
                 headning.setScaleX(6);
                 headning.setScaleY(6);
                 headning.setTranslateX(650);
                 headning.setTranslateY(90);
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/pngfuel.com.png").toString(), true);
+                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/emotion(16-9)-01.jpg").toString(), true);
                 Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);

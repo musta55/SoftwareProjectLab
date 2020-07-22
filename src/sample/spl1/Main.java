@@ -59,26 +59,43 @@ public class Main extends Application {
 
         Button Start = new Button("Start");
      //   Start.setGraphic(new ImageView("Pictures/backArrow.png"));
+      //  Start.setGraphic(new ImageView("Pictures/splash - Copy.jpg"));
         Start.setPadding(Insets.EMPTY);
-        Start.setTranslateX(630);
+        Start.setTranslateX(980);
         Start.setTranslateY(220);
 
-        Start.setTextFill(Color.BLACK);
         Start.setStyle("-fx-background-color: \n" +
-                "        linear-gradient(#ffd65b, #e68400),\n" +
-                "        linear-gradient(#ffef84, #f2ba44),\n" +
+                "        linear-gradient(#f5d65b, #e68400),\n" +
+                "        linear-gradient(#f5ef84, #f2ba44),\n" +
                 "        linear-gradient(#ffea6a, #efaa22),\n" +
                 "        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\n" +
                 "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
-                "    -fx-background-radius: 30;\n" +
-                "    -fx-background-insets: 0,1,2,3,0;\n" +
-                "    -fx-text-fill: #654b00;\n" +
+                "-fx-background-radius: 5em; " +
+                        "-fx-min-width: 150px; " +
+                        "-fx-min-height: 150px; " +
+                        "-fx-max-width: 150px; " +
+                        "-fx-max-height: 150px;"+
+                        "    -fx-text-fill: #654b00;\n" +
                 "    -fx-font-weight: bold;\n" +
                 "    -fx-font-size: 2.1em;\n" +
-                "    -fx-padding: 10 20 10 20;");
+                "    -fx-padding: 10 10 10 10;");
+
+        Start.setTextFill(Color.BLACK);
+//        Start.setStyle("-fx-background-color: \n" +
+//                "        linear-gradient(#ffd65b, #e68400),\n" +
+//                "        linear-gradient(#ffef84, #f2ba44),\n" +
+//                "        linear-gradient(#ffea6a, #efaa22),\n" +
+//                "        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\n" +
+//                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
+//                "    -fx-background-radius: 30;\n" +
+//                "    -fx-background-insets: 0,1,2,3,0;\n" +
+//                "    -fx-text-fill: #654b00;\n" +
+//                "    -fx-font-weight: bold;\n" +
+//                "    -fx-font-size: 2.1em;\n" +
+//                "    -fx-padding: 10 10 10 10;");
         Start.setPrefSize(180,100);
 //        try {
-         Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/Artboard 1.png").toString(), true);
+         Image background = new Image(getClass().getClassLoader().getResource("Pictures/emotion(16-9)-0-2.jpg").toString(), true);
 //
        BackgroundImage bi = new BackgroundImage(background,
               BackgroundRepeat.NO_REPEAT,
@@ -116,7 +133,7 @@ public class Main extends Application {
 
 
         root.setBackground(bg);
-            root.getChildren().addAll(canvas,Start,headning);
+            root.getChildren().addAll(canvas,Start);
             Scene scene = new Scene(root,1400,760);
             scene.setFill(Color.BLACK);
 

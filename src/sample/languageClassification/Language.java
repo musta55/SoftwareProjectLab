@@ -1,5 +1,6 @@
 package sample.languageClassification;
 
+import demo.sphinx.helloworld.HelloWorld;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -8,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -21,13 +23,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import sample.spl1.Dictionary;
-import sample.spl1.Operations;
-import sample.spl1.OperationsBangla;
+import sample.spl1.*;
 import sample.spl1.emotioncal.EmotionCalculation;
-import sample.spl1.secondPage;
 
-public class Language {
+public class Language extends secondPage{
     public void TheThird(Stage primaryStage)
     {
 
@@ -41,47 +40,93 @@ public class Language {
 
 
         Button ab = new Button("Bengali Language");
-        ab.setTranslateX(480);
+        ab.setTranslateX(70);
         ab.setTranslateY(150);
         setStyle(ab);
-        ab.setPrefSize(370, 100);
+        ab.setPrefSize(320, 120);
         ab.setTextFill(Color.WHITE);
 
         Button abi = new Button("Bilingual");
-        abi.setTranslateX(480);
+        abi.setTranslateX(70);
         abi.setTranslateY(550);
         setStyle(abi);
-        abi.setPrefSize(370, 100);
+        abi.setPrefSize(320, 120);
         abi.setTextFill(Color.WHITE);
 
         Button exp = new Button("English Language");
-        exp.setTranslateX(480);
+        exp.setTranslateX(70);
         exp.setTranslateY(350);
         setStyle(exp);
-        exp.setPrefSize(370, 100);
+        exp.setPrefSize(320, 120);
         exp.setTextFill(Color.WHITE);
 
 
-        Button back = new Button("Back");
-        back.setTranslateX(50);
-        back.setTranslateY(20);
-        back.setStyle("-fx-padding: 8 15 15 15;\n" +
-                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                "    -fx-background-radius: 8;\n" +
-                "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
-                "        #030B21,\n" +
-                "        #0B2058,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #2471A3    , #17202A);\n" +
-                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 1.5em;");
-        back.setPrefSize(80, 40);
-        back.setTextFill(Color.WHITE);
+        Button back = new Button("");
+        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+        back.setTranslateX(0);
+        back.setTranslateY(340);
+        back.setPrefSize(1, 5);
+        back.setTextFill(Color.YELLOW);
 
-        Image background = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
+        Button pro = new Button("Experiment");
+        pro.setTranslateX(610);
+        pro.setTranslateY(60);
+        setStyle(pro);
+        pro.setPrefSize(200, 80);
+        pro.setTextFill(Color.WHITE);
+
+
+        Button others = new Button("Others");
+        others.setTranslateX(1180);
+        others.setTranslateY(60);
+        setStyle(others);
+        others.setPrefSize(200, 80);
+        others.setTextFill(Color.WHITE);
+
+        Button application = new Button("Application");
+        application.setTranslateX(895);
+        application.setTranslateY(60);
+        setStyle(application);
+        application.setPrefSize(200, 80);
+        application.setTextFill(Color.WHITE);
+
+        application.setOnAction(e -> {
+
+            try {
+
+                RegistrationFrormApplication reg=new RegistrationFrormApplication();
+                reg.registration(primaryStage);
+
+            } catch (Exception excep) {
+                excep.printStackTrace();
+            }
+        });
+        others.setOnAction(e -> {
+
+            try {
+                HelloWorld hl=new HelloWorld();
+                hl.speech(primaryStage);
+
+            }
+            catch (Exception excep)
+            {
+                excep.printStackTrace();
+            }
+        });
+
+        pro.setOnAction(e -> {
+            try {
+                Language PMenu = new Language();
+                PMenu.TheThird(primaryStage);
+            } catch (Exception excep) {
+                excep.printStackTrace();
+            }
+        });
+
+
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-01.jpg").toString(), true);
         Pane root = new Pane();
-        root.getChildren().addAll(exp,back,ab,abi,headning);
+        root.getChildren().addAll(exp,back,ab,abi,pro,application,others);
         //       TextField nameInput=new TextField();
 
 

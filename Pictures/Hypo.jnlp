@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0+" href="https://mathcs.org/java/programs/CLT/Hypo.jnlp">
+	<information>
+  		<title>Hypothesis Tester</title>
+  		<vendor>MathCS.org</vendor>
+  		<homepage href="https://www.mathcs.org" />
+  		<description>A program to illustrate Hypothesis Tests</description>
+	</information>
+
+	<resources>
+		<j2se version="1.6+" />
+		<jar href="https://mathcs.org/java/programs/CLT/HypoCLT.jar" />
+	</resources>
+
+	<security>
+		<all-permissions />
+	</security>
+
+	<application-desc main-class="HypoApp" />
+</jnlp>

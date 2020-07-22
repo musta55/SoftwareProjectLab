@@ -44,7 +44,7 @@ public class accessToken {
             button.setPrefSize(150,70);
 
             try {
-                Text headning = new Text("TEXT INPUT");
+                Text headning = new Text("Enter Access Token");
                 headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 11));
                 headning.setFill(Color.WHITE);
                 headning.setScaleX(6);
