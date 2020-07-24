@@ -562,27 +562,37 @@ public class EmotionCalculation {
         headning.setScaleX(2);
         headning.setScaleY(2);
         headning.setTranslateX(140);
-        headning.setTranslateY(100);
-        headning.setFill(Color.BLACK );
+        headning.setTranslateY(170);
+        headning.setFill(Color.WHITE );
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
 
 
         String s=String.valueOf(totalEmotionCount);
-        Text score = new Text("Score :"+s);
-        headning.setScaleX(2);
-        headning.setScaleY(2);
-        headning.setTranslateX(700);
-        headning.setTranslateY(350);
-        headning.setFill(Color.BLACK );
-        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
+        Text score = new Text("Emotion Score ");
+        score.setScaleX(2);
+        score.setScaleY(2);
+        score.setTranslateX(610);
+        score.setTranslateY(680);
+        score.setFill(Color.BLACK );
+        score.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 12));
+
+
+        Text emo = new Text( s);
+        emo.setScaleX(2);
+        emo.setScaleY(2);
+        emo.setTranslateX(610);
+        emo.setTranslateY(580);
+        emo.setFill(Color.WHITE );
+        emo.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 18));
         Button back = new Button("");
+
         back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
         back.setTranslateX(0);
         back.setTranslateY(340);
         back.setPrefSize(1, 5);
         back.setTextFill(Color.YELLOW);
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/output.jpg").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-0-4.jpg").toString(), true);
         Pane root = new Pane();
         back.setOnAction(e -> {
             try {
@@ -652,7 +662,7 @@ public class EmotionCalculation {
         Background bg = new Background(bi);
         root.setBackground(bg);
         stage.setTitle("Pie Chart");
-        root.getChildren().addAll(pieChart, back,textField,headning,score);
+        root.getChildren().addAll(pieChart,score, back,textField,headning,emo);
         //Adding scene to the stage
         stage.setScene(scene);
 

@@ -2,11 +2,13 @@ package sample.spl1;
 
 
 
+import demo.sphinx.helloworld.HelloWorld;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -32,45 +34,109 @@ public class thirdPage {
 
 
 
-        Button socialMedia = new Button("Facebook Post");
-        socialMedia.setTranslateX(500);
-        socialMedia.setTranslateY(370);
-        setStyle(socialMedia);
-        socialMedia.setPrefSize(300, 80);
+        Button socialMedia = new Button("");
+        socialMedia.setTranslateX(900);
+        socialMedia.setTranslateY(170);
+        setStyle2(socialMedia);
+      //  socialMedia.setPrefSize(300, 80);
         socialMedia.setTextFill(Color.WHITE);
+        socialMedia.setGraphic(new ImageView("Pictures/1x/social_facebook_button_blue.png"));
 
-
-        Button article = new Button("Your Article");
-        article.setTranslateX(500);
-        article.setTranslateY(170);
-        setStyle(article);
-        article.setPrefSize(300, 80);
+        Button article = new Button("");
+        article.setTranslateX(650);
+        article.setTranslateY(400);
+        setStyle2(article);
+      //  article.setPrefSize(300, 80);
         article.setTextFill(Color.WHITE);
+        article.setGraphic(new ImageView("Pictures/1x/images.png"));
 
-        Button liveUrl = new Button("Web Page");
-        liveUrl.setTranslateX(500);
-        liveUrl.setTranslateY(570);
-        setStyle(liveUrl);
-        liveUrl.setPrefSize(300, 80);
+        Button liveUrl = new Button("");
+        liveUrl.setTranslateX(650);
+        liveUrl.setTranslateY(170);
+        setStyle2(liveUrl);
+       // liveUrl.setPrefSize(300, 80);
         liveUrl.setTextFill(Color.WHITE);
+        liveUrl.setGraphic(new ImageView("Pictures/1x/482401.png"));
+
+        Button pro = new Button("Experiment");
+        pro.setTranslateX(610);
+        pro.setTranslateY(60);
+        setStyle(pro);
+        pro.setPrefSize(200, 70);
+        pro.setTextFill(Color.WHITE);
 
 
-        Button back = new Button("Back");
-        back.setTranslateX(50);
-        back.setTranslateY(20);
-        back.setStyle("-fx-padding: 8 15 15 15;\n" +
-                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                "    -fx-background-radius: 8;\n" +
-                "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
-                "        #030B21,\n" +
-                "        #0B2058,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #2471A3    , #17202A);\n" +
-                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 1.5em;");
-        back.setPrefSize(80, 40);
-        back.setTextFill(Color.WHITE);
+        Button others = new Button("Others");
+        others.setTranslateX(1180);
+        others.setTranslateY(60);
+        setStyle(others);
+        others.setPrefSize(200, 70);
+        others.setTextFill(Color.WHITE);
+
+        Button application = new Button("Application");
+        application.setTranslateX(895);
+        application.setTranslateY(60);
+        setStyle(application);
+        application.setPrefSize(200, 70);
+        application.setTextFill(Color.WHITE);
+
+
+
+        Button back = new Button("");
+        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+        back.setTranslateX(0);
+        back.setTranslateY(340);
+        back.setPrefSize(1, 5);
+        back.setTextFill(Color.YELLOW);
+
+        application.setOnAction(e -> {
+
+            try {
+
+                RegistrationFrormApplication reg=new RegistrationFrormApplication();
+                reg.registration(stage);
+
+            } catch (Exception excep) {
+                excep.printStackTrace();
+            }
+        });
+        others.setOnAction(e -> {
+
+            try {
+                HelloWorld hl=new HelloWorld();
+                hl.speech(stage);
+
+            }
+            catch (Exception excep)
+            {
+                excep.printStackTrace();
+            }
+        });
+
+        pro.setOnAction(e -> {
+            try {
+                Language PMenu = new Language();
+                PMenu.TheThird(stage);
+            } catch (Exception excep) {
+                excep.printStackTrace();
+            }
+        });
+
+
+        Pane roots = new Pane();
+
+
+
+        back.setOnAction(esb->{
+            try {
+                secondPage goBack = new secondPage();
+                goBack.TheSecond(stage);
+            }catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+        });
+
 
         article.setOnAction(e->{
             try {
@@ -83,22 +149,10 @@ public class thirdPage {
 
 
 
-        Image background = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-0-3.jpg").toString(), true);
         Pane root = new Pane();
 
-        root.getChildren().addAll(socialMedia,back,article,headning,liveUrl);
-
-        back.setOnAction(e->{
-            try {
-                Main goBack = new Main();
-                goBack.start(stage);
-            }catch (Exception ex)
-            {
-                ex.printStackTrace();
-            }
-        });
-
-
+        root.getChildren().addAll(socialMedia,back,article,liveUrl,pro,others,application);
 
         socialMedia.setOnAction(e -> {
             try
@@ -137,17 +191,35 @@ public class thirdPage {
 
     public Button setStyle ( Button b)
     {
-        b.setStyle("-fx-padding: 8 15 15 15;\n" +
-                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                "    -fx-background-radius: 8;\n" +
-                "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
-                "        #030B21,\n" +
-                "        #0B2058,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #2471A3    , #17202A);\n" +
-                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
+        b.setStyle("-fx-background-color: \n" +
+                "        linear-gradient(\t#FFFFFF, \t#FFFFFF),\n" +
+                "        linear-gradient(#FFFFFF, #FFFFFF),\n" +
+                "        linear-gradient(\t#FFFFFF, #efaa22),\n" +
+                "        linear-gradient(#ffe657 0%, #3CF53C 50%, #1ED71E 100%),\n" +
+                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
+                "    -fx-background-radius: 30;\n" +
+                "    -fx-background-insets: 0,1,2,3,0;\n" +
+                "    -fx-text-fill: #654b00;\n" +
                 "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 2.1em;");
+                "    -fx-font-size: 2.1em;\n" +
+                "    -fx-padding: 10 20 10 20;");
+        return b;
+    }
+
+    public Button setStyle2 ( Button b)
+    {
+        b.setStyle("-fx-background-color: \n" +
+                "        linear-gradient(\t#FFFFFF, \t#FFFFFF),\n" +
+                "        linear-gradient(#FFFFFF, #FFFFFF),\n" +
+                "        linear-gradient(\t#FFFFFF, #FFFFFF),\n" +
+                "        linear-gradient(#FFFFFF 0%, #FFFFFF 50%, #FFFFFF 100%),\n" +
+                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
+                "    -fx-background-radius: 30;\n" +
+                "    -fx-background-insets: 0,1,2,3,0;\n" +
+                "    -fx-text-fill: #654b00;\n" +
+                "    -fx-font-weight: bold;\n" +
+                "    -fx-font-size: 2.1em;\n" +
+                "    -fx-padding: 10 20 10 20;");
         return b;
     }
 

@@ -260,7 +260,7 @@ public class EmotionProfile {
                 "    -fx-font-size: 1.1em;");
         back.setPrefSize(60, 30);
 
-     Image background = new Image(getClass().getClassLoader().getResource("Pictures/image-from-rawpixel-id-593093-jpeg.jpg").toString(), true);
+     Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-0-3.jpg").toString(), true);
         Pane root = new Pane();
         back.setOnAction(e -> {
             try {

@@ -26,15 +26,15 @@ public class RegistrationFrormApplication  {
 
 
     public void registration(Stage stage) throws Exception {
-        Stage primaryStage=new Stage();
-        primaryStage.setTitle("Registration Form For Calculating Emotion");
+       // Stage primaryStage=new Stage();
+        stage.setTitle("Registration Form For Calculating Emotion");
 
         // Create the registration form grid pane
         GridPane gridPane = createRegistrationFormPane();
         // Add UI controls to the registration form grid pane
         addUIControls(gridPane,stage);
         // Create a scene with registration form grid pane as the root node
-        Scene scene = new Scene(gridPane, 800, 660);
+        Scene scene = new Scene(gridPane, 1400, 750);
         Image background = new Image(getClass().getClassLoader().getResource("Pictures/pngfuel.com.png").toString(), true);
 
         BackgroundImage bi = new BackgroundImage(background,
@@ -46,9 +46,9 @@ public class RegistrationFrormApplication  {
 
         gridPane.setBackground(bg);
         // Set the scene in primary stage
-        primaryStage.setScene(scene);
+        stage.setScene(scene);
 
-        primaryStage.show();
+        stage.show();
 
     }
 
@@ -188,7 +188,7 @@ public class RegistrationFrormApplication  {
 else
                 {
                     showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Registration Successful!", "Welcome " + nameField.getText());
-                    stage.close();
+                  //  stage.close();
                 }
 
 

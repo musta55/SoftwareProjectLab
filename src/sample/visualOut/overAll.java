@@ -142,30 +142,5 @@ public class overAll {
             ex.printStackTrace();
         }
 
-
-
-
-
-
-//
-//        EmotionCalculation emCal = new EmotionCalculation();
-//        emCal.fileOpen();
-//
-//
-//        emCal.searchEmotion();
-//        try {
-//            emCal.emotionCalc(stages);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        emCal.VisualOutputProf(stages,OverAllText);
-
-
-
-        //    root.getChildren().addAll(,back,pro,headning,liveUrl);
-
-
-
-
     }
 }

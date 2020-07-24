@@ -65,10 +65,10 @@ public class Main extends Application {
         Start.setTranslateY(220);
 
         Start.setStyle("-fx-background-color: \n" +
-                "        linear-gradient(#f5d65b, #e68400),\n" +
-                "        linear-gradient(#f5ef84, #f2ba44),\n" +
-                "        linear-gradient(#ffea6a, #efaa22),\n" +
-                "        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\n" +
+                "        linear-gradient(#14FF14, #14FF14),\n" +
+                "        linear-gradient(#14FF14, #14FF14),\n" +
+                "        linear-gradient(#14FF14, #14FF14),\n" +
+                "        linear-gradient(#ffe657 0%, #f8c202 50%, #14FF14 100%),\n" +
                 "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
                 "-fx-background-radius: 5em; " +
                         "-fx-min-width: 150px; " +

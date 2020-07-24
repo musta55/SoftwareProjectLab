@@ -4,14 +4,17 @@ import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.types.Post;
+import demo.sphinx.helloworld.HelloWorld;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import sample.languageClassification.Language;
 import sample.spl1.emotioncal.EmotionCalculation;
 import sample.visualOut.Progression;
 import sample.visualOut.overAll;
@@ -27,29 +30,94 @@ public void runs(Stage stages,String accessToken,String Name)
    // String accessToken = "EAAMF6lCN2rABAL6ZCqIhEAzejYUMuQyccpK5G9Kq1rsvZAghc6Bac8OeVpzL0seJ6BpmaN2FNx5QkIjs7yom44YzruiPdwJISFImQsMAXGt9RG2THGAnaX9WBeBZCq7KBBSQku7pAlXobTZCZCKHThvIGAlePRNXRvekSC2kYJgZDZD";
  //  String accessToken="EAAMF6lCN2rABANG7fFJVwktoiJjKiZCDP7k1v4uZB48GRH1J2GCU1HAJMPc6389TS6EwTdp9ilfqZBZABNGobGhy3bH0zhYh5x2LQ55SicVEOtVmLO8poNvPVpZB3F3aSperHycu8VZAEQY4jfNxVsWrG7ZBZCP1L6bnYTvqrXb5EEIumHvpZBAFT79hR0r67ZCGoZD";
     FacebookClient fbClient = new DefaultFacebookClient(accessToken);
-   Button proa = new Button("Total Emotion");
-        proa.setTranslateX(550);
-        proa.setTranslateY(370);
+        Button proa = new Button("Total Emotion");
+        proa.setTranslateX(70);
+        proa.setTranslateY(150);
         setStyle(proa);
         proa.setPrefSize(300, 80);
         proa.setTextFill(Color.rgb(237, 134, 18));
 
         Button progression = new Button("Emotional Progress");
-        progression.setTranslateX(550);
-        progression.setTranslateY(70);
+        progression.setTranslateX(70);
+        progression.setTranslateY(550);
         setStyle(progression);
         progression.setPrefSize(300, 80);
         progression.setTextFill(Color.WHITE);
 
 
-    Button Status = new Button("Emotion & Reaction");
-    Status.setTranslateX(550);
-    Status.setTranslateY(220);
-    setStyle(Status);
-    Status.setPrefSize(300, 80);
-    Status.setTextFill(Color.WHITE);
+    Button reaction = new Button("Emotion & Reaction");
+    reaction.setTranslateX(70);
+    reaction.setTranslateY(350);
+    setStyle(reaction);
+    reaction.setPrefSize(300, 80);
+    reaction.setTextFill(Color.WHITE);
 
 
+
+
+    Button pro = new Button("Experiment");
+    pro.setTranslateX(610);
+    pro.setTranslateY(60);
+    setStyle(pro);
+    pro.setPrefSize(200, 70);
+    pro.setTextFill(Color.WHITE);
+
+
+    Button others = new Button("Others");
+    others.setTranslateX(1180);
+    others.setTranslateY(60);
+    setStyle(others);
+    others.setPrefSize(200, 70);
+    others.setTextFill(Color.WHITE);
+
+    Button application = new Button("Application");
+    application.setTranslateX(895);
+    application.setTranslateY(60);
+    setStyle(application);
+    application.setPrefSize(200, 70);
+    application.setTextFill(Color.WHITE);
+
+
+
+    Button back = new Button("");
+    back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+    back.setTranslateX(0);
+    back.setTranslateY(340);
+    back.setPrefSize(1, 5);
+    back.setTextFill(Color.YELLOW);
+
+    application.setOnAction(e -> {
+
+        try {
+
+            RegistrationFrormApplication reg=new RegistrationFrormApplication();
+            reg.registration(stages);
+
+        } catch (Exception excep) {
+            excep.printStackTrace();
+        }
+    });
+    others.setOnAction(e -> {
+
+        try {
+            HelloWorld hl=new HelloWorld();
+            hl.speech(stages);
+
+        }
+        catch (Exception excep)
+        {
+            excep.printStackTrace();
+        }
+    });
+
+    pro.setOnAction(e -> {
+        try {
+            Language PMenu = new Language();
+            PMenu.TheThird(stages);
+        } catch (Exception excep) {
+            excep.printStackTrace();
+        }
+    });
         Button backs = new Button("Back");
         backs.setTranslateX(550);
         backs.setTranslateY(520);
@@ -61,7 +129,7 @@ public void runs(Stage stages,String accessToken,String Name)
 
 
 
-        backs.setOnAction(esb->{
+        back.setOnAction(esb->{
             try {
                 secondPage goBack = new secondPage();
                 goBack.TheSecond(stages);
@@ -91,7 +159,7 @@ public void runs(Stage stages,String accessToken,String Name)
             }
     );
 
-    Status.setOnAction(e->
+    reaction.setOnAction(e->
             {
                 firstPost fp=new firstPost(accessToken);
                 fp.firstpost(stages);
@@ -104,7 +172,7 @@ public void runs(Stage stages,String accessToken,String Name)
     stages.setScene(scene);
     //stages.setFullScreen(true);
     stages.show();
-    Image background = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
+    Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-0-3.jpg").toString(), true);
 
 
 
@@ -119,7 +187,7 @@ public void runs(Stage stages,String accessToken,String Name)
     Background bg = new Background(bi);
     roots.setBackground(bg);
 
-    roots.getChildren().addAll(backs,proa,progression,Status);
+    roots.getChildren().addAll(proa,progression,reaction,back,pro,application,others);
 
 }
 
@@ -127,10 +195,10 @@ public void runs(Stage stages,String accessToken,String Name)
     public Button setStyle ( Button b)
     {
         b.setStyle("-fx-background-color: \n" +
-                "        linear-gradient(#ffd65b, #e68400),\n" +
-                "        linear-gradient(#ffef84, #f2ba44),\n" +
-                "        linear-gradient(#ffea6a, #efaa22),\n" +
-                "        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\n" +
+                "        linear-gradient(\t#FFFFFF, \t#FFFFFF),\n" +
+                "        linear-gradient(#FFFFFF, #FFFFFF),\n" +
+                "        linear-gradient(\t#FFFFFF, #efaa22),\n" +
+                "        linear-gradient(#ffe657 0%, #3CF53C 50%, #1ED71E 100%),\n" +
                 "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
                 "    -fx-background-radius: 30;\n" +
                 "    -fx-background-insets: 0,1,2,3,0;\n" +
