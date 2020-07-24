@@ -87,9 +87,7 @@ public void runs(Stage stages,String accessToken,String Name)
     back.setTextFill(Color.YELLOW);
 
     application.setOnAction(e -> {
-
         try {
-
             RegistrationFrormApplication reg=new RegistrationFrormApplication();
             reg.registration(stages);
 
@@ -118,12 +116,6 @@ public void runs(Stage stages,String accessToken,String Name)
             excep.printStackTrace();
         }
     });
-        Button backs = new Button("Back");
-        backs.setTranslateX(550);
-        backs.setTranslateY(520);
-        setStyle(backs);
-        backs.setPrefSize(300, 80);
-        backs.setTextFill(Color.WHITE);
 
         Pane roots = new Pane();
 
@@ -131,8 +123,8 @@ public void runs(Stage stages,String accessToken,String Name)
 
         back.setOnAction(esb->{
             try {
-                secondPage goBack = new secondPage();
-                goBack.TheSecond(stages);
+                thirdPage goBack = new thirdPage();
+                goBack.app(stages,Name);
             }catch (Exception ex)
             {
                 ex.printStackTrace();

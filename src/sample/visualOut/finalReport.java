@@ -11,18 +11,28 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.spl1.emotioncal.EmotionCalculation;
 import sample.spl1.fourthPage;
+import sample.spl1.thirdPage;
 
 import java.text.DecimalFormat;
 
 import static java.lang.Math.abs;
-import static sample.visualOut.visualoutputfb.setStyle;
-
 public class finalReport {
     DecimalFormat df = new DecimalFormat("0.00");
     private Stage stage;
     private String accessToken;
     private double[] sentimentTot;
     private  double finalTempTotal;
+    private String Name;
+    public finalReport(Stage stage,String accessToken,double[] sentimentTot,double finalTempTotal,String Name){
+        this.stage=stage;
+        this.accessToken=accessToken;
+        this.finalTempTotal=finalTempTotal;
+        this.sentimentTot=sentimentTot;
+        this.Name=Name;
+        finalreport();
+
+    }
+
     public finalReport(Stage stage,String accessToken,double[] sentimentTot,double finalTempTotal){
         this.stage=stage;
         this.accessToken=accessToken;
@@ -33,13 +43,7 @@ public class finalReport {
     }
     private void finalreport()
     {
-
         Group roota = new Group();
-        //   stage.setScene(new Scene(root));
-        //   Image backgrounda = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
-
-        //    Image backgrounda=new Image("emotion(16-8).png");
-        //   Image fusics = new Image("fusics.png");
         Canvas canvasa = new Canvas(1800, 900);
 
 
@@ -58,12 +62,12 @@ public class finalReport {
                 "    -fx-font-weight: bold;\n" +
                 "    -fx-font-size: 1.1em;");
         backa.setPrefSize(60, 30);
-        backa.setOnAction(ed -> {
+        backa.setOnAction(esb->{
             try {
-                String Name=null;
-                fourthPage fp = new fourthPage();
-                fp.runs(stage,accessToken,Name);
-            } catch (Exception ex) {
+                thirdPage goBack = new thirdPage();
+                goBack.app(stage,Name);
+            }catch (Exception ex)
+            {
                 ex.printStackTrace();
             }
         });
@@ -331,7 +335,7 @@ public class finalReport {
 
         sc.getData().addAll(series1, series2);
         sc.setPrefSize(650, 700);
-        setStyle(sc);
+
 
         roota.getChildren().addAll(canvasa,sc,backa,textInt,barChart,textStab,textMean,textRec,textCon,HeadText);
 

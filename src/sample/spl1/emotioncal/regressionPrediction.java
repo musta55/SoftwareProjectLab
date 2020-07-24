@@ -45,7 +45,7 @@ public class regressionPrediction {
             try {
                 Text headning = new Text("TEXT INPUT");
                 headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 11));
-                headning.setFill(Color.DARKBLUE);
+                headning.setFill(Color.YELLOWGREEN);
                 headning.setScaleX(6);
                 headning.setScaleY(6);
                 headning.setTranslateX(650);

@@ -28,9 +28,11 @@ import java.util.Scanner;
 public class EmotionProfile {
 
    private String name;
-   public EmotionProfile(String name)
+    private Stage stage;
+   public EmotionProfile(String name,Stage stage)
    {
        this.name=name;
+       this.stage=stage;
    }
 
     public  void profileScore() throws FileNotFoundException {
@@ -363,7 +365,6 @@ public class EmotionProfile {
     }
 
     public void IndividualVisualProfile(double[] em,double[] em2,double[] em3) {
-        Stage stage=new Stage();
         Text headning = new Text("Article");
         headning.setScaleX(2);
         headning.setScaleY(2);
@@ -385,26 +386,16 @@ public class EmotionProfile {
         headning.setScaleX(2);
         headning.setScaleY(2);
         headning.setTranslateX(60);
-        headning.setTranslateY(590);
+        headning.setTranslateY(620);
         headning.setFill(Color.rgb(150, 170, 130 ));
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
 
-        Button back = new Button("Back");
-        back.setTranslateX(1100);
-        back.setTranslateY(650);
-        back.setTextFill(Color.WHITE);
-        back.setStyle("-fx-padding: 8 15 15 15;\n" +
-                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                "    -fx-background-radius: 8;\n" +
-                "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
-                "        #8d9092,\n" +
-                "        #717375,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #2471A3    , #17202A);\n" +
-                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 1.1em;");
-        back.setPrefSize(60, 30);
+        Button back = new Button("");
+        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+        back.setTranslateX(0);
+        back.setTranslateY(340);
+        back.setPrefSize(1, 5);
+        back.setTextFill(Color.YELLOW);
 
       //  Image background = new Image(getClass().getClassLoader().getResource("Pictures/blueprint-grid-paper.jpg").toString(), true);
         Pane root = new Pane();
@@ -462,7 +453,6 @@ public class EmotionProfile {
         pieChart2.setScaleY(0.9);
 
 
-
         CategoryAxis xAxises3 = new CategoryAxis();
         xAxises3.setCategories(FXCollections.<String>
                 observableArrayList(Arrays.asList("Joy", "Surprise", "Fear", "Sadness", "Trust", "Disgust", "anticipation", "Anger")));
@@ -471,12 +461,10 @@ public class EmotionProfile {
         NumberAxis yAxises3 = new NumberAxis();
         yAxises3.setLabel("INTENSITY");
 
-        //Creating the Bar chart
         BarChart<String, Number> barChart3 = new BarChart<>(xAxises3, yAxises3);
-        barChart3.setTitle("Individual Sector Emotion");
-        //Prepare XYChart.Series objects by setting data
+        barChart3.setTitle("FaceBook");
         XYChart.Series<String, Number> series3 = new XYChart.Series<>();
-        series3.setName("FaceBook");
+        series3.setName("Aggregated Emotion");
 
         series3.getData().add(new XYChart.Data<>("Joy", em3[0]));
         series3.getData().add(new XYChart.Data<>("Surprise",  em3[1]));
@@ -498,14 +486,6 @@ public class EmotionProfile {
         //Creating a scene object
         Scene scene = new Scene(root, 1400, 755);
 
-
-//        BackgroundImage bi = new BackgroundImage(background,
-//                BackgroundRepeat.NO_REPEAT,
-//                BackgroundRepeat.NO_REPEAT,
-//                BackgroundPosition.DEFAULT,
-//                BackgroundSize.DEFAULT);
-//        Background bg = new Background(bi);
-//        root.setBackground(bg);
         stage.setTitle("Bar Chart");
         root.getChildren().addAll(pieChart,pieChart2,barChart3, back,headning,headning2,headning3);
         stage.setScene(scene);
@@ -513,7 +493,6 @@ public class EmotionProfile {
         stage.show();
 
         stage.setScene(scene);
-        //primaryStage.setFullScreen(true);
         stage.show();
 
     }

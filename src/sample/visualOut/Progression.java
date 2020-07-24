@@ -28,22 +28,11 @@ public class Progression {
         System.out.println("Progression is :");
         Operations operations = new Operations();
 
-
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         //   FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("668106823992484 ", "f63f747f31e390a44f93891920364794");
 
-
-        //Fetch Data from pages It's ok
-
-
         Connection<Post> result;
         result = fbClient.fetchConnection("me/feed", Post.class);
-
-
-        String userInput = null;
-
-        //     emCal.DataOutputStream();
-
 
         for (List<Post> apost : result) {
             for (Post aPost : apost) {
@@ -105,21 +94,11 @@ public class Progression {
                         emCal.emotionCalc(stages);
                         emCal.DataOutputStream();
 
-
-
-
-
-
                     System.out.println("Post date is :"+aPost.getCreatedTime());
 
                     try {
-                        //  FileWriter fw = new FileWriter("src/sample/spl1/out.txt");
                         Path path = Paths.get("date.txt");
-                        //    fw.write("Files in Java might be tricky, but it is fun enough!");
-                        //  fw.write(dbuf[0]+"#"+dbuf[1]+"#"+dbuf[2]+"#"+dbuf[3]+"#"+dbuf[4]+"#"+dbuf[5]+"#"+dbuf[6]+"#"+dbuf[7]+"#");
-                        //  String textToAppend = aPost.getCreatedTime();
                         Files.write(path, (Iterable<? extends CharSequence>) aPost.getCreatedTime(), StandardOpenOption.APPEND);
-                        //   fw.close();
                         System.out.println("Successfully wrote to the file.");
                     } catch (IOException e) {
                         System.out.println("An error occurred.");
@@ -129,26 +108,12 @@ public class Progression {
                     System.out.println("");
                 }
             }
-//                    if(counter>=7)
-//                   break;
-
-
-            //  emCal.VisualOutput(stage);
-
         }
         try {
             visualoutputfb.VisualOutputFacebook(stages,accessToken);
         } catch (FileNotFoundException aex) {
             aex.printStackTrace();
         }
-
-
-
-        //    root.getChildren().addAll(,back,pro,headning,liveUrl);
-
-        File file = new File("sample/spl1/out.txt");
-       // file.delete();
-
     }
 
 

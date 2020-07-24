@@ -6,6 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -39,15 +40,31 @@ public class WebPage {
             button.setTranslateY(350);
             button.setPrefSize(150,70);
 
+
+            Button back = new Button("");
+            back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+            back.setTranslateX(0);
+            back.setTranslateY(340);
+            back.setPrefSize(1, 5);
+            back.setTextFill(Color.YELLOW);
+            back.setOnAction(esb->{
+                try {
+
+                    AnalysisPage ap=new AnalysisPage(stage,Name);
+                }catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                }
+            });
             try {
-                Text headning = new Text("Enter WebPage Link");
+                Text headning = new Text("WebPage Link");
                 headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 11));
-                headning.setFill(Color.DARKBLUE);
+                headning.setFill(Color.WHITE);
                 headning.setScaleX(6);
                 headning.setScaleY(6);
-                headning.setTranslateX(650);
+                headning.setTranslateX(850);
                 headning.setTranslateY(90);
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("emotion(16-9).png").toString(), true);
+                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-0-3.jpg").toString(), true);
                 Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);
@@ -66,7 +83,7 @@ public class WebPage {
                         BackgroundSize.DEFAULT);
                 Background bg = new Background(bi);
                 roots.setBackground(bg);
-                roots.getChildren().addAll(canvas,textFields,button,headning);
+                roots.getChildren().addAll(canvas,textFields,button,headning,back);
                 Scene scene = new Scene(roots,1400,750);
                 stage.setScene(scene);
                 //primaryStage.setFullScreen(true);
@@ -109,7 +126,7 @@ public class WebPage {
                         emCal.emotionCalc(stage);
                         emCal.DataOutputStreamProf();
 
-                    emCal.VisualOutput(stage,t);
+                    emCal.VisualOutputProf(stage,t);
 
 
 
@@ -156,6 +173,21 @@ public class WebPage {
 
 
     }
-
+    public Button setStyle ( Button b)
+    {
+        b.setStyle("-fx-background-color: \n" +
+                "        linear-gradient(\t#FFFFFF, \t#FFFFFF),\n" +
+                "        linear-gradient(#FFFFFF, #FFFFFF),\n" +
+                "        linear-gradient(\t#FFFFFF, #efaa22),\n" +
+                "        linear-gradient(#ffe657 0%, #3CF53C 50%, #1ED71E 100%),\n" +
+                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
+                "    -fx-background-radius: 30;\n" +
+                "    -fx-background-insets: 0,1,2,3,0;\n" +
+                "    -fx-text-fill: #654b00;\n" +
+                "    -fx-font-weight: bold;\n" +
+                "    -fx-font-size: 2.1em;\n" +
+                "    -fx-padding: 10 20 10 20;");
+        return b;
+    }
     }
 

@@ -17,6 +17,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import sample.spl1.Operations;
 import sample.spl1.emotioncal.EmotionCalculation;
+import sample.spl1.firstPost;
 import sample.spl1.fourthPage;
 
 import java.io.FileNotFoundException;
@@ -27,8 +28,8 @@ import java.io.PrintStream;
 import static demo.sphinx.helloworld.HelloWorld.setStyle;
 
 public class accessToken {
-
-    public void token(Stage stage, String Name)
+    String tok=null;
+    public String token(Stage stage, String Name,int num)
     {
 
 
@@ -62,7 +63,7 @@ public class accessToken {
                 textFields.setPrefColumnCount(6);
                 textFields.setWrapText(true);
                 textFields.setMinSize(1125,150);
-
+                 tok=textFields.getText();
 
                 Pane roots = new Pane();
                 BackgroundImage bi = new BackgroundImage(backgrounds,
@@ -83,16 +84,51 @@ public class accessToken {
             }
 
             button.setOnAction(action -> {
-                fourthPage fPage=new fourthPage();
-                fPage.runs(stage,textFields.getText(),Name);
+                if(num==0)
+                {
+                    fourthPage fPage=new fourthPage();
+                    fPage.runs(stage,textFields.getText(),Name);
+                }
+
+                else if(num==1)
+                {
+                    firstPost fp=new firstPost(textFields.getText());
+                    fp.firstpost(stage);
+                }
+                else if(num==2)
+                {
+                    visualoutputfb vf=new visualoutputfb();
+
+                    double sentimentTot[]= vf.outData();
+                    double finalTempTotal=vf.tempTotal;
+                    finalReport fr=new finalReport(stage,textFields.getText(),sentimentTot,finalTempTotal);
+//                    Progression p=new Progression();
+//                    p.statusProgress(stage,textFields.getText());
+                }
             });
+
 
         } catch (Exception excep) {
             excep.printStackTrace();
         }
 
-
+        return tok;
     }
-
+    public Button setStyle ( Button b)
+    {
+        b.setStyle("-fx-background-color: \n" +
+                "        linear-gradient(\t#FFFFFF, \t#FFFFFF),\n" +
+                "        linear-gradient(#FFFFFF, #FFFFFF),\n" +
+                "        linear-gradient(\t#FFFFFF, #efaa22),\n" +
+                "        linear-gradient(#ffe657 0%, #3CF53C 50%, #1ED71E 100%),\n" +
+                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
+                "    -fx-background-radius: 30;\n" +
+                "    -fx-background-insets: 0,1,2,3,0;\n" +
+                "    -fx-text-fill: #654b00;\n" +
+                "    -fx-font-weight: bold;\n" +
+                "    -fx-font-size: 2.1em;\n" +
+                "    -fx-padding: 10 20 10 20;");
+        return b;
+    }
 
 }

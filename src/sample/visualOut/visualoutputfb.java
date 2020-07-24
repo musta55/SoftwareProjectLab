@@ -32,8 +32,59 @@ import static java.lang.Math.abs;
 
 public class visualoutputfb {
     public static String s = null;
+    double[] out = new double[10000];
+    double[] sentimentPos = new double[1000];
+    double[] sentimentNeg = new double[1000];
+    double[] sentimentTot = new double[1000];
+    double tempTotal;
+    public double[] outData()
+    {
+        Scanner scan=null;
+        File file = null;
+        file = new File("src/sample/spl1/out.txt");
+        try {
+            scan = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
-    public static void VisualOutputFacebook(Stage stage,String accessToken) throws FileNotFoundException {
+        int i = 0;
+        int m = 0;
+        while (scan.hasNextLine()) {
+            //
+            String currentLine = scan.nextLine();
+            // System.out.println("Current Line "+currentLine);
+            String[] firstSplits = currentLine.split(" ", 0);
+            for (; m < firstSplits.length; m++) {
+                //     System.out.println("String is " + firstSplits[m]);
+                try {
+                    if (firstSplits[m] == "NaN" || firstSplits[m] == "Infinity") ;
+                    else {
+                        out[m] = Double.parseDouble(firstSplits[m]);
+                        System.out.print(out[m] + "          ");
+                    }
+                } catch (Exception q) {
+                    out[m] = 0.000;
+                }
+                //     System.out.println("Value is " + out[m]);
+            }
+            // double d = Double.parseDouble();
+        }
+        for (int s = 0, t = 1; t <= 15; s += 8, t++) {
+            sentimentPos[t] = out[s] + out[s + 1] + out[s + 4] + out[s + 6];
+        }
+
+        for (int s = 0, t = 1; t <= 15; s += 8, t++) {
+            sentimentNeg[t] = out[s + 2] + out[s + 3] + out[s + 5] + out[s + 7];
+        }
+        for (int t = 1; t <= 15; t++) sentimentTot[t] = sentimentPos[t] - sentimentNeg[t];
+
+        tempTotal = 0;
+        for (int t = 1; t <= 15; t++) tempTotal += sentimentTot[t];
+        tempTotal /= 10;
+        return sentimentTot;
+    }
+    public static void VisualOutputFacebook(Stage stage, String accessToken) throws FileNotFoundException {
 
         DecimalFormat df = new DecimalFormat("0.00");
         Scanner scan;
@@ -41,10 +92,6 @@ public class visualoutputfb {
         file = new File("src/sample/spl1/out.txt");
         scan = new Scanner(file);
         double[] out = new double[10000];
-        double[] sentimentPos = new double[1000];
-        double[] sentimentNeg = new double[1000];
-        double[] sentimentTot = new double[1000];
-        double tempTotal;
         int i = 0;
         int m = 0;
         while (scan.hasNextLine()) {
@@ -68,12 +115,7 @@ public class visualoutputfb {
             // double d = Double.parseDouble();
         }
         Group root = new Group();
-        //   stage.setScene(new Scene(root));
-
         Image background = new Image(visualoutputfb.class.getClassLoader().getResource("emotionSide.png").toString(), true);
-        //   Image fusics = new Image("fusics.png");
-
-        //   Image background=new Image("sample/spl1/oldPaper.jpg");
         Canvas canvas = new Canvas(1800, 900);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -160,9 +202,6 @@ public class visualoutputfb {
                         ex.printStackTrace();
                     }
                 });
-
-
-
                 double joyOut = 0;
 
                 for (int y = 0; y < 80; y += 8) joyOut += out[y];
@@ -245,9 +284,6 @@ public class visualoutputfb {
                 int temp = 0, temp2 = 0;
                 Double[] freq = new Double[]{joyOut, surpriseOut, fearOut, sadnessOut, trustOut, disgustOut, anticipationOut, angerOut};
                 for (int iteration = 0; iteration < 8; iteration++) {
-//                    if (freq[iteration] > maxa) {
-//                        maxa = freq[iteration];
-//                        temp = iteration;
 
                     if (freq[iteration] > maxa) {
                         maxb = maxa;
@@ -255,8 +291,6 @@ public class visualoutputfb {
                         temp = iteration;
                     }
 
-        /* If arr[i] is in between first and
-           second then update second  */
                     else if (freq[iteration] > maxb && freq[iteration] != maxa) {
                         maxb = freq[iteration];
                         temp2 = iteration;
@@ -266,7 +300,6 @@ public class visualoutputfb {
                 }
                 System.out.println("Highest is " + temp + "Second is " + temp2);
                 String text = null;
-
 
                 if (temp == 0) {
                     text = "This person has a kind heart and jolly mind.Her post is full of serenity and ecstasy";
@@ -307,584 +340,6 @@ public class visualoutputfb {
                 ex.printStackTrace();
             }
         });
-
-  //      String accessToken = "EAAJfo73qhKQBAPTqcW4SDLEAAMF6lCN2rABAK3H577LmAEvfLcJaQWkHnf8YUbZCeTPk5U44PiuC1cXO4vhJwqhKcIg7na6ddgocHZAhu43MVOgVwLZA1DA7nZBj937VOVANZA2ZAJZBLflCjp1ZBr76ZBNGUBJoQZCZBsi56ZBdAHS8XT0VFLn7XyQxEZBUNivOV8QcRx6IeGn2J1hoPeNoumOM8LcbNjP8livHdwZDZDfFVmOnd3WSpfsapFSaIXcq7tjaaGeLkPU3pykfu64thCEfPipr8jRJYZCdvPv5ZBJi2hsjpZBw0vvZCCKklcYZB6uZBJZBbf1Ri0eoZCJrjX65Q2Ew8lW7ZCZBfXiWkh9CXqZC2Im8ahp7JjoN4zu61ZAN17uQBs6t9gCgVlTmFTIDEUhMOZBq0ZCnBmtukdY77PEB3U ";
-
-//        Button status2 = new Button("Status 2");
-//        status2.setTranslateX(280);
-//        status2.setTranslateY(620);
-//        status2.setStyle("-fx-padding: 8 15 15 15;\n" +
-//                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-//                "    -fx-background-radius: 8;\n" +
-//                "    -fx-background-color: \n" +
-//                "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
-//                "        #030B21,\n" +
-//                "        #0B2058,\n" +
-//                "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
-//                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-//                "    -fx-font-weight: bold;\n" +
-//                "    -fx-font-size: 1.5em;");
-//        status2.setPrefSize(100, 30);
-//        status2.setTextFill(Color.WHITE);
-//
-//
-//
-//
-//
-//
-//        status2.setOnAction(e->
-//                {
-//                    Operations operations = new Operations();
-//
-//
-//                    FacebookClient fbClient = new DefaultFacebookClient(accessToken);
-//                    //   FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("668106823992484 ", "f63f747f31e390a44f93891920364794");
-//
-//                    Connection<Post> result;
-//                    result = fbClient.fetchConnection("me/feed", Post.class);
-//
-//
-//                    String userInput = null;
-//                    EmotionCalculation emCal = new EmotionCalculation();
-//                    emCal.fileOpen();
-//                    int counter=0;
-//                    for (List<Post> apost : result) {
-//                        for (Post aPost : apost) {
-//                            counter++;
-//                            if (counter == 2) {
-//
-//                                try {
-//                                    int number=aPost.getMessage().length();
-//                                    s=aPost.getMessage().substring(0,number/16);
-//                                    s+=aPost.getMessage().substring((number/16)+1,number/8);
-//                                    s+="\n";
-//                                    s+=aPost.getMessage().substring((number/8)+1,number/4);
-//                                    s+="\n";
-//                                    s+=aPost.getMessage().substring((number/4)+1,number/2);
-//                                    s+="\n";
-//                                    s+=aPost.getMessage().substring((number/2)+1,number);
-//                                    s+="\n";
-//                                    //     s+=aPost.getMessage().substring(2100,number);
-//
-//
-//
-//
-//                                    char c;
-//                                    c = aPost.getMessage().charAt(0);
-//                                    char d;
-//                                    d=aPost.getMessage().charAt(1);
-//
-//                                    if (((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') )&&((d >= 'a' && d <= 'z') || (d >= 'A' && d <= 'Z'))) {
-//
-//                                        operations.splitInput(aPost.getMessage());
-//                                        aPost.getMessage().replaceAll(aPost.getMessage(), "");
-//
-//
-//
-//                                    } else {
-//                                        System.out.println("The Post is Bangla");
-//                                        OperationsBangla operationsBangla = new OperationsBangla();
-//                                        operationsBangla.splitInputBangla();
-//                                        String[] inArray = null;
-//                                        String[] inArray2 = new String[10000];
-//                                        Dictionary dictionary = new Dictionary("src/sample/spl1/Translation.txt");
-//
-//                                        inArray = aPost.getMessage().split("[ ,/;>.*'|\"(){+></@$%^&_=}]", 0);
-//
-//                                        aPost.getMessage().replaceAll(aPost.getMessage(), "");
-//                                        for (int j = 0; j < inArray.length; j++) {
-//                                            inArray2[j] = operationsBangla.searchBan(inArray[j]);
-//                                        }
-//                                        String inp = "";
-//                                        for (int j = 0; j < inArray.length; j++) {
-//                                            inArray2[j] = dictionary.search(inArray[j]);
-//
-//                                            inp = inp + inArray2[j] + " ";
-//
-//
-//                                        }
-//                                        operations.splitInput(inp);
-//                                    }
-//                                    operations.removeWord();
-//                                    operations.search();
-//                                    emCal.searchEmotion();
-//                                    emCal.emotionCalc(stage);
-//                                    emCal.DataOutputStream();
-//
-//                                } catch (Exception ea) {
-//                                    System.out.println("");
-//                                }
-//                                emCal.VisualOutput(stage);
-//
-//                                break;
-//                            }
-//                        }
-//
-//                    }
-//
-//                }
-//        );
-//
-//        Button status3 = new Button("Status 3");
-//        status3.setTranslateX(460);
-//        status3.setTranslateY(620);
-//        status3.setStyle("-fx-padding: 8 15 15 15;\n" +
-//                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-//                "    -fx-background-radius: 8;\n" +
-//                "    -fx-background-color: \n" +
-//                "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
-//                "        #030B21,\n" +
-//                "        #0B2058,\n" +
-//                "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
-//                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-//                "    -fx-font-weight: bold;\n" +
-//                "    -fx-font-size: 1.5em;");
-//        status3.setPrefSize(100, 30);
-//        status3.setTextFill(Color.WHITE);
-//
-//
-//
-//
-//
-//
-//        status3.setOnAction(e->
-//                {
-//                    Operations operations = new Operations();
-//
-//
-//                    FacebookClient fbClient = new DefaultFacebookClient(accessToken);
-//                    //   FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("668106823992484 ", "f63f747f31e390a44f93891920364794");
-//
-//                    Connection<Post> result;
-//                    result = fbClient.fetchConnection("me/feed", Post.class);
-//
-//
-//                    String userInput = null;
-//                    EmotionCalculation emCal = new EmotionCalculation();
-//                    emCal.fileOpen();
-//                    int counter=0;
-//                    for (List<Post> apost : result) {
-//                        for (Post aPost : apost) {
-//                            counter++;
-//                            if (counter == 3) {
-//
-//                                try {
-//                                    int number=aPost.getMessage().length();
-//                                    s=aPost.getMessage().substring(0,number/16);
-//                                    s+=aPost.getMessage().substring((number/16)+1,number/8);
-//                                    s+="\n";
-//                                    s+=aPost.getMessage().substring((number/8)+1,number/4);
-//                                    s+="\n";
-//                                    s+=aPost.getMessage().substring((number/4)+1,number/2);
-//                                    s+="\n";
-//                                    s+=aPost.getMessage().substring((number/2)+1,number);
-//                                    s+="\n";
-//                                    //     s+=aPost.getMessage().substring(2100,number);
-//
-//
-//
-//
-//                                    char c;
-//                                    c = aPost.getMessage().charAt(0);
-//                                    char d;
-//                                    d=aPost.getMessage().charAt(1);
-//
-//                                    if (((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') )&&((d >= 'a' && d <= 'z') || (d >= 'A' && d <= 'Z'))) {
-//
-//                                        operations.splitInput(aPost.getMessage());
-//                                        aPost.getMessage().replaceAll(aPost.getMessage(), "");
-//
-//
-//
-//                                    } else {
-//                                        System.out.println("The Post is Bangla");
-//                                        OperationsBangla operationsBangla = new OperationsBangla();
-//                                        operationsBangla.splitInputBangla();
-//                                        String[] inArray = null;
-//                                        String[] inArray2 = new String[10000];
-//                                        Dictionary dictionary = new Dictionary("src/sample/spl1/Translation.txt");
-//
-//                                        inArray = aPost.getMessage().split("[ ,/;>.*'|\"(){+></@$%^&_=}]", 0);
-//
-//                                        aPost.getMessage().replaceAll(aPost.getMessage(), "");
-//                                        for (int j = 0; j < inArray.length; j++) {
-//                                            inArray2[j] = operationsBangla.searchBan(inArray[j]);
-//                                        }
-//                                        String inp = "";
-//                                        for (int j = 0; j < inArray.length; j++) {
-//                                            inArray2[j] = dictionary.search(inArray[j]);
-//
-//                                            inp = inp + inArray2[j] + " ";
-//
-//
-//                                        }
-//                                        operations.splitInput(inp);
-//                                    }
-//                                    operations.removeWord();
-//                                    operations.search();
-//                                    emCal.searchEmotion();
-//                                    emCal.emotionCalc(stage);
-//                                    emCal.DataOutputStream();
-//
-//                                } catch (Exception ea) {
-//                                    System.out.println("");
-//                                }
-//                                emCal.VisualOutput(stage);
-//
-//                                break;
-//                            }
-//                        }
-//
-//                    }
-//
-//                }
-//        );
-//
-//        Button status4 = new Button("Status 4");
-//        status4.setTranslateX(640);
-//        status4.setTranslateY(620);
-//        status4.setStyle("-fx-padding: 8 15 15 15;\n" +
-//                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-//                "    -fx-background-radius: 8;\n" +
-//                "    -fx-background-color: \n" +
-//                "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
-//                "        #030B21,\n" +
-//                "        #0B2058,\n" +
-//                "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
-//                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-//                "    -fx-font-weight: bold;\n" +
-//                "    -fx-font-size: 1.5em;");
-//        status4.setPrefSize(100, 30);
-//        status4.setTextFill(Color.WHITE);
-//
-//
-//
-//
-//
-//
-//        status4.setOnAction(e->
-//                {
-//                    Operations operations = new Operations();
-//
-//
-//                    FacebookClient fbClient = new DefaultFacebookClient(accessToken);
-//                    //   FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("668106823992484 ", "f63f747f31e390a44f93891920364794");
-//
-//                    Connection<Post> result;
-//                    result = fbClient.fetchConnection("me/feed", Post.class);
-//
-//
-//                    String userInput = null;
-//                    EmotionCalculation emCal = new EmotionCalculation();
-//                    emCal.fileOpen();
-//                    int counter=0;
-//                    for (List<Post> apost : result) {
-//                        for (Post aPost : apost) {
-//                            counter++;
-//                            if (counter == 4) {
-//
-//                                try {
-//                                    int number=aPost.getMessage().length();
-//                                    s=aPost.getMessage().substring(0,number/16);
-//                                    s+=aPost.getMessage().substring((number/16)+1,number/8);
-//                                    s+="\n";
-//                                    s+=aPost.getMessage().substring((number/8)+1,number/4);
-//                                    s+="\n";
-//                                    s+=aPost.getMessage().substring((number/4)+1,number/2);
-//                                    s+="\n";
-//                                    s+=aPost.getMessage().substring((number/2)+1,number);
-//                                    s+="\n";
-//                                    //     s+=aPost.getMessage().substring(2100,number);
-//
-//
-//
-//
-//                                    char c;
-//                                    c = aPost.getMessage().charAt(0);
-//                                    char d;
-//                                    d=aPost.getMessage().charAt(1);
-//
-//                                    if (((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') )&&((d >= 'a' && d <= 'z') || (d >= 'A' && d <= 'Z'))) {
-//
-//                                        operations.splitInput(aPost.getMessage());
-//                                        aPost.getMessage().replaceAll(aPost.getMessage(), "");
-//
-//
-//
-//                                    } else {
-//                                        System.out.println("The Post is Bangla");
-//                                        OperationsBangla operationsBangla = new OperationsBangla();
-//                                        operationsBangla.splitInputBangla();
-//                                        String[] inArray = null;
-//                                        String[] inArray2 = new String[10000];
-//                                        Dictionary dictionary = new Dictionary("src/sample/spl1/Translation.txt");
-//
-//                                        inArray = aPost.getMessage().split("[ ,/;>.*'|\"(){+></@$%^&_=}]", 0);
-//
-//                                        aPost.getMessage().replaceAll(aPost.getMessage(), "");
-//                                        for (int j = 0; j < inArray.length; j++) {
-//                                            inArray2[j] = operationsBangla.searchBan(inArray[j]);
-//                                        }
-//                                        String inp = "";
-//                                        for (int j = 0; j < inArray.length; j++) {
-//                                            inArray2[j] = dictionary.search(inArray[j]);
-//
-//                                            inp = inp + inArray2[j] + " ";
-//
-//
-//                                        }
-//                                        operations.splitInput(inp);
-//                                    }
-//                                    operations.removeWord();
-//                                    operations.search();
-//                                    emCal.searchEmotion();
-//                                    emCal.emotionCalc(stage);
-//                                    emCal.DataOutputStream();
-//
-//                                } catch (Exception ea) {
-//                                    System.out.println("");
-//                                }
-//                                emCal.VisualOutput(stage);
-//
-//                                break;
-//                            }
-//                        }
-//
-//                    }
-//
-//                }
-//        );
-//
-//        Button status5 = new Button("Status 5");
-//        status5.setTranslateX(820);
-//        status5.setTranslateY(620);
-//        status5.setStyle("-fx-padding: 8 15 15 15;\n" +
-//                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-//                "    -fx-background-radius: 8;\n" +
-//                "    -fx-background-color: \n" +
-//                "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
-//                "        #030B21,\n" +
-//                "        #0B2058,\n" +
-//                "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
-//                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-//                "    -fx-font-weight: bold;\n" +
-//                "    -fx-font-size: 1.5em;");
-//        status5.setPrefSize(100, 30);
-//        status5.setTextFill(Color.WHITE);
-//
-//
-//
-//
-//
-//
-//        status5.setOnAction(e->
-//                {
-//                    Operations operations = new Operations();
-//
-//
-//                    FacebookClient fbClient = new DefaultFacebookClient(accessToken);
-//                    //   FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("668106823992484 ", "f63f747f31e390a44f93891920364794");
-//
-//                    Connection<Post> result;
-//                    result = fbClient.fetchConnection("me/feed", Post.class);
-//
-//
-//                    String userInput = null;
-//                    EmotionCalculation emCal = new EmotionCalculation();
-//                    emCal.fileOpen();
-//                    int counter=0;
-//                    for (List<Post> apost : result) {
-//                        for (Post aPost : apost) {
-//                            counter++;
-//                            if (counter == 5) {
-//
-//                                try {
-//                                    int number=aPost.getMessage().length();
-//                                    s=aPost.getMessage().substring(0,number/16);
-//                                    s+=aPost.getMessage().substring((number/16)+1,number/8);
-//                                    s+="\n";
-//                                    s+=aPost.getMessage().substring((number/8)+1,number/4);
-//                                    s+="\n";
-//                                    s+=aPost.getMessage().substring((number/4)+1,number/2);
-//                                    s+="\n";
-//                                    s+=aPost.getMessage().substring((number/2)+1,number);
-//                                    s+="\n";
-//                                    //     s+=aPost.getMessage().substring(2100,number);
-//
-//
-//
-//
-//                                    char c;
-//                                    c = aPost.getMessage().charAt(0);
-//                                    char d;
-//                                    d=aPost.getMessage().charAt(1);
-//
-//                                    if (((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') )&&((d >= 'a' && d <= 'z') || (d >= 'A' && d <= 'Z'))) {
-//
-//                                        operations.splitInput(aPost.getMessage());
-//                                        aPost.getMessage().replaceAll(aPost.getMessage(), "");
-//
-//
-//
-//                                    } else {
-//                                        System.out.println("The Post is Bangla");
-//                                        OperationsBangla operationsBangla = new OperationsBangla();
-//                                        operationsBangla.splitInputBangla();
-//                                        String[] inArray = null;
-//                                        String[] inArray2 = new String[10000];
-//                                        Dictionary dictionary = new Dictionary("src/sample/spl1/Translation.txt");
-//
-//                                        inArray = aPost.getMessage().split("[ ,/;>.*'|\"(){+></@$%^&_=}]", 0);
-//
-//                                        aPost.getMessage().replaceAll(aPost.getMessage(), "");
-//                                        for (int j = 0; j < inArray.length; j++) {
-//                                            inArray2[j] = operationsBangla.searchBan(inArray[j]);
-//                                        }
-//                                        String inp = "";
-//                                        for (int j = 0; j < inArray.length; j++) {
-//                                            inArray2[j] = dictionary.search(inArray[j]);
-//
-//                                            inp = inp + inArray2[j] + " ";
-//
-//
-//                                        }
-//                                        operations.splitInput(inp);
-//                                    }
-//                                    operations.removeWord();
-//                                    operations.search();
-//                                    emCal.searchEmotion();
-//                                    emCal.emotionCalc(stage);
-//                                    emCal.DataOutputStream();
-//
-//                                } catch (Exception ea) {
-//                                    System.out.println("");
-//                                }
-//                                emCal.VisualOutput(stage);
-//
-//                                break;
-//                            }
-//                        }
-//
-//                    }
-//
-//                }
-//        );
-//
-//        Button status6 = new Button("Status 6");
-//        status6.setTranslateX(1070);
-//        status6.setTranslateY(620);
-//        status6.setStyle("-fx-padding: 8 15 15 15;\n" +
-//                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-//                "    -fx-background-radius: 8;\n" +
-//                "    -fx-background-color: \n" +
-//                "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
-//                "        #030B21,\n" +
-//                "        #0B2058,\n" +
-//                "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
-//                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-//                "    -fx-font-weight: bold;\n" +
-//                "    -fx-font-size: 1.5em;");
-//        status6.setPrefSize(100, 30);
-//        status6.setTextFill(Color.WHITE);
-//
-//
-//
-//
-//
-//
-//        status6.setOnAction(e->
-//                {
-//                    Operations operations = new Operations();
-//
-//
-//                    FacebookClient fbClient = new DefaultFacebookClient(accessToken);
-//                    //   FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("668106823992484 ", "f63f747f31e390a44f93891920364794");
-//
-//                    Connection<Post> result;
-//                    result = fbClient.fetchConnection("me/feed", Post.class);
-//
-//
-//                    String userInput = null;
-//                    EmotionCalculation emCal = new EmotionCalculation();
-//                    emCal.fileOpen();
-//                    int counter=0;
-//                    for (List<Post> apost : result) {
-//                        for (Post aPost : apost) {
-//                            counter++;
-//                            if (counter == 6) {
-//
-//                                try {
-//                                    int number=aPost.getMessage().length();
-//                                    s=aPost.getMessage().substring(0,number/16);
-//                                    s+=aPost.getMessage().substring((number/16)+1,number/8);
-//                                    s+="\n";
-//                                    s+=aPost.getMessage().substring((number/8)+1,number/4);
-//                                    s+="\n";
-//                                    s+=aPost.getMessage().substring((number/4)+1,number/2);
-//                                    s+="\n";
-//                                    s+=aPost.getMessage().substring((number/2)+1,number);
-//                                    s+="\n";
-//                                    //     s+=aPost.getMessage().substring(2100,number);
-//
-//
-//
-//
-//                                    char c;
-//                                    c = aPost.getMessage().charAt(0);
-//                                    char d;
-//                                    d=aPost.getMessage().charAt(1);
-//
-//                                    if (((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') )&&((d >= 'a' && d <= 'z') || (d >= 'A' && d <= 'Z'))) {
-//
-//                                        operations.splitInput(aPost.getMessage());
-//                                        aPost.getMessage().replaceAll(aPost.getMessage(), "");
-//
-//
-//
-//                                    } else {
-//                                        System.out.println("The Post is Bangla");
-//                                        OperationsBangla operationsBangla = new OperationsBangla();
-//                                        operationsBangla.splitInputBangla();
-//                                        String[] inArray = null;
-//                                        String[] inArray2 = new String[10000];
-//                                        Dictionary dictionary = new Dictionary("src/sample/spl1/Translation.txt");
-//
-//                                        inArray = aPost.getMessage().split("[ ,/;>.*'|\"(){+></@$%^&_=}]", 0);
-//
-//                                        aPost.getMessage().replaceAll(aPost.getMessage(), "");
-//                                        for (int j = 0; j < inArray.length; j++) {
-//                                            inArray2[j] = operationsBangla.searchBan(inArray[j]);
-//                                        }
-//                                        String inp = "";
-//                                        for (int j = 0; j < inArray.length; j++) {
-//                                            inArray2[j] = dictionary.search(inArray[j]);
-//
-//                                            inp = inp + inArray2[j] + " ";
-//
-//
-//                                        }
-//                                        operations.splitInput(inp);
-//                                    }
-//                                    operations.removeWord();
-//                                    operations.search();
-//                                    emCal.searchEmotion();
-//                                    emCal.emotionCalc(stage);
-//                                    emCal.DataOutputStream();
-//
-//                                } catch (Exception ea) {
-//                                    System.out.println("");
-//                                }
-//                                emCal.VisualOutput(stage);
-//
-//                                break;
-//                            }
-//                        }
-//
-//                    }
-//
-//                }
-//        );
-
         CategoryAxis xAxisq = new CategoryAxis();
         xAxisq.setLabel("Status");
 
@@ -947,10 +402,6 @@ public class visualoutputfb {
 
 
         lineChart.getData().addAll(dataSeries1, dataSeries2, dataSeries3, dataSeries4, dataSeries5, dataSeries6, dataSeries7, dataSeries8);
-
-
-
-
         File fileDate = new File("sample/spl1/date.txt");
 
         BufferedReader br = new BufferedReader(new FileReader(file));
@@ -966,152 +417,44 @@ public class visualoutputfb {
 
         }
 
-//
-//
-//        ObservableList<XYChart.Series<String,Double>> lineChartData = FXCollections.observableArrayList(
-//                new LineChart.Series<String,Double>("Joy", FXCollections.observableArrayList(
-//                        new XYChart.Data<String,Double>("Status 1",out[0]),
-//                        new XYChart.Data<String,Double>("Status 2", out[8]),
-//                        new XYChart.Data<String,Double>("Status 3", out[16]),
-//                        new XYChart.Data<String,Double>("Status 4", out[24]),
-//                        new XYChart.Data<String,Double>("Status 5", out[32]),
-//                        new XYChart.Data<String,Double>("Status 6", out[40])
-//
-//                )),
-//                new LineChart.Series<String,Double>("Surprise", FXCollections.observableArrayList(
-//                        new XYChart.Data<String,Double>("Status 1", out[1]),
-//                        new XYChart.Data<String,Double>("Status 2", out[9]),
-//                        new XYChart.Data<String,Double>("Status 3", out[17]),
-//                        new XYChart.Data<String,Double>("Status 4", out[25]),
-//                        new XYChart.Data<String,Double>("Status 5", out[33]),
-//                        new XYChart.Data<String,Double>("Status 6", out[41])
-//
-//                )),
-//                new LineChart.Series<String,Double>("Fear", FXCollections.observableArrayList(
-//                        new XYChart.Data<String,Double>("Status 1",out[2]),
-//                        new XYChart.Data<String,Double>("Status 2", out[10]),
-//                        new XYChart.Data<String,Double>("Status 3", out[18]),
-//                        new XYChart.Data<String,Double>("Status 4", out[26]),
-//                        new XYChart.Data<String,Double>("Status 5", out[34]),
-//                        new XYChart.Data<String,Double>("Status 6", out[42])
-//
-//                )),
-//                new LineChart.Series<String,Double>("Sadness", FXCollections.observableArrayList(
-//                        new XYChart.Data<String,Double>("Status 1",out[3]),
-//                        new XYChart.Data<String,Double>("Status 2", out[11]),
-//                        new XYChart.Data<String,Double>("Status 3", out[19]),
-//                        new XYChart.Data<String,Double>("Status 4", out[27]),
-//                        new XYChart.Data<String,Double>("Status 5", out[35]),
-//                        new XYChart.Data<String,Double>("Status 6", out[43])
-//
-//                )),
-//                new LineChart.Series<String,Double>("Trust", FXCollections.observableArrayList(
-//                        new XYChart.Data<String,Double>("Status 1",out[4]),
-//                        new XYChart.Data<String,Double>("Status 2", out[12]),
-//                        new XYChart.Data<String,Double>("Status 3", out[20]),
-//                        new XYChart.Data<String,Double>("Status 4", out[28]),
-//                        new XYChart.Data<String,Double>("Status 5", out[36]),
-//                        new XYChart.Data<String,Double>("Status 6", out[44])
-//                )),
-//
-//                new LineChart.Series<String,Double>("Disgust", FXCollections.observableArrayList(
-//                        new XYChart.Data<String,Double>("Status 1",out[5]),
-//                        new XYChart.Data<String,Double>("Status 2", out[13]),
-//                        new XYChart.Data<String,Double>("Status 3", out[21]),
-//                        new XYChart.Data<String,Double>("Status 4", out[29]),
-//                        new XYChart.Data<String,Double>("Status 5", out[37]),
-//                        new XYChart.Data<String,Double>("Status 6", out[45])
-//
-//                )),
-//
-//                new LineChart.Series<String,Double>("anticipation", FXCollections.observableArrayList(
-//                        new XYChart.Data<String,Double>("Status 1",out[6]),
-//                        new XYChart.Data<String,Double>("Status 2", out[14]),
-//                        new XYChart.Data<String,Double>("Status 3", out[22]),
-//                        new XYChart.Data<String,Double>("Status 4", out[30]),
-//                        new XYChart.Data<String,Double>("Status 5", out[38]),
-//                        new XYChart.Data<String,Double>("Status 6", out[46])
-//
-//                )),
-//
-//                new LineChart.Series<String,Double>("Anger", FXCollections.observableArrayList(
-//                        new XYChart.Data<String,Double>("Status 1",out[7]),
-//                        new XYChart.Data<String,Double>("Status 2", out[15]),
-//                        new XYChart.Data<String,Double>("Status 3", out[23]),
-//                        new XYChart.Data<String,Double>("Status 4", out[31]),
-//                        new XYChart.Data<String,Double>("Status 5", out[39]),
-//                        new XYChart.Data<String,Double>("Status 6", out[47])
-//
-//                ))
-//        );
-
-
-        for (int s = 0, t = 1; t <= 15; s += 8, t++) {
-            sentimentPos[t] = out[s] + out[s + 1] + out[s + 4] + out[s + 6];
-        }
-
-        for (int s = 0, t = 1; t <= 15; s += 8, t++) {
-            sentimentNeg[t] = out[s + 2] + out[s + 3] + out[s + 5] + out[s + 7];
-        }
-        for (int t = 1; t <= 15; t++) sentimentTot[t] = sentimentPos[t] - sentimentNeg[t];
-
-        tempTotal = 0;
-        for (int t = 1; t <= 15; t++) tempTotal += sentimentTot[t];
-        tempTotal /= 10;
 
         //LineChart chart = new LineChart(xAxis, yAxis, lineChart);
         lineChart.setPrefSize(1200, 700);
 
-
-        Button moreSenti = new Button("Final Report");
-        moreSenti.setTranslateX(450);
-        moreSenti.setTranslateY(700);
-        moreSenti.setStyle("-fx-padding: 8 15 15 15;\n" +
-                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                "    -fx-background-radius: 8;\n" +
-                "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
-                "        #030B21,\n" +
-                "        #0B2058,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
-                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 1.5em;");
-        moreSenti.setPrefSize(360, 40);
-        moreSenti.setTextFill(Color.WHITE);
-        double finalTempTotal = tempTotal;
-        moreSenti.setOnAction(e ->
-        {
-            finalReport fr=new finalReport(stage,accessToken,sentimentTot,finalTempTotal);
-        //    fr.finalreport();
-
-        });
+//
+//        Button moreSenti = new Button("Final Report");
+//        moreSenti.setTranslateX(450);
+//        moreSenti.setTranslateY(700);
+//        moreSenti.setPrefSize(360, 40);
+//        moreSenti.setTextFill(Color.WHITE);
+//
+//        moreSenti.setOnAction(e ->
+//        {
+//            finalReport fr=new finalReport(stage,accessToken,sentimentTot,finalTempTotal);
+//          });
 
 
         //   root.getChildren().addAll(canvas,lineChart,more,status2,status3,status4,status5,status6,moreSenti);
-        root.getChildren().addAll(canvas, lineChart, more, moreSenti);
+        root.getChildren().addAll(canvas, lineChart, more);
 
 
     }
 
-
-    public static LineChart setStyle(LineChart b) {
-        b.setStyle(".default-color0.chart-series-line { -fx-stroke: transparent; }\n" +
-                ".default-color1.chart-series-line { -fx-stroke: red; }\n" +
-                "\n" +
-                ".default-color0.chart-line-symbol { \n" +
-                "    -fx-background-color: white, green; \n" +
-                "}\n" +
-                ".default-color1.chart-line-symbol { \n" +
-                "    -fx-background-color: transparent, transparent; \n" +
-                "}\n" +
-                "\n" +
-                ".default-color0.chart-legend-item-symbol{\n" +
-                "    -fx-background-color: green;\n" +
-                " }\n" +
-                ".default-color1.chart-legend-item-symbol{\n" +
-                "    -fx-background-color: red;\n" +
-                " }");
+    public Button setStyle ( Button b)
+    {
+        b.setStyle("-fx-background-color: \n" +
+                "        linear-gradient(\t#FFFFFF, \t#FFFFFF),\n" +
+                "        linear-gradient(#FFFFFF, #FFFFFF),\n" +
+                "        linear-gradient(\t#FFFFFF, #efaa22),\n" +
+                "        linear-gradient(#ffe657 0%, #3CF53C 50%, #1ED71E 100%),\n" +
+                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
+                "    -fx-background-radius: 30;\n" +
+                "    -fx-background-insets: 0,1,2,3,0;\n" +
+                "    -fx-text-fill: #654b00;\n" +
+                "    -fx-font-weight: bold;\n" +
+                "    -fx-font-size: 2.1em;\n" +
+                "    -fx-padding: 10 20 10 20;");
         return b;
     }
+
 }

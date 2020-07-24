@@ -1,7 +1,5 @@
 package sample.spl1;
 
-
-
 import demo.sphinx.helloworld.HelloWorld;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -11,62 +9,49 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.languageClassification.Language;
 import sample.languageClassification.biLingual;
+import sample.spl1.emotioncal.EmotionProfile;
+import sample.visualOut.Progression;
 import sample.visualOut.accessToken;
 
-import java.io.FileWriter;
-
-public class thirdPage {
-    public void app(Stage stage,String Name)
+public class AnalysisPage {
+    private Stage stage;
+    private String Name;
+    private String accessToken;
+    public  AnalysisPage (Stage stage,String Name)
     {
-        Text headning = new Text("Entry Section");
-        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
-        headning.setScaleX(5);
-        headning.setScaleY(5);
-        headning.setTranslateX(630);
-        headning.setTranslateY(70);
-        headning.setFill(Color.rgb(21, 27, 81  ));
+        this.stage=stage;
+        this.Name=Name;
 
+    }
+    public void analysis()
+    {
 
+        Button reactionPrediction = new Button("");
+        reactionPrediction.setTranslateX(900);
+        reactionPrediction.setTranslateY(170);
+        setStyle2(reactionPrediction);
+        //  socialMedia.setPrefSize(300, 80);
+        reactionPrediction.setTextFill(Color.WHITE);
+        reactionPrediction.setGraphic(new ImageView("Pictures/1x/reaction.jpg"));
 
-        Button socialMedia = new Button("");
-        socialMedia.setTranslateX(900);
-        socialMedia.setTranslateY(170);
-        setStyle2(socialMedia);
-      //  socialMedia.setPrefSize(300, 80);
-        socialMedia.setTextFill(Color.WHITE);
-        socialMedia.setGraphic(new ImageView("Pictures/1x/social_facebook_button_blue.png"));
-
-        Button article = new Button("");
-        article.setTranslateX(650);
-        article.setTranslateY(400);
-        setStyle2(article);
-      //  article.setPrefSize(300, 80);
-        article.setTextFill(Color.WHITE);
-        article.setGraphic(new ImageView("Pictures/1x/images.png"));
-
-
-        Button liveUrl = new Button("");
-        liveUrl.setTranslateX(650);
-        liveUrl.setTranslateY(170);
-        setStyle2(liveUrl);
-       // liveUrl.setPrefSize(300, 80);
-        liveUrl.setTextFill(Color.WHITE);
-        liveUrl.setGraphic(new ImageView("Pictures/1x/482401.png"));
-
-
-        Button analysis = new Button("");
-        analysis.setTranslateX(900);
-        analysis.setTranslateY(400);
-        setStyle2(analysis);
+        Button visualization = new Button("");
+        visualization.setTranslateX(650);
+        visualization.setTranslateY(400);
+        setStyle2(visualization);
         //  article.setPrefSize(300, 80);
-        analysis.setTextFill(Color.WHITE);
-        analysis.setGraphic(new ImageView("Pictures/1x/analysis.png"));
+        visualization.setTextFill(Color.WHITE);
+        visualization.setGraphic(new ImageView("Pictures/1x/visualizaton.png"));
+
+        Button finalReport = new Button("");
+        finalReport.setTranslateX(650);
+        finalReport.setTranslateY(170);
+        setStyle2(finalReport);
+        // liveUrl.setPrefSize(300, 80);
+        finalReport.setTextFill(Color.WHITE);
+        finalReport.setGraphic(new ImageView("Pictures/1x/finalReport.png"));
 
 
         Button pro = new Button("Experiment");
@@ -100,15 +85,7 @@ public class thirdPage {
         back.setPrefSize(1, 5);
         back.setTextFill(Color.YELLOW);
 
-        analysis.setOnAction(e -> {
-            try {
-                AnalysisPage ap=new AnalysisPage(stage,Name);
-                ap.analysis();
 
-            } catch (Exception excep) {
-                excep.printStackTrace();
-            }
-        });
 
 
         application.setOnAction(e -> {
@@ -151,8 +128,8 @@ public class thirdPage {
 
         back.setOnAction(esb->{
             try {
-                secondPage goBack = new secondPage();
-                goBack.TheSecond(stage);
+                fourthPage goBack = new fourthPage();
+                goBack.runs(stage,accessToken,Name);
             }catch (Exception ex)
             {
                 ex.printStackTrace();
@@ -160,37 +137,35 @@ public class thirdPage {
         });
 
 
-        article.setOnAction(e->{
-            try {
-                biLingual bl =new biLingual(stage,Name);
-            }catch (Exception ex)
-            {
-                ex.printStackTrace();
-            }
-        });
+
 
 
 
         Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-0-3.jpg").toString(), true);
         Pane root = new Pane();
 
-        root.getChildren().addAll(socialMedia,back,article,liveUrl,pro,others,application,analysis);
+        root.getChildren().addAll(visualization,back,reactionPrediction,finalReport,pro,others,application);
 
-        socialMedia.setOnAction(e -> {
-            try
-            {
-               accessToken at=new accessToken();
-            String  tok= at.token(stage,Name,0);
-            }catch (Exception ea)
-            {
-                System.out.println("Fourth Page Problem");
+
+        visualization.setOnAction(e->{
+            try {
+                EmotionProfile emp=new EmotionProfile(Name,stage);
+                emp.profileScore();
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-
         });
-        liveUrl.setOnAction(e -> {
-            WebPage wb=new WebPage();
-            wb.web(stage,Name);
 
+        reactionPrediction.setOnAction(e -> {
+            {
+                accessToken at=new accessToken();
+                 accessToken= at.token(stage,Name,1);
+            }
+        });
+
+        finalReport.setOnAction(e -> {
+            accessToken at=new accessToken();
+            accessToken= at.token(stage,Name,2);
         });
 
         Canvas canvas = new Canvas(1400,750);
@@ -204,13 +179,11 @@ public class thirdPage {
         Background bg = new Background(bi);
         root.setBackground(bg);
 
-
         Scene scene = new Scene(root, 1400, 750);
         stage.setScene(scene);
-        //stage.setFullScreen(true);
         stage.show();
-    }
 
+    }
     public Button setStyle ( Button b)
     {
         b.setStyle("-fx-background-color: \n" +
@@ -245,5 +218,5 @@ public class thirdPage {
         return b;
     }
 
-}
 
+}

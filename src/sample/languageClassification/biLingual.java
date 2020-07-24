@@ -165,7 +165,6 @@ public class biLingual {
 
 
         try {
-            primaryStage.setTitle("Text Input");
 
             TextArea textFields = new TextArea();
 
@@ -179,12 +178,12 @@ public class biLingual {
             try {
                 Text headning = new Text("TEXT INPUT");
                 headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 11));
-                headning.setFill(Color.DARKBLUE);
+                headning.setFill(Color.WHITE);
                 headning.setScaleX(6);
                 headning.setScaleY(6);
-                headning.setTranslateX(650);
+                headning.setTranslateX(850);
                 headning.setTranslateY(90);
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("emotion(16-9).png").toString(), true);
+                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-0-3.jpg").toString(), true);
                 Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);
@@ -233,13 +232,6 @@ public class biLingual {
                     ex.printStackTrace();
                 }
 
-
-                //     while ((inputStringBan = in.readLine()) != null) {
-                //     while (nameInput.getText() != null) {
-
-                // operations.splitInput(inputStringBan);
-                //     if (inputStringBan.contains("###")) break;
-                //     if( nameInput.getText().contains("###") )break;
                 inArray = textFields.getText().split("[ ,/;>.*'|\"(){+></@$%^&_=}]", 0);
 
                 for (int j = 0; j < inArray.length; j++) {
@@ -252,17 +244,9 @@ public class biLingual {
 
 
                     inArray2[j] = dictionary.search(inArray[j]);
-                    //  inListBan.add(inArray2[j]);
-
-                    //   System.out.print(inArray2[4]+" ");
 
                     inp = inp + inArray2[j] + " ";
-
-
                 }
-
-
-                //        System.out.println("\n\n\nTotal input in Bilingual is :"+inp);
                 try {
                     operations.splitInput(inp);
                 } catch (FileNotFoundException ex) {
@@ -295,9 +279,6 @@ public class biLingual {
                     ex.printStackTrace();
                 }
 
-
-
-                //     System.out.println("\n"+textFields.getText());
             });
 
         } catch (Exception excep) {
@@ -325,12 +306,12 @@ public    biLingual(Stage primaryStage)
             try {
                 Text headning = new Text("TEXT INPUT");
                 headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 11));
-                headning.setFill(Color.rgb(237, 134, 18));
+                headning.setFill(Color.WHITE);
                 headning.setScaleX(6);
                 headning.setScaleY(6);
-                headning.setTranslateX(650);
+                headning.setTranslateX(850);
                 headning.setTranslateY(90);
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("emotion(16-9).png").toString(), true);
+                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-0-3.jpg").toString(), true);
                 Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);
@@ -378,37 +359,19 @@ public    biLingual(Stage primaryStage)
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-
-
-                //     while ((inputStringBan = in.readLine()) != null) {
-                //     while (nameInput.getText() != null) {
-
-                // operations.splitInput(inputStringBan);
-                //     if (inputStringBan.contains("###")) break;
-                //     if( nameInput.getText().contains("###") )break;
                 inArray = textFields.getText().split("[ ,/;>.*'|\"(){+></@$%^&_=}]", 0);
 
                 for (int j = 0; j < inArray.length; j++) {
-                    //    System.out.println("askdas");
-                    inArray2[j] = operationsBangla.searchBan(inArray[j]);
-                    //    System.out.print("Bangla Language is ###################"+inArray2[j] + " ");
-                }
+                    inArray2[j] = operationsBangla.searchBan(inArray[j]);                }
                 String inp = "";
                 for (int j = 0; j < inArray.length; j++) {
 
 
                     inArray2[j] = dictionary.search(inArray[j]);
-                    //  inListBan.add(inArray2[j]);
-
-                    //   System.out.print(inArray2[4]+" ");
-
                     inp = inp + inArray2[j] + " ";
 
 
                 }
-
-
-                //        System.out.println("\n\n\nTotal input in Bilingual is :"+inp);
                 try {
                     operations.splitInput(inp);
                 } catch (FileNotFoundException ex) {
@@ -440,10 +403,6 @@ public    biLingual(Stage primaryStage)
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-
-
-
-                //     System.out.println("\n"+textFields.getText());
             });
 
         } catch (Exception excep) {
@@ -454,10 +413,10 @@ public    biLingual(Stage primaryStage)
     public Button setStyle ( Button b)
     {
         b.setStyle("-fx-background-color: \n" +
-                "        linear-gradient(#ffd65b, #e68400),\n" +
-                "        linear-gradient(#ffef84, #f2ba44),\n" +
-                "        linear-gradient(#ffea6a, #efaa22),\n" +
-                "        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\n" +
+                "        linear-gradient(\t#FFFFFF, \t#FFFFFF),\n" +
+                "        linear-gradient(#FFFFFF, #FFFFFF),\n" +
+                "        linear-gradient(\t#FFFFFF, #efaa22),\n" +
+                "        linear-gradient(#ffe657 0%, #3CF53C 50%, #1ED71E 100%),\n" +
                 "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
                 "    -fx-background-radius: 30;\n" +
                 "    -fx-background-insets: 0,1,2,3,0;\n" +
@@ -467,5 +426,4 @@ public    biLingual(Stage primaryStage)
                 "    -fx-padding: 10 20 10 20;");
         return b;
     }
-
 }
