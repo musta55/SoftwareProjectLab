@@ -1,9 +1,7 @@
 package sample.spl1;
 
-import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
-import com.restfb.types.Post;
 import demo.sphinx.helloworld.HelloWorld;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -14,13 +12,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import sample.languageClassification.Language;
-import sample.spl1.emotioncal.EmotionCalculation;
-import sample.visualOut.Progression;
-import sample.visualOut.overAll;
+import sample.spl1.languageClassification.Language;
+import sample.spl1.login.RegistrationFrormApplication;
+import sample.spl1.visualOut.Progression;
+import sample.spl1.visualOut.overAll;
 
 import java.io.IOException;
-import java.util.List;
 
 public class fourthPage {
 
