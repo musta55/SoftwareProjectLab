@@ -18,9 +18,7 @@ import javafx.stage.Stage;
 import sample.spl1.thirdPage;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Scanner;
