@@ -10,11 +10,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import sample.languageClassification.Language;
-import sample.languageClassification.biLingual;
+import sample.spl1.languageClassification.Language;
 import sample.spl1.emotioncal.EmotionProfile;
-import sample.visualOut.Progression;
-import sample.visualOut.accessToken;
+import sample.spl1.login.RegistrationFrormApplication;
+import sample.spl1.visualOut.accessToken;
 
 public class AnalysisPage {
     private Stage stage;

@@ -1,4 +1,4 @@
-package sample.languageClassification;
+package sample.spl1.languageClassification;
 
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;

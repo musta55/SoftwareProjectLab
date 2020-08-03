@@ -1,4 +1,4 @@
-package sample.spl1;
+package sample.spl1.login;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,6 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import sample.spl1.thirdPage;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -180,9 +181,6 @@ public class RegistrationFrormApplication  {
                     showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter your age");
                     return;
                 }
-
-
-
 
 
 else

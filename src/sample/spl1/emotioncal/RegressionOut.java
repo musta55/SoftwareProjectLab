@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.spl1.firstPost;
-import sample.visualOut.LinearRegression;
+import sample.spl1.visualOut.LinearRegression;
 
 public class RegressionOut {
 

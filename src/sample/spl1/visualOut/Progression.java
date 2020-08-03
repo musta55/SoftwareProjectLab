@@ -1,4 +1,4 @@
-package sample.visualOut;
+package sample.spl1.visualOut;
 
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
@@ -10,9 +10,7 @@ import sample.spl1.Operations;
 import sample.spl1.OperationsBangla;
 import sample.spl1.emotioncal.EmotionCalculation;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

@@ -26,7 +26,6 @@ import java.net.URL;
 
 
 public class Main extends Application {
-    private ImageIcon danPic;
     @Override
     public void start(Stage primaryStage) throws Exception{
 //
@@ -103,12 +102,7 @@ public class Main extends Application {
               BackgroundPosition.DEFAULT,
                BackgroundSize.DEFAULT);
         Background bg = new Background(bi);
-
-    //    Image background = new Image(getClass().getResource("9.jpg").toExternalForm());
             Canvas canvas = new Canvas(1400,750);
-       //     GraphicsContext gc = canvas.getGraphicsContext2D();
-        //   gc.drawImage(background,0,0);
-
         Button speech = new Button("From Speech");
         speech.setTranslateX(830);
         speech.setTranslateY(220);

@@ -1,9 +1,5 @@
-package sample.visualOut;
+package sample.spl1.visualOut;
 
-import com.restfb.Connection;
-import com.restfb.DefaultFacebookClient;
-import com.restfb.FacebookClient;
-import com.restfb.types.Post;
 import javafx.collections.FXCollections;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -22,11 +18,9 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.text.DecimalFormat;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 import sample.spl1.*;
-import sample.spl1.emotioncal.EmotionCalculation;
 
 import static java.lang.Math.abs;
 

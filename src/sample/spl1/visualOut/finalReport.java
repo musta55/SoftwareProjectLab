@@ -1,4 +1,4 @@
-package sample.visualOut;
+package sample.spl1.visualOut;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -10,7 +10,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.spl1.emotioncal.EmotionCalculation;
-import sample.spl1.fourthPage;
 import sample.spl1.thirdPage;
 
 import java.text.DecimalFormat;

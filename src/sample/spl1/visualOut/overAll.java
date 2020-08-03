@@ -1,4 +1,4 @@
-package sample.visualOut;
+package sample.spl1.visualOut;
 
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;

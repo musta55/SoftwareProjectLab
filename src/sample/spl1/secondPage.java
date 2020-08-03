@@ -5,8 +5,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -15,16 +13,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-import org.openqa.selenium.WebDriver;
-import sample.languageClassification.Language;
-import sample.spl1.emotioncal.EmotionCalculation;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import sample.spl1.languageClassification.Language;
+import sample.spl1.login.loginOrReg;
 
 
 public class secondPage {
@@ -75,9 +65,8 @@ public class secondPage {
         application.setOnAction(e -> {
 
             try {
-
-                RegistrationFrormApplication reg=new RegistrationFrormApplication();
-                reg.registration(stage);
+                loginOrReg lr=new loginOrReg();
+                lr.logOrReg(stage);
 
             } catch (Exception excep) {
                 excep.printStackTrace();

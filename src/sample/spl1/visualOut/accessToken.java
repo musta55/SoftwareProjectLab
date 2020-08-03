@@ -1,4 +1,4 @@
-package sample.visualOut;
+package sample.spl1.visualOut;
 
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -12,20 +12,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-import sample.spl1.Operations;
-import sample.spl1.emotioncal.EmotionCalculation;
 import sample.spl1.firstPost;
 import sample.spl1.fourthPage;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
-
-import static demo.sphinx.helloworld.HelloWorld.setStyle;
 
 public class accessToken {
     String tok=null;

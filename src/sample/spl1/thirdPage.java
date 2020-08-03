@@ -15,11 +15,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import sample.languageClassification.Language;
-import sample.languageClassification.biLingual;
-import sample.visualOut.accessToken;
-
-import java.io.FileWriter;
+import sample.spl1.languageClassification.Language;
+import sample.spl1.languageClassification.biLingual;
+import sample.spl1.login.RegistrationFrormApplication;
+import sample.spl1.visualOut.accessToken;
 
 public class thirdPage {
     public void app(Stage stage,String Name)
@@ -35,7 +34,7 @@ public class thirdPage {
 
 
         Button socialMedia = new Button("");
-        socialMedia.setTranslateX(900);
+        socialMedia.setTranslateX(300);
         socialMedia.setTranslateY(170);
         setStyle2(socialMedia);
       //  socialMedia.setPrefSize(300, 80);
@@ -43,7 +42,7 @@ public class thirdPage {
         socialMedia.setGraphic(new ImageView("Pictures/1x/social_facebook_button_blue.png"));
 
         Button article = new Button("");
-        article.setTranslateX(650);
+        article.setTranslateX(50);
         article.setTranslateY(400);
         setStyle2(article);
       //  article.setPrefSize(300, 80);
@@ -52,7 +51,7 @@ public class thirdPage {
 
 
         Button liveUrl = new Button("");
-        liveUrl.setTranslateX(650);
+        liveUrl.setTranslateX(50);
         liveUrl.setTranslateY(170);
         setStyle2(liveUrl);
        // liveUrl.setPrefSize(300, 80);
@@ -61,7 +60,7 @@ public class thirdPage {
 
 
         Button analysis = new Button("");
-        analysis.setTranslateX(900);
+        analysis.setTranslateX(850);
         analysis.setTranslateY(400);
         setStyle2(analysis);
         //  article.setPrefSize(300, 80);

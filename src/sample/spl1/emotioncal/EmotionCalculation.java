@@ -2,7 +2,6 @@ package sample.spl1.emotioncal;
 
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,21 +9,12 @@ import java.nio.file.StandardOpenOption;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import com.restfb.Connection;
-import com.restfb.DefaultFacebookClient;
-import com.restfb.FacebookClient;
-import com.restfb.types.Post;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -34,10 +24,9 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import sample.spl1.*;
-import sample.visualOut.LinearRegression;
+import sample.spl1.visualOut.LinearRegression;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
