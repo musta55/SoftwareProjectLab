@@ -132,7 +132,7 @@ public void runs(Stage stages,String accessToken,String Name)
             {
                 Progression statusProg =new Progression();
 
-                statusProg.statusProgress(stages,accessToken);
+                statusProg.statusProgress(stages,accessToken,Name);
 
             }
     );
@@ -151,7 +151,7 @@ public void runs(Stage stages,String accessToken,String Name)
     reaction.setOnAction(e->
             {
                 firstPost fp=new firstPost(accessToken);
-                fp.firstpost(stages);
+                fp.firstpost(stages,Name);
             }
     );
 
@@ -159,15 +159,10 @@ public void runs(Stage stages,String accessToken,String Name)
 
     Scene scene = new Scene(roots, 1400, 700);
     stages.setScene(scene);
-    //stages.setFullScreen(true);
+   stages.setFullScreen(true);
     stages.show();
     Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-0-3.jpg").toString(), true);
 
-
-
-    Canvas canvas = new Canvas(1400,750);
-    GraphicsContext gc = canvas.getGraphicsContext2D();
-    //gc.drawImage(background,0,0);
     BackgroundImage bi = new BackgroundImage(background,
             BackgroundRepeat.NO_REPEAT,
             BackgroundRepeat.NO_REPEAT,

@@ -62,13 +62,6 @@ public class EmotionCalculation {
     public ArrayList<String> wordList = new ArrayList<String>();         //Finding emotion from word
     int exClaimCount = 0;
     int intensity;
-    //    public static double JoyCal = 0;
-//    public static double SurpriseCal = 0;
-//    public  static double AngerCal = 0;
-//    public  static double SadnessCal = 0;
-//    public  static double FearCal = 0;
-//    public static  double anticipationCal = 0;
-//    public static  double TrustCal = 0;
     public double JoyCal = 0;
     public double SurpriseCal = 0;
     public double AngerCal = 0;
@@ -463,10 +456,10 @@ public class EmotionCalculation {
 
     }
 
-    public void fileOpen() {
+    public void fileOpen(String Name) {
 
         try {
-            File myObj = new File("src/sample/spl1/out.txt");
+            File myObj = new File(Name);
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
@@ -512,29 +505,16 @@ public class EmotionCalculation {
 
     }
 
-
-
-    public void DataOutputStream() throws IOException {
+    public void DataOutputStream(String Name) throws IOException {
 
 
 
         String[] dbuf = {String.valueOf(JoyCal), String.valueOf(SurpriseCal), String.valueOf(FearCal), String.valueOf(SadnessCal), String.valueOf(TrustCal), String.valueOf(DisgustCal), String.valueOf(anticipationCal), String.valueOf(AngerCal)};
 
-//Double []dbuf={JoyCal,SurpriseCal,FearCal,SadnessCal,TrustCal,DisgustCal,AngerCal};
-
-
-        //   fw.write(dbuf[0]+"#"+dbuf[1]+"#"+dbuf[2]+"#"+dbuf[3]+"#"+dbuf[4]+"#"+dbuf[5]+"#"+dbuf[6]+"#"+dbuf[7]+"#");
-        //    fw.write("Yo Little piece of Shit");
-
-
         try {
-            //  FileWriter fw = new FileWriter("src/sample/spl1/out.txt");
-            Path path = Paths.get("src/sample/spl1/out.txt");
-            //    fw.write("Files in Java might be tricky, but it is fun enough!");
-            //  fw.write(dbuf[0]+"#"+dbuf[1]+"#"+dbuf[2]+"#"+dbuf[3]+"#"+dbuf[4]+"#"+dbuf[5]+"#"+dbuf[6]+"#"+dbuf[7]+"#");
+            Path path = Paths.get(Name);
             String textToAppend = dbuf[0] + " " + dbuf[1] + " " + dbuf[2] + " " + dbuf[3] + " " + dbuf[4] + " " + dbuf[5] + " " + dbuf[6] + " " + dbuf[7] + " ";
             Files.write(path, textToAppend.getBytes(), StandardOpenOption.APPEND);
-            //   fw.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
             System.out.println("An error occurred.");
@@ -542,8 +522,6 @@ public class EmotionCalculation {
         }
 
     }
-
-
 
     public void VisualOutput(Stage stage,String status) {
         Text headning = new Text("Text");
@@ -789,7 +767,7 @@ public class EmotionCalculation {
             try {
 
                 firstPost fp=new firstPost();
-                fp.firstpost(stage);
+                fp.firstpost(stage,Names);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -866,7 +844,7 @@ public class EmotionCalculation {
             try {
 
                 firstPost fp=new firstPost();
-                fp.firstpost(stage);
+                fp.firstpost(stage,Names);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -902,7 +880,7 @@ public class EmotionCalculation {
             try {
 
                 firstPost  fp=new firstPost();
-                fp.firstpost(stage);
+                fp.firstpost(stage,Names);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -1016,7 +994,7 @@ public class EmotionCalculation {
 
         //  setStyle(sc);
 
-        barChart.setPrefSize(1200,600);
+        barChart.setPrefSize(700,600);
         Hyperlink link = new Hyperlink("Click For The Post");
         link.setScaleX(2);
         link.setTranslateX(1060);
@@ -1027,7 +1005,7 @@ public class EmotionCalculation {
         link.setOnAction(e -> {
             System.out.println("Eta asche");
             textField tf=new textField();
-            tf.text(stage,status);
+            tf.text(stage,status,Names);
         });
 
         //Creating a Group object

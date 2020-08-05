@@ -20,15 +20,11 @@ import java.util.List;
 
 public class Progression {
     public static int counter = 0;
-    public void statusProgress(Stage stages,String accessToken)
+    public void statusProgress(Stage stages,String accessToken,String Name)
     {
-
         System.out.println("Progression is :");
         Operations operations = new Operations();
-
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
-        //   FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("668106823992484 ", "f63f747f31e390a44f93891920364794");
-
         Connection<Post> result;
         result = fbClient.fetchConnection("me/feed", Post.class);
 
@@ -39,8 +35,8 @@ public class Progression {
                     break;
                 }
                 EmotionCalculation emCal = new EmotionCalculation();
-
-                emCal.fileOpen();
+                Name+="fb";
+                emCal.fileOpen(Name);
 
                 System.out.println(aPost.getMessage());
                 System.out.println("Post like is :"+aPost.getLikesCount());
@@ -59,43 +55,24 @@ public class Progression {
 
                         aPost.getMessage().replaceAll(aPost.getMessage(), "");
                         for (int j = 0; j < inArray.length; j++) {
-                            //    System.out.println("askdas");
                             inArray2[j] = operationsBangla.searchBan(inArray[j]);
                         }
                         String inp = "";
                         for (int j = 0; j < inArray.length; j++) {
-
-                            //  System.out.print(inArray[j]+" ");
-                            //  System.out.print(dictionary.search(inArray[j])+" ");
                             inArray2[j] = dictionary.search(inArray[j]);
-                            //  inListBan.add(inArray2[j]);
-
-                            //   System.out.print(inArray2[4]+" ");
-
                             inp = inp + inArray2[j] + " ";
-
-
                         }
                         operations.splitInput(inp);
-
-
-                        // inputStringBan = in.readLine();
-                        //  inputStringBan= "আমি সত্য ভালবাসা";
-
-
                         operations.removeWord();
                         operations.search();
-
-
-                        //launch(args);
                         emCal.searchEmotion();
                         emCal.emotionCalc(stages);
-                        emCal.DataOutputStream();
+                        emCal.DataOutputStream(Name);
 
                     System.out.println("Post date is :"+aPost.getCreatedTime());
 
                     try {
-                        Path path = Paths.get("date.txt");
+                        Path path = Paths.get(Name+"date.txt");
                         Files.write(path, (Iterable<? extends CharSequence>) aPost.getCreatedTime(), StandardOpenOption.APPEND);
                         System.out.println("Successfully wrote to the file.");
                     } catch (IOException e) {
@@ -108,11 +85,10 @@ public class Progression {
             }
         }
         try {
-            visualoutputfb.VisualOutputFacebook(stages,accessToken);
+            visualoutputfb.VisualOutputFacebook(stages,accessToken,Name);
         } catch (FileNotFoundException aex) {
             aex.printStackTrace();
         }
     }
-
 
 }

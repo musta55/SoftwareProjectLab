@@ -10,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -32,38 +33,11 @@ public class firstPost {
     {
             this.accessToken=accessToken;
     }
-    public void firstpost(Stage stages)
+    public void firstpost(Stage stages,String Name)
     {
         Pane stat = new Pane();
-        Scene scen = new Scene(stat, 2000, 900);
-
-
-   //     String accessToken = "EAAMF6lCN2rABAL6ZCqIhEAzejYUMuQyccpK5G9Kq1rsvZAghc6Bac8OeVpzL0seJ6BpmaN2FNx5QkIjs7yom44YzruiPdwJISFImQsMAXGt9RG2THGAnaX9WBeBZCq7KBBSQku7pAlXobTZCZCKHThvIGAlePRNXRvekSC2kYJgZDZD ";
-//        FacebookClient fbClient = new DefaultFacebookClient(accessToken);
-//        FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("850928862091952", "ddb4cbe10a995e95acc505c91c9e73d5");
-
-//        System.out.println(exAccessToken.getExpires());
-//        System.out.println(exAccessToken.getAccessToken());
-
-
-
-        Button status1 = new Button("Status 1");
-        status1.setTranslateX(300);
-        status1.setTranslateY(320);
-        status1.setStyle("-fx-background-color: \n" +
-                "        linear-gradient(#ffd65b, #e68400),\n" +
-                "        linear-gradient(#ffef84, #f2ba44),\n" +
-                "        linear-gradient(#ffea6a, #efaa22),\n" +
-                "        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\n" +
-                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
-                "    -fx-background-radius: 30;\n" +
-                "    -fx-background-insets: 0,1,2,3,0;\n" +
-                "    -fx-text-fill: #654b00;\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 2.1em;\n" +
-                "    -fx-padding: 10 20 10 20;");
-        status1.setPrefSize(100, 30);
-        status1.setTextFill(Color.rgb(237, 134, 18));
+        Stage stage =new Stage();
+        Scene scen = new Scene(stat, 700, 500);
 
         int numbers=0;
         TextArea textField = new TextArea();
@@ -77,8 +51,8 @@ public class firstPost {
         Text headning = new Text("Enter Status No.");
         headning.setScaleX(3);
         headning.setScaleY(3);
-        headning.setTranslateX(400);
-        headning.setTranslateY(250);
+        headning.setTranslateX(200);
+        headning.setTranslateY(150);
         headning.setFill(Color.BLACK);
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
 
@@ -86,13 +60,16 @@ public class firstPost {
 
         headning.setCache(true);
 
-        Button back = new Button("Back");
-        back.setTranslateX(1200);
-        back.setTranslateY(350);
+        Button back = new Button("");
+        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+        back.setTranslateX(20);
+        back.setTranslateY(250);
+        back.setPrefSize(1, 5);
+        back.setTextFill(Color.YELLOW);
         back.setStyle("-fx-background-color: \n" +
-                "        linear-gradient(#ffd65b, #e68400),\n" +
+                "        linear-gradient(\t#FFFFFF, \t#FFFFFF),\n" +
                 "        linear-gradient(#ffef84, #f2ba44),\n" +
-                "        linear-gradient(#ffea6a, #efaa22),\n" +
+                "        linear-gradient(\t#FFFFFF, #efaa22),\n" +
                 "        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\n" +
                 "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
                 "    -fx-background-radius: 30;\n" +
@@ -101,13 +78,12 @@ public class firstPost {
                 "    -fx-font-weight: bold;\n" +
                 "    -fx-font-size: 2.1em;\n" +
                 "    -fx-padding: 10 20 10 20;");
-        back.setPrefSize(80, 30);
+     //   back.setPrefSize(80, 30);
 
 
         back.setTextFill(Color.WHITE);
         back.setOnAction(e -> {
             try {
-                String Name=null;
                 fourthPage fp=new fourthPage();
                 fp.runs(stages,accessToken,Name);
             } catch (Exception ex) {
@@ -118,26 +94,24 @@ public class firstPost {
         Button button = new Button("Enter");
         button.setTextFill(Color.WHITE);
         setStyle(button);
-        button.setTranslateX(620);
-        button.setTranslateY(350);
+        button.setTranslateX(420);
+        button.setTranslateY(250);
         button.setPrefSize(150,70);
         button.setOnAction(action -> {
 
                     try {
                         postOne po = new postOne();
-                        po.postone(stages, accessToken, Integer.parseInt(textField.getText())-1);
+                        po.postone(stages, accessToken, Name,Integer.parseInt(textField.getText())-1);
                     } catch (Exception exc) {
                         exc.printStackTrace();
                     }
                 }
             );
 
-        stages.setScene(scen);
-        //    stages.setFullScreen(true);
-        stages.show();
-        stages.setTitle("STATUS 1 With Reaction");
+
+        stage.setTitle("FB Post No");
         stat.getChildren().addAll(button,textField,headning,back);
-        Image background = new Image(getClass().getClassLoader().getResource("src/Pictures/pngfuel.com.png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/pngfuel.com - Copy.png").toString(), true);
 
 
 
@@ -151,7 +125,8 @@ public class firstPost {
                 BackgroundSize.DEFAULT);
         Background bg = new Background(bi);
         stat.setBackground(bg);
-
+        stage.setScene(scen);
+        stage.show();
 
     }
     public Button setStyle ( Button b)

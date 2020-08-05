@@ -23,73 +23,40 @@ import sample.spl1.visualOut.accessToken;
 public class thirdPage {
     public void app(Stage stage,String Name)
     {
-        Text headning = new Text("Entry Section");
-        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
-        headning.setScaleX(5);
-        headning.setScaleY(5);
-        headning.setTranslateX(630);
-        headning.setTranslateY(70);
-        headning.setFill(Color.rgb(21, 27, 81  ));
 
-
-
-        Button socialMedia = new Button("");
-        socialMedia.setTranslateX(300);
+        Button socialMedia = new Button("Social Media");
+        socialMedia.setTranslateX(100);
         socialMedia.setTranslateY(170);
         setStyle2(socialMedia);
-      //  socialMedia.setPrefSize(300, 80);
+        socialMedia.setPrefSize(300, 100);
         socialMedia.setTextFill(Color.WHITE);
         socialMedia.setGraphic(new ImageView("Pictures/1x/social_facebook_button_blue.png"));
 
-        Button article = new Button("");
-        article.setTranslateX(50);
-        article.setTranslateY(400);
+        Button article = new Button("Self Article");
+        article.setTranslateX(100);
+        article.setTranslateY(370);
         setStyle2(article);
-      //  article.setPrefSize(300, 80);
+        article.setPrefSize(300, 100);
         article.setTextFill(Color.WHITE);
         article.setGraphic(new ImageView("Pictures/1x/images.png"));
 
 
-        Button liveUrl = new Button("");
-        liveUrl.setTranslateX(50);
-        liveUrl.setTranslateY(170);
+        Button liveUrl = new Button("Web Article");
+        liveUrl.setTranslateX(100);
+        liveUrl.setTranslateY(570);
         setStyle2(liveUrl);
-       // liveUrl.setPrefSize(300, 80);
+        liveUrl.setPrefSize(300, 100);
         liveUrl.setTextFill(Color.WHITE);
         liveUrl.setGraphic(new ImageView("Pictures/1x/482401.png"));
 
 
         Button analysis = new Button("");
-        analysis.setTranslateX(850);
-        analysis.setTranslateY(400);
+        analysis.setTranslateX(650);
+        analysis.setTranslateY(250);
         setStyle2(analysis);
         //  article.setPrefSize(300, 80);
         analysis.setTextFill(Color.WHITE);
-        analysis.setGraphic(new ImageView("Pictures/1x/analysis.png"));
-
-
-        Button pro = new Button("Experiment");
-        pro.setTranslateX(610);
-        pro.setTranslateY(60);
-        setStyle(pro);
-        pro.setPrefSize(200, 70);
-        pro.setTextFill(Color.WHITE);
-
-
-        Button others = new Button("Others");
-        others.setTranslateX(1180);
-        others.setTranslateY(60);
-        setStyle(others);
-        others.setPrefSize(200, 70);
-        others.setTextFill(Color.WHITE);
-
-        Button application = new Button("Application");
-        application.setTranslateX(895);
-        application.setTranslateY(60);
-        setStyle(application);
-        application.setPrefSize(200, 70);
-        application.setTextFill(Color.WHITE);
-
+        analysis.setGraphic(new ImageView("Pictures/1x/HOW-TO-DESIGN-A-LOGO-new (1).jpg"));
 
 
         Button back = new Button("");
@@ -109,39 +76,6 @@ public class thirdPage {
             }
         });
 
-
-        application.setOnAction(e -> {
-
-            try {
-
-                RegistrationFrormApplication reg=new RegistrationFrormApplication();
-                reg.registration(stage);
-
-            } catch (Exception excep) {
-                excep.printStackTrace();
-            }
-        });
-        others.setOnAction(e -> {
-
-            try {
-                HelloWorld hl=new HelloWorld();
-                hl.speech(stage);
-
-            }
-            catch (Exception excep)
-            {
-                excep.printStackTrace();
-            }
-        });
-
-        pro.setOnAction(e -> {
-            try {
-                Language PMenu = new Language();
-                PMenu.TheThird(stage);
-            } catch (Exception excep) {
-                excep.printStackTrace();
-            }
-        });
 
 
         Pane roots = new Pane();
@@ -170,10 +104,10 @@ public class thirdPage {
 
 
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-0-3.jpg").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9).png").toString(), true);
         Pane root = new Pane();
 
-        root.getChildren().addAll(socialMedia,back,article,liveUrl,pro,others,application,analysis);
+        root.getChildren().addAll(socialMedia,back,article,liveUrl,analysis);
 
         socialMedia.setOnAction(e -> {
             try
@@ -233,7 +167,7 @@ public class thirdPage {
                 "        linear-gradient(\t#FFFFFF, \t#FFFFFF),\n" +
                 "        linear-gradient(#FFFFFF, #FFFFFF),\n" +
                 "        linear-gradient(\t#FFFFFF, #FFFFFF),\n" +
-                "        linear-gradient(#FFFFFF 0%, #FFFFFF 50%, #FFFFFF 100%),\n" +
+                "        linear-gradient(#FFFFFF 0%, #FAFAD2 50%, #FFFFFF 100%),\n" +
                 "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
                 "    -fx-background-radius: 30;\n" +
                 "    -fx-background-insets: 0,1,2,3,0;\n" +

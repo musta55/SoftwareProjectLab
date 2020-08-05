@@ -53,7 +53,7 @@ public class loginOrReg {
                 "    -fx-padding: 10 10 10 10;");
 
         logIn.setTextFill(Color.BLACK);
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/emotion(16-9)-0-2.jpg").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9).png").toString(), true);
 //
         BackgroundImage bi = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,

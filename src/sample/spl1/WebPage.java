@@ -37,7 +37,7 @@ public class WebPage {
             button.setTextFill(Color.WHITE);
             setStyle(button);
             button.setTranslateX(620);
-            button.setTranslateY(350);
+            button.setTranslateY(680);
             button.setPrefSize(150,70);
 
 
@@ -74,7 +74,7 @@ public class WebPage {
                 textFields.setPrefRowCount(5);
                 textFields.setPrefColumnCount(6);
                 textFields.setWrapText(true);
-                textFields.setMinSize(865,35);
+                textFields.setMinSize(1265,535);
                 Pane roots = new Pane();
                 BackgroundImage bi = new BackgroundImage(backgrounds,
                         BackgroundRepeat.NO_REPEAT,

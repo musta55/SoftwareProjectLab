@@ -78,7 +78,7 @@ public class visualoutputfb {
         tempTotal /= 10;
         return sentimentTot;
     }
-    public static void VisualOutputFacebook(Stage stage, String accessToken) throws FileNotFoundException {
+    public static void VisualOutputFacebook(Stage stage, String accessToken,String Name) throws FileNotFoundException {
 
         DecimalFormat df = new DecimalFormat("0.00");
         Scanner scan;
@@ -142,7 +142,6 @@ public class visualoutputfb {
 
         back.setOnAction(e -> {
             try {
-                String Name=null;
                 fourthPage fp = new fourthPage();
                 fp.runs(stage,accessToken,Name);
             } catch (Exception ex) {
@@ -191,7 +190,7 @@ public class visualoutputfb {
                         Progression statusProg =new Progression();
 
                       //  String accessToken="EAAMF6lCN2rABAL6ZCqIhEAzejYUMuQyccpK5G9Kq1rsvZAghc6Bac8OeVpzL0seJ6BpmaN2FNx5QkIjs7yom44YzruiPdwJISFImQsMAXGt9RG2THGAnaX9WBeBZCq7KBBSQku7pAlXobTZCZCKHThvIGAlePRNXRvekSC2kYJgZDZD";
-                        statusProg.statusProgress(stage,accessToken);
+                        statusProg.statusProgress(stage,accessToken,Name);
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }

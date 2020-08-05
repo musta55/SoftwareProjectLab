@@ -81,7 +81,7 @@ public class accessToken {
                 else if(num==1)
                 {
                     firstPost fp=new firstPost(textFields.getText());
-                    fp.firstpost(stage);
+                    fp.firstpost(stage,Name);
                 }
                 else if(num==2)
                 {
