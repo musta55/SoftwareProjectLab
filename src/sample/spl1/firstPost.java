@@ -37,12 +37,12 @@ public class firstPost {
     {
         Pane stat = new Pane();
         Stage stage =new Stage();
-        Scene scen = new Scene(stat, 700, 500);
+        Scene scen = new Scene(stat, 800, 637);
 
         int numbers=0;
         TextArea textField = new TextArea();
-        textField.setLayoutX(650);
-        textField.setLayoutY(220);
+        textField.setLayoutX(520);
+        textField.setLayoutY(50);
         textField.setPrefRowCount(2);
         textField.setPrefColumnCount(2);
         textField.setWrapText(true);
@@ -51,10 +51,10 @@ public class firstPost {
         Text headning = new Text("Enter Status No.");
         headning.setScaleX(3);
         headning.setScaleY(3);
-        headning.setTranslateX(200);
-        headning.setTranslateY(150);
+        headning.setTranslateX(370);
+        headning.setTranslateY(70);
         headning.setFill(Color.BLACK);
-        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
+        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 9));
 
 
 
@@ -62,22 +62,11 @@ public class firstPost {
 
         Button back = new Button("");
         back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
-        back.setTranslateX(20);
-        back.setTranslateY(250);
+        back.setTranslateX(10);
+        back.setTranslateY(150);
         back.setPrefSize(1, 5);
         back.setTextFill(Color.YELLOW);
-        back.setStyle("-fx-background-color: \n" +
-                "        linear-gradient(\t#FFFFFF, \t#FFFFFF),\n" +
-                "        linear-gradient(#ffef84, #f2ba44),\n" +
-                "        linear-gradient(\t#FFFFFF, #efaa22),\n" +
-                "        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\n" +
-                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
-                "    -fx-background-radius: 30;\n" +
-                "    -fx-background-insets: 0,1,2,3,0;\n" +
-                "    -fx-text-fill: #654b00;\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 2.1em;\n" +
-                "    -fx-padding: 10 20 10 20;");
+
      //   back.setPrefSize(80, 30);
 
 
@@ -94,8 +83,8 @@ public class firstPost {
         Button button = new Button("Enter");
         button.setTextFill(Color.WHITE);
         setStyle(button);
-        button.setTranslateX(420);
-        button.setTranslateY(250);
+        button.setTranslateX(520);
+        button.setTranslateY(160);
         button.setPrefSize(150,70);
         button.setOnAction(action -> {
 
@@ -111,7 +100,7 @@ public class firstPost {
 
         stage.setTitle("FB Post No");
         stat.getChildren().addAll(button,textField,headning,back);
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/pngfuel.com - Copy.png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/yellow.jpg").toString(), true);
 
 
 

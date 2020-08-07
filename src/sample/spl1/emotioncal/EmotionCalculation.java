@@ -888,7 +888,7 @@ public class EmotionCalculation {
 
 
         Button regression = new Button("Regression Analysis");
-        regression.setTranslateX(510);
+        regression.setTranslateX(400);
         regression.setTranslateY(600);
         regression.setStyle("-fx-padding: 8 15 15 15;\n" +
                 "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
@@ -918,7 +918,8 @@ public class EmotionCalculation {
 
 
         CategoryAxis xAxis = new CategoryAxis();
-        xAxis.autosize();
+        xAxis.setScaleX(20);
+
 
         xAxis.setCategories(FXCollections.<String>
                 observableArrayList(Arrays.asList("Joy", "Surprise", "Anger", "Sadness","Fear","Love","Trust","Disgust")));
@@ -927,11 +928,14 @@ public class EmotionCalculation {
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("score");
 
+
         //Creating the Bar chart
         BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
         barChart.setBarGap(1);
-        barChart.setCategoryGap(65);
+        barChart.setCategoryGap(20);
         barChart.getAnimated();
+
+
 
         barChart.setTitle("Comparison between EMOTION and REACTION");
 
@@ -990,27 +994,20 @@ public class EmotionCalculation {
             }
         });
 
+        TextArea textField = new TextArea();
+        textField.setLayoutX(727);
+        textField.setLayoutY(30);
+        textField.setPrefRowCount(5);
+        textField.setPrefColumnCount(4);
+        textField.setWrapText(true);
+        textField.setMinSize(525, 450);
+        textField.setText(status);
 
 
-        //  setStyle(sc);
-
-        barChart.setPrefSize(700,600);
-        Hyperlink link = new Hyperlink("Click For The Post");
-        link.setScaleX(2);
-        link.setTranslateX(1060);
-        link.setTranslateY(600);
-
-        link.setScaleY(2);
-
-        link.setOnAction(e -> {
-            System.out.println("Eta asche");
-            textField tf=new textField();
-            tf.text(stage,status,Names);
-        });
 
         //Creating a Group object
         Pane root = new Pane();
-        root.getChildren().addAll(barChart,link,back,regression);
+        root.getChildren().addAll(barChart,back,regression,textField);
      //   root.getChildren().addAll(sc,link,back);
         //Creating a scene object
         Scene scene = new Scene(root, 2000, 900);

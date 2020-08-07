@@ -28,29 +28,29 @@ public class AnalysisPage {
     public void analysis()
     {
 
-        Button reactionPrediction = new Button("");
-        reactionPrediction.setTranslateX(900);
+        Button reactionPrediction = new Button("Reaction Prediction");
+        reactionPrediction.setTranslateX(660);
         reactionPrediction.setTranslateY(170);
         setStyle2(reactionPrediction);
-        //  socialMedia.setPrefSize(300, 80);
+        reactionPrediction.setPrefSize(500, 150);
         reactionPrediction.setTextFill(Color.WHITE);
         reactionPrediction.setGraphic(new ImageView("Pictures/1x/reaction.jpg"));
 
-        Button visualization = new Button("");
-        visualization.setTranslateX(650);
-        visualization.setTranslateY(400);
+        Button visualization = new Button("Emotion Visualization");
+        visualization.setTranslateX(660);
+        visualization.setTranslateY(370);
         setStyle2(visualization);
-        //  article.setPrefSize(300, 80);
+        visualization.setPrefSize(500, 150);
         visualization.setTextFill(Color.WHITE);
         visualization.setGraphic(new ImageView("Pictures/1x/visualizaton.png"));
 
-        Button finalReport = new Button("");
-        finalReport.setTranslateX(650);
-        finalReport.setTranslateY(170);
+        Button finalReport = new Button("Final Feedback");
+        finalReport.setTranslateX(660);
+        finalReport.setTranslateY(570);
         setStyle2(finalReport);
-        // liveUrl.setPrefSize(300, 80);
+        finalReport.setPrefSize(500, 150);
         finalReport.setTextFill(Color.WHITE);
-        finalReport.setGraphic(new ImageView("Pictures/1x/finalReport.png"));
+        finalReport.setGraphic(new ImageView("Pictures/1x/result.jpg"));
 
 
         Button pro = new Button("Experiment");
@@ -140,7 +140,7 @@ public class AnalysisPage {
 
 
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-0-3.jpg").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/Artboard 1.png").toString(), true);
         Pane root = new Pane();
 
         root.getChildren().addAll(visualization,back,reactionPrediction,finalReport,pro,others,application);
@@ -149,7 +149,7 @@ public class AnalysisPage {
         visualization.setOnAction(e->{
             try {
                 EmotionProfile emp=new EmotionProfile(Name,stage);
-                emp.profileScore();
+                emp.profileScore(0,"");
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

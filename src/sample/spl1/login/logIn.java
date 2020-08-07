@@ -84,7 +84,7 @@ public class logIn {
             }
         return 1;
     }
-    private void UIControls(GridPane gridPane, Stage stage) {
+    private final void UIControls(GridPane gridPane, Stage stage) {
         // Add Header
         Label headerLabel = new Label("Log In Form");
         headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));

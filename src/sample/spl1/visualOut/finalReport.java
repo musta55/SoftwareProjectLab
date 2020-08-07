@@ -1,17 +1,24 @@
 package sample.spl1.visualOut;
 
+import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.spl1.emotioncal.EmotionCalculation;
+import sample.spl1.emotioncal.EmotionProfile;
 import sample.spl1.thirdPage;
 
+import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 
 import static java.lang.Math.abs;
@@ -155,14 +162,27 @@ public class finalReport {
         }
         Text textInt = new Text();
         String txt="";
+        String report=null;
 
         EmotionCalculation emcal=new EmotionCalculation();
         double stdDev= emcal.calculateSD(sentimentTot);
         System.out.println("std dev is :"+stdDev);
 
-        if(stdDev<1)txt= "Emotional Power : Low ("+df.format(stdDev)+")";
-        else  if(stdDev<5)txt= "Emotional Power : Medium ("+df.format(stdDev)+")";
-        else txt= "Emotional Power : High  ("+df.format(stdDev)+")";
+        if(stdDev<1)
+        {
+            txt= "Emotional Power : Low ("+df.format(stdDev)+")";
+            report+="You have difficulty connecting with feelings — others’ and your own; give the impression of being snobby, withholding, or cold; obsess about problems; sometimes too serious.";
+        }
+        else  if(stdDev<5)
+        {
+            txt= "Emotional Power : Medium ("+df.format(stdDev)+")";
+            report+="You are emotionally strong for self and others, practical, able to stay cool in a crisis, nonjudgmental.";
+        }
+        else {
+            txt = "Emotional Power : High  (" + df.format(stdDev) + ")";
+
+            report+="You are highly sensitive, naturally giving, spiritually attuned, and a good listener.";
+        }
 
         textInt.setText(txt);
         textInt.setFill(Color.GREEN);
@@ -185,11 +205,22 @@ public class finalReport {
         if(highSt>=mediumSt && highSt>=lowSt )
         {
             txtstab="Emotional Stability : Unstable";
+            report+="\n\n Tend to be a drama king or queen, may turn friends into therapists, seek external feedback rather than relying on own intuition, excessive need to share.";
+
         }
         else
         {
-            if(mediumSt>=lowSt) txtstab="Emotional Stability : Medium";
-            else if(mediumSt<lowSt) txtstab="Emotional Stability : Stable";
+            if(mediumSt>=lowSt)
+            {
+                txtstab="Emotional Stability : Medium";
+
+                report+="\n\n Extremely logical, comfortable with fixing problems logically and intellectually, great debater, able to stay calm in emotionally heated situations.";
+            }
+            else if(mediumSt<lowSt)
+            {
+                txtstab="Emotional Stability : Stable";
+                report+="\n \nPillar of strength, consistent and loyal, giving, respectful, get along with nearly everyone.";
+            }
         }
 
 
@@ -215,38 +246,68 @@ public class finalReport {
 
 
 
-        Text textMean= new Text();
-        textMean.setText(txtmean);
-        textMean.setFill(Color.GREEN);
-        textMean.setScaleX(1.5);
-        textMean.setScaleY(3);
+//        Text textMean= new Text();
+//        textMean.setText(txtmean);
+//        textMean.setFill(Color.GREEN);
+//        textMean.setScaleX(1.5);
+//        textMean.setScaleY(3);
+//        textMean.setX(800);
+//        textMean.setY(450);
+
+        Text textMean = new Text(txtmean);
+        textMean.setTextOrigin(VPos.TOP);
+        textMean.setLayoutX(28);
+        textMean.setLayoutY(51);
+        textMean.setFill(Color.BLACK);
+        textMean.setFont(javafx.scene.text.Font.font(null, FontWeight.BOLD, 20));
+        textMean.setStyle("-fx-font-size: 20px;");
         textMean.setX(800);
         textMean.setY(450);
 
 
-
         String txtRec="";
-        if(sentimentTot[1]>=0)txtRec="Recent Post : Positive";
-        else txtRec="Recent Post : Negative";
-        Text textRec= new Text();
+        if(sentimentTot[1]>=0)
+        {
+            txtRec="Recent Post : Positive";
+            report+="\n\nGifted healer, helper, and friend; passionate and sensual; intuitive about others’ thoughts and feelings; emotionally responsive; in touch with your body and emotions.";
+        }
+        else {
 
+            txtRec="Recent Post : Negative";
+            report+="\n\nEasily absorb others’ negativity; prone to anxiety, depression, and fatigue; easily feel hemmed in when living with others; difficulty setting boundaries with draining people.";
+        }
+//        Text textRec= new Text();
+//
+//
+//
+//        textRec.setFill(Color.GREEN);
+//        textRec.setScaleX(1.5);
+//        textRec.setScaleY(3);
+//        textRec.setText(txtRec);
+//        textRec.setX(800);
+//        textRec.setY(550);
 
-
-        textRec.setFill(Color.GREEN);
-        textRec.setScaleX(1.5);
-        textRec.setScaleY(3);
-        textRec.setText(txtRec);
+        Text textRec = new Text(txtRec);
+        textRec.setTextOrigin(VPos.TOP);
+        textRec.setLayoutX(10);
+        textRec.setLayoutY(11);
+        textRec.setFill(Color.BLACK);
+        textRec.setOpacity(0.5);
+        textRec.setFont(Font.font(null, FontWeight.BOLD, 20));
+        textRec.setStyle("-fx-font-size: 20px;");
         textRec.setX(800);
-        textRec.setY(550);
+       textRec.setY(550);
 
 
+        Line line = new Line(30, 32, 45, 57);
+        line.setStroke(Color.DARKMAGENTA);
 
 
         String txtCon="";
         int pos=0,neg=0;
         for(int k=0;k<10;k++)
         {
-            if(pos<=3 || neg<=3) txtCon = "Consistency : No Consistency";
+
             if(slope[k]>=0)pos++;
             else {
                 pos=0;
@@ -254,11 +315,9 @@ public class finalReport {
             if(pos>=3) {
                 txtCon="";
                 txtCon = "Consistency : Positive";
+                report+="\n\nLast but not the least, you are practical, able to stay cool in a crisis, nonjudgmental.";
                 break;
-
             }
-
-
             if(slope[k]<0)neg++;
             else {
                 neg=0;
@@ -266,16 +325,21 @@ public class finalReport {
             if(neg>=3) {
                 txtCon="";
                 txtCon = "Consistency : Negative";
+                report+="\n\nBut your emotional consistency is downward";
                 break;
             }
 
+        }
+        if(pos<=3 || neg<=3){
+            txtCon = "Consistency : No Consistency";
+            report+="\n\n Also, tend to be a drama king or queen, may turn friends into therapist";
         }
 
 
         Text textCon= new Text();
         textCon.setText(txtCon);
 
-        textCon.setFill(Color.GREEN);
+        textCon.setFill(Color.RED);
         textCon.setScaleX(1.5);
         textCon.setScaleY(3);
         textCon.setX(800);
@@ -336,7 +400,27 @@ public class finalReport {
         sc.setPrefSize(650, 700);
 
 
-        roota.getChildren().addAll(canvasa,sc,backa,textInt,barChart,textStab,textMean,textRec,textCon,HeadText);
+        Button next=new Button();
+        next.setGraphic(new ImageView("Pictures/backArrow.png"));
+        next.setTranslateX(1290);
+        next.setTranslateY(340);
+        next.setPrefSize(1, 5);
+        next.setTextFill(Color.YELLOW);
+        String yoo = report;
+        next.setOnAction(e->
+        {
+            EmotionProfile emp=new EmotionProfile(Name,stage);
+            try {
+                emp.profileScore(1, yoo);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+
+        });
+
+
+
+        roota.getChildren().addAll(canvasa,sc,backa,textInt,barChart,textStab,textMean,textRec,textCon,HeadText,next);
 
     }
 }

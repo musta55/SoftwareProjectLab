@@ -24,8 +24,8 @@ public class fourthPage {
 public void runs(Stage stages,String accessToken,String Name)
 {
 
-   // String accessToken = "EAAMF6lCN2rABAL6ZCqIhEAzejYUMuQyccpK5G9Kq1rsvZAghc6Bac8OeVpzL0seJ6BpmaN2FNx5QkIjs7yom44YzruiPdwJISFImQsMAXGt9RG2THGAnaX9WBeBZCq7KBBSQku7pAlXobTZCZCKHThvIGAlePRNXRvekSC2kYJgZDZD";
- //  String accessToken="EAAMF6lCN2rABANG7fFJVwktoiJjKiZCDP7k1v4uZB48GRH1J2GCU1HAJMPc6389TS6EwTdp9ilfqZBZABNGobGhy3bH0zhYh5x2LQ55SicVEOtVmLO8poNvPVpZB3F3aSperHycu8VZAEQY4jfNxVsWrG7ZBZCP1L6bnYTvqrXb5EEIumHvpZBAFT79hR0r67ZCGoZD";
+     // String accessToken = "EAAMF6lCN2rABAL6ZCqIhEAzejYUMuQyccpK5G9Kq1rsvZAghc6Bac8OeVpzL0seJ6BpmaN2FNx5QkIjs7yom44YzruiPdwJISFImQsMAXGt9RG2THGAnaX9WBeBZCq7KBBSQku7pAlXobTZCZCKHThvIGAlePRNXRvekSC2kYJgZDZD";
+    //  String accessToken="EAAMF6lCN2rABANG7fFJVwktoiJjKiZCDP7k1v4uZB48GRH1J2GCU1HAJMPc6389TS6EwTdp9ilfqZBZABNGobGhy3bH0zhYh5x2LQ55SicVEOtVmLO8poNvPVpZB3F3aSperHycu8VZAEQY4jfNxVsWrG7ZBZCP1L6bnYTvqrXb5EEIumHvpZBAFT79hR0r67ZCGoZD";
     FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         Button proa = new Button("Total Emotion");
         proa.setTranslateX(70);

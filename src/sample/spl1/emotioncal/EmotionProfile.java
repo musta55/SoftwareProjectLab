@@ -2,6 +2,7 @@ package sample.spl1.emotioncal;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
@@ -13,6 +14,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.spl1.thirdPage;
@@ -32,12 +34,10 @@ public class EmotionProfile {
        this.name=name;
        this.stage=stage;
    }
-
-    public  void profileScore() throws FileNotFoundException {
+    public  void profileScore(int t,String report) throws FileNotFoundException {
         DecimalFormat df = new DecimalFormat("0.00");
         Scanner scan;
-        File file = null;
-        file = new File(name);
+        File file = new File(name);
         scan = new Scanner(file);
         double[] out = new double[10000];
         double[] out2 = new double[10000];
@@ -176,25 +176,35 @@ public class EmotionProfile {
         }
 
         System.out.println("Highest is " + temp + " Second is " + temp2);
+if(t==1)
+       VisualProfile(emo,comment(temp,temp2)+report);
+else
+       IndividualVisualProfile(emo,emo2,emo3);
+
+    }
+
+    public String comment(int temp,int temp2)
+    {
         String text = null;
 
 
+
         if (temp == 0) {
-            text = "  That is fantastic! You have a kind heart and jolly mind.Your articles are full of serenity and ecstasy.Joyful emotion is mainly focused on your text.";
+            text = "Joyful emotion is mainly focused on your text.";
         } else if (temp == 1) {
-            text = "WoW !! Your emotion is full of surprises. As a person,you are curious.Surprising things happening around you.Live with amazement";
+            text = "Your emotion is full of surprises. As a person,you are curious.Surprising things happening around you.\n";
         } else if (temp == 2) {
-            text = "Listen Carefully.Are you fear of something?Or may be some terrible things is happening in your mind as fear emotion is your primary emotion.Stay safe and sound.";
+            text = "Fear emotion is your primary emotion.\n\n";
         } else if (temp == 3) {
-            text = "Hmm ,you seemed a bit depressed.Sadness grabs you severely.Hopefully you will overcome your pain as soon as you can.Best wishes.";
+            text = "You seemed a bit depressed.Sadness grabs you severely.\n";
         } else if (temp == 4) {
-            text = "Trust emotion is reflected greatly on your articles.You accept and adapt things happening around you wisely.Have enough courage to trust and accept things changing everyday.";
+            text = "Trust emotion is reflected greatly on your articles.You accept and adapt things happening around you wisely.\n";
         } else if (temp == 5) {
-            text = "Disgust and boredom is the key of your articles.Hate speech is consistently found in your articles.";
+            text = "Disgust and boredom is the key of your articles.Hate speech is consistently found in your articles.\n";
         } else if (temp == 6) {
-            text = "Hey!!It is really pleased to say that you seems like a happy person.Keep smiling that reflects on your posts.Spread positivity and be optimistic.";
+            text = "You seems like a happy person.Keep smiling that reflects on your posts.\n";
         } else if (temp == 7) {
-            text = "Excuse me?Do you get angry a lot?May be you don't realize.But your mind reflects it.";
+            text = "Anger emotion is consistently reflected on your articles and posts of social Media.\n";
 
         }
 
@@ -204,31 +214,22 @@ public class EmotionProfile {
 
 
         if (temp2 == 0) {
-            text2 = "Also your articles are full of serenity and ecstasy.Joyful emotion is partially focused on your text.";
+            text2 = "Also Joyful emotion is partially focused on your text.\n\n";
         } else if (temp2 == 1) {
-            text2 = "Your emotion is full of surprises. As a person,you are curious too.Live with amazement.";
+            text2 = "Also Surprise  emotion is partially focused on your text.\n\n";
         } else if (temp2 == 2) {
-            text2 = "And also there are terrible things  happening in your mind as fear emotion is also reflected.Stay safe and sound.";
-        } else if (temp2== 3) {
-            text2 = "Hmm ,it seems that you are a bit depressed.Sadness grabs you severely.Hopefully you will overcome your pain as soon as you can.Best wishes.";
+            text2 = "Also sadness is particularly reflected on your posts.\n\n";
         } else if (temp2 == 4) {
-            text2 = "Besides, trust emotion is reflected greatly on your articles.You accept and adapt things happening around you wisely.Have enough courage to trust and accept things changing everyday.";
+            text2 = "Besides, trust emotion is reflected greatly on your articles.\n\n";
         } else if (temp2 == 5) {
-            text2 = "Moreover,disgust and boredom is the key of your articles.Hate speeches are consistently found in your articles.";
+            text2 = "Moreover, disgust and boredom is the key of your articles.Hate speeches are consistently found in your articles.\n\n";
         } else if (temp2 == 6) {
-            text2 = "Furthermore,It is really pleased to say that you seems like a happy person.Keep smiling that reflects on your posts.Spread positivity and be optimistic.";
+            text2 = "Furthermore,It is really pleased to say that you seems like a happy person.\n";
         } else if (temp2 == 7) {
-            text2 = "apart from this, anger emotion plays a vital role.May be you don't realize it.But your mind reflects it.";
+            text2 = "Apart from this, anger emotion plays a vital role.May be you don't realize it.But your mind reflects it.\n\n";
 
         }
-
-       VisualProfile(emo,text+text2);
-
-       IndividualVisualProfile(emo,emo2,emo3);
-        System.out.println(text+text2);
-
-
-
+        return text+text2;
 
     }
 
@@ -274,14 +275,26 @@ public class EmotionProfile {
 
 
 
+
+
+        Text txt = new Text(text);
+        txt.setTextOrigin(VPos.TOP);
+        txt.setLayoutX(28);
+        txt.setLayoutY(51);
+        txt.setFill(Color.BLACK);
+        txt.setFont(javafx.scene.text.Font.font(null, FontWeight.BOLD, 20));
+        txt.setStyle("-fx-font-size: 20px;");
+
         TextArea textField = new TextArea();
         textField.setLayoutX(630);
-        textField.setLayoutY(140);
-        textField.setPrefRowCount(5);
-        textField.setPrefColumnCount(6);
+        textField.setLayoutY(40);
+        textField.setPrefRowCount(10);
+        textField.setPrefColumnCount(12);
         textField.setWrapText(true);
         textField.setMinSize(525, 350);
-        textField.setText(text);
+        textField.setText(String.valueOf(txt));
+        textField.setStyle("-fx-text-fill: black; -fx-font-size: 20px;");
+        textField.setFont(Font.font("Lucida Handwriting", FontWeight.BOLD, 20));
 
         CategoryAxis xAxises = new CategoryAxis();
         xAxises.setCategories(FXCollections.<String>
@@ -307,27 +320,16 @@ public class EmotionProfile {
         series1.getData().add(new XYChart.Data<>("anticipation",  em[6]));
         series1.getData().add(new XYChart.Data<>("Anger",  em[7]));
         barChart.setTranslateX(40);
-        barChart.setTranslateY(140);
+        barChart.setTranslateY(40);
         barChart.setScaleX(1.2);
         barChart.setScaleY(1.2);
 
-        barChart.setStyle("\"-fx-padding: 8 15 15 15;\\n\" +\n" +
-                "                \"    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\\n\" +\n" +
-                "                \"    -fx-background-radius: 8;\\n\" +\n" +
-                "                \"    -fx-background-color: \\n\" +\n" +
-                "                \"        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\\n\" +\n" +
-                "                \"        #8d9092,\\n\" +\n" +
-                "                \"        #717375,\\n\" +\n" +
-                "                \"        radial-gradient(center 50% 50%, radius 100%, #2471A3    , #17202A);\\n\" +\n" +
-                "                \"    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\\n\" +\n" +
-                "                \"    -fx-font-weight: bold;\\n\" +\n" +
-                "                \"    -fx-font-size: 1.1em;\"");
 
 
 //        //second bar color
-//        for(Node n:barChart.lookupAll(".default-color1.chart-bar")) {
-//            n.setStyle("-fx-bar-fill: green;");
-//        }
+        for(Node n:barChart.lookupAll(".default-color1.chart-bar")) {
+            n.setStyle("-fx-bar-fill: green;");
+        }
 
 
 

@@ -20,7 +20,7 @@ import sample.spl1.languageClassification.biLingual;
 import sample.spl1.login.RegistrationFrormApplication;
 import sample.spl1.visualOut.accessToken;
 
-public class thirdPage {
+public class thirdPage extends secondPage{
     public void app(Stage stage,String Name)
     {
 
@@ -59,13 +59,7 @@ public class thirdPage {
         analysis.setGraphic(new ImageView("Pictures/1x/HOW-TO-DESIGN-A-LOGO-new (1).jpg"));
 
 
-        Button back = new Button("");
-        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
-        back.setTranslateX(0);
-        back.setTranslateY(340);
-        back.setPrefSize(1, 5);
-        back.setTextFill(Color.YELLOW);
-
+        Button back = getButton();
         analysis.setOnAction(e -> {
             try {
                 AnalysisPage ap=new AnalysisPage(stage,Name);

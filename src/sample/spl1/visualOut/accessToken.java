@@ -89,7 +89,7 @@ public class accessToken {
 
                     double sentimentTot[]= vf.outData();
                     double finalTempTotal=vf.tempTotal;
-                    finalReport fr=new finalReport(stage,textFields.getText(),sentimentTot,finalTempTotal);
+                    finalReport fr=new finalReport(stage,textFields.getText(),sentimentTot,finalTempTotal,Name);
 //                    Progression p=new Progression();
 //                    p.statusProgress(stage,textFields.getText());
                 }

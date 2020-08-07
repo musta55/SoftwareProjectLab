@@ -19,6 +19,16 @@ import sample.spl1.login.loginOrReg;
 
 public class secondPage {
 
+    public Button getButton()
+    {
+        Button back = new Button("");
+        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+        back.setTranslateX(0);
+        back.setTranslateY(340);
+        back.setPrefSize(1, 5);
+        back.setTextFill(Color.YELLOW);
+        return back;
+    }
     public void TheSecond(Stage stage) {
 
 
@@ -53,14 +63,7 @@ public class secondPage {
         application.setPrefSize(200, 80);
         application.setTextFill(Color.WHITE);
 
-
-
-        Button back = new Button("");
-        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
-        back.setTranslateX(0);
-        back.setTranslateY(340);
-        back.setPrefSize(1, 5);
-        back.setTextFill(Color.YELLOW);
+        Button back=getButton();
 
         application.setOnAction(e -> {
 
@@ -84,10 +87,6 @@ public class secondPage {
                     excep.printStackTrace();
                 }
             });
-
-
-
-
 
         Image background = new Image(getClass().getClassLoader().getResource("Pictures/emotion(16-9)-01.jpg").toString(), true);
         Pane root = new Pane();
