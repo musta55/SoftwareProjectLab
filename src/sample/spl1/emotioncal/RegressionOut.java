@@ -13,7 +13,7 @@ import sample.spl1.visualOut.LinearRegression;
 
 public class RegressionOut {
 
-    public RegressionOut(Stage stage,String Name, double[] a, double[] b) {
+    public RegressionOut(Stage stage,String accessToken,String Name, double[] a, double[] b) {
 
         Button back = new Button("Back");
         back.setTranslateX(1100);
@@ -35,7 +35,7 @@ public class RegressionOut {
         back.setOnAction(e -> {
             try {
 
-                firstPost fp=new firstPost();
+                firstPost fp=new firstPost(accessToken);
                 fp.firstpost(stage,Name);
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -60,7 +60,7 @@ public class RegressionOut {
         prediction.setPrefSize(150, 40);
 
         prediction.setOnAction(e -> {
-            RegressionOut ro=new RegressionOut(stage,Name,a,b);
+            RegressionOut ro=new RegressionOut(stage,accessToken,Name,a,b);
 
         });
 

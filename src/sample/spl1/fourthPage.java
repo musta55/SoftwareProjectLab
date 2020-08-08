@@ -121,7 +121,9 @@ public void runs(Stage stages,String accessToken,String Name)
         back.setOnAction(esb->{
             try {
                 thirdPage goBack = new thirdPage();
-                goBack.app(stages,Name);
+                String filefb=Name.substring(2,Name.length());
+
+                goBack.app(stages,filefb);
             }catch (Exception ex)
             {
                 ex.printStackTrace();

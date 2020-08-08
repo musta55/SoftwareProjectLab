@@ -29,45 +29,67 @@ public class EmotionProfile {
 
    private String name;
     private Stage stage;
+
+
+    double[] out3 = new double[10000];
    public EmotionProfile(String name,Stage stage)
    {
        this.name=name;
        this.stage=stage;
    }
+    public double[] fileInput(String Inname)
+    {
+        double[] fileData = new double[10000];
+        Scanner scan;
+        int m = 0;
+        File file = new File(Inname);
+        try {
+            scan = new Scanner(file);
+                String currentLine = scan.nextLine();
+                String[] firstSplits = currentLine.split(" ", 0);
+                for (; m < firstSplits.length; m++) {
+                    //     System.out.println("String is " + firstSplits[m]);
+                    try {
+                        if (firstSplits[m] == "NaN" || firstSplits[m] == "Infinity");
+                        else {
+                            fileData[m] = Double.parseDouble(firstSplits[m]);
+                            System.out.print("i = "+m+ " "+fileData[m] + "          ");
+                        }
+                    } catch (Exception q) {
+                        fileData[m] = 0.000;
+                    }
+                    //     System.out.println("Value is " + out[m]);
+                }
+                // double d = Double.parseDouble();
+            return fileData;
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return fileData;
+        }
+    }
     public  void profileScore(int t,String report) throws FileNotFoundException {
         DecimalFormat df = new DecimalFormat("0.00");
         Scanner scan;
-        File file = new File(name);
-        scan = new Scanner(file);
-        double[] out = new double[10000];
-        double[] out2 = new double[10000];
-        double[] out3 = new double[10000];
+
         double[] emo = new double[10000];
         double[] emo2 = new double[10000];
         double[] emo3 = new double[10000];
         int m = 0,count=0;
-        while (scan.hasNextLine()) {
-            count++;
-            String currentLine = scan.nextLine();
-            // System.out.println("Current Line "+currentLine);
-            String[] firstSplits = currentLine.split(" ", 0);
-            for (; m < firstSplits.length; m++) {
-                //     System.out.println("String is " + firstSplits[m]);
-                try {
-                    if (firstSplits[m] == "NaN" || firstSplits[m] == "Infinity");
-                    else {
-                        if(count==1)   out[m] = Double.parseDouble(firstSplits[m]);
-                        if(count==2)   out2[m] = Double.parseDouble(firstSplits[m]);
-                        if(count==3)   out3[m] = Double.parseDouble(firstSplits[m]);
-                        System.out.print("i = "+m+ " "+out[m] + "          ");
-                    }
-                } catch (Exception q) {
-                    out[m] = 0.000;
-                }
-                //     System.out.println("Value is " + out[m]);
-            }
-            // double d = Double.parseDouble();
-        }
+        double[] out =fileInput("web"+name);
+
+        double[] out2 =fileInput("article"+name);
+
+        double[] out3 =fileInput("fb"+name);
+
+
+        System.out.println("\nWeb File reading "+out);
+        for(int i=0;i<out.length;i++) System.out.println(out[i]+" ");
+        System.out.println("\nArticle file reading "+out);
+        for(int i=0;i<out2.length;i++) System.out.println(out2[i]+" ");
+        System.out.println("\nFacebook file reading "+out);
+        for(int i=0;i<out3.length;i++) System.out.println(out3[i]+" ");
+
         System.out.println("Set is :"+m/8 +" Set");
         int j=0,tmp=m;
         for(int i=0,k=0;i<8;i++)
@@ -183,6 +205,9 @@ else
 
     }
 
+
+
+
     public String comment(int temp,int temp2)
     {
         String text = null;
@@ -294,7 +319,7 @@ else
         textField.setMinSize(525, 350);
         textField.setText(String.valueOf(txt));
         textField.setStyle("-fx-text-fill: black; -fx-font-size: 20px;");
-        textField.setFont(Font.font("Lucida Handwriting", FontWeight.BOLD, 20));
+        textField.setFont(Font.font("Lucida Sans", FontWeight.BOLD, 20));
 
         CategoryAxis xAxises = new CategoryAxis();
         xAxises.setCategories(FXCollections.<String>

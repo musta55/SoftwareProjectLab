@@ -89,7 +89,8 @@ public class thirdPage extends secondPage{
 
         article.setOnAction(e->{
             try {
-                biLingual bl =new biLingual(stage,Name);
+                String articleFile="article"+Name;
+                biLingual bl =new biLingual(stage,articleFile);
             }catch (Exception ex)
             {
                 ex.printStackTrace();
@@ -107,7 +108,8 @@ public class thirdPage extends secondPage{
             try
             {
                accessToken at=new accessToken();
-            String  tok= at.token(stage,Name,0);
+               String socFile="fb"+Name;
+            String  tok= at.token(stage,socFile,0);
             }catch (Exception ea)
             {
                 System.out.println("Fourth Page Problem");
@@ -116,8 +118,8 @@ public class thirdPage extends secondPage{
         });
         liveUrl.setOnAction(e -> {
             WebPage wb=new WebPage();
-            wb.web(stage,Name);
-
+            String webFile="web"+Name;
+            wb.web(stage,webFile);
         });
 
         Canvas canvas = new Canvas(1400,750);

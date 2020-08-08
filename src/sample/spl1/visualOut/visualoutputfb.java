@@ -2,6 +2,7 @@ package sample.spl1.visualOut;
 
 import javafx.collections.FXCollections;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -83,7 +84,7 @@ public class visualoutputfb {
         DecimalFormat df = new DecimalFormat("0.00");
         Scanner scan;
         File file = null;
-        file = new File("src/sample/spl1/out.txt");
+        file = new File(Name);
         scan = new Scanner(file);
         double[] out = new double[10000];
         int i = 0;
@@ -91,10 +92,8 @@ public class visualoutputfb {
         while (scan.hasNextLine()) {
             //
             String currentLine = scan.nextLine();
-            // System.out.println("Current Line "+currentLine);
             String[] firstSplits = currentLine.split(" ", 0);
             for (; m < firstSplits.length; m++) {
-                //     System.out.println("String is " + firstSplits[m]);
                 try {
                     if (firstSplits[m] == "NaN" || firstSplits[m] == "Infinity") ;
                     else {
@@ -104,9 +103,7 @@ public class visualoutputfb {
                 } catch (Exception q) {
                     out[m] = 0.000;
                 }
-                //     System.out.println("Value is " + out[m]);
             }
-            // double d = Double.parseDouble();
         }
         Group root = new Group();
         Image background = new Image(visualoutputfb.class.getClassLoader().getResource("emotionSide.png").toString(), true);
@@ -259,8 +256,9 @@ public class visualoutputfb {
                 series1.getData().add(new XYChart.Data<>("Anger", angerOut));
                 barChart.setTranslateX(400);
                 barChart.setTranslateY(120);
-                barChart.setScaleX(1.2);
-                barChart.setScaleY(1.2);
+                barChart.setScaleX(.8);
+                barChart.setScaleY(.8);
+                barChart.setPrefSize(850,500);
 
 
                 barChart.getData().addAll(series1);
@@ -341,6 +339,7 @@ public class visualoutputfb {
 
 
         StackedBarChart lineChart = new StackedBarChart(xAxisq, yAxisq);
+        lineChart.setPrefSize(850,400);
 
         XYChart.Series dataSeries1 = new XYChart.Series();
         dataSeries1.setName("JOY");
@@ -395,7 +394,7 @@ public class visualoutputfb {
 
 
         lineChart.getData().addAll(dataSeries1, dataSeries2, dataSeries3, dataSeries4, dataSeries5, dataSeries6, dataSeries7, dataSeries8);
-        File fileDate = new File("sample/spl1/date.txt");
+        File fileDate = new File(Name+"date.txt");
 
         BufferedReader br = new BufferedReader(new FileReader(file));
 
@@ -410,24 +409,8 @@ public class visualoutputfb {
 
         }
 
-
-        //LineChart chart = new LineChart(xAxis, yAxis, lineChart);
         lineChart.setPrefSize(1200, 700);
 
-//
-//        Button moreSenti = new Button("Final Report");
-//        moreSenti.setTranslateX(450);
-//        moreSenti.setTranslateY(700);
-//        moreSenti.setPrefSize(360, 40);
-//        moreSenti.setTextFill(Color.WHITE);
-//
-//        moreSenti.setOnAction(e ->
-//        {
-//            finalReport fr=new finalReport(stage,accessToken,sentimentTot,finalTempTotal);
-//          });
-
-
-        //   root.getChildren().addAll(canvas,lineChart,more,status2,status3,status4,status5,status6,moreSenti);
         root.getChildren().addAll(canvas, lineChart, more);
 
 

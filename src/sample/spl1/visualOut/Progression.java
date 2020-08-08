@@ -35,7 +35,6 @@ public class Progression {
                     break;
                 }
                 EmotionCalculation emCal = new EmotionCalculation();
-                Name+="fb";
                 emCal.fileOpen(Name);
 
                 System.out.println(aPost.getMessage());

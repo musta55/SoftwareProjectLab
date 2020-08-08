@@ -206,7 +206,7 @@ public class AnalysisPage {
                 "        linear-gradient(\t#FFFFFF, \t#FFFFFF),\n" +
                 "        linear-gradient(#FFFFFF, #FFFFFF),\n" +
                 "        linear-gradient(\t#FFFFFF, #FFFFFF),\n" +
-                "        linear-gradient(#FFFFFF 0%, #FFFFFF 50%, #FFFFFF 100%),\n" +
+                "        linear-gradient(#FFFFFF 0%, #7FFF00 50%, #FFFFFF 100%),\n" +
                 "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
                 "    -fx-background-radius: 30;\n" +
                 "    -fx-background-insets: 0,1,2,3,0;\n" +

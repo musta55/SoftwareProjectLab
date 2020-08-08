@@ -133,7 +133,7 @@ public class postOne {
                     } catch (Exception ea) {
                         System.out.println("");
                     }
-                    emCal.VisualOutputs(stages,status, integers[0], integers[1], integers[2], integers[3], integers[4], integers[5]);
+                    emCal.VisualOutputs(stages,accessToken,Name,status, integers[0], integers[1], integers[2], integers[3], integers[4], integers[5]);
 
 
                     break;

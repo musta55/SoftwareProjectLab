@@ -25,10 +25,7 @@ import java.util.List;
 
 public class firstPost {
     private String  accessToken;
-    public firstPost()
-    {
 
-    }
    public   firstPost(String accessToken)
     {
             this.accessToken=accessToken;
@@ -37,7 +34,7 @@ public class firstPost {
     {
         Pane stat = new Pane();
         Stage stage =new Stage();
-        Scene scen = new Scene(stat, 800, 637);
+        Scene scen = new Scene(stat, 800, 437);
 
         int numbers=0;
         TextArea textField = new TextArea();
@@ -91,6 +88,7 @@ public class firstPost {
                     try {
                         postOne po = new postOne();
                         po.postone(stages, accessToken, Name,Integer.parseInt(textField.getText())-1);
+                        stage.close();
                     } catch (Exception exc) {
                         exc.printStackTrace();
                     }

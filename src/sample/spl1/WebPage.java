@@ -37,7 +37,7 @@ public class WebPage {
             button.setTextFill(Color.WHITE);
             setStyle(button);
             button.setTranslateX(620);
-            button.setTranslateY(680);
+            button.setTranslateY(380);
             button.setPrefSize(150,70);
 
 
@@ -62,19 +62,19 @@ public class WebPage {
                 headning.setFill(Color.WHITE);
                 headning.setScaleX(6);
                 headning.setScaleY(6);
-                headning.setTranslateX(850);
+                headning.setTranslateX(650);
                 headning.setTranslateY(90);
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-0-3.jpg").toString(), true);
+                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/pngfuel.com.png").toString(), true);
                 Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);
 
-                textFields.setLayoutX(150);
+                textFields.setLayoutX(280);
                 textFields.setLayoutY(180);
                 textFields.setPrefRowCount(5);
                 textFields.setPrefColumnCount(6);
                 textFields.setWrapText(true);
-                textFields.setMinSize(1265,535);
+                textFields.setMinSize(865,135);
                 Pane roots = new Pane();
                 BackgroundImage bi = new BackgroundImage(backgrounds,
                         BackgroundRepeat.NO_REPEAT,
@@ -136,35 +136,6 @@ public class WebPage {
                     e.printStackTrace();
                 }
 
-                //      document = Jsoup.connect("google.com").get();
-
-
-
-
-
-
-
-            Elements price = document.select(".zsg-photo-card-price:contains($)"); //Get price
-            Elements address = document.select("span[itemprop]:contains(DenverCO)"); //Get address
-
-                FileOutputStream fout= null;
-                try {
-                    fout = new FileOutputStream("output_zillow.csv");
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                PrintStream csv=new PrintStream(fout);
-            csv.println("name	price	number sold");
-
-            for (int i=0; i < price.size()-2; i++)
-            {
-                csv.println(address.get(i).text() + "	" + price.get(i).text());
-            }
-                try {
-                    fout.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             });
 
         } catch (Exception excep) {

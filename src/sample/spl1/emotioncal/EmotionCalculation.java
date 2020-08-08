@@ -482,20 +482,8 @@ public class EmotionCalculation {
 
         try
         {
-
             FileWriter fw = new FileWriter(Names,true); //the true will append the new data
-            if(fileLine==1)
-            fw.write(textToAppend+" ");//appends the string to the file
-            else  if(fileLine==2)
-            {
-                fw.write("\n"+textToAppend+" ");
-
-            }
-            else  if(fileLine==3)
-            {
-                fw.write("\n\n"+textToAppend+" ");
-            }
-
+            fw.write(textToAppend+" ");
             fw.close();
         }
         catch(IOException ioe)
@@ -645,13 +633,6 @@ public class EmotionCalculation {
     }
 
     public void VisualOutputProf(Stage stage,String status) {
-        Text headning = new Text("Text");
-        headning.setScaleX(2);
-        headning.setScaleY(2);
-        headning.setTranslateX(140);
-        headning.setTranslateY(40);
-        headning.setFill(Color.rgb(150, 170, 130 ));
-        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
 
 
         String s=String.valueOf(totalEmotionCount);
@@ -684,9 +665,15 @@ public class EmotionCalculation {
         Pane root = new Pane();
         backs.setOnAction(e -> {
             try {
+                String webFile=null;
+                if(Names.charAt(0)=='w') webFile=Names.substring(3,Names.length());
+                else
+                {
+                     webFile=Names.substring(7,Names.length());
+                }
 
                 thirdPage tp=new thirdPage();
-                tp.app(stage,Names);
+                tp.app(stage,webFile);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -734,7 +721,7 @@ public class EmotionCalculation {
         Background bg = new Background(bi);
         root.setBackground(bg);
         stage.setTitle("Pie Chart");
-        root.getChildren().addAll(pieChart, backs,textField,headning,emo,score);
+        root.getChildren().addAll(pieChart, backs,textField,emo,score);
         //Adding scene to the stage
         stage.setScene(scene);
 
@@ -751,7 +738,7 @@ public class EmotionCalculation {
 
 
 
-    public void VisualOutputPred(Stage stage,double[]a,double[]b)  {
+    public void VisualOutputPred(Stage stage,String accessToken,double[]a,double[]b)  {
 
         Button back = new Button("");
         back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
@@ -766,7 +753,7 @@ public class EmotionCalculation {
         back.setOnAction(e -> {
             try {
 
-                firstPost fp=new firstPost();
+                firstPost fp=new firstPost(accessToken);
                 fp.firstpost(stage,Names);
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -843,7 +830,7 @@ public class EmotionCalculation {
         back.setOnAction(e -> {
             try {
 
-                firstPost fp=new firstPost();
+                firstPost fp=new firstPost(accessToken);
                 fp.firstpost(stage,Names);
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -856,7 +843,7 @@ public class EmotionCalculation {
     }
 
 
-    public void VisualOutputs(Stage stage,String status,int haha,int angry,int sad,int like ,int love,int wow) {
+    public void VisualOutputs(Stage stage,String accessToken,String Name,String status,int haha,int angry,int sad,int like ,int love,int wow)  {
 
 
         Button back = new Button("Back");
@@ -878,9 +865,11 @@ public class EmotionCalculation {
         Image background = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
         back.setOnAction(e -> {
             try {
+               firstPost  fp=new firstPost(accessToken);
+               fp.firstpost(stage,Name);
 
-                firstPost  fp=new firstPost();
-                fp.firstpost(stage,Names);
+//                fourthPage fp=new fourthPage();
+//                fp.runs(stage,accessToken,Name);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -918,8 +907,6 @@ public class EmotionCalculation {
 
 
         CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setScaleX(20);
-
 
         xAxis.setCategories(FXCollections.<String>
                 observableArrayList(Arrays.asList("Joy", "Surprise", "Anger", "Sadness","Fear","Love","Trust","Disgust")));
@@ -931,8 +918,8 @@ public class EmotionCalculation {
 
         //Creating the Bar chart
         BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
-        barChart.setBarGap(1);
-        barChart.setCategoryGap(20);
+        barChart.setBarGap(4);
+        barChart.setCategoryGap(7);
         barChart.getAnimated();
 
 
@@ -981,10 +968,9 @@ public class EmotionCalculation {
 
         regression.setOnAction(e -> {
             try {
-
                 try {
                     regressionPrediction rp=new regressionPrediction();
-                    rp.prediction(stage,a,b);
+                    rp.prediction(stage,accessToken,a,b);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
