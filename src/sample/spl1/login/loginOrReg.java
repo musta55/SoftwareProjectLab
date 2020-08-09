@@ -54,7 +54,7 @@ public class loginOrReg {
 
         logIn.setTextFill(Color.BLACK);
         Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9).png").toString(), true);
-//
+
         BackgroundImage bi = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,

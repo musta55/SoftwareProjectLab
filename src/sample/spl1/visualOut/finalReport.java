@@ -7,7 +7,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
@@ -18,6 +20,7 @@ import sample.spl1.emotioncal.EmotionCalculation;
 import sample.spl1.emotioncal.EmotionProfile;
 import sample.spl1.thirdPage;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 
@@ -49,9 +52,29 @@ public class finalReport {
     }
     private void finalreport()
     {
-        Group roota = new Group();
-        Canvas canvasa = new Canvas(1800, 900);
 
+        Image image = null;
+        try {
+            image = new Image(new FileInputStream("Pictures/1x/Artboard 1.png"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        //Setting the image view
+        ImageView imageView = new ImageView(image);
+
+        //Setting the position of the image
+        imageView.setX(650);
+        imageView.setY(225);
+
+        //setting the fit height and width of the image view
+        imageView.setFitHeight(355);
+        imageView.setFitWidth(500);
+
+        //Setting the preserve ratio of the image view
+        imageView.setPreserveRatio(true);
+
+        Group roota = new Group(imageView);
 
         Button backa = new Button("Back");
         backa.setTranslateX(1100);
@@ -77,9 +100,8 @@ public class finalReport {
                 ex.printStackTrace();
             }
         });
-        GraphicsContext gca = canvasa.getGraphicsContext2D();
-        //      gca.drawImage(backgrounda,0,0);
-        Scene scenea = new Scene(roota, 2000, 900);
+
+        Scene scenea = new Scene(roota, 1400, 750);
         stage.setScene(scenea);
         stage.setFullScreen(true);
         stage.show();
@@ -268,12 +290,12 @@ public class finalReport {
         String txtRec="";
         if(sentimentTot[1]>=0)
         {
-            txtRec="Recent Post : Positive";
+            txtRec=" Positive";
             report+="\n\nGifted healer, helper, and friend; passionate and sensual; intuitive about others’ thoughts and feelings; emotionally responsive; in touch with your body and emotions.";
         }
         else {
 
-            txtRec="Recent Post : Negative";
+            txtRec=" Negative";
             report+="\n\nEasily absorb others’ negativity; prone to anxiety, depression, and fatigue; easily feel hemmed in when living with others; difficulty setting boundaries with draining people.";
         }
 //        Text textRec= new Text();
@@ -312,9 +334,9 @@ public class finalReport {
             else {
                 pos=0;
             }
-            if(pos>=3) {
+            if(pos>=2) {
                 txtCon="";
-                txtCon = "Consistency : Positive";
+                txtCon = "Positive";
                 report+="\n\nLast but not the least, you are practical, able to stay cool in a crisis, nonjudgmental.";
                 break;
             }
@@ -322,16 +344,16 @@ public class finalReport {
             else {
                 neg=0;
             }
-            if(neg>=3) {
+            if(neg>=2) {
                 txtCon="";
-                txtCon = "Consistency : Negative";
+                txtCon = "Negative";
                 report+="\n\nBut your emotional consistency is downward";
                 break;
             }
 
         }
-        if(pos<=3 || neg<=3){
-            txtCon = "Consistency : No Consistency";
+        if(pos<=2 || neg<=2){
+            txtCon = "No";
             report+="\n\n Also, tend to be a drama king or queen, may turn friends into therapist";
         }
 
@@ -354,6 +376,7 @@ public class finalReport {
         HeadText.setScaleY(4.4);
         HeadText.setX(900);
         HeadText.setY(50);
+
 
 
 
@@ -420,7 +443,7 @@ public class finalReport {
 
 
 
-        roota.getChildren().addAll(canvasa,sc,backa,textInt,barChart,textStab,textMean,textRec,textCon,HeadText,next);
+        roota.getChildren().addAll(sc,backa,textInt,barChart,textStab,textMean,textRec,textCon,HeadText,next);
 
     }
 }

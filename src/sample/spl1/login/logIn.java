@@ -141,7 +141,7 @@ public class logIn {
                     return;
                 }
 
-                String name =nameField.getText()+passwordField.getText()+".txt";
+                String name ="web"+nameField.getText()+passwordField.getText()+".txt";
                 String directory = "E:\\SoftwareProjectLab";
 
                                       if( findFile(name,new File(directory))==0)

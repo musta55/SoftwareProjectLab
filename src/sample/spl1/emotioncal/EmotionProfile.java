@@ -31,7 +31,7 @@ public class EmotionProfile {
     private Stage stage;
 
 
-    double[] out3 = new double[10000];
+    double[] out3 = new double[100];
    public EmotionProfile(String name,Stage stage)
    {
        this.name=name;
@@ -39,7 +39,7 @@ public class EmotionProfile {
    }
     public double[] fileInput(String Inname)
     {
-        double[] fileData = new double[10000];
+        double[] fileData = new double[300];
         Scanner scan;
         int m = 0;
         File file = new File(Inname);
@@ -56,7 +56,7 @@ public class EmotionProfile {
                             System.out.print("i = "+m+ " "+fileData[m] + "          ");
                         }
                     } catch (Exception q) {
-                        fileData[m] = 0.000;
+                        System.out.println("File data input error");
                     }
                     //     System.out.println("Value is " + out[m]);
                 }
@@ -69,39 +69,39 @@ public class EmotionProfile {
         }
     }
     public  void profileScore(int t,String report) throws FileNotFoundException {
-        DecimalFormat df = new DecimalFormat("0.00");
-        Scanner scan;
 
-        double[] emo = new double[10000];
-        double[] emo2 = new double[10000];
-        double[] emo3 = new double[10000];
+
+        double[] emo = new double[10];
+        double[] emo2 = new double[10];
+        double[] emo3 = new double[10];
         int m = 0,count=0;
-        double[] out =fileInput("web"+name);
+        double[] out;
+         out =fileInput("web"+name);
 
-        double[] out2 =fileInput("article"+name);
+        double[] out2;
+         out2 =fileInput("article"+name);
+        double[] out3;
+         out3 =fileInput("fb"+name);
 
-        double[] out3 =fileInput("fb"+name);
-
+        System.out.println("Web file name is :"+"web"+name);
 
         System.out.println("\nWeb File reading "+out);
-        for(int i=0;i<out.length;i++) System.out.println(out[i]+" ");
+        for(int i=0;i<out.length;i++) System.out.print(out[i]+" ");
         System.out.println("\nArticle file reading "+out);
-        for(int i=0;i<out2.length;i++) System.out.println(out2[i]+" ");
+        for(int i=0;i<out2.length;i++) System.out.print(out2[i]+" ");
         System.out.println("\nFacebook file reading "+out);
-        for(int i=0;i<out3.length;i++) System.out.println(out3[i]+" ");
+        for(int i=0;i<out3.length;i++) System.out.print(out3[i]+" ");
 
-        System.out.println("Set is :"+m/8 +" Set");
-        int j=0,tmp=m;
+        int j=0;
         for(int i=0,k=0;i<8;i++)
         {
-            for( j=k;j<tmp;j+=8)
+            for( j=k;j<out.length;j+=8)
             {
                 emo[i]+=out[j];
             }
             k++;
-            emo[i]/=(m/8);
+
         }
-        tmp=m;
         double tot=0;                       //Web Article
         for(int i=0;i<8;i++)
         {
@@ -115,14 +115,13 @@ public class EmotionProfile {
 
         for(int i=0,k=0;i<8;i++)
         {
-            for( j=k;j<tmp;j+=8)
+            for( j=k;j<out2.length;j+=8)
             {
                 emo2[i]+=out2[j];
             }
             k++;
-            emo2[i]/=(m/8);
+
         }
-        tmp=m;
 
         double tot2=0;                  //Article
         for(int i=0;i<8;i++)
@@ -138,12 +137,12 @@ public class EmotionProfile {
 
         for(int i=0,k=0;i<8;i++)
         {
-            for( j=k;j<tmp;j+=8)
+            for( j=k;j<out3.length;j+=8)
             {
                 emo3[i]+=out3[j];
             }
             k++;
-            emo3[i]/=(m/8);
+
         }
 
         double tot3=0;                                       //Facebook
@@ -260,16 +259,8 @@ else
 
     public void VisualProfile(double[] em,String text) {
        Stage stage=new Stage();
-        Text headning = new Text("Result");
-        headning.setScaleX(2);
-        headning.setScaleY(2);
-        headning.setTranslateX(640);
-        headning.setTranslateY(90);
-        headning.setFill(Color.rgb(150, 170, 130 ));
-        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
 
-
-        Button back = new Button("Back");
+        Button back = new Button("");
         back.setTranslateX(1100);
         back.setTranslateY(650);
         back.setTextFill(Color.WHITE);
@@ -350,14 +341,10 @@ else
         barChart.setScaleY(1.2);
 
 
-
-//        //second bar color
-        for(Node n:barChart.lookupAll(".default-color1.chart-bar")) {
-            n.setStyle("-fx-bar-fill: green;");
+        for(Node n:barChart.lookupAll(".default-color0.chart-bar")) {
+            n.setStyle("-fx-bar-fill: yellow;");
         }
-
-
-
+        //second bar color
 
         barChart.getData().addAll(series1);
 
@@ -373,7 +360,7 @@ else
         Background bg = new Background(bi);
         root.setBackground(bg);
         stage.setTitle("Bar Chart");
-        root.getChildren().addAll(barChart, back,textField,headning);
+        root.getChildren().addAll(barChart, back,textField);
         //Adding scene to the stage
         stage.setScene(scene);
 

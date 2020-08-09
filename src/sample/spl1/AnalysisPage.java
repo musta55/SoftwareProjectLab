@@ -140,7 +140,7 @@ public class AnalysisPage {
 
 
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/Artboard 1.png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/green.png").toString(), true);
         Pane root = new Pane();
 
         root.getChildren().addAll(visualization,back,reactionPrediction,finalReport,pro,others,application);
