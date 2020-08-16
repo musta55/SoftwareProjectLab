@@ -164,7 +164,7 @@ public class EmotionCalculation {
 
                 int q = 0;
                 //   System.out.println("intensity");
-                while (q < 3) {
+                while (q < 2) {
 
                     // i++;
                     System.out.println(Operations.outList.get(i));

@@ -16,6 +16,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import sample.spl1.AnalysisPage;
 import sample.spl1.emotioncal.EmotionCalculation;
 import sample.spl1.emotioncal.EmotionProfile;
 import sample.spl1.thirdPage;
@@ -53,48 +54,33 @@ public class finalReport {
     private void finalreport()
     {
 
-        Image image = null;
-        try {
-            image = new Image(new FileInputStream("Pictures/1x/Artboard 1.png"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
-        //Setting the image view
-        ImageView imageView = new ImageView(image);
 
-        //Setting the position of the image
-        imageView.setX(650);
-        imageView.setY(225);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/Artboard 1.png").toString(), true);
 
-        //setting the fit height and width of the image view
-        imageView.setFitHeight(355);
-        imageView.setFitWidth(500);
 
-        //Setting the preserve ratio of the image view
-        imageView.setPreserveRatio(true);
+        BackgroundImage bi = new BackgroundImage(background,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+       Background bg = new Background(bi);
+        Pane roota = new Pane();
+        roota.setBackground(bg);
 
-        Group roota = new Group(imageView);
 
-        Button backa = new Button("Back");
-        backa.setTranslateX(1100);
-        backa.setTranslateY(650);
-        backa.setStyle("-fx-padding: 8 15 15 15;\n" +
-                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                "    -fx-background-radius: 8;\n" +
-                "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
-                "        #8d9092,\n" +
-                "        #717375,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #ffffff, #a1a3a6);\n" +
-                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 1.1em;");
+        Button backa = new Button("");
+        backa.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+        backa.setTranslateX(0);
+        backa.setTranslateY(340);
+        backa.setPrefSize(1, 5);
+        backa.setTextFill(Color.YELLOW);
         backa.setPrefSize(60, 30);
+
         backa.setOnAction(esb->{
             try {
-                thirdPage goBack = new thirdPage();
-                goBack.app(stage,Name);
+                AnalysisPage goBack = new AnalysisPage(stage,Name);
+                goBack.analysis();
             }catch (Exception ex)
             {
                 ex.printStackTrace();
@@ -169,13 +155,43 @@ public class finalReport {
 //            scatterChart.setPrefSize(1000,700);
 
 
-        final LineChart<Number, Number> sc = new LineChart<>(new NumberAxis(), new NumberAxis());
-        sc.setPrefSize(400,400);
+//        final LineChart<Number, Number> sc = new LineChart<>(new NumberAxis(), new NumberAxis());
+//        sc.setPrefSize(400,400);
+//        sc.setScaleX(600);
+//        sc.setScaleY(20);
+//
+//        XYChart.Series series1 = new XYChart.Series();
+//        series1.setName("Sentimental Progress");
+//
+
+
+
+
+        NumberAxis xAxis = new NumberAxis();
+        xAxis.setLabel("No of articles");
+
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Emotion score");
+
+        LineChart lineChart = new LineChart(xAxis, yAxis);
+        lineChart.setScaleY(1.5);
+        lineChart.setScaleX(1.5);
+        lineChart.setLayoutX(600);
+        lineChart.setLayoutY(150);
+        lineChart.setPrefSize(500,400);
+
 
         XYChart.Series series1 = new XYChart.Series();
-        series1.setName("Sentimental Progress");
+        series1.setName("Emotion Progress");
+
         for (int t = 1; t <= 10; t++)
             series1.getData().add(new XYChart.Data(t - 1, sentimentTot[t]));
+
+
+        lineChart.getData().add(series1);
+
+
+
         double [] slope=new double[100];
         for(int k=1;k<9;k++)
         {
@@ -192,26 +208,26 @@ public class finalReport {
 
         if(stdDev<1)
         {
-            txt= "Emotional Power : Low ("+df.format(stdDev)+")";
-            report+="You have difficulty connecting with feelings — others’ and your own; give the impression of being snobby, withholding, or cold; obsess about problems; sometimes too serious.";
+            txt= " Low";
+            report+="\nYou have difficulty connecting with feelings — others’ and your own; give the impression of being snobby, withholding, or cold; obsess about problems; sometimes too serious.";
         }
         else  if(stdDev<5)
         {
-            txt= "Emotional Power : Medium ("+df.format(stdDev)+")";
-            report+="You are emotionally strong for self and others, practical, able to stay cool in a crisis, nonjudgmental.";
+            txt= "Medium";
+            report+="\nYou are emotionally strong for self and others, practical, able to stay cool in a crisis, nonjudgmental.";
         }
         else {
-            txt = "Emotional Power : High  (" + df.format(stdDev) + ")";
+            txt = " High";
 
-            report+="You are highly sensitive, naturally giving, spiritually attuned, and a good listener.";
+            report+="\nYou are highly sensitive, naturally giving and a good listener.";
         }
 
         textInt.setText(txt);
-        textInt.setFill(Color.GREEN);
-        textInt.setScaleX(1.5);
-        textInt.setScaleY(3);
-        textInt.setX(800);
-        textInt.setY(150);
+        textInt.setFill(Color.BLACK);
+        textInt.setFont(javafx.scene.text.Font.font(null, FontWeight.BOLD, 5));
+        textInt.setStyle("-fx-font-size: 10px;");
+        textInt.setX(331);
+        textInt.setY(168);
 
         int highSt=0,lowSt=0,mediumSt=0;
         Text textStab= new Text();
@@ -226,45 +242,41 @@ public class finalReport {
 
         if(highSt>=mediumSt && highSt>=lowSt )
         {
-            txtstab="Emotional Stability : Unstable";
-            report+="\n\n Tend to be a drama king or queen, may turn friends into therapists, seek external feedback rather than relying on own intuition, excessive need to share.";
+            txtstab="Unstable";
+            report+="\n\nYou tend to be a drama king or queen,seek external feedback rather than relying on own intuition, excessive need to share.";
 
         }
         else
         {
             if(mediumSt>=lowSt)
             {
-                txtstab="Emotional Stability : Medium";
-
-                report+="\n\n Extremely logical, comfortable with fixing problems logically and intellectually, great debater, able to stay calm in emotionally heated situations.";
+                txtstab="Medium";
+                report+="\n\nYou tend to be extremely logical, comfortable with fixing problems logically and intellectually, able to stay calm in emotionally heated situations.";
             }
             else if(mediumSt<lowSt)
             {
-                txtstab="Emotional Stability : Stable";
-                report+="\n \nPillar of strength, consistent and loyal, giving, respectful, get along with nearly everyone.";
+                txtstab="Stable";
+                report+="\n\nYou are extremely consistent and loyal, respectful, get along with nearly everyone.";
             }
         }
 
-
-
-
         textStab.setText(txtstab);
-        textStab.setFill(Color.GREEN);
-        textStab.setScaleX(1.5);
-        textStab.setScaleY(3);
-        textStab.setX(800);
-        textStab.setY(280);
+        textStab.setFill(Color.BLACK);
+        textStab.setFont(javafx.scene.text.Font.font(null, FontWeight.BOLD, 5));
+        textStab.setStyle("-fx-font-size: 8px;");
+        textStab.setX(126);
+        textStab.setY(112);
 
 
         String txtmean="";
-        if(finalTempTotal<=25 && finalTempTotal>=0)txtmean= "Combined Emotion :Anticipation";
-        else  if(finalTempTotal<=50 && finalTempTotal>=26)txtmean= "Combined Emotion :Surprise";
-        else  if(finalTempTotal<=75 && finalTempTotal>50)txtmean= "Combined Emotion :Trust";
-        else  if(finalTempTotal<=100 && finalTempTotal>75)txtmean= "Combined Emotion :Joy";
-        else  if(finalTempTotal<0 && finalTempTotal>=-25)txtmean= "Combined Emotion :Sadness";
-        else  if(finalTempTotal<-25 && finalTempTotal>=-50)txtmean= "Combined Emotion :Fear";
-        else  if(finalTempTotal<-50 && finalTempTotal>=-75)txtmean= "Combined Emotion :Anger";
-        else  if(finalTempTotal<-75 && finalTempTotal>=-100)txtmean= "Combined Emotion :Disgust";
+        if(finalTempTotal<=25 && finalTempTotal>=0)txtmean= "Anticipation";
+        else  if(finalTempTotal<=50 && finalTempTotal>=26)txtmean= "Surprise";
+        else  if(finalTempTotal<=75 && finalTempTotal>50)txtmean= "Trust";
+        else  if(finalTempTotal<=100 && finalTempTotal>75)txtmean= "Joy";
+        else  if(finalTempTotal<0 && finalTempTotal>=-25)txtmean= "Sadness";
+        else  if(finalTempTotal<-25 && finalTempTotal>=-50)txtmean= "Fear";
+        else  if(finalTempTotal<-50 && finalTempTotal>=-75)txtmean= "Anger";
+        else  if(finalTempTotal<-75 && finalTempTotal>=-100)txtmean= "Disgust";
 
 
 
@@ -277,52 +289,36 @@ public class finalReport {
 //        textMean.setY(450);
 
         Text textMean = new Text(txtmean);
-        textMean.setTextOrigin(VPos.TOP);
         textMean.setLayoutX(28);
         textMean.setLayoutY(51);
         textMean.setFill(Color.BLACK);
-        textMean.setFont(javafx.scene.text.Font.font(null, FontWeight.BOLD, 20));
-        textMean.setStyle("-fx-font-size: 20px;");
-        textMean.setX(800);
-        textMean.setY(450);
+        textMean.setFont(javafx.scene.text.Font.font(null, FontWeight.BOLD, 8));
+        textMean.setStyle("-fx-font-size: 15px;");
+        textMean.setX(163);
+        textMean.setY(190);
 
 
         String txtRec="";
         if(sentimentTot[1]>=0)
         {
             txtRec=" Positive";
-            report+="\n\nGifted healer, helper, and friend; passionate and sensual; intuitive about others’ thoughts and feelings; emotionally responsive; in touch with your body and emotions.";
+            report+="\n\nAlso you are likely a gifted healer, helper, and friend; intuitive about others’ thoughts and feelings; emotionally responsive; in touch with your body and emotions.";
         }
         else {
 
             txtRec=" Negative";
-            report+="\n\nEasily absorb others’ negativity; prone to anxiety, depression, and fatigue; easily feel hemmed in when living with others; difficulty setting boundaries with draining people.";
+            report+="\n\nAlso you easily absorb others’ negativity; prone to anxiety, depression, and fatigue; easily feel hemmed in when living with others; difficulty setting boundaries with draining people.";
         }
-//        Text textRec= new Text();
-//
-//
-//
-//        textRec.setFill(Color.GREEN);
-//        textRec.setScaleX(1.5);
-//        textRec.setScaleY(3);
-//        textRec.setText(txtRec);
-//        textRec.setX(800);
-//        textRec.setY(550);
 
         Text textRec = new Text(txtRec);
         textRec.setTextOrigin(VPos.TOP);
         textRec.setLayoutX(10);
         textRec.setLayoutY(11);
         textRec.setFill(Color.BLACK);
-        textRec.setOpacity(0.5);
-        textRec.setFont(Font.font(null, FontWeight.BOLD, 20));
-        textRec.setStyle("-fx-font-size: 20px;");
-        textRec.setX(800);
-       textRec.setY(550);
-
-
-        Line line = new Line(30, 32, 45, 57);
-        line.setStroke(Color.DARKMAGENTA);
+        textRec.setFont(javafx.scene.text.Font.font(null, FontWeight.BOLD, 5));
+        textRec.setStyle("-fx-font-size: 10px;");
+        textRec.setX(190);
+       textRec.setY(78);
 
 
         String txtCon="";
@@ -337,7 +333,7 @@ public class finalReport {
             if(pos>=2) {
                 txtCon="";
                 txtCon = "Positive";
-                report+="\n\nLast but not the least, you are practical, able to stay cool in a crisis, nonjudgmental.";
+                report+="\n\nLast but not the least, you are likely to be practical, able to stay cool in a crisis, nonjudgmental.";
                 break;
             }
             if(slope[k]<0)neg++;
@@ -347,35 +343,34 @@ public class finalReport {
             if(neg>=2) {
                 txtCon="";
                 txtCon = "Negative";
-                report+="\n\nBut your emotional consistency is downward";
+                report+="\n\nBut your emotional consistency is downward.";
                 break;
             }
 
         }
         if(pos<=2 || neg<=2){
             txtCon = "No";
-            report+="\n\n Also, tend to be a drama king or queen, may turn friends into therapist";
+            report+="\n\nAlso,you are likely tend to be a drama king or queen as you react too much.";
         }
 
 
         Text textCon= new Text();
         textCon.setText(txtCon);
 
-        textCon.setFill(Color.RED);
-        textCon.setScaleX(1.5);
-        textCon.setScaleY(3);
-        textCon.setX(800);
-        textCon.setY(650);
+        textCon.setFill(Color.BLACK);
+
+        textCon.setX(275);
+        textCon.setY(117);
+        textCon.setFont(javafx.scene.text.Font.font(null, FontWeight.BOLD, 5));
+        textCon.setStyle("-fx-font-size: 17px;");
 
 
         Text HeadText= new Text();
-        HeadText.setText("Your Final Report");
+        HeadText.setText("Your Progress Report");
 
-        HeadText.setFill(Color.DARKRED);
-        HeadText.setScaleX(3.4);
-        HeadText.setScaleY(4.4);
+        HeadText.setFill(Color.BLACK);
         HeadText.setX(900);
-        HeadText.setY(50);
+        HeadText.setY(30);
 
 
 
@@ -387,7 +382,7 @@ public class finalReport {
             series2.getData().add(new XYChart.Data(t - 1, finalTempTotal));
 
         CategoryAxis xAxisStab    = new CategoryAxis();
-        xAxisStab.setLabel("Stability");
+        xAxisStab.setLabel("Emotional Stability");
 
         NumberAxis yAxisStab = new NumberAxis();
         yAxisStab.setLabel("Value");
@@ -410,17 +405,12 @@ public class finalReport {
 
         barChart.setScaleX(1.5);
         barChart.setScaleY(1.5);
-        barChart.setLayoutX(1000);
-        barChart.setLayoutY(200);
+        barChart.setLayoutX(100);
+        barChart.setLayoutY(500);
 
         barChart.getData().add(dataSeriesStab);
         barChart.setAnimated(false);
-        sc.setAnimated(false);
-        sc.setCreateSymbols(true);
 
-
-        sc.getData().addAll(series1, series2);
-        sc.setPrefSize(650, 700);
 
 
         Button next=new Button();
@@ -429,12 +419,12 @@ public class finalReport {
         next.setTranslateY(340);
         next.setPrefSize(1, 5);
         next.setTextFill(Color.YELLOW);
-        String yoo = report;
+        String finalReport = report;
         next.setOnAction(e->
         {
             EmotionProfile emp=new EmotionProfile(Name,stage);
             try {
-                emp.profileScore(1, yoo);
+                emp.profileScore(1, finalReport);
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
@@ -443,7 +433,7 @@ public class finalReport {
 
 
 
-        roota.getChildren().addAll(sc,backa,textInt,barChart,textStab,textMean,textRec,textCon,HeadText,next);
+        roota.getChildren().addAll(lineChart,backa,textInt,barChart,textStab,textMean,textRec,textCon,HeadText,next);
 
     }
 }

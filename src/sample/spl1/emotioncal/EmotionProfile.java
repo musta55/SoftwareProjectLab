@@ -17,6 +17,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import sample.spl1.DoughnutChart;
 import sample.spl1.thirdPage;
 
 import java.io.File;
@@ -277,7 +278,7 @@ else
                 "    -fx-font-size: 1.1em;");
         back.setPrefSize(60, 30);
 
-     Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-0-3.jpg").toString(), true);
+     Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/graph_2.png").toString(), true);
         Pane root = new Pane();
         back.setOnAction(e -> {
             try {
@@ -289,28 +290,27 @@ else
             }
         });
 
+        Text HeadText= new Text();
+        HeadText.setText("Your Final Report");
 
-
-
-
-        Text txt = new Text(text);
-        txt.setTextOrigin(VPos.TOP);
-        txt.setLayoutX(28);
-        txt.setLayoutY(51);
-        txt.setFill(Color.BLACK);
-        txt.setFont(javafx.scene.text.Font.font(null, FontWeight.BOLD, 20));
-        txt.setStyle("-fx-font-size: 20px;");
+        HeadText.setFill(Color.BLACK);
+        HeadText.setX(900);
+        HeadText.setY(30);
+        HeadText.setScaleX(5);
+        HeadText.setScaleY(5);
 
         TextArea textField = new TextArea();
         textField.setLayoutX(630);
-        textField.setLayoutY(40);
+        textField.setLayoutY(60);
         textField.setPrefRowCount(10);
         textField.setPrefColumnCount(12);
         textField.setWrapText(true);
-        textField.setMinSize(525, 350);
-        textField.setText(String.valueOf(txt));
+        textField.setMinSize(725, 350);
+
         textField.setStyle("-fx-text-fill: black; -fx-font-size: 20px;");
-        textField.setFont(Font.font("Lucida Sans", FontWeight.BOLD, 20));
+
+        textField.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 22));
+        textField.setText(text);
 
         CategoryAxis xAxises = new CategoryAxis();
         xAxises.setCategories(FXCollections.<String>
@@ -327,6 +327,9 @@ else
         XYChart.Series<String, Number> series1 = new XYChart.Series<>();
         series1.setName("EMOTION");
 
+        for(Node n:barChart.lookupAll(".default-color0.chart-bar")) {
+            n.setStyle("-fx-bar-fill: yellow;");
+        }
         series1.getData().add(new XYChart.Data<>("Joy", em[0]));
         series1.getData().add(new XYChart.Data<>("Surprise",  em[1]));
         series1.getData().add(new XYChart.Data<>("Fear",  em[2]));
@@ -336,14 +339,12 @@ else
         series1.getData().add(new XYChart.Data<>("anticipation",  em[6]));
         series1.getData().add(new XYChart.Data<>("Anger",  em[7]));
         barChart.setTranslateX(40);
-        barChart.setTranslateY(40);
+        barChart.setTranslateY(80);
         barChart.setScaleX(1.2);
         barChart.setScaleY(1.2);
 
 
-        for(Node n:barChart.lookupAll(".default-color0.chart-bar")) {
-            n.setStyle("-fx-bar-fill: yellow;");
-        }
+
         //second bar color
 
         barChart.getData().addAll(series1);
@@ -360,7 +361,7 @@ else
         Background bg = new Background(bi);
         root.setBackground(bg);
         stage.setTitle("Bar Chart");
-        root.getChildren().addAll(barChart, back,textField);
+        root.getChildren().addAll(barChart, back,textField,HeadText);
         //Adding scene to the stage
         stage.setScene(scene);
 
@@ -439,8 +440,8 @@ else
         pieChart.setStartAngle(180);
         pieChart.setTranslateX(50);
         pieChart.setTranslateY(10);
-        pieChart.setScaleX(0.9);
-        pieChart.setScaleY(0.9);
+        pieChart.setScaleX(0.8);
+        pieChart.setScaleY(0.8);
 
 
         ObservableList<PieChart.Data> pieChartData2 = FXCollections.observableArrayList(
@@ -461,8 +462,8 @@ else
         pieChart2.setStartAngle(180);
         pieChart2.setTranslateX(50);
         pieChart2.setTranslateY(350);
-        pieChart2.setScaleX(0.9);
-        pieChart2.setScaleY(0.9);
+        pieChart2.setScaleX(0.8);
+        pieChart2.setScaleY(0.8);
 
 
         CategoryAxis xAxises3 = new CategoryAxis();
@@ -488,10 +489,46 @@ else
         series3.getData().add(new XYChart.Data<>("Anger",  em3[7]));
 
 
-        barChart3.setTranslateX(740);
-        barChart3.setTranslateY(100);
+        barChart3.setTranslateX(640);
+        barChart3.setTranslateY(40);
         barChart3.setScaleX(1.5);
-        barChart3.setScaleY(1.5);
+        barChart3.setScaleY(1.0);
+
+        ObservableList<PieChart.Data> sentChartData3 =  FXCollections.observableArrayList(
+                new PieChart.Data("Positive", em3[0]+em3[1]+em3[4]+em3[6]),
+                new PieChart.Data("Negative", em3[2]+em3[3]+em3[5]+em3[7]));
+
+        final DoughnutChart chart3 = new DoughnutChart(sentChartData3);
+        chart3.setTranslateX(400);
+        chart3.setTranslateY(400);
+        chart3.setScaleX(0.8);
+        chart3.setScaleY(0.8);
+        chart3.setTitle("Facebook");
+
+
+
+        ObservableList<PieChart.Data> sentChartData2 =  FXCollections.observableArrayList(
+                new PieChart.Data("Positive", em2[0]+em2[1]+em2[4]+em2[6]),
+                new PieChart.Data("Negative", em2[2]+em2[3]+em2[5]+em2[7]));
+
+        final DoughnutChart chart2 = new DoughnutChart(sentChartData2);
+        chart2.setTranslateX(700);
+        chart2.setTranslateY(400);
+        chart2.setScaleX(0.8);
+        chart2.setScaleY(0.8);
+        chart2.setTitle("Web article");
+
+        ObservableList<PieChart.Data> sentChartData =  FXCollections.observableArrayList(
+                new PieChart.Data("Positive", em[0]+em[1]+em[4]+em[6]),
+                new PieChart.Data("Negative", em[2]+em[3]+em[5]+em[7]));
+
+        final DoughnutChart chart = new DoughnutChart(sentChartData);
+        chart.setTranslateX(1000);
+        chart.setTranslateY(400);
+        chart.setScaleX(0.8);
+        chart.setScaleY(0.8);
+        chart.setTitle("Article");
+
 
 
         barChart3.getData().addAll(series3);
@@ -499,7 +536,7 @@ else
         Scene scene = new Scene(root, 1400, 755);
 
         stage.setTitle("Bar Chart");
-        root.getChildren().addAll(pieChart,pieChart2,barChart3, back,headning,headning2,headning3);
+        root.getChildren().addAll(pieChart,pieChart2,barChart3, back,headning,headning2,headning3,chart,chart2,chart3);
         stage.setScene(scene);
 
         stage.show();
@@ -508,5 +545,6 @@ else
         stage.show();
 
     }
+
 
 }
