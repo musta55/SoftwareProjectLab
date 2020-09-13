@@ -1,5 +1,7 @@
 package sample.spl1.emotioncal;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.VPos;
@@ -7,6 +9,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
+import javafx.scene.control.Skin;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,6 +22,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.spl1.DoughnutChart;
+import sample.spl1.FuzzyLogic.FuzzyController;
 import sample.spl1.thirdPage;
 
 import java.io.File;
@@ -69,7 +74,7 @@ public class EmotionProfile {
             return fileData;
         }
     }
-    public  void profileScore(int t,String report) throws FileNotFoundException {
+    public  void profileScore(int t,String report,double[] personalityTest) throws FileNotFoundException {
 
 
         double[] emo = new double[10];
@@ -93,6 +98,8 @@ public class EmotionProfile {
         System.out.println("\nFacebook file reading "+out);
         for(int i=0;i<out3.length;i++) System.out.print(out3[i]+" ");
 
+
+
         int j=0;
         for(int i=0,k=0;i<8;i++)
         {
@@ -101,7 +108,6 @@ public class EmotionProfile {
                 emo[i]+=out[j];
             }
             k++;
-
         }
         double tot=0;                       //Web Article
         for(int i=0;i<8;i++)
@@ -199,7 +205,7 @@ public class EmotionProfile {
 
         System.out.println("Highest is " + temp + " Second is " + temp2);
 if(t==1)
-       VisualProfile(emo,comment(temp,temp2)+report);
+       VisualProfile(emo,comment(temp,temp2)+report,personalityTest);
 else
        IndividualVisualProfile(emo,emo2,emo3);
 
@@ -258,7 +264,7 @@ else
 
     }
 
-    public void VisualProfile(double[] em,String text) {
+    public void VisualProfile(double[] em,String text,double[] personalityTest) {
        Stage stage=new Stage();
 
         Button back = new Button("");
@@ -278,7 +284,7 @@ else
                 "    -fx-font-size: 1.1em;");
         back.setPrefSize(60, 30);
 
-     Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/graph_2.png").toString(), true);
+     Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/Blue-Background-4.jpg").toString(), true);
         Pane root = new Pane();
         back.setOnAction(e -> {
             try {
@@ -306,6 +312,28 @@ else
         textField.setPrefColumnCount(12);
         textField.setWrapText(true);
         textField.setMinSize(725, 350);
+
+        textField.skinProperty().addListener(new ChangeListener<Skin<?>>() {
+
+            @Override
+            public void changed(
+                    ObservableValue<? extends Skin<?>> ov, Skin<?> t, Skin<?> t1) {
+                if (t1 != null && t1.getNode() instanceof Region) {
+                    Region r = (Region) t1.getNode();
+                    r.setBackground(Background.EMPTY);
+
+                    r.getChildrenUnmodifiable().stream().
+                            filter(n -> n instanceof Region).
+                            map(n -> (Region) n).
+                            forEach(n -> n.setBackground(Background.EMPTY));
+
+                    r.getChildrenUnmodifiable().stream().
+                            filter(n -> n instanceof Control).
+                            map(n -> (Control) n).
+                            forEach(c -> c.skinProperty().addListener(this)); // *
+                }
+            }
+        });
 
         textField.setStyle("-fx-text-fill: black; -fx-font-size: 20px;");
 
@@ -343,7 +371,41 @@ else
         barChart.setScaleX(1.2);
         barChart.setScaleY(1.2);
 
+        Button personalilty = new Button("Personality Test");
+        //   backa.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+        personalilty.setTranslateX(700);
+        personalilty.setTranslateY(440);
+        personalilty.setPrefSize(1, 5);
+        personalilty.setTextFill(Color.WHITE);
+     //   personalilty.setPrefSize(200, 70);
+        personalilty.setStyle("-fx-background-color: \n" +
+                "        linear-gradient(#14FF14, #14FF14),\n" +
+                "        linear-gradient(#14FF14, #14FF14),\n" +
+                "        linear-gradient(#14FF14, #14FF14),\n" +
+                "        linear-gradient(#ffe657 0%, #ffe657 50%, #FFAA00 100%),\n" +
+                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
+                "-fx-background-radius: 5em; " +
+                "-fx-min-width: 300px; " +
+                "-fx-min-height: 150px; " +
+                "-fx-max-width: 300px; " +
+                "-fx-max-height: 150px;"+
+                "    -fx-text-fill: #FFFFE6;\n" +
+                "    -fx-font-weight: bold;\n" +
+                "    -fx-font-size: 2.9em;\n" +
+                "    -fx-padding: 10 10 10 10;");
 
+        personalilty.setTextFill(Color.BLACK);
+
+
+        personalilty.setOnAction(esb->{
+            try {
+                FuzzyController t = new FuzzyController(personalityTest);
+
+            }catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+        });
 
         //second bar color
 
@@ -361,7 +423,7 @@ else
         Background bg = new Background(bi);
         root.setBackground(bg);
         stage.setTitle("Bar Chart");
-        root.getChildren().addAll(barChart, back,textField,HeadText);
+        root.getChildren().addAll(barChart, back,textField,HeadText,personalilty);
         //Adding scene to the stage
         stage.setScene(scene);
 
@@ -501,8 +563,8 @@ else
         final DoughnutChart chart3 = new DoughnutChart(sentChartData3);
         chart3.setTranslateX(400);
         chart3.setTranslateY(400);
-        chart3.setScaleX(0.8);
-        chart3.setScaleY(0.8);
+        chart3.setScaleX(0.6);
+        chart3.setScaleY(0.6);
         chart3.setTitle("Facebook");
 
 
@@ -514,8 +576,8 @@ else
         final DoughnutChart chart2 = new DoughnutChart(sentChartData2);
         chart2.setTranslateX(700);
         chart2.setTranslateY(400);
-        chart2.setScaleX(0.8);
-        chart2.setScaleY(0.8);
+        chart2.setScaleX(0.6);
+        chart2.setScaleY(0.6);
         chart2.setTitle("Web article");
 
         ObservableList<PieChart.Data> sentChartData =  FXCollections.observableArrayList(
@@ -525,9 +587,17 @@ else
         final DoughnutChart chart = new DoughnutChart(sentChartData);
         chart.setTranslateX(1000);
         chart.setTranslateY(400);
-        chart.setScaleX(0.8);
-        chart.setScaleY(0.8);
+        chart.setScaleX(0.6);
+        chart.setScaleY(0.6);
         chart.setTitle("Article");
+
+        Text visu = new Text("Emotion Visualization");
+        visu.setScaleX(6);
+        visu.setScaleY(6);
+        visu.setTranslateX(650);
+        visu.setTranslateY(20);
+        visu.setFill(Color.rgb(237, 134, 18));
+        visu.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 12));
 
 
 
@@ -536,7 +606,7 @@ else
         Scene scene = new Scene(root, 1400, 755);
 
         stage.setTitle("Bar Chart");
-        root.getChildren().addAll(pieChart,pieChart2,barChart3, back,headning,headning2,headning3,chart,chart2,chart3);
+        root.getChildren().addAll(pieChart,pieChart2,barChart3, back,headning,headning2,headning3,chart,chart2,chart3,visu);
         stage.setScene(scene);
 
         stage.show();

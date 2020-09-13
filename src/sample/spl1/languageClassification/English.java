@@ -1,9 +1,13 @@
 package sample.spl1.languageClassification;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
+import javafx.scene.control.Skin;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -40,6 +44,28 @@ public class English {
             textField.setPrefColumnCount(6);
             textField.setWrapText(true);
             textField.setMinSize(1125,150);
+
+            textField.skinProperty().addListener(new ChangeListener<Skin<?>>() {
+
+                @Override
+                public void changed(
+                        ObservableValue<? extends Skin<?>> ov, Skin<?> t, Skin<?> t1) {
+                    if (t1 != null && t1.getNode() instanceof Region) {
+                        Region r = (Region) t1.getNode();
+                        r.setBackground(Background.EMPTY);
+
+                        r.getChildrenUnmodifiable().stream().
+                                filter(n -> n instanceof Region).
+                                map(n -> (Region) n).
+                                forEach(n -> n.setBackground(Background.EMPTY));
+
+                        r.getChildrenUnmodifiable().stream().
+                                filter(n -> n instanceof Control).
+                                map(n -> (Control) n).
+                                forEach(c -> c.skinProperty().addListener(this)); // *
+                    }
+                }
+            });
 
             Button button = new Button("Enter");
             button.setTextFill(Color.WHITE);

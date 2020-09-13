@@ -28,29 +28,26 @@ public class AnalysisPage {
     public void analysis()
     {
 
-        Button reactionPrediction = new Button("Reaction Prediction");
-        reactionPrediction.setTranslateX(660);
-        reactionPrediction.setTranslateY(170);
+        Button reactionPrediction = new Button("");
+        reactionPrediction.setTranslateX(60);
+        reactionPrediction.setTranslateY(400);
         setStyle2(reactionPrediction);
-        reactionPrediction.setPrefSize(500, 150);
         reactionPrediction.setTextFill(Color.WHITE);
-        reactionPrediction.setGraphic(new ImageView("Pictures/1x/reaction.jpg"));
+        reactionPrediction.setGraphic(new ImageView("Pictures/1x/facebook-care-emoji.jpg"));
 
-        Button visualization = new Button("Emotion Visualization");
-        visualization.setTranslateX(660);
-        visualization.setTranslateY(370);
+        Button visualization = new Button("");
+        visualization.setTranslateX(60);
+        visualization.setTranslateY(160);
         setStyle2(visualization);
-        visualization.setPrefSize(500, 150);
         visualization.setTextFill(Color.WHITE);
-        visualization.setGraphic(new ImageView("Pictures/1x/visualizaton.png"));
+        visualization.setGraphic(new ImageView("Pictures/1x/data Vis.jpg"));
 
-        Button finalReport = new Button("Final Feedback");
-        finalReport.setTranslateX(660);
-        finalReport.setTranslateY(570);
-        setStyle2(finalReport);
-        finalReport.setPrefSize(500, 150);
+        Button finalReport = new Button("");
+        finalReport.setTranslateX(860);
+        finalReport.setTranslateY(320);
+        setStyle(finalReport);
         finalReport.setTextFill(Color.WHITE);
-        finalReport.setGraphic(new ImageView("Pictures/1x/result.jpg"));
+        finalReport.setGraphic(new ImageView("Pictures/1x/funal report.gif"));
 
 
         Button pro = new Button("Experiment");
@@ -146,10 +143,11 @@ public class AnalysisPage {
         root.getChildren().addAll(visualization,back,reactionPrediction,finalReport,pro,others,application);
 
 
+        double [] per=new double[10];
         visualization.setOnAction(e->{
             try {
                 EmotionProfile emp=new EmotionProfile(Name,stage);
-                emp.profileScore(0,"");
+                emp.profileScore(0,"",per);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

@@ -9,13 +9,13 @@ import java.nio.file.StandardOpenOption;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -566,7 +566,27 @@ public class EmotionCalculation {
         textField.setMinSize(425, 450);
         textField.setText(status);
 
+        textField.skinProperty().addListener(new ChangeListener<Skin<?>>() {
 
+            @Override
+            public void changed(
+                    ObservableValue<? extends Skin<?>> ov, Skin<?> t, Skin<?> t1) {
+                if (t1 != null && t1.getNode() instanceof Region) {
+                    Region r = (Region) t1.getNode();
+                    r.setBackground(Background.EMPTY);
+
+                    r.getChildrenUnmodifiable().stream().
+                            filter(n -> n instanceof Region).
+                            map(n -> (Region) n).
+                            forEach(n -> n.setBackground(Background.EMPTY));
+
+                    r.getChildrenUnmodifiable().stream().
+                            filter(n -> n instanceof Control).
+                            map(n -> (Control) n).
+                            forEach(c -> c.skinProperty().addListener(this)); // *
+                }
+            }
+        });
 
 
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
@@ -688,6 +708,27 @@ public class EmotionCalculation {
         textField.setMinSize(425, 450);
         textField.setText(status);
 
+        textField.skinProperty().addListener(new ChangeListener<Skin<?>>() {
+
+            @Override
+            public void changed(
+                    ObservableValue<? extends Skin<?>> ov, Skin<?> t, Skin<?> t1) {
+                if (t1 != null && t1.getNode() instanceof Region) {
+                    Region r = (Region) t1.getNode();
+                    r.setBackground(Background.EMPTY);
+
+                    r.getChildrenUnmodifiable().stream().
+                            filter(n -> n instanceof Region).
+                            map(n -> (Region) n).
+                            forEach(n -> n.setBackground(Background.EMPTY));
+
+                    r.getChildrenUnmodifiable().stream().
+                            filter(n -> n instanceof Control).
+                            map(n -> (Control) n).
+                            forEach(c -> c.skinProperty().addListener(this)); // *
+                }
+            }
+        });
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Joy", JoyCal),
                 new PieChart.Data("Surprise", SurpriseCal),
@@ -989,7 +1030,27 @@ public class EmotionCalculation {
         textField.setMinSize(525, 450);
         textField.setText(status);
 
+        textField.skinProperty().addListener(new ChangeListener<Skin<?>>() {
 
+            @Override
+            public void changed(
+                    ObservableValue<? extends Skin<?>> ov, Skin<?> t, Skin<?> t1) {
+                if (t1 != null && t1.getNode() instanceof Region) {
+                    Region r = (Region) t1.getNode();
+                    r.setBackground(Background.EMPTY);
+
+                    r.getChildrenUnmodifiable().stream().
+                            filter(n -> n instanceof Region).
+                            map(n -> (Region) n).
+                            forEach(n -> n.setBackground(Background.EMPTY));
+
+                    r.getChildrenUnmodifiable().stream().
+                            filter(n -> n instanceof Control).
+                            map(n -> (Control) n).
+                            forEach(c -> c.skinProperty().addListener(this)); // *
+                }
+            }
+        });
 
         //Creating a Group object
         Pane root = new Pane();

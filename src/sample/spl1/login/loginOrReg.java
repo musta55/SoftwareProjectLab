@@ -33,7 +33,7 @@ public class loginOrReg {
         logIn.setGraphic(new ImageView("Pictures/1x/login3.jpg"));
 
         logIn.setPadding(Insets.EMPTY);
-        logIn.setTranslateX(680);
+        logIn.setTranslateX(640);
         logIn.setTranslateY(220);
 
         logIn.setStyle("-fx-background-color: \n" +
@@ -64,7 +64,7 @@ public class loginOrReg {
         Canvas canvas = new Canvas(1400, 750);
         Button registration = new Button("");
 
-        registration.setTranslateX(930);
+        registration.setTranslateX(1080);
         registration.setTranslateY(220);
         registration.setGraphic(new ImageView("Pictures/1x/register.png"));
 

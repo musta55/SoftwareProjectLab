@@ -48,7 +48,7 @@ public class Main extends Application {
         headning.setScaleY(6);
         headning.setTranslateX(650);
         headning.setTranslateY(100);
-        headning.setFill(Color.rgb(237, 134, 18));
+        headning.setFill(Color.rgb(237, 174, 18));
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.ITALIC, 12));
 
 
@@ -67,16 +67,16 @@ public class Main extends Application {
                 "        linear-gradient(#14FF14, #14FF14),\n" +
                 "        linear-gradient(#14FF14, #14FF14),\n" +
                 "        linear-gradient(#14FF14, #14FF14),\n" +
-                "        linear-gradient(#ffe657 0%, #ffffff 50%, #14FF14 100%),\n" +
+                "        linear-gradient(#ffe657 0%, #ffe657 50%, #FFAA00 100%),\n" +
                 "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
                 "-fx-background-radius: 5em; " +
                         "-fx-min-width: 150px; " +
                         "-fx-min-height: 150px; " +
                         "-fx-max-width: 150px; " +
                         "-fx-max-height: 150px;"+
-                        "    -fx-text-fill: #654b00;\n" +
+                        "    -fx-text-fill: #FFFFE6;\n" +
                 "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 2.1em;\n" +
+                "    -fx-font-size: 2.9em;\n" +
                 "    -fx-padding: 10 10 10 10;");
 
         Start.setTextFill(Color.BLACK);
@@ -94,8 +94,8 @@ public class Main extends Application {
 //                "    -fx-padding: 10 10 10 10;");
         Start.setPrefSize(180,100);
 //        try {
-         Image background = new Image(getClass().getClassLoader().getResource("Pictures/emotion(16-9)-0-2.jpg").toString(), true);
-//
+         Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-01.jpg").toString(), true);
+//Pictures/1x/emotion(16-9)-01.jpg
        BackgroundImage bi = new BackgroundImage(background,
               BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
