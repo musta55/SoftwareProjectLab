@@ -1,16 +1,10 @@
 package sample.spl1.emotioncal;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.VPos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Control;
-import javafx.scene.control.Skin;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,8 +20,8 @@ import sample.spl1.FuzzyLogic.FuzzyController;
 import sample.spl1.thirdPage;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -264,7 +258,7 @@ else
 
     }
 
-    public void VisualProfile(double[] em,String text,double[] personalityTest) {
+    public void VisualProfile(double[] em,String text,double[] personalityTest) throws FileNotFoundException {
        Stage stage=new Stage();
 
         Button back = new Button("");
@@ -284,7 +278,7 @@ else
                 "    -fx-font-size: 1.1em;");
         back.setPrefSize(60, 30);
 
-     Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/Blue-Background-4.jpg").toString(), true);
+     Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
         Pane root = new Pane();
         back.setOnAction(e -> {
             try {
@@ -301,39 +295,17 @@ else
 
         HeadText.setFill(Color.BLACK);
         HeadText.setX(900);
-        HeadText.setY(30);
+        HeadText.setY(200);
         HeadText.setScaleX(5);
         HeadText.setScaleY(5);
 
         TextArea textField = new TextArea();
         textField.setLayoutX(630);
-        textField.setLayoutY(60);
+        textField.setLayoutY(260);
         textField.setPrefRowCount(10);
         textField.setPrefColumnCount(12);
         textField.setWrapText(true);
         textField.setMinSize(725, 350);
-
-        textField.skinProperty().addListener(new ChangeListener<Skin<?>>() {
-
-            @Override
-            public void changed(
-                    ObservableValue<? extends Skin<?>> ov, Skin<?> t, Skin<?> t1) {
-                if (t1 != null && t1.getNode() instanceof Region) {
-                    Region r = (Region) t1.getNode();
-                    r.setBackground(Background.EMPTY);
-
-                    r.getChildrenUnmodifiable().stream().
-                            filter(n -> n instanceof Region).
-                            map(n -> (Region) n).
-                            forEach(n -> n.setBackground(Background.EMPTY));
-
-                    r.getChildrenUnmodifiable().stream().
-                            filter(n -> n instanceof Control).
-                            map(n -> (Control) n).
-                            forEach(c -> c.skinProperty().addListener(this)); // *
-                }
-            }
-        });
 
         textField.setStyle("-fx-text-fill: black; -fx-font-size: 20px;");
 
@@ -355,9 +327,6 @@ else
         XYChart.Series<String, Number> series1 = new XYChart.Series<>();
         series1.setName("EMOTION");
 
-        for(Node n:barChart.lookupAll(".default-color0.chart-bar")) {
-            n.setStyle("-fx-bar-fill: yellow;");
-        }
         series1.getData().add(new XYChart.Data<>("Joy", em[0]));
         series1.getData().add(new XYChart.Data<>("Surprise",  em[1]));
         series1.getData().add(new XYChart.Data<>("Fear",  em[2]));
@@ -371,35 +340,20 @@ else
         barChart.setScaleX(1.2);
         barChart.setScaleY(1.2);
 
-        Button personalilty = new Button("Personality Test");
-        //   backa.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
-        personalilty.setTranslateX(700);
-        personalilty.setTranslateY(440);
-        personalilty.setPrefSize(1, 5);
-        personalilty.setTextFill(Color.WHITE);
-     //   personalilty.setPrefSize(200, 70);
-        personalilty.setStyle("-fx-background-color: \n" +
-                "        linear-gradient(#14FF14, #14FF14),\n" +
-                "        linear-gradient(#14FF14, #14FF14),\n" +
-                "        linear-gradient(#14FF14, #14FF14),\n" +
-                "        linear-gradient(#ffe657 0%, #ffe657 50%, #FFAA00 100%),\n" +
-                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
-                "-fx-background-radius: 5em; " +
-                "-fx-min-width: 300px; " +
-                "-fx-min-height: 150px; " +
-                "-fx-max-width: 300px; " +
-                "-fx-max-height: 150px;"+
-                "    -fx-text-fill: #FFFFE6;\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 2.9em;\n" +
-                "    -fx-padding: 10 10 10 10;");
 
-        personalilty.setTextFill(Color.BLACK);
 
+
+        Image Ab = new Image(new FileInputStream("src/Pictures/personality test.png"));
+        ImageView about = new ImageView(Ab);
+        Button personalilty = new Button(null,about);
+        personalilty.setBackground(null);
+
+        personalilty.setTranslateX(880);
+        personalilty.setTranslateY(620);
 
         personalilty.setOnAction(esb->{
             try {
-                FuzzyController t = new FuzzyController(personalityTest);
+                FuzzyController t = new FuzzyController(personalityTest,stage);
 
             }catch (Exception ex)
             {
@@ -422,7 +376,7 @@ else
                 BackgroundSize.DEFAULT);
         Background bg = new Background(bi);
         root.setBackground(bg);
-        stage.setTitle("Bar Chart");
+        stage.setTitle("Final report");
         root.getChildren().addAll(barChart, back,textField,HeadText,personalilty);
         //Adding scene to the stage
         stage.setScene(scene);

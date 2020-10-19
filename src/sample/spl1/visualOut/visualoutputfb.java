@@ -2,7 +2,6 @@ package sample.spl1.visualOut;
 
 import javafx.collections.FXCollections;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -15,15 +14,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import sample.spl1.thirdPage;
 
 import java.io.*;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Scanner;
-
-import sample.spl1.*;
-
-import static java.lang.Math.abs;
 
 public class visualoutputfb {
     public static String s = null;
@@ -32,11 +28,11 @@ public class visualoutputfb {
     double[] sentimentNeg = new double[1000];
     double[] sentimentTot = new double[1000];
     double tempTotal;
-    public double[] outData()
+    public double[] outData(String fbFile)
     {
         Scanner scan=null;
         File file = null;
-        file = new File("src/sample/spl1/out.txt");
+        file = new File(fbFile);
         try {
             scan = new Scanner(file);
         } catch (FileNotFoundException e) {
@@ -106,7 +102,7 @@ public class visualoutputfb {
             }
         }
         Group root = new Group();
-        Image background = new Image(visualoutputfb.class.getClassLoader().getResource("emotionSide.png").toString(), true);
+        Image background = new Image(visualoutputfb.class.getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
         Canvas canvas = new Canvas(1800, 900);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -139,8 +135,8 @@ public class visualoutputfb {
 
         back.setOnAction(e -> {
             try {
-                fourthPage fp = new fourthPage();
-                fp.runs(stage,accessToken,Name);
+                thirdPage tp=new thirdPage();
+                tp.app(stage, Name);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -227,7 +223,7 @@ public class visualoutputfb {
                 angerOut = angerOut / 10;
 
                 //   Image backgrounds = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
-                Image backgrounds = new Image("emotionSide.png");
+
 
                 Pane roots = new Pane();
 

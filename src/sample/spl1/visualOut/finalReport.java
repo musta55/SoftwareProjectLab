@@ -1,28 +1,20 @@
 package sample.spl1.visualOut;
 
 import javafx.geometry.VPos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.spl1.AnalysisPage;
-import sample.spl1.FuzzyLogic.FuzzyController;
 import sample.spl1.emotioncal.EmotionCalculation;
 import sample.spl1.emotioncal.EmotionProfile;
-import sample.spl1.thirdPage;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 
@@ -56,7 +48,7 @@ public class finalReport {
     private void finalreport() {
 
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/Artboard 1.png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/wheel.png").toString(), true);
 
 
         BackgroundImage bi = new BackgroundImage(background,
@@ -90,7 +82,6 @@ public class finalReport {
 
         Scene scenea = new Scene(roota, 1400, 750);
         stage.setScene(scenea);
-        stage.setFullScreen(true);
         stage.show();
         stage.setTitle("Sentiment Analysis");
 
@@ -219,10 +210,10 @@ public class finalReport {
 
         textInt.setText(txt);
         textInt.setFill(Color.BLACK);
-        textInt.setFont(javafx.scene.text.Font.font(null, FontWeight.BOLD, 5));
+        textInt.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.BOLD, 5));
         textInt.setStyle("-fx-font-size: 10px;");
-        textInt.setX(331);
-        textInt.setY(168);
+        textInt.setX(335);
+        textInt.setY(162);
 
         int highSt = 0, lowSt = 0, mediumSt = 0;
         Text textStab = new Text();
@@ -255,10 +246,10 @@ public class finalReport {
 
         textStab.setText(txtstab);
         textStab.setFill(Color.BLACK);
-        textStab.setFont(javafx.scene.text.Font.font(null, FontWeight.BOLD, 5));
-        textStab.setStyle("-fx-font-size: 8px;");
-        textStab.setX(126);
-        textStab.setY(112);
+        textStab.setFont(javafx.scene.text.Font.font("MyriadPro", FontWeight.BOLD, 10));
+        textStab.setStyle("-fx-font-size: 12px;");
+        textStab.setX(129);
+        textStab.setY(150);
 
 
         String txtmean = "";
@@ -281,13 +272,11 @@ public class finalReport {
 //        textMean.setY(450);
 
         Text textMean = new Text(txtmean);
-        textMean.setLayoutX(28);
-        textMean.setLayoutY(51);
         textMean.setFill(Color.BLACK);
-        textMean.setFont(javafx.scene.text.Font.font(null, FontWeight.BOLD, 8));
+        textMean.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.BOLD, 8));
         textMean.setStyle("-fx-font-size: 15px;");
-        textMean.setX(163);
-        textMean.setY(190);
+        textMean.setX(220);
+        textMean.setY(340);
 
 
 
@@ -307,13 +296,13 @@ public class finalReport {
         textRec.setLayoutX(10);
         textRec.setLayoutY(11);
         textRec.setFill(Color.BLACK);
-        textRec.setFont(javafx.scene.text.Font.font(null, FontWeight.BOLD, 5));
+        textRec.setFont(javafx.scene.text.Font.font(null, FontWeight.BOLD, 10));
         textRec.setStyle("-fx-font-size: 10px;");
-        textRec.setX(190);
-        textRec.setY(78);
+        textRec.setX(214);
+        textRec.setY(105);
 
 
-        String txtCon = "";
+        String txtCon = ""; String txtper = "";
         int pos = 0, neg = 0;
         for (int k = 0; k < 10; k++) {
 
@@ -324,6 +313,7 @@ public class finalReport {
             if (pos >= 2) {
                 txtCon = "";
                 txtCon = "Positive";
+                txtper="Good";
                 report += "\n\nLast but not the least, you are likely to be practical, able to stay cool in a crisis, nonjudgmental.";
                 personalityTest[1] = 0.5;
                 break;
@@ -334,6 +324,7 @@ public class finalReport {
             }
             if (neg >= 2) {
                 txtCon = "";
+                txtper="Bad";
                 txtCon = "Negative";
                 report += "\n\nBut your emotional consistency is downward.";
                 personalityTest[1] = 0.8;
@@ -343,6 +334,7 @@ public class finalReport {
         }
         if (pos <= 2 || neg <= 2) {
             txtCon = "No";
+            txtper="Bad";
             report += "\n\nAlso,you are likely tend to be a drama king or queen as you react too much.";
             personalityTest[1] = 0.2;
         }
@@ -353,10 +345,21 @@ public class finalReport {
 
         textCon.setFill(Color.BLACK);
 
-        textCon.setX(275);
-        textCon.setY(117);
+        textCon.setX(415);
+        textCon.setY(217);
         textCon.setFont(javafx.scene.text.Font.font(null, FontWeight.BOLD, 5));
         textCon.setStyle("-fx-font-size: 17px;");
+
+
+        Text text = new Text();
+        text.setText(txtper);
+
+        text.setFill(Color.BLACK);
+
+        text.setX(62);
+        text.setY(217);
+        text.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.BOLD, 10));
+        text.setStyle("-fx-font-size: 17px;");
 
 
         Text HeadText = new Text();
@@ -424,7 +427,7 @@ public class finalReport {
         });
 
 
-        roota.getChildren().addAll(lineChart, backa, textInt, barChart, textStab, textMean, textRec, textCon, HeadText, next);
+        roota.getChildren().addAll(lineChart, backa, textInt, barChart, textStab, textMean, textRec, textCon, HeadText, next,text);
 
     }
 }

@@ -1,15 +1,12 @@
 package sample.spl1.languageClassification;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.control.Control;
-import javafx.scene.control.Skin;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -21,10 +18,7 @@ import sample.spl1.Operations;
 import sample.spl1.OperationsBangla;
 import sample.spl1.emotioncal.EmotionCalculation;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class biLingual {
@@ -41,32 +35,34 @@ public class biLingual {
 
             TextArea textFields = new TextArea();
 
-            Button button = new Button("Enter");
-            button.setTextFill(Color.WHITE);
-            setStyle(button);
-            button.setTranslateX(620);
-            button.setTranslateY(350);
-            button.setPrefSize(150,70);
 
-            try {
-                Text headning = new Text("TEXT INPUT");
+            Image Ab = new Image(new FileInputStream("src/Pictures/enter.png"));
+            ImageView about = new ImageView(Ab);
+            Button button = new Button(null,about);
+            button.setBackground(null);
+
+            button.setTranslateX(580);
+            button.setTranslateY(520);
+
+
+                Text headning = new Text("USER INPUT");
                 headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 11));
-                headning.setFill(Color.DARKBLUE);
+                headning.setFill(Color.WHITE);
                 headning.setScaleX(6);
                 headning.setScaleY(6);
                 headning.setTranslateX(650);
-                headning.setTranslateY(90);
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("emotion(16-9).png").toString(), true);
+                headning.setTranslateY(190);
+                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
                 Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);
 
                 textFields.setLayoutX(150);
-                textFields.setLayoutY(180);
+                textFields.setLayoutY(280);
                 textFields.setPrefRowCount(5);
                 textFields.setPrefColumnCount(6);
                 textFields.setWrapText(true);
-                textFields.setMinSize(1125,150);
+                textFields.setMinSize(1125,200);
                 Pane roots = new Pane();
                 BackgroundImage bi = new BackgroundImage(backgrounds,
                         BackgroundRepeat.NO_REPEAT,
@@ -80,10 +76,6 @@ public class biLingual {
                 primaryStage.setScene(scene);
                 //primaryStage.setFullScreen(true);
                 primaryStage.show();
-            }catch (Exception ex)
-            {
-                System.out.println("Picture url Problem");
-            }
 
             button.setOnAction(action -> {
                 Operations operations = new Operations();
@@ -171,55 +163,33 @@ public class biLingual {
         try {
 
             TextArea textFields = new TextArea();
+            Image Ab = new Image(new FileInputStream("src/Pictures/enter.png"));
+            ImageView about = new ImageView(Ab);
+            Button button = new Button(null,about);
+            button.setBackground(null);
 
-            Button button = new Button("Enter");
-            button.setTextFill(Color.WHITE);
-            setStyle(button);
-            button.setTranslateX(620);
-            button.setTranslateY(580);
-            button.setPrefSize(150,70);
+            button.setTranslateX(580);
+            button.setTranslateY(520);
 
-            try {
                 Text headning = new Text("TEXT INPUT");
                 headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 11));
                 headning.setFill(Color.WHITE);
                 headning.setScaleX(6);
                 headning.setScaleY(6);
-                headning.setTranslateX(650);
-                headning.setTranslateY(90);
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/pngfuel.com.png").toString(), true);
+                headning.setTranslateX(700);
+                headning.setTranslateY(190);
+                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
                 Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);
 
 
-                textFields.skinProperty().addListener(new ChangeListener<Skin<?>>() {
-
-                    @Override
-                    public void changed(
-                            ObservableValue<? extends Skin<?>> ov, Skin<?> t, Skin<?> t1) {
-                        if (t1 != null && t1.getNode() instanceof Region) {
-                            Region r = (Region) t1.getNode();
-                            r.setBackground(Background.EMPTY);
-
-                            r.getChildrenUnmodifiable().stream().
-                                    filter(n -> n instanceof Region).
-                                    map(n -> (Region) n).
-                                    forEach(n -> n.setBackground(Background.EMPTY));
-
-                            r.getChildrenUnmodifiable().stream().
-                                    filter(n -> n instanceof Control).
-                                    map(n -> (Control) n).
-                                    forEach(c -> c.skinProperty().addListener(this)); // *
-                        }
-                    }
-                });
                 textFields.setLayoutX(150);
-                textFields.setLayoutY(180);
+                textFields.setLayoutY(280);
                 textFields.setPrefRowCount(5);
                 textFields.setPrefColumnCount(6);
                 textFields.setWrapText(true);
-                textFields.setMinSize(1025,350);
+                textFields.setMinSize(1025,200);
                 Pane roots = new Pane();
                 BackgroundImage bi = new BackgroundImage(backgrounds,
                         BackgroundRepeat.NO_REPEAT,
@@ -233,10 +203,7 @@ public class biLingual {
                 primaryStage.setScene(scene);
                 //primaryStage.setFullScreen(true);
                 primaryStage.show();
-            }catch (Exception ex)
-            {
-                System.out.println("Picture url Problem");
-            }
+
 
             button.setOnAction(action -> {
                 Operations operations = new Operations();
@@ -321,13 +288,13 @@ public    biLingual(Stage primaryStage)
             primaryStage.setTitle("Text Input");
 
             TextArea textFields = new TextArea();
+            Image Ab = new Image(new FileInputStream("src/Pictures/enter.png"));
+            ImageView about = new ImageView(Ab);
+            Button button = new Button(null,about);
+            button.setBackground(null);
 
-            Button button = new Button("Enter");
-            button.setTextFill(Color.WHITE);
-            setStyle(button);
-            button.setTranslateX(620);
-            button.setTranslateY(350);
-            button.setPrefSize(150,70);
+            button.setTranslateX(580);
+            button.setTranslateY(520);
 
             try {
                 Text headning = new Text("TEXT INPUT");
@@ -335,19 +302,19 @@ public    biLingual(Stage primaryStage)
                 headning.setFill(Color.WHITE);
                 headning.setScaleX(6);
                 headning.setScaleY(6);
-                headning.setTranslateX(850);
-                headning.setTranslateY(90);
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-0-3.jpg").toString(), true);
+                headning.setTranslateX(650);
+                headning.setTranslateY(190);
+                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
                 Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);
 
                 textFields.setLayoutX(150);
-                textFields.setLayoutY(180);
+                textFields.setLayoutY(280);
                 textFields.setPrefRowCount(5);
                 textFields.setPrefColumnCount(6);
                 textFields.setWrapText(true);
-                textFields.setMinSize(1125,150);
+                textFields.setMinSize(1125,200);
                 Pane roots = new Pane();
                 BackgroundImage bi = new BackgroundImage(backgrounds,
                         BackgroundRepeat.NO_REPEAT,

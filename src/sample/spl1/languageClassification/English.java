@@ -1,15 +1,12 @@
 package sample.spl1.languageClassification;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.control.Control;
-import javafx.scene.control.Skin;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -19,6 +16,7 @@ import javafx.stage.Stage;
 import sample.spl1.Operations;
 import sample.spl1.emotioncal.EmotionCalculation;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class English {
@@ -39,40 +37,21 @@ public class English {
 
             TextArea textField = new TextArea();
             textField.setLayoutX(150);
-            textField.setLayoutY(180);
+            textField.setLayoutY(280);
             textField.setPrefRowCount(5);
             textField.setPrefColumnCount(6);
             textField.setWrapText(true);
-            textField.setMinSize(1125,150);
+            textField.setMinSize(1125,200);
 
-            textField.skinProperty().addListener(new ChangeListener<Skin<?>>() {
 
-                @Override
-                public void changed(
-                        ObservableValue<? extends Skin<?>> ov, Skin<?> t, Skin<?> t1) {
-                    if (t1 != null && t1.getNode() instanceof Region) {
-                        Region r = (Region) t1.getNode();
-                        r.setBackground(Background.EMPTY);
 
-                        r.getChildrenUnmodifiable().stream().
-                                filter(n -> n instanceof Region).
-                                map(n -> (Region) n).
-                                forEach(n -> n.setBackground(Background.EMPTY));
+            Image Ab = new Image(new FileInputStream("src/Pictures/enter.png"));
+            ImageView about = new ImageView(Ab);
+            Button button = new Button(null,about);
+            button.setBackground(null);
 
-                        r.getChildrenUnmodifiable().stream().
-                                filter(n -> n instanceof Control).
-                                map(n -> (Control) n).
-                                forEach(c -> c.skinProperty().addListener(this)); // *
-                    }
-                }
-            });
-
-            Button button = new Button("Enter");
-            button.setTextFill(Color.WHITE);
-            setStyle(button);
-            button.setTranslateX(620);
-            button.setTranslateY(350);
-            button.setPrefSize(150,70);
+            button.setTranslateX(580);
+            button.setTranslateY(520);
             button.setOnAction(action -> {
 
                 try {
@@ -105,13 +84,13 @@ public class English {
             }); try {
                 Text headning = new Text("USER INPUT");
                 headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 11));
-                headning.setFill(Color.rgb(237, 134, 18));
+                headning.setFill(Color.WHITE);
                 headning.setScaleX(6);
                 headning.setScaleY(6);
                 headning.setTranslateX(650);
-                headning.setTranslateY(90);
+                headning.setTranslateY(190);
 
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("emotion(16-9).png").toString(), true);
+                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
                 Canvas canvas = new Canvas(1400,750);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);
@@ -124,7 +103,7 @@ public class English {
                         BackgroundPosition.DEFAULT,
                         BackgroundSize.DEFAULT);
                 Background bg = new Background(bi);
-              //  roots.setBackground(bg);
+             roots.setBackground(bg);
                 roots.getChildren().addAll(canvas,textField,button,headning);
                 Scene scene = new Scene(roots,1400,750);
                 primaryStage.setScene(scene);

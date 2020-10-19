@@ -3,6 +3,7 @@ package sample.spl1.visualOut;
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
+import com.restfb.Version;
 import com.restfb.types.Post;
 import javafx.stage.Stage;
 import sample.spl1.Dictionary;
@@ -19,7 +20,8 @@ public class overAll {
     public void overall(Stage stages,String accessToken,String Name) throws IOException {
         Operations operations = new Operations();
 
-        FacebookClient fbClient = new DefaultFacebookClient(accessToken);
+        Version v= Version.valueOf(accessToken);
+        FacebookClient fbClient = new DefaultFacebookClient(v);
 
         Connection<Post> result;
         result = fbClient.fetchConnection("me/feed", Post.class);

@@ -1,11 +1,15 @@
 package sample.spl1.visualOut;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -13,7 +17,14 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.spl1.firstPost;
-import sample.spl1.fourthPage;
+import sample.spl1.login.loginOrReg;
+
+import java.awt.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public class accessToken {
     String tok=null;
@@ -25,12 +36,14 @@ public class accessToken {
             stage.setTitle("Text Input");
 
             TextArea textFields = new TextArea();
-            Button button = new Button("Enter");
-            button.setTextFill(Color.WHITE);
-            setStyle(button);
-            button.setTranslateX(620);
-            button.setTranslateY(350);
-            button.setPrefSize(150,70);
+
+            Image Ab = new Image(new FileInputStream("src/Pictures/enter.png"));
+            ImageView about = new ImageView(Ab);
+            Button button = new Button(null,about);
+            button.setBackground(null);
+
+            button.setTranslateX(580);
+            button.setTranslateY(438);
 
             try {
                 Text headning = new Text("Enter Access Token");
@@ -40,7 +53,7 @@ public class accessToken {
                 headning.setScaleY(6);
                 headning.setTranslateX(650);
                 headning.setTranslateY(90);
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/pngfuel.com.png").toString(), true);
+                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/emoBg3.png").toString(), true);
                 Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);
@@ -53,6 +66,47 @@ public class accessToken {
                 textFields.setMinSize(1125,150);
                  tok=textFields.getText();
 
+
+                Hyperlink link = new Hyperlink();
+                link.setText("Click to get Access Token");
+
+                link.setLayoutX(900);
+                link.setLayoutY(450);
+                link.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent e) {
+                        try {
+                            Desktop.getDesktop().browse(new URL("https://developers.facebook.com/apps/").toURI());
+                        } catch (IOException eq) {
+                            eq.printStackTrace();
+                        } catch (URISyntaxException ee) {
+                            ee.printStackTrace();
+                        }
+                    }
+                });
+
+
+
+                Hyperlink link2 = new Hyperlink();
+                link2.setText("Help");
+
+                link2.setLayoutX(200);
+                link2.setLayoutY(450);
+                link2.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent e) {
+                        try {
+                          loginOrReg lg=new loginOrReg();
+                          lg.logOrReg();
+                        } catch (IOException eq) {
+                            eq.printStackTrace();
+                        } catch (URISyntaxException ee) {
+                            ee.printStackTrace();
+                        } catch (Exception exception) {
+                            exception.printStackTrace();
+                        }
+                    }
+                });
                 Pane roots = new Pane();
                 BackgroundImage bi = new BackgroundImage(backgrounds,
                         BackgroundRepeat.NO_REPEAT,
@@ -61,7 +115,8 @@ public class accessToken {
                         BackgroundSize.DEFAULT);
                 Background bg = new Background(bi);
                 roots.setBackground(bg);
-                roots.getChildren().addAll(canvas,textFields,button,headning);
+                roots.getChildren().addAll(canvas,textFields,button,headning,link,link2);
+
                 Scene scene = new Scene(roots,1400,750);
                 stage.setScene(scene);
                 //primaryStage.setFullScreen(true);
@@ -72,28 +127,31 @@ public class accessToken {
             }
 
             button.setOnAction(action -> {
-                if(num==0)
-                {
-                    fourthPage fPage=new fourthPage();
-                    fPage.runs(stage,textFields.getText(),Name);
-                }
 
-                else if(num==1)
+
+               if(num==1 || num==0)
                 {
                     firstPost fp=new firstPost(textFields.getText());
-                    fp.firstpost(stage,Name);
+                    try {
+                        fp.firstpost(stage,Name);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                 }
                 else if(num==2)
                 {
                     visualoutputfb vf=new visualoutputfb();
 
-                    double sentimentTot[]= vf.outData();
+                    double sentimentTot[]= vf.outData("fb"+Name);
+
+                    System.out.println("Here name is "+Name);
                     double finalTempTotal=vf.tempTotal;
                     finalReport fr=new finalReport(stage,textFields.getText(),sentimentTot,finalTempTotal,Name);
 //                    Progression p=new Progression();
 //                    p.statusProgress(stage,textFields.getText());
                 }
             });
+
 
 
         } catch (Exception excep) {

@@ -1,153 +1,116 @@
 package sample.spl1;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.image.BufferedImage;
-import java.net.URL;
-
-//import javafx.fxml.FXMLLoader;
-
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class Main extends Application {
+
+    double x=280;
+    int flag=0;
     @Override
     public void start(Stage primaryStage) throws Exception{
-//
-//        String path = "F:\\Hindi songs/jackpot.mp3";
-//
-//        //Instantiating Media class
-//        Media media = new Media(new File(path).toURI().toString());
-//
-//        //Instantiating MediaPlayer class
-//        MediaPlayer mediaPlayer = new MediaPlayer(media);
-//
-//        //by setting this property to true, the audio will be played
-//        mediaPlayer.setAutoPlay(true);
-//        primaryStage.setTitle("Playing Audio");
-      //  primaryStage.show();
 
+        Pane root = new Pane();
 
-        Text headning = new Text("EMOTION DETECTOR");
-        headning.setScaleX(6);
-        headning.setScaleY(6);
-        headning.setTranslateX(650);
-        headning.setTranslateY(100);
-        headning.setFill(Color.rgb(237, 174, 18));
-        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.ITALIC, 12));
+        Image play = new Image(new FileInputStream("src/Pictures/start.png"));
+        ImageView playB = new ImageView(play);
 
-
-
-        headning.setCache(true);
-
-
-        Button Start = new Button("Start");
-     //   Start.setGraphic(new ImageView("Pictures/backArrow.png"));
-      //  Start.setGraphic(new ImageView("Pictures/splash - Copy.jpg"));
-        Start.setPadding(Insets.EMPTY);
-        Start.setTranslateX(980);
-        Start.setTranslateY(220);
-
-        Start.setStyle("-fx-background-color: \n" +
-                "        linear-gradient(#14FF14, #14FF14),\n" +
-                "        linear-gradient(#14FF14, #14FF14),\n" +
-                "        linear-gradient(#14FF14, #14FF14),\n" +
-                "        linear-gradient(#ffe657 0%, #ffe657 50%, #FFAA00 100%),\n" +
-                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
-                "-fx-background-radius: 5em; " +
-                        "-fx-min-width: 150px; " +
-                        "-fx-min-height: 150px; " +
-                        "-fx-max-width: 150px; " +
-                        "-fx-max-height: 150px;"+
-                        "    -fx-text-fill: #FFFFE6;\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 2.9em;\n" +
-                "    -fx-padding: 10 10 10 10;");
-
-        Start.setTextFill(Color.BLACK);
-//        Start.setStyle("-fx-background-color: \n" +
-//                "        linear-gradient(#ffd65b, #e68400),\n" +
-//                "        linear-gradient(#ffef84, #f2ba44),\n" +
-//                "        linear-gradient(#ffea6a, #efaa22),\n" +
-//                "        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\n" +
-//                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
-//                "    -fx-background-radius: 30;\n" +
-//                "    -fx-background-insets: 0,1,2,3,0;\n" +
-//                "    -fx-text-fill: #654b00;\n" +
-//                "    -fx-font-weight: bold;\n" +
-//                "    -fx-font-size: 2.1em;\n" +
-//                "    -fx-padding: 10 10 10 10;");
-        Start.setPrefSize(180,100);
-//        try {
-         Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-01.jpg").toString(), true);
-//Pictures/1x/emotion(16-9)-01.jpg
-       BackgroundImage bi = new BackgroundImage(background,
-              BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-              BackgroundPosition.DEFAULT,
-               BackgroundSize.DEFAULT);
-        Background bg = new Background(bi);
-            Canvas canvas = new Canvas(1400,750);
-        Button speech = new Button("From Speech");
-        speech.setTranslateX(830);
-        speech.setTranslateY(220);
-
-        speech.setTextFill(Color.WHITE);
-        speech.setStyle("-fx-padding: 8 15 15 15;\n" +
-                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                "    -fx-background-radius: 8;\n" +
-                "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
-                "        #030B21,\n" +
-                "        #0B2058,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
-                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 2.1em;");
-        speech.setPrefSize(280,120);
-
-
-
-            Pane root = new Pane();
-
-
-        root.setBackground(bg);
-            root.getChildren().addAll(canvas,Start);
-            Scene scene = new Scene(root,1400,760);
-            scene.setFill(Color.BLACK);
-
-            primaryStage.setScene(scene);
-            primaryStage.show();
-
-
-
-
-        Start.setOnAction(e->{
+        Button BtPlay = new Button(null,playB);
+        BtPlay.setBackground(null);
+        BtPlay.setTranslateX(500);
+        BtPlay.setTranslateY(300);
+        BtPlay.setOnAction(e->{
+            secondPage SP = new secondPage();
             try {
-                secondPage SP = new secondPage();
                 SP.TheSecond(primaryStage);
-            }
-            catch (Exception excep)
-            {
-                excep.printStackTrace();
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
             }
         });
-  }
+
+        Canvas c = new Canvas(1400,750);
+        GraphicsContext gc = c.getGraphicsContext2D();
+
+        Image happy = new Image(new FileInputStream("src/Pictures/gif/happy.gif"));
+        ImageView ivH = new ImageView(happy);
+        ivH.setX(200);
+        ivH.setY(420);
+        ivH.setScaleX(0.7);
+        ivH.setScaleY(0.7);
+        ivH.setPreserveRatio(true);
+
+        Image sad = new Image(new FileInputStream("src/Pictures/gif/sad.gif"));
+        ImageView ivS = new ImageView(sad);
+        ivS.setX(450);
+        ivS.setY(420);
+        ivS.setScaleX(0.7);
+        ivS.setScaleY(0.7);
+        ivS.setPreserveRatio(true);
+
+        Image disgust = new Image(new FileInputStream("src/Pictures/gif/disgust.gif"));
+        ImageView ivD = new ImageView(disgust);
+        ivD.setX(700);
+        ivD.setY(420);
+        ivD.setScaleX(0.7);
+        ivD.setScaleY(0.7);
+        ivD.setPreserveRatio(true);
+
+        Image angry = new Image(new FileInputStream("src/Pictures/gif/angry.gif"));
+        ImageView ivA = new ImageView(angry);
+        ivA.setX(950);
+        ivA.setY(420);
+        ivA.setScaleX(0.7);
+        ivA.setScaleY(0.7);
+        ivA.setPreserveRatio(true);
+
+        Image scale = new Image(new FileInputStream("src/Pictures/scale.png"));
+        gc.drawImage(scale,280,650);
+        new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                gc.clearRect(0,0,1400,750);
+                gc.drawImage(scale,x,650);
+                if(flag==0)
+                {
+                    x+=5;
+                    if(x>=1050)
+                        flag=1;
+                }
+                else if(flag==1)
+                {
+                    x-=5;
+                    if(x<=280)
+                        flag=0;
+                }
+            }
+        }.start();
+
+        Image background = new Image(new FileInputStream("src/Pictures/emoBg.png"));
+
+        BackgroundImage bi = new BackgroundImage(background,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        Background bg = new Background(bi);
+        root.setBackground(bg);
+        root.getChildren().addAll(c,BtPlay,ivH,ivS,ivA,ivD);
+
+        Scene scene = new Scene(root,1400,750);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 
 
     public static void main(String[] args) {

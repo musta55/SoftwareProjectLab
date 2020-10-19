@@ -1,6 +1,6 @@
 package sample.spl1;
 
-import demo.sphinx.helloworld.HelloWorld;
+//import demo.sphinx.helloworld.HelloWorld;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -10,10 +10,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import sample.spl1.languageClassification.Language;
 import sample.spl1.emotioncal.EmotionProfile;
-import sample.spl1.login.RegistrationFrormApplication;
 import sample.spl1.visualOut.accessToken;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class AnalysisPage {
     private Stage stage;
@@ -25,54 +26,39 @@ public class AnalysisPage {
         this.Name=Name;
 
     }
-    public void analysis()
-    {
+    public void analysis() throws FileNotFoundException {
 
-        Button reactionPrediction = new Button("");
-        reactionPrediction.setTranslateX(60);
+        Image Ab = null;
+
+        Ab = new Image(new FileInputStream("src/Pictures/pred.png"));
+        ImageView about = new ImageView(Ab);
+        Button reactionPrediction = new Button(null, about);
+        reactionPrediction.setBackground(null);
+
+        reactionPrediction.setTranslateX(100);
         reactionPrediction.setTranslateY(400);
-        setStyle2(reactionPrediction);
-        reactionPrediction.setTextFill(Color.WHITE);
-        reactionPrediction.setGraphic(new ImageView("Pictures/1x/facebook-care-emoji.jpg"));
 
-        Button visualization = new Button("");
-        visualization.setTranslateX(60);
-        visualization.setTranslateY(160);
-        setStyle2(visualization);
-        visualization.setTextFill(Color.WHITE);
-        visualization.setGraphic(new ImageView("Pictures/1x/data Vis.jpg"));
+        Image Ab2 = null;
 
-        Button finalReport = new Button("");
-        finalReport.setTranslateX(860);
-        finalReport.setTranslateY(320);
-        setStyle(finalReport);
-        finalReport.setTextFill(Color.WHITE);
-        finalReport.setGraphic(new ImageView("Pictures/1x/funal report.gif"));
+        Ab2 = new Image(new FileInputStream("src/Pictures/dv.png"));
+        ImageView about2 = new ImageView(Ab2);
+        Button visualization = new Button(null, about2);
+        visualization.setBackground(null);
+
+        visualization.setTranslateX(530);
+        visualization.setTranslateY(350);
 
 
-        Button pro = new Button("Experiment");
-        pro.setTranslateX(610);
-        pro.setTranslateY(60);
-        setStyle(pro);
-        pro.setPrefSize(200, 70);
-        pro.setTextFill(Color.WHITE);
 
+        Image Ab3 = null;
 
-        Button others = new Button("Others");
-        others.setTranslateX(1180);
-        others.setTranslateY(60);
-        setStyle(others);
-        others.setPrefSize(200, 70);
-        others.setTextFill(Color.WHITE);
+        Ab3 = new Image(new FileInputStream("src/Pictures/ultE.png"));
+        ImageView about3 = new ImageView(Ab3);
+        Button finalReport = new Button(null, about3);
+        finalReport.setBackground(null);
 
-        Button application = new Button("Application");
-        application.setTranslateX(895);
-        application.setTranslateY(60);
-        setStyle(application);
-        application.setPrefSize(200, 70);
-        application.setTextFill(Color.WHITE);
-
-
+        finalReport.setTranslateX(980);
+        finalReport.setTranslateY(270);
 
         Button back = new Button("");
         back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
@@ -84,48 +70,14 @@ public class AnalysisPage {
 
 
 
-        application.setOnAction(e -> {
-
-            try {
-
-                RegistrationFrormApplication reg=new RegistrationFrormApplication();
-                reg.registration(stage);
-
-            } catch (Exception excep) {
-                excep.printStackTrace();
-            }
-        });
-        others.setOnAction(e -> {
-
-            try {
-                HelloWorld hl=new HelloWorld();
-                hl.speech(stage);
-
-            }
-            catch (Exception excep)
-            {
-                excep.printStackTrace();
-            }
-        });
-
-        pro.setOnAction(e -> {
-            try {
-                Language PMenu = new Language();
-                PMenu.TheThird(stage);
-            } catch (Exception excep) {
-                excep.printStackTrace();
-            }
-        });
-
-
         Pane roots = new Pane();
 
 
 
         back.setOnAction(esb->{
             try {
-                fourthPage goBack = new fourthPage();
-                goBack.runs(stage,accessToken,Name);
+               thirdPage tp=new thirdPage();
+               tp.app(stage,Name);
             }catch (Exception ex)
             {
                 ex.printStackTrace();
@@ -137,10 +89,10 @@ public class AnalysisPage {
 
 
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/green.png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
         Pane root = new Pane();
 
-        root.getChildren().addAll(visualization,back,reactionPrediction,finalReport,pro,others,application);
+        root.getChildren().addAll(visualization,back,reactionPrediction,finalReport);
 
 
         double [] per=new double[10];

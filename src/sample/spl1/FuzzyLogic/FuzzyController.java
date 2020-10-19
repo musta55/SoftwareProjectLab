@@ -1,10 +1,16 @@
 package sample.spl1.FuzzyLogic;
 
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class FuzzyController {
   // private FuzzyFrame frame;
@@ -19,26 +25,28 @@ public class FuzzyController {
 
     private double recEvaluate[];
     private double stabEvaluate[];
+    private Stage stage;
     private ArrayList<FuzzySet> fuzzySets;
     private ArrayList<FuzzySet> fuzzySets2;
 
-    public FuzzyController(double[] personalityTest) {
+    public FuzzyController(double[] personalityTest, Stage stage) throws FileNotFoundException {
      //   frame = new FuzzyFrame();
         POW = new FuzzyVariable();
         CON = new FuzzyVariable();
         REC = new FuzzyVariable();
         STAB = new FuzzyVariable();
         this.personalityTest=personalityTest;
+        this.stage=stage;
 
         decision = new FuzzyVariable();
-        initialiazeVariable();
+        initialiazeVariable(stage);
   //      initializeListener();
     //    frame.setVisible(true);
     }
 
 
 
-    private void initialiazeVariable(){
+    private void initialiazeVariable(Stage stage) throws FileNotFoundException {
         fuzzySets = new ArrayList<>();
 
         TriangleFuzzySet powerLow = new TriangleFuzzySet(Double.NEGATIVE_INFINITY, 0.7, 0.5, 1);
@@ -81,12 +89,11 @@ public class FuzzyController {
         fuzzySets2.add(new FuzzySet("The Socializer", 0.0, 0.8));
         fuzzySets2.add(new FuzzySet("The Director", 0.0,0.9));
 
-        personalityTest();
+        personalityTest(stage);
 
     }
 
-    public void personalityTest()
-    {
+    public void personalityTest(Stage stage) throws FileNotFoundException {
 
         double pow =personalityTest[0];
         double con = personalityTest[1];
@@ -105,7 +112,7 @@ public class FuzzyController {
         //greEvaluatePrint();
 
         andOperatorRules();
-        centroidDefuzz();
+        centroidDefuzz(stage);
 
 
     }
@@ -119,50 +126,25 @@ public class FuzzyController {
         return (double) tmp / factor;
     }
 
-//    public void initializeListener(){
-//        frame.addCentroidButtonListener(new centroidButtonPress());
-//        frame.addMaxButtonListener(new maxButtonPress());
-//    }
-//
-//    public void powEvaluatePrint(){
-//        frame.appendCustomText("Emotion Power Low = "+round(powEvaluate[0], 2)+"\n");
-//        frame.appendCustomText("Emotion Power Med = "+round(powEvaluate[1], 2)+"\n");
-//        frame.appendCustomText("Emotion Power High = "+round(powEvaluate[2], 2)+"\n");
-//    }
-//
-//    public void conEvaluatePrint(){
-//        frame.appendCustomText("Consistency Low = "+round(conEvaluate[0], 2)+"\n");
-//        frame.appendCustomText("Consistency Med = "+round(conEvaluate[1], 2)+"\n");
-//        frame.appendCustomText("Consistency High = "+round(conEvaluate[2], 2)+"\n");
-//    }
-//
-//
-//
-//    public void RECEvaluatePrint(){
-//        frame.appendCustomText("Recent Emotion Low = "+round(recEvaluate[0], 2)+"\n");
-//        frame.appendCustomText("Recent Emotion Med = "+round(recEvaluate[1], 2)+"\n");
-//        frame.appendCustomText("Recent Emotion High = "+round(recEvaluate[2], 2)+"\n");
-//    }
-//
-//    public void STABEvaluatePrint(){
-//        frame.appendCustomText("Emotional Stability Low = "+round(stabEvaluate[0], 2)+"\n");
-//        frame.appendCustomText("Emotional Stability Med = "+round(stabEvaluate[1], 2)+"\n");
-//        frame.appendCustomText("Emotional Stability High = "+round(stabEvaluate[2], 2)+"\n");
-//    }
 
     public void andOperatorRules(){
         fuzzySets.clear();
+
+        int temp=-1;
         if(powEvaluate[2] > 0){
 
             if(powEvaluate[2]>0){
                 fuzzySets.add(new FuzzySet("The Director", Double.min(powEvaluate[2], powEvaluate[2]),1.0));
+                temp=3;
             }
             if(conEvaluate[1] > 0){
                 fuzzySets.add(new FuzzySet("The socializer", Double.min(conEvaluate[1], powEvaluate[2]), 0.9));
+                temp=2;
 
             }
             if(conEvaluate[0] > 0){
                 fuzzySets.add(new FuzzySet("The supporter", Double.min(conEvaluate[0], powEvaluate[2]) ,0.7));
+                temp=1;
             }
 
         }
@@ -170,12 +152,15 @@ public class FuzzyController {
 
             if(conEvaluate[2]>0){
                 fuzzySets.add(new FuzzySet("The Supporter", Double.min(conEvaluate[2], powEvaluate[1]) ,0.8));
+                temp=1;
             }
             if(conEvaluate[1] > 0){
                 fuzzySets.add(new FuzzySet("The Supporter", Double.min(conEvaluate[1], powEvaluate[1]), 0.8));
+                temp=1;
             }
             if(conEvaluate[0] > 0){
                 fuzzySets.add(new FuzzySet("The Thinker", Double.min(conEvaluate[0], powEvaluate[1]) ,0.6));
+                temp=0;
             }
 
         }
@@ -183,12 +168,15 @@ public class FuzzyController {
 
             if(conEvaluate[2]>0){
                 fuzzySets.add(new FuzzySet("The Socializer", Double.min(conEvaluate[2], powEvaluate[0]) ,0.7));
+                temp=2;
             }
             if(conEvaluate[1] > 0){
                 fuzzySets.add(new FuzzySet("The Thinker", Double.min(conEvaluate[1], powEvaluate[0]),0.6));
+                temp=0;
             }
             if(conEvaluate[0] > 0){
                 fuzzySets.add(new FuzzySet("The Thinker", Double.min(conEvaluate[0], powEvaluate[0]), 0.6));
+                temp=0;
             }
 
         }
@@ -200,12 +188,15 @@ public class FuzzyController {
 
             if(recEvaluate[2]>0){
                 fuzzySets.add(new FuzzySet("The  Director", Double.min(recEvaluate[2], recEvaluate[2]),1.0));
+                temp=3;
             }
             if(stabEvaluate[1] > 0){
                 fuzzySets.add(new FuzzySet("The Socializer", Double.min(stabEvaluate[1], recEvaluate[2]), 0.9));
+                temp=2;
             }
             if(stabEvaluate[0] > 0){
                 fuzzySets.add(new FuzzySet("The Thinker", Double.min(stabEvaluate[0], recEvaluate[2]) ,0.7));
+                temp=0;
             }
 
         }
@@ -213,12 +204,15 @@ public class FuzzyController {
 
             if(stabEvaluate[2]>0){
                 fuzzySets.add(new FuzzySet("The Socializer", Double.min(stabEvaluate[2], powEvaluate[1]) ,0.8));
+                temp=2;
             }
             if(stabEvaluate[1] > 0){
                 fuzzySets.add(new FuzzySet("The Socializer", Double.min(stabEvaluate[1], powEvaluate[1]), 0.8));
+                temp=2;
             }
             if(stabEvaluate[0] > 0){
                 fuzzySets.add(new FuzzySet("The Thinker", Double.min(stabEvaluate[0], powEvaluate[1]) ,0.6));
+                temp=0;
             }
 
         }
@@ -226,24 +220,24 @@ public class FuzzyController {
 
             if(stabEvaluate[2]>0){
                 fuzzySets.add(new FuzzySet("The Supporter", Double.min(stabEvaluate[2], recEvaluate[0]) ,0.7));
+                temp=1;
             }
             if(stabEvaluate[1] > 0){
                 fuzzySets.add(new FuzzySet("The Thinker", Double.min(stabEvaluate[1], recEvaluate[0]),0.6));
+                temp=0;
             }
             if(stabEvaluate[0] > 0){
                 fuzzySets.add(new FuzzySet("The Thinker", Double.min(stabEvaluate[0], recEvaluate[0]), 0.6));
+                temp=0;
             }
 
         }
 
 
 
-
-
-
     }
 
-    public void centroidDefuzz(){
+    public void centroidDefuzz(Stage stage) throws FileNotFoundException {
   //      frame.appendCustomText("\n\nMethod Centroids\n");
 
         System.out.println("\n\nMethod Centroids\n");
@@ -258,8 +252,15 @@ public class FuzzyController {
 //        frame.appendCustomText("Crisp decision index = " + result+"\n");
 //        frame.appendCustomText("Fuzzy decision index :\n");
 
+        int variable=-1;
 
         System.out.println("Crisp decision index = " + result+"\n"+"Fuzzy decision index :\n");
+
+        Pane root=new Pane();
+        Scene scene = new Scene(root,1400,750);
+        stage.setScene(scene);
+        stage.show();
+
         for (int i=0 ; i < fuzzySets2.size() ; i++) {
 
             boolean found = false;
@@ -268,6 +269,8 @@ public class FuzzyController {
        //         frame.appendCustomText(fuzzySets2.get(i).name +" = "+ "100%" + "\n");
                 System.out.println(fuzzySets2.get(i).name +" = "+ "100%" + "\n");
                 found = true;
+
+                variable=i;
             }
 
             if(result > fuzzySets2.get(i).index && result <= fuzzySets2.get(i).index+0.1){
@@ -275,6 +278,7 @@ public class FuzzyController {
                 percentage = round(percentage, 2);
      //           frame.appendCustomText(fuzzySets2.get(i).name +" = "+ percentage*100 + "%\n");
                 System.out.println(fuzzySets2.get(i).name +" = "+ percentage*100 + "%\n");
+                variable=i;
                 found = true;
             }
 
@@ -283,12 +287,75 @@ public class FuzzyController {
                 percentage = round(percentage, 2);
           //      frame.appendCustomText(fuzzySets2.get(i+1).name +" = "+ percentage*100 + "%\n");
                 System.out.println(fuzzySets2.get(i+1).name +" = "+ percentage*100 + "%\n");
+                variable=i;
                 found = true;
             }
 
             if(found)
                 return;
         }
+
+
+
+        Image background = new Image(new FileInputStream("Pictures/Personality Page.png"));
+
+        Text textstrng=null;
+        Text textWeak=null;
+
+        Text textPerson=null;
+
+
+
+        if(variable==0)
+        {
+            textPerson.setText("The Thinker");
+
+
+
+
+        }
+
+
+    else    if(variable==1)
+        {
+            textPerson.setText("The Supporter");
+
+
+
+
+        }
+
+    else    if(variable==2)
+        {
+            textPerson.setText("The Socializer");
+
+
+
+
+        }
+      else  if(variable==0)
+        {
+            textPerson.setText("The Director");
+
+
+
+
+        }
+
+
+        BackgroundImage bi = new BackgroundImage(background,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        Background bg = new Background(bi);
+        root.setBackground(bg);
+        root.getChildren().addAll(textstrng,textWeak,textPerson);
+
+
+
+        System.out.println("stage must be shown");
+
 
 
     }

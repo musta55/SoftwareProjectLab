@@ -19,7 +19,6 @@ import sample.spl1.thirdPage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class logIn {
 
@@ -32,8 +31,11 @@ public class logIn {
             // Add UI controls to the registration form grid pane
             UIControls(gridPane,stage);
             // Create a scene with registration form grid pane as the root node
-            Scene scene = new Scene(gridPane, 1400, 750);
-            Image background = new Image(logIn.class.getClassLoader().getResource("Pictures/pngfuel.com.png").toString(), true);
+            Scene scene = new Scene(gridPane, 1402, 752);
+            Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
+
+
+
 
             BackgroundImage bi = new BackgroundImage(background,
                     BackgroundRepeat.NO_REPEAT,
@@ -53,12 +55,12 @@ public class logIn {
     private static GridPane createLogInFormPane() {
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.TOP_CENTER);
-        gridPane.setPadding(new Insets(40, 40, 40, 40));
+        gridPane.setPadding(new Insets(80,80,80,80));
         gridPane.setHgap(10);
         gridPane.setVgap(10);
-        ColumnConstraints columnOneConstraints = new ColumnConstraints(100, 100, Double.MAX_VALUE);
+        ColumnConstraints columnOneConstraints = new ColumnConstraints(200, 200, Double.MAX_VALUE);
         columnOneConstraints.setHalignment(HPos.RIGHT);
-        ColumnConstraints columnTwoConstrains = new ColumnConstraints(200,200, Double.MAX_VALUE);
+        ColumnConstraints columnTwoConstrains = new ColumnConstraints(400,400, Double.MAX_VALUE);
         columnTwoConstrains.setHgrow(Priority.ALWAYS);
 
         gridPane.getColumnConstraints().addAll(columnOneConstraints, columnTwoConstrains);
@@ -101,6 +103,7 @@ public class logIn {
         // Add Name Text Field
         TextField nameField = new TextField();
         nameField.setPrefHeight(40);
+        nameField.setPrefWidth(40);
         gridPane.add(nameField, 1,1);
 
 
@@ -111,6 +114,7 @@ public class logIn {
         // Add Age Field
         PasswordField passwordField = new PasswordField();
         passwordField.setPrefHeight(40);
+        passwordField.setPrefWidth(120);
         gridPane.add(passwordField, 1, 3);
 
 
@@ -122,8 +126,31 @@ public class logIn {
         submitButton.setPrefWidth(100);
         gridPane.add(submitButton, 0, 5, 2, 1);
         GridPane.setHalignment(submitButton, HPos.CENTER);
-        GridPane.setMargin(submitButton, new Insets(20, 0,20,0));
+        GridPane.setMargin(submitButton, new Insets(40, 0,40,0));
 
+        Hyperlink link = new Hyperlink("New Member! Create new account");
+
+        link.setPrefHeight(40);
+        link.setPrefWidth(120);
+        gridPane.add(link, 1, 6, 5, 3);
+        GridPane.setHalignment(link, HPos.CENTER);
+        GridPane.setMargin(link, new Insets(40, 0,40,0));
+
+
+
+
+        link.setOnAction(e -> {
+            System.out.println("The Hyperlink was clicked!");
+
+
+            RegistrationFrormApplication reg=new RegistrationFrormApplication();
+            try {
+                reg.registration(stage);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+
+        });
 
 
 
@@ -141,8 +168,10 @@ public class logIn {
                     return;
                 }
 
-                String name ="web"+nameField.getText()+passwordField.getText()+".txt";
-                String directory = "E:\\SoftwareProjectLab";
+                String name =nameField.getText()+passwordField.getText()+".txt";
+
+                System.out.println("file name"+name);
+                String directory = "C:\\Users\\User\\IdeaProjects\\SoftwareProjectLab";
 
                                       if( findFile(name,new File(directory))==0)
                                       {
@@ -167,6 +196,8 @@ public class logIn {
                                               excep.printStackTrace();
                                           }
                                       }
+
+
                                       else {
                                           showAlerts(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "LogIn Error!", "Please enter valid password");
                                             return;

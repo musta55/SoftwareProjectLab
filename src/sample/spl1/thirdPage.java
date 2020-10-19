@@ -2,7 +2,7 @@ package sample.spl1;
 
 
 
-import demo.sphinx.helloworld.HelloWorld;
+//import demo.sphinx.helloworld.HelloWorld;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -10,53 +10,73 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import sample.spl1.languageClassification.Language;
 import sample.spl1.languageClassification.biLingual;
-import sample.spl1.login.RegistrationFrormApplication;
 import sample.spl1.visualOut.accessToken;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 public class thirdPage extends secondPage{
-    public void app(Stage stage,String Name)
-    {
-
-        Button socialMedia = new Button("Social Media");
-        socialMedia.setTranslateX(100);
-        socialMedia.setTranslateY(170);
-        setStyle2(socialMedia);
-        socialMedia.setPrefSize(300, 100);
-        socialMedia.setTextFill(Color.WHITE);
-        socialMedia.setGraphic(new ImageView("Pictures/1x/social_facebook_button_blue.png"));
-
-        Button article = new Button("Self Article");
-        article.setTranslateX(100);
-        article.setTranslateY(370);
-        setStyle2(article);
-        article.setPrefSize(300, 100);
-        article.setTextFill(Color.WHITE);
-        article.setGraphic(new ImageView("Pictures/1x/images.png"));
+    public void app(Stage stage,String Name) throws FileNotFoundException {
 
 
-        Button liveUrl = new Button("Web Article");
-        liveUrl.setTranslateX(100);
-        liveUrl.setTranslateY(570);
-        setStyle2(liveUrl);
-        liveUrl.setPrefSize(300, 100);
-        liveUrl.setTextFill(Color.WHITE);
-        liveUrl.setGraphic(new ImageView("Pictures/1x/482401.png"));
+        Image Ab = null;
+
+        Ab = new Image(new FileInputStream("src/Pictures/fb.png"));
+        ImageView about = new ImageView(Ab);
+        Button socialMedia = new Button(null, about);
+        socialMedia.setBackground(null);
+
+        socialMedia.setTranslateX(280);
+        socialMedia.setTranslateY(180);
 
 
-        Button analysis = new Button("");
-        analysis.setTranslateX(650);
-        analysis.setTranslateY(250);
-        setStyle2(analysis);
-        //  article.setPrefSize(300, 80);
-        analysis.setTextFill(Color.WHITE);
-        analysis.setGraphic(new ImageView("Pictures/1x/HOW-TO-DESIGN-A-LOGO-new (1).jpg"));
+
+        Image Ab2 = null;
+
+        Ab2 = new Image(new FileInputStream("src/Pictures/art.png"));
+        ImageView about2 = new ImageView(Ab2);
+        Button article = new Button(null, about2);
+        article.setBackground(null);
+
+        article.setTranslateX(530);
+        article.setTranslateY(180);
+
+
+
+        Image Ab3 = null;
+
+        Ab3 = new Image(new FileInputStream("src/Pictures/wl.png"));
+        ImageView about3 = new ImageView(Ab3);
+        Button liveUrl = new Button(null, about3);
+        liveUrl.setBackground(null);
+
+        liveUrl.setTranslateX(780);
+        liveUrl.setTranslateY(180);
+
+        Image Ab4 = null;
+
+        Ab4 = new Image(new FileInputStream("src/Pictures/anal.png"));
+        ImageView about4 = new ImageView(Ab4);
+        Button analysis = new Button(null, about4);
+        analysis.setBackground(null);
+
+        analysis.setTranslateX(640);
+        analysis.setTranslateY(400);
+
+
+
+
+        Image Ab5 = null;
+
+        Ab5 = new Image(new FileInputStream("src/Pictures/line.png"));
+        ImageView about5 = new ImageView(Ab5);
+        Button text = new Button(null, about5);
+        text.setBackground(null);
+
+        text.setTranslateX(180);
+        text.setTranslateY(480);
 
 
         Button back = getButton();
@@ -99,10 +119,10 @@ public class thirdPage extends secondPage{
 
 
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9).png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
         Pane root = new Pane();
 
-        root.getChildren().addAll(socialMedia,back,article,liveUrl,analysis);
+        root.getChildren().addAll(socialMedia,back,article,liveUrl,analysis,text);
 
         socialMedia.setOnAction(e -> {
             try

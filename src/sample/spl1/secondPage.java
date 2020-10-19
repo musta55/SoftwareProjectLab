@@ -1,6 +1,5 @@
 package sample.spl1;
 
-import demo.sphinx.helloworld.HelloWorld;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -9,12 +8,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.spl1.languageClassification.Language;
-import sample.spl1.login.loginOrReg;
+import sample.spl1.login.logIn;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 public class secondPage {
@@ -29,105 +29,105 @@ public class secondPage {
         back.setTextFill(Color.YELLOW);
         return back;
     }
-    public void TheSecond(Stage stage) {
+    public void TheSecond(Stage stage) throws FileNotFoundException {
 
 
-        Text headning = new Text("Entry Section");
-        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
-        headning.setScaleX(5);
-        headning.setScaleY(5);
-        headning.setTranslateX(630);
-        headning.setTranslateY(70);
-        headning.setFill(Color.rgb(237, 134, 18  ));
+        Image Ab = null;
+
+        Ab = new Image(new FileInputStream("src/Pictures/exp.png"));
+        ImageView about = new ImageView(Ab);
+        Button pro = new Button(null, about);
+        pro.setBackground(null);
+
+        pro.setTranslateX(380);
+        pro.setTranslateY(320);
 
 
-        Button pro = new Button("Experiment");
-        pro.setTranslateX(610);
-        pro.setTranslateY(60);
-        setStyle(pro);
-        pro.setPrefSize(200, 80);
-        pro.setTextFill(Color.WHITE);
+        Image Ab2 = null;
+
+            Ab2 = new Image(new FileInputStream("src/Pictures/app.png"));
+            ImageView about2 = new ImageView(Ab2);
+            Button application = new Button(null, about2);
+            application.setBackground(null);
+
+            application.setTranslateX(580);
+            application.setTranslateY(520);
+
+            application.setOnAction(e -> {
+
+                logIn log = new logIn();
+                try {
+                    log.login(stage);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
 
 
-        Button others = new Button("Others");
-        others.setTranslateX(1180);
-        others.setTranslateY(60);
-        setStyle(others);
-        others.setPrefSize(200, 80);
-        others.setTextFill(Color.WHITE);
+            });
 
-        Button application = new Button("Application");
-        application.setTranslateX(895);
-        application.setTranslateY(60);
-        setStyle(application);
-        application.setPrefSize(200, 80);
-        application.setTextFill(Color.WHITE);
 
-        Button back=getButton();
+            Button others = new Button("Others");
+            others.setTranslateX(1180);
+            others.setTranslateY(60);
+            others.setPrefSize(200, 80);
+            others.setTextFill(Color.WHITE);
 
-        application.setOnAction(e -> {
 
-            try {
-                loginOrReg lr=new loginOrReg();
-                lr.logOrReg(stage);
+            Button back = getButton();
 
-            } catch (Exception excep) {
-                excep.printStackTrace();
-            }
-        });
-        others.setOnAction(e -> {
+
+            others.setOnAction(e -> {
 
                 try {
-                    HelloWorld hl=new HelloWorld();
-                    hl.speech(stage);
+//                    HelloWorld hl=new HelloWorld();
+//                    hl.speech(stage);
 
-                }
-                catch (Exception excep)
-                {
+                } catch (Exception excep) {
                     excep.printStackTrace();
                 }
             });
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/emotion(16-9)-01.jpg").toString(), true);
-        Pane root = new Pane();
+            Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
+            Pane root = new Pane();
 
-        root.getChildren().addAll(back,pro,application,others);
-        pro.setOnAction(e -> {
-            try {
-                Language PMenu = new Language();
-                PMenu.TheThird(stage);
-            } catch (Exception excep) {
-                excep.printStackTrace();
-            }
-        });
+            root.getChildren().addAll(back, pro, application);
+            pro.setOnAction(e -> {
+                try {
+                    Language PMenu = new Language();
+                    PMenu.TheThird(stage);
+                } catch (Exception excep) {
+                    excep.printStackTrace();
+                }
+            });
 
-        back.setOnAction(e->{
-            try {
-                Main goBack = new Main();
-                goBack.start(stage);
-            }catch (Exception ex)
-            {
-                ex.printStackTrace();
-            }
-        });
+            back.setOnAction(e -> {
+                try {
+                    Main goBack = new Main();
+                    goBack.start(stage);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
 
-        Canvas canvas = new Canvas(1400,750);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.drawImage(background,0,0);
-        BackgroundImage bi = new BackgroundImage(background,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);
-        Background bg = new Background(bi);
-        root.setBackground(bg);
+            Canvas canvas = new Canvas(1400, 750);
+            GraphicsContext gc = canvas.getGraphicsContext2D();
+            gc.drawImage(background, 0, 0);
+            BackgroundImage bi = new BackgroundImage(background,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.DEFAULT,
+                    BackgroundSize.DEFAULT);
+            Background bg = new Background(bi);
+            root.setBackground(bg);
 
 
-        Scene scene = new Scene(root, 1400, 750);
-        stage.setScene(scene);
-        //stage.setFullScreen(true);
-        stage.show();
-    }
+            Scene scene = new Scene(root, 1408, 752);
+            stage.setScene(scene);
+            //stage.setFullScreen(true);
+            stage.show();
+        }
+
+
 
     public Button setStyle ( Button b)
     {

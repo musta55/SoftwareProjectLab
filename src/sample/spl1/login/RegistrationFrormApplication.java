@@ -1,5 +1,4 @@
 package sample.spl1.login;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -16,8 +15,6 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import sample.spl1.thirdPage;
 
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -36,7 +33,7 @@ public class RegistrationFrormApplication  {
         addUIControls(gridPane,stage);
         // Create a scene with registration form grid pane as the root node
         Scene scene = new Scene(gridPane, 1400, 750);
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/pngfuel.com.png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg3.png").toString(), true);
 
         BackgroundImage bi = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,
@@ -197,7 +194,7 @@ else
 
                 FileWriter fw = null;
                 try {
-                    fw = new FileWriter(s+".txt");
+                    fw = new FileWriter(s+passwordField.getText()+".txt");
                     fw.write(s+"\n"+emailField.getText()+"\n"+passwordField.getText()+"\n"+ageField.getText()+"\n");
                     fw.close();
                 } catch (IOException e) {

@@ -1,21 +1,12 @@
 package sample.spl1.emotioncal;
 
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -25,11 +16,19 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import sample.spl1.*;
+import sample.spl1.Main;
+import sample.spl1.Operations;
+import sample.spl1.firstPost;
+import sample.spl1.thirdPage;
 import sample.spl1.visualOut.LinearRegression;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -49,10 +48,7 @@ public class EmotionCalculation {
     }
 
     private static DecimalFormat df = new DecimalFormat("0.00");
-    InputStream is = null;
-    DataInputStream dis = null;
-    FileOutputStream fos = null;
-    DataOutputStream dos = null;
+
     public String[] emotion = new String[85000];
     public String[] word = new String[85000];
 
@@ -71,6 +67,9 @@ public class EmotionCalculation {
     public double TrustCal = 0;
     public double DisgustCal = 0;
     public String sf = null;
+
+
+
 
 
     public void searchEmotion() throws IOException {
@@ -511,83 +510,9 @@ public class EmotionCalculation {
 
     }
 
-    public void VisualOutput(Stage stage,String status) {
-        Text headning = new Text("Text");
-        headning.setScaleX(2);
-        headning.setScaleY(2);
-        headning.setTranslateX(140);
-        headning.setTranslateY(170);
-        headning.setFill(Color.WHITE );
-        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
 
-
-        String s=String.valueOf(totalEmotionCount);
-        Text score = new Text("Emotion Score ");
-        score.setScaleX(2);
-        score.setScaleY(2);
-        score.setTranslateX(610);
-        score.setTranslateY(680);
-        score.setFill(Color.BLACK );
-        score.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 12));
-
-
-        Text emo = new Text( s);
-        emo.setScaleX(2);
-        emo.setScaleY(2);
-        emo.setTranslateX(610);
-        emo.setTranslateY(580);
-        emo.setFill(Color.WHITE );
-        emo.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 18));
-        Button back = new Button("");
-
-        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
-        back.setTranslateX(0);
-        back.setTranslateY(340);
-        back.setPrefSize(1, 5);
-        back.setTextFill(Color.YELLOW);
-
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-0-4.jpg").toString(), true);
-        Pane root = new Pane();
-        back.setOnAction(e -> {
-            try {
-                Main goBack = new Main();
-                goBack.start(stage);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        });
-
-        TextArea textField = new TextArea();
-        textField.setLayoutX(80);
-        textField.setLayoutY(200);
-        textField.setPrefRowCount(5);
-        textField.setPrefColumnCount(6);
-        textField.setWrapText(true);
-        textField.setMinSize(425, 450);
-        textField.setText(status);
-
-        textField.skinProperty().addListener(new ChangeListener<Skin<?>>() {
-
-            @Override
-            public void changed(
-                    ObservableValue<? extends Skin<?>> ov, Skin<?> t, Skin<?> t1) {
-                if (t1 != null && t1.getNode() instanceof Region) {
-                    Region r = (Region) t1.getNode();
-                    r.setBackground(Background.EMPTY);
-
-                    r.getChildrenUnmodifiable().stream().
-                            filter(n -> n instanceof Region).
-                            map(n -> (Region) n).
-                            forEach(n -> n.setBackground(Background.EMPTY));
-
-                    r.getChildrenUnmodifiable().stream().
-                            filter(n -> n instanceof Control).
-                            map(n -> (Control) n).
-                            forEach(c -> c.skinProperty().addListener(this)); // *
-                }
-            }
-        });
-
+    PieChart pieChart(double []value)
+    {
 
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Joy", JoyCal),
@@ -611,7 +536,7 @@ public class EmotionCalculation {
         pieChart.setClockwise(true);
 
         //Setting the length of the label line
-        pieChart.setLabelLineLength(70);
+        pieChart.setLabelLineLength(20);
 
         //Setting the labels of the pie chart visible
         pieChart.setLabelsVisible(true);
@@ -621,10 +546,118 @@ public class EmotionCalculation {
 
         pieChart.setTranslateX(780);
         pieChart.setTranslateY(150);
-        pieChart.setScaleX(1.4);
+        pieChart.setScaleX(1.3);
         pieChart.setScaleY(1.4);
 
-        //Creating a scene object
+        return pieChart;
+    }
+
+
+    public void VisualOutput(Stage stage,String status) throws FileNotFoundException {
+        Text headning = new Text("Text");
+        headning.setScaleX(2);
+        headning.setScaleY(2);
+        headning.setTranslateX(140);
+        headning.setTranslateY(120);
+        headning.setFill(Color.WHITE );
+        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 17));
+
+
+
+        Button back = new Button("");
+
+        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+        back.setTranslateX(0);
+        back.setTranslateY(340);
+        back.setPrefSize(1, 5);
+        back.setTextFill(Color.YELLOW);
+
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg3.png").toString(), true);
+        Pane root = new Pane();
+        back.setOnAction(e -> {
+            try {
+                Main goBack = new Main();
+                goBack.start(stage);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        TextArea textField = new TextArea();
+        textField.setLayoutX(80);
+        textField.setLayoutY(200);
+        textField.setPrefRowCount(5);
+        textField.setPrefColumnCount(6);
+        textField.setWrapText(true);
+        textField.setMinSize(425, 450);
+        textField.setText(status);
+
+
+        double []value=new double[8];
+        value[0]=JoyCal;  value[1]=SurpriseCal;  value[2]=AngerCal;  value[3]=anticipationCal;  value[4]=SadnessCal;  value[5]=DisgustCal;  value[6]=FearCal;  value[7]=TrustCal;  value[0]=JoyCal;
+        PieChart pieChart = pieChart(value);
+        int max=0;
+
+        for(int i=0;i<8;i++)
+        {
+           if(max<value[i])max=i;
+        }
+
+        Image happy = new Image(new FileInputStream("src/Pictures/gif/happy.gif"));
+        ImageView ivH = new ImageView(happy);
+        ivH.setX(480);
+        ivH.setY(320);
+        ivH.setScaleX(0.7);
+        ivH.setScaleY(0.7);
+        ivH.setPreserveRatio(true);
+
+        Image sad = new Image(new FileInputStream("src/Pictures/gif/sad.gif"));
+        ImageView ivS = new ImageView(sad);
+        ivS.setX(480);
+        ivS.setY(320);
+        ivS.setScaleX(0.7);
+        ivS.setScaleY(0.7);
+        ivS.setPreserveRatio(true);
+
+        Image disgust = new Image(new FileInputStream("src/Pictures/gif/disgust.gif"));
+        ImageView ivD = new ImageView(disgust);
+        ivD.setX(480);
+        ivD.setY(320);
+        ivD.setScaleX(0.7);
+        ivD.setScaleY(0.7);
+        ivD.setPreserveRatio(true);
+
+        Image angry = new Image(new FileInputStream("src/Pictures/gif/angry.gif"));
+        ImageView ivA = new ImageView(angry);
+        ivA.setX(480);
+        ivA.setY(320);
+        ivA.setScaleX(0.7);
+        ivA.setScaleY(0.7);
+        ivA.setPreserveRatio(true);
+        if(max==0 || max==1 || max==3 || max==7)
+        {
+            root.getChildren().addAll(pieChart, back,textField,headning,ivH);
+        }
+
+        else  if(max==2 )
+        {
+            root.getChildren().addAll(pieChart, back,textField,headning,ivA);
+        }
+        else  if(max==4 )
+        {
+            root.getChildren().addAll(pieChart, back,textField,headning,ivS);
+        }
+
+        else  if(max==5 )
+        {
+            root.getChildren().addAll(pieChart, back,textField,headning,ivD);
+        }
+
+        else  if(max==6 )
+        {
+            root.getChildren().addAll(pieChart, back,textField,headning,ivS);
+        }
+
         Scene scene = new Scene(root, 1400, 750);
 
         //Setting title to the Stage
@@ -636,7 +669,7 @@ public class EmotionCalculation {
         Background bg = new Background(bi);
         root.setBackground(bg);
         stage.setTitle("Pie Chart");
-        root.getChildren().addAll(pieChart,score, back,textField,headning,emo);
+
         //Adding scene to the stage
         stage.setScene(scene);
 
@@ -655,23 +688,6 @@ public class EmotionCalculation {
     public void VisualOutputProf(Stage stage,String status) {
 
 
-        String s=String.valueOf(totalEmotionCount);
-        Text score = new Text("Emotion Score ");
-        score.setScaleX(2);
-        score.setScaleY(2);
-        score.setTranslateX(610);
-        score.setTranslateY(680);
-        score.setFill(Color.BLACK );
-        score.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 12));
-
-
-        Text emo = new Text( s);
-        emo.setScaleX(2);
-        emo.setScaleY(2);
-        emo.setTranslateX(610);
-        emo.setTranslateY(580);
-        emo.setFill(Color.WHITE );
-        emo.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 18));
         Button backs = new Button("");
 
         backs.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
@@ -681,7 +697,7 @@ public class EmotionCalculation {
         backs.setTextFill(Color.YELLOW);
 
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-0-4.jpg").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg3.png").toString(), true);
         Pane root = new Pane();
         backs.setOnAction(e -> {
             try {
@@ -708,47 +724,11 @@ public class EmotionCalculation {
         textField.setMinSize(425, 450);
         textField.setText(status);
 
-        textField.skinProperty().addListener(new ChangeListener<Skin<?>>() {
 
-            @Override
-            public void changed(
-                    ObservableValue<? extends Skin<?>> ov, Skin<?> t, Skin<?> t1) {
-                if (t1 != null && t1.getNode() instanceof Region) {
-                    Region r = (Region) t1.getNode();
-                    r.setBackground(Background.EMPTY);
+        double []value=new double[8];
+        value[0]=JoyCal;  value[1]=SurpriseCal;  value[2]=AngerCal;  value[3]=anticipationCal;  value[4]=SadnessCal;  value[5]=DisgustCal;  value[6]=FearCal;  value[7]=TrustCal;  value[0]=JoyCal;
+        PieChart pieChart = pieChart(value);
 
-                    r.getChildrenUnmodifiable().stream().
-                            filter(n -> n instanceof Region).
-                            map(n -> (Region) n).
-                            forEach(n -> n.setBackground(Background.EMPTY));
-
-                    r.getChildrenUnmodifiable().stream().
-                            filter(n -> n instanceof Control).
-                            map(n -> (Control) n).
-                            forEach(c -> c.skinProperty().addListener(this)); // *
-                }
-            }
-        });
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("Joy", JoyCal),
-                new PieChart.Data("Surprise", SurpriseCal),
-                new PieChart.Data("Anger", AngerCal),
-                new PieChart.Data("Anticipation", anticipationCal),
-                new PieChart.Data("Sadness", SadnessCal),
-                new PieChart.Data("Disgust", DisgustCal),
-                new PieChart.Data("Fear", FearCal),
-                new PieChart.Data("Trust", TrustCal));
-
-        PieChart pieChart = new PieChart(pieChartData);
-        pieChart.setTitle("Emotion ");
-        pieChart.setClockwise(true);
-        pieChart.setLabelLineLength(70);
-        pieChart.setLabelsVisible(true);
-        pieChart.setStartAngle(180);
-        pieChart.setTranslateX(750);
-        pieChart.setTranslateY(150);
-        pieChart.setScaleX(1.5);
-        pieChart.setScaleY(1.5);
 
         //Creating a scene object
         Scene scene = new Scene(root, 1400, 750);
@@ -762,7 +742,7 @@ public class EmotionCalculation {
         Background bg = new Background(bi);
         root.setBackground(bg);
         stage.setTitle("Pie Chart");
-        root.getChildren().addAll(pieChart, backs,textField,emo,score);
+        root.getChildren().addAll(pieChart, backs,textField);
         //Adding scene to the stage
         stage.setScene(scene);
 
@@ -884,7 +864,7 @@ public class EmotionCalculation {
     }
 
 
-    public void VisualOutputs(Stage stage,String accessToken,String Name,String status,int haha,int angry,int sad,int like ,int love,int wow)  {
+    public void VisualOutputs(Stage stage,String accessToken,String Name,String status,int haha,int angry,int sad,int like ,int love,int wow) throws FileNotFoundException {
 
 
         Button back = new Button("Back");
@@ -903,7 +883,7 @@ public class EmotionCalculation {
                 "    -fx-font-size: 1.1em;");
         back.setPrefSize(60, 30);
 
-        Image background = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg3.png").toString(), true);
         back.setOnAction(e -> {
             try {
                firstPost  fp=new firstPost(accessToken);
@@ -917,22 +897,16 @@ public class EmotionCalculation {
         });
 
 
-        Button regression = new Button("Regression Analysis");
+
+        Image Ab = null;
+
+        Ab = new Image(new FileInputStream("src/Pictures/pred.png"));
+        ImageView about = new ImageView(Ab);
+        Button regression = new Button(null, about);
+        regression.setBackground(null);
+
         regression.setTranslateX(400);
         regression.setTranslateY(600);
-        regression.setStyle("-fx-padding: 8 15 15 15;\n" +
-                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                "    -fx-background-radius: 8;\n" +
-                "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
-                "        #8d9092,\n" +
-                "        #717375,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #ffffff, #a1a3a6);\n" +
-                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 1.1em;");
-        regression.setPrefSize(300, 70);
-
 
         stage.show();
 
@@ -1030,32 +1004,10 @@ public class EmotionCalculation {
         textField.setMinSize(525, 450);
         textField.setText(status);
 
-        textField.skinProperty().addListener(new ChangeListener<Skin<?>>() {
 
-            @Override
-            public void changed(
-                    ObservableValue<? extends Skin<?>> ov, Skin<?> t, Skin<?> t1) {
-                if (t1 != null && t1.getNode() instanceof Region) {
-                    Region r = (Region) t1.getNode();
-                    r.setBackground(Background.EMPTY);
-
-                    r.getChildrenUnmodifiable().stream().
-                            filter(n -> n instanceof Region).
-                            map(n -> (Region) n).
-                            forEach(n -> n.setBackground(Background.EMPTY));
-
-                    r.getChildrenUnmodifiable().stream().
-                            filter(n -> n instanceof Control).
-                            map(n -> (Control) n).
-                            forEach(c -> c.skinProperty().addListener(this)); // *
-                }
-            }
-        });
-
-        //Creating a Group object
         Pane root = new Pane();
         root.getChildren().addAll(barChart,back,regression,textField);
-     //   root.getChildren().addAll(sc,link,back);
+
         //Creating a scene object
         Scene scene = new Scene(root, 2000, 900);
 

@@ -15,12 +15,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import sample.spl1.emotioncal.EmotionCalculation;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
 
-import static demo.sphinx.helloworld.HelloWorld.setStyle;
 
 public class WebPage {
 
@@ -32,13 +31,13 @@ public class WebPage {
             stage.setTitle("Text Input");
 
             TextArea textFields = new TextArea();
+            Image Ab = new Image(new FileInputStream("src/Pictures/enter.png"));
+            ImageView about = new ImageView(Ab);
+            Button button = new Button(null,about);
+            button.setBackground(null);
 
-            Button button = new Button("Enter");
-            button.setTextFill(Color.WHITE);
-            setStyle(button);
-            button.setTranslateX(620);
-            button.setTranslateY(380);
-            button.setPrefSize(150,70);
+            button.setTranslateX(580);
+            button.setTranslateY(520);
 
 
             Button back = new Button("");
@@ -64,7 +63,7 @@ public class WebPage {
                 headning.setScaleY(6);
                 headning.setTranslateX(650);
                 headning.setTranslateY(90);
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/pngfuel.com.png").toString(), true);
+                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/emoBg3.png").toString(), true);
                 Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);

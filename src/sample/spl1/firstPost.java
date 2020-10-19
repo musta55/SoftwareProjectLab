@@ -1,9 +1,5 @@
 package sample.spl1;
 
-import com.restfb.Connection;
-import com.restfb.DefaultFacebookClient;
-import com.restfb.FacebookClient;
-import com.restfb.types.Post;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -17,11 +13,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import sample.spl1.emotioncal.EmotionCalculation;
 
-
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.List;
 
 public class firstPost {
     private String  accessToken;
@@ -30,16 +24,15 @@ public class firstPost {
     {
             this.accessToken=accessToken;
     }
-    public void firstpost(Stage stages,String Name)
-    {
+    public void firstpost(Stage stages,String Name) throws FileNotFoundException {
         Pane stat = new Pane();
         Stage stage =new Stage();
-        Scene scen = new Scene(stat, 800, 437);
+        Scene scen = new Scene(stat, 880, 437);
 
         int numbers=0;
         TextArea textField = new TextArea();
         textField.setLayoutX(520);
-        textField.setLayoutY(50);
+        textField.setLayoutY(250);
         textField.setPrefRowCount(2);
         textField.setPrefColumnCount(2);
         textField.setWrapText(true);
@@ -48,8 +41,8 @@ public class firstPost {
         Text headning = new Text("Enter Status No.");
         headning.setScaleX(3);
         headning.setScaleY(3);
-        headning.setTranslateX(370);
-        headning.setTranslateY(70);
+        headning.setTranslateX(320);
+        headning.setTranslateY(210);
         headning.setFill(Color.BLACK);
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 9));
 
@@ -70,19 +63,20 @@ public class firstPost {
         back.setTextFill(Color.WHITE);
         back.setOnAction(e -> {
             try {
-                fourthPage fp=new fourthPage();
-                fp.runs(stages,accessToken,Name);
+               thirdPage tp=new thirdPage();
+               tp.app(stage,Name);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         });
 
-        Button button = new Button("Enter");
-        button.setTextFill(Color.WHITE);
-        setStyle(button);
-        button.setTranslateX(520);
-        button.setTranslateY(160);
-        button.setPrefSize(150,70);
+        Image Ab = new Image(new FileInputStream("src/Pictures/enter.png"));
+        ImageView about = new ImageView(Ab);
+        Button button = new Button(null,about);
+        button.setBackground(null);
+
+        button.setTranslateX(400);
+        button.setTranslateY(320);
         button.setOnAction(action -> {
 
                     try {
@@ -98,7 +92,7 @@ public class firstPost {
 
         stage.setTitle("FB Post No");
         stat.getChildren().addAll(button,textField,headning,back);
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/yellow.jpg").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
 
 
 

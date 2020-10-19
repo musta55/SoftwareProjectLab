@@ -6,14 +6,11 @@ import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import com.restfb.json.JsonObject;
 import com.restfb.types.Post;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sample.spl1.emotioncal.EmotionCalculation;
 
 import java.io.BufferedWriter;
-import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.Arrays;
 import java.util.Date;
@@ -22,8 +19,7 @@ import java.util.List;
 public class postOne {
     int[] integers = new int[1000];
 
-    public void postone(Stage stages,String accessToken,String Name,int numbers)
-    {
+    public void postone(Stage stages,String accessToken,String Name,int numbers) throws FileNotFoundException {
 
 
         Operations operations = new Operations();

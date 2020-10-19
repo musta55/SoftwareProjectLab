@@ -8,15 +8,14 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="restfb-1.18" level="project" />
-    <orderEntry type="library" name="jar_files" level="project" />
-    <orderEntry type="library" name="selenium-api-2.53" level="project" />
     <orderEntry type="library" name="javax.json-api-1.0" level="project" />
-    <orderEntry type="library" name="jsoup-1.13" level="project" />
     <orderEntry type="library" name="json-jena-1" level="project" />
-    <orderEntry type="library" name="voice" level="project" />
     <orderEntry type="library" name="Java-Speech-Recognizer-Tutorial--Calculator-master" level="project" />
     <orderEntry type="library" name="jsapi" level="project" />
     <orderEntry type="library" name="data" level="project" />
-    <orderEntry type="library" name="data1" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="Downloads" level="project" />
+    <orderEntry type="library" name="restfb-1.18.1" level="project" />
+    <orderEntry type="library" name="jsoup-1.13.1" level="project" />
   </component>
 </module>
