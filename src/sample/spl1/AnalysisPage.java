@@ -12,13 +12,16 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sample.spl1.emotioncal.EmotionProfile;
 import sample.spl1.visualOut.accessToken;
+import sample.spl1.visualOut.finalReport;
+import sample.spl1.visualOut.visualoutputfb;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class AnalysisPage {
-    private Stage stage;
-    private String Name;
+    private final Stage stage;
+    private final String Name;
     private String accessToken;
     public  AnalysisPage (Stage stage,String Name)
     {
@@ -89,7 +92,7 @@ public class AnalysisPage {
 
 
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
         Pane root = new Pane();
 
         root.getChildren().addAll(visualization,back,reactionPrediction,finalReport);
@@ -104,17 +107,32 @@ public class AnalysisPage {
                 ex.printStackTrace();
             }
         });
+        accessToken at=new accessToken();
+        accessToken= at.token(stage,Name,1);
 
         reactionPrediction.setOnAction(e -> {
             {
-                accessToken at=new accessToken();
-                 accessToken= at.token(stage,Name,1);
+                firstPost fp=new firstPost(accessToken);
+                try {
+                    fp.firstpost(stage,Name);
+                } catch (FileNotFoundException ed) {
+                    ed.printStackTrace();
+                }
             }
         });
 
+        double tempTotal=0;
         finalReport.setOnAction(e -> {
-            accessToken at=new accessToken();
-            accessToken= at.token(stage,Name,2);
+            visualoutputfb vf=new visualoutputfb();
+
+            System.out.println("Here name is "+Name);
+            File file = new File("fb"+Name);
+            double[] sentimentTot = vf.outData(file);
+
+
+             double finalTempTotal=vf.tempTotal;
+
+            sample.spl1.visualOut.finalReport fr=new finalReport(stage,accessToken,sentimentTot,finalTempTotal,Name);
         });
 
         Canvas canvas = new Canvas(1400,750);

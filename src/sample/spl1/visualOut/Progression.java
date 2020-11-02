@@ -3,7 +3,6 @@ package sample.spl1.visualOut;
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
-import com.restfb.Version;
 import com.restfb.types.Post;
 import javafx.stage.Stage;
 import sample.spl1.Dictionary;
@@ -11,6 +10,7 @@ import sample.spl1.Operations;
 import sample.spl1.OperationsBangla;
 import sample.spl1.emotioncal.EmotionCalculation;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -23,22 +23,23 @@ public class Progression {
     public static int counter = 0;
     public void statusProgress(Stage stages,String accessToken,String Name)
     {
+
         System.out.println("Progression is :");
         Operations operations = new Operations();
 
-        Version v= Version.valueOf(accessToken);
-        FacebookClient fbClient = new DefaultFacebookClient(v);
+        FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         Connection<Post> result;
         result = fbClient.fetchConnection("me/feed", Post.class);
 
         for (List<Post> apost : result) {
             for (Post aPost : apost) {
                 counter++;
-                if (counter >= 10) {
+                if (counter >= 11) {
                     break;
                 }
                 EmotionCalculation emCal = new EmotionCalculation();
-                emCal.fileOpen(Name);
+                File file=new File(Name);
+                emCal.fileOpen(file);
 
                 System.out.println(aPost.getMessage());
                 System.out.println("Post like is :"+aPost.getLikesCount());
@@ -82,7 +83,7 @@ public class Progression {
                         e.printStackTrace();
                     }
                 } catch (Exception ea) {
-                    System.out.println("");
+                    System.out.println();
                 }
             }
         }

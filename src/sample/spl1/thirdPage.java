@@ -18,7 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class thirdPage extends secondPage{
-    public void app(Stage stage,String Name) throws FileNotFoundException {
+    public void app(Stage stage,String FileName) throws FileNotFoundException {
 
 
         Image Ab = null;
@@ -80,19 +80,30 @@ public class thirdPage extends secondPage{
 
 
         Button back = getButton();
+
+        if(FileName.contains("fb") )
+        {
+            FileName=FileName.substring(2);
+        }
+        if(FileName.contains("article") )
+        {
+            FileName=FileName.substring(7);
+        }
+        if(FileName.contains("web") )
+        {
+            FileName=FileName.substring(3);
+        }
+
+        String finalFileName = FileName;
         analysis.setOnAction(e -> {
             try {
-                AnalysisPage ap=new AnalysisPage(stage,Name);
+                AnalysisPage ap=new AnalysisPage(stage, finalFileName);
                 ap.analysis();
 
             } catch (Exception excep) {
                 excep.printStackTrace();
             }
         });
-
-
-
-        Pane roots = new Pane();
 
 
 
@@ -109,7 +120,7 @@ public class thirdPage extends secondPage{
 
         article.setOnAction(e->{
             try {
-                String articleFile="article"+Name;
+                String articleFile="article"+finalFileName;
                 biLingual bl =new biLingual(stage,articleFile);
             }catch (Exception ex)
             {
@@ -119,7 +130,7 @@ public class thirdPage extends secondPage{
 
 
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
         Pane root = new Pane();
 
         root.getChildren().addAll(socialMedia,back,article,liveUrl,analysis,text);
@@ -128,7 +139,7 @@ public class thirdPage extends secondPage{
             try
             {
                accessToken at=new accessToken();
-               String socFile="fb"+Name;
+               String socFile="fb"+finalFileName;
             String  tok= at.token(stage,socFile,0);
             }catch (Exception ea)
             {
@@ -138,7 +149,7 @@ public class thirdPage extends secondPage{
         });
         liveUrl.setOnAction(e -> {
             WebPage wb=new WebPage();
-            String webFile="web"+Name;
+            String webFile="web"+finalFileName;
             wb.web(stage,webFile);
         });
 

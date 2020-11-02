@@ -33,7 +33,7 @@ public class RegistrationFrormApplication  {
         addUIControls(gridPane,stage);
         // Create a scene with registration form grid pane as the root node
         Scene scene = new Scene(gridPane, 1400, 750);
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg3.png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
 
         BackgroundImage bi = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,
@@ -59,22 +59,22 @@ public class RegistrationFrormApplication  {
         gridPane.setAlignment(Pos.TOP_CENTER);
 
         // Set a padding of 20px on each side
-        gridPane.setPadding(new Insets(40, 40, 40, 40));
+        gridPane.setPadding(new Insets(60, 60, 60, 60));
 
         // Set the horizontal gap between columns
-        gridPane.setHgap(10);
+        gridPane.setHgap(20);
 
         // Set the vertical gap between rows
-        gridPane.setVgap(10);
+        gridPane.setVgap(20);
 
         // Add Column Constraints
 
         // columnOneConstraints will be applied to all the nodes placed in column one.
-        ColumnConstraints columnOneConstraints = new ColumnConstraints(100, 100, Double.MAX_VALUE);
+        ColumnConstraints columnOneConstraints = new ColumnConstraints(200, 200, Double.MAX_VALUE);
         columnOneConstraints.setHalignment(HPos.RIGHT);
 
         // columnTwoConstraints will be applied to all the nodes placed in column two.
-        ColumnConstraints columnTwoConstrains = new ColumnConstraints(200,200, Double.MAX_VALUE);
+        ColumnConstraints columnTwoConstrains = new ColumnConstraints(300,300, Double.MAX_VALUE);
         columnTwoConstrains.setHgrow(Priority.ALWAYS);
 
         gridPane.getColumnConstraints().addAll(columnOneConstraints, columnTwoConstrains);
@@ -93,45 +93,56 @@ public class RegistrationFrormApplication  {
 
         // Add Name Label
         Label nameLabel = new Label("Full Name : ");
-        nameLabel.setTextFill(Color.WHITE);
-        gridPane.add(nameLabel, 0,1);
+        nameLabel.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 20));
+
+        nameLabel.setTextFill(Color.BLACK);
+        gridPane.add(nameLabel, 0,2);
 
         // Add Name Text Field
         TextField nameField = new TextField();
         nameField.setPrefHeight(40);
-        gridPane.add(nameField, 1,1);
+        nameField.setPrefWidth(140);
+        gridPane.add(nameField, 1,2);
 
 
         // Add Email Label
         Label emailLabel = new Label("Email ID : ");
-        emailLabel.setTextFill(Color.WHITE);
-        gridPane.add(emailLabel, 0, 2);
+        emailLabel.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 20));
+
+        emailLabel.setTextFill(Color.BLACK);
+        gridPane.add(emailLabel, 0, 4);
 
         // Add Email Text Field
         TextField emailField = new TextField();
         emailField.setPrefHeight(40);
-        gridPane.add(emailField, 1, 2);
+        emailField.setPrefWidth(140);
+        gridPane.add(emailField, 1, 4);
 
         // Add Password Label
         Label passwordLabel = new Label("Password : ");
-        passwordLabel.setTextFill(Color.WHITE);
-        gridPane.add(passwordLabel, 0, 3);
+        passwordLabel.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 20));
+        passwordLabel.setTextFill(Color.BLACK);
+        gridPane.add(passwordLabel, 0, 6);
 
         // Add Age Field
         PasswordField passwordField = new PasswordField();
         passwordField.setPrefHeight(40);
-        gridPane.add(passwordField, 1, 3);
+        passwordField.setPrefWidth(140);
+        gridPane.add(passwordField, 1, 6);
 
 
         // Add Password Label
         Label ageLabel = new Label("Age : ");
-        ageLabel.setTextFill(Color.WHITE);
-        gridPane.add(ageLabel, 0, 4);
+        ageLabel.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 20));
+
+        ageLabel.setTextFill(Color.BLACK);
+        gridPane.add(ageLabel, 0, 8);
 
         // Add Password Field
         TextField ageField = new TextField();
         ageField.setPrefHeight(40);
-        gridPane.add(ageField, 1, 4);
+        ageField.setPrefWidth(140);
+        gridPane.add(ageField, 1, 8);
 
 
         // Add Submit Button
@@ -139,7 +150,7 @@ public class RegistrationFrormApplication  {
         submitButton.setPrefHeight(40);
         submitButton.setDefaultButton(true);
         submitButton.setPrefWidth(100);
-        gridPane.add(submitButton, 0, 5, 2, 1);
+        gridPane.add(submitButton, 0, 10, 4, 2);
         GridPane.setHalignment(submitButton, HPos.CENTER);
         GridPane.setMargin(submitButton, new Insets(20, 0,20,0));
 

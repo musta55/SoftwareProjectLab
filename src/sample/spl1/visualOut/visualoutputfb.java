@@ -1,17 +1,18 @@
 package sample.spl1.visualOut;
 
 import javafx.collections.FXCollections;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.spl1.thirdPage;
@@ -27,40 +28,43 @@ public class visualoutputfb {
     double[] sentimentPos = new double[1000];
     double[] sentimentNeg = new double[1000];
     double[] sentimentTot = new double[1000];
-    double tempTotal;
-    public double[] outData(String fbFile)
+    public double tempTotal;
+    public double[] outData( File file)
     {
-        Scanner scan=null;
-        File file = null;
-        file = new File(fbFile);
+
+
+
         try {
-            scan = new Scanner(file);
+            Scanner    scan = new Scanner(file);
+
+            int i = 0;
+            int m = 0;
+            while (scan.hasNextLine()) {
+                //
+                String currentLine = scan.nextLine();
+                // System.out.println("Current Line "+currentLine);
+                String[] firstSplits = currentLine.split(" ", 0);
+                for (; m < firstSplits.length; m++) {
+                    //     System.out.println("String is " + firstSplits[m]);
+                    try {
+                        if (firstSplits[m] == "NaN" || firstSplits[m] == "Infinity") ;
+                        else {
+                            out[m] = Double.parseDouble(firstSplits[m]);
+                            System.out.print(out[m] + "          ");
+                        }
+                    } catch (Exception q) {
+                        out[m] = 0.000;
+                    }
+                    //     System.out.println("Value is " + out[m]);
+                }
+                // double d = Double.parseDouble();
+            }
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        int i = 0;
-        int m = 0;
-        while (scan.hasNextLine()) {
-            //
-            String currentLine = scan.nextLine();
-            // System.out.println("Current Line "+currentLine);
-            String[] firstSplits = currentLine.split(" ", 0);
-            for (; m < firstSplits.length; m++) {
-                //     System.out.println("String is " + firstSplits[m]);
-                try {
-                    if (firstSplits[m] == "NaN" || firstSplits[m] == "Infinity") ;
-                    else {
-                        out[m] = Double.parseDouble(firstSplits[m]);
-                        System.out.print(out[m] + "          ");
-                    }
-                } catch (Exception q) {
-                    out[m] = 0.000;
-                }
-                //     System.out.println("Value is " + out[m]);
-            }
-            // double d = Double.parseDouble();
-        }
+
         for (int s = 0, t = 1; t <= 15; s += 8, t++) {
             sentimentPos[t] = out[s] + out[s + 1] + out[s + 4] + out[s + 6];
         }
@@ -80,6 +84,9 @@ public class visualoutputfb {
         DecimalFormat df = new DecimalFormat("0.00");
         Scanner scan;
         File file = null;
+
+
+        System.out.println("file name in fb "+Name);
         file = new File(Name);
         scan = new Scanner(file);
         double[] out = new double[10000];
@@ -101,37 +108,34 @@ public class visualoutputfb {
                 }
             }
         }
-        Group root = new Group();
-        Image background = new Image(visualoutputfb.class.getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
-        Canvas canvas = new Canvas(1800, 900);
-
+        Pane root = new Pane();
+        Image background = new Image(visualoutputfb.class.getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+        Canvas canvas = new Canvas(1400,750);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.drawImage(background, 0, 0);
-        Scene scene = new Scene(root, 2000, 900);
+        gc.drawImage(background,0,0);
+        BackgroundImage bi = new BackgroundImage(background,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        Background bg = new Background(bi);
+        root.setBackground(bg);
+
+
+        Scene scene = new Scene(root, 1410, 752);
         stage.setScene(scene);
-        stage.setFullScreen(true);
         stage.show();
         CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("EMOTIONAL PROGRESSION OVER STATUS");
 
         // CategoryAxis xAxis = new CategoryAxis("Emotions\n"+"1.Joy\n"+"2.Surprise\n"+"3.Fear\n"+"4.Sadness\n"+"5.Trust\n"+"6.Disgust\n"+"7.anticipation\n"+"8.Disgust\n");
         NumberAxis yAxis = new NumberAxis("INTENSITY", 0, 100, 10);
-        Button back = new Button("Back");
-        back.setTranslateX(1100);
-        back.setTranslateY(650);
-        back.setStyle("-fx-padding: 8 15 15 15;\n" +
-                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                "    -fx-background-radius: 8;\n" +
-                "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
-                "        #8d9092,\n" +
-                "        #717375,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #ffffff, #a1a3a6);\n" +
-                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 1.1em;");
-        back.setPrefSize(60, 30);
-
+        Button back = new Button("");
+        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+        back.setTranslateX(0);
+        back.setTranslateY(340);
+        back.setPrefSize(1, 5);
+        back.setTextFill(Color.YELLOW);
 
         back.setOnAction(e -> {
             try {
@@ -151,31 +155,22 @@ public class visualoutputfb {
                 "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
                 "        #030B21,\n" +
                 "        #0B2058,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
+                "        radial-gradient(center 50% 50%, radius 100%, #363632, #343443);\n" +
                 "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
                 "    -fx-font-weight: bold;\n" +
                 "    -fx-font-size: 1.5em;");
-        more.setPrefSize(160, 40);
+        more.setPrefSize(260, 40);
         more.setTextFill(Color.WHITE);
 
         more.setOnAction(e -> {
             try {
 
-                Button backs = new Button("Back");
-                backs.setTranslateX(1100);
-                backs.setTranslateY(650);
-                backs.setStyle("-fx-padding: 8 15 15 15;\n" +
-                        "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                        "    -fx-background-radius: 8;\n" +
-                        "    -fx-background-color: \n" +
-                        "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
-                        "        #8d9092,\n" +
-                        "        #717375,\n" +
-                        "        radial-gradient(center 50% 50%, radius 100%, #143389, #09236B);\n" +
-                        "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-                        "    -fx-font-weight: bold;\n" +
-                        "    -fx-font-size: 1.1em;");
-                backs.setPrefSize(60, 30);
+                Button backs = new Button("");
+                backs.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+                backs.setTranslateX(0);
+                backs.setTranslateY(340);
+                backs.setPrefSize(1, 5);
+                backs.setTextFill(Color.YELLOW);
 
 
                 backs.setOnAction(ea-> {
@@ -228,7 +223,7 @@ public class visualoutputfb {
                 Pane roots = new Pane();
 
                 CategoryAxis xAxises = new CategoryAxis();
-                xAxises.setCategories(FXCollections.<String>
+                xAxises.setCategories(FXCollections.
                         observableArrayList(Arrays.asList("Joy", "Surprise", "Fear", "Sadness", "Trust", "Disgust", "anticipation", "Anger")));
                 xAxises.setLabel("EMOTION");
 
@@ -254,19 +249,19 @@ public class visualoutputfb {
                 barChart.setTranslateY(120);
                 barChart.setScaleX(.8);
                 barChart.setScaleY(.8);
-                barChart.setPrefSize(850,500);
+                barChart.setPrefSize(750,500);
 
 
                 barChart.getData().addAll(series1);
 
 
-                BackgroundImage bi = new BackgroundImage(background,
+                BackgroundImage bis = new BackgroundImage(background,
                         BackgroundRepeat.NO_REPEAT,
                         BackgroundRepeat.NO_REPEAT,
                         BackgroundPosition.DEFAULT,
                         BackgroundSize.DEFAULT);
-                Background bg = new Background(bi);
-                roots.setBackground(bg);
+                Background bgs = new Background(bis);
+                roots.setBackground(bgs);
                 double maxa = -1, maxb = -1;
                 int temp = 0, temp2 = 0;
                 Double[] freq = new Double[]{joyOut, surpriseOut, fearOut, sadnessOut, trustOut, disgustOut, anticipationOut, angerOut};
@@ -308,15 +303,15 @@ public class visualoutputfb {
                 }
                 Text texts = new Text(text);
 
-                texts.setFont(Font.font(Font.getFontNames().get(7), FontPosture.REGULAR, 12));
                 texts.setScaleX(1);
                 texts.setScaleY(1);
-                texts.setTranslateX(50);
-                texts.setTranslateY(40);
+                texts.setTranslateX(350);
+                texts.setTranslateY(140);
                 texts.setFill(Color.DARKCYAN);
+                texts.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.BOLD, 18));
 
 
-                roots.getChildren().addAll(barChart, texts, back);
+                roots.getChildren().addAll(barChart, texts, backs);
                 Scene scenea = new Scene(roots, 1400, 750);
                 // Scene scene = new Scene(root, 1600, 800);
                 stage.setScene(scenea);
@@ -335,7 +330,11 @@ public class visualoutputfb {
 
 
         StackedBarChart lineChart = new StackedBarChart(xAxisq, yAxisq);
-        lineChart.setPrefSize(850,400);
+        lineChart.setPrefSize(750,400);
+
+        lineChart.setLayoutX(200);
+        lineChart.setLayoutY(200);
+
 
         XYChart.Series dataSeries1 = new XYChart.Series();
         dataSeries1.setName("JOY");
@@ -405,28 +404,26 @@ public class visualoutputfb {
 
         }
 
-        lineChart.setPrefSize(1200, 700);
+        Text headning = new Text("Last Ten Posts' Emotion");
+        headning.setScaleX(6);
+        headning.setScaleY(8);
+        headning.setX(650);
+        headning.setY(150);
+        headning.setFill(Color.WHITE);
+        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.ITALIC, 7));
 
-        root.getChildren().addAll(canvas, lineChart, more);
+
+        headning.setCache(true);
+
+
+
+        lineChart.setPrefSize(1000, 500);
+
+        root.getChildren().addAll(headning, lineChart, more,back);
 
 
     }
 
-    public Button setStyle ( Button b)
-    {
-        b.setStyle("-fx-background-color: \n" +
-                "        linear-gradient(\t#FFFFFF, \t#FFFFFF),\n" +
-                "        linear-gradient(#FFFFFF, #FFFFFF),\n" +
-                "        linear-gradient(\t#FFFFFF, #efaa22),\n" +
-                "        linear-gradient(#ffe657 0%, #3CF53C 50%, #1ED71E 100%),\n" +
-                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
-                "    -fx-background-radius: 30;\n" +
-                "    -fx-background-insets: 0,1,2,3,0;\n" +
-                "    -fx-text-fill: #654b00;\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 2.1em;\n" +
-                "    -fx-padding: 10 20 10 20;");
-        return b;
-    }
+
 
 }

@@ -1,5 +1,6 @@
 package sample.spl1;
 
+import javafx.animation.PauseTransition;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -9,6 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import sample.spl1.additionalClass.experimentDescription;
 import sample.spl1.languageClassification.Language;
 import sample.spl1.login.logIn;
 
@@ -39,8 +42,8 @@ public class secondPage {
         Button pro = new Button(null, about);
         pro.setBackground(null);
 
-        pro.setTranslateX(380);
-        pro.setTranslateY(320);
+        pro.setTranslateX(500);
+        pro.setTranslateY(120);
 
 
         Image Ab2 = null;
@@ -50,7 +53,7 @@ public class secondPage {
             Button application = new Button(null, about2);
             application.setBackground(null);
 
-            application.setTranslateX(580);
+            application.setTranslateX(500);
             application.setTranslateY(520);
 
             application.setOnAction(e -> {
@@ -66,31 +69,50 @@ public class secondPage {
             });
 
 
-            Button others = new Button("Others");
-            others.setTranslateX(1180);
-            others.setTranslateY(60);
-            others.setPrefSize(200, 80);
-            others.setTextFill(Color.WHITE);
 
+        Image Ab3 = null;
+
+        Ab3 = new Image(new FileInputStream("src/Pictures/about.png"));
+        ImageView about3 = new ImageView(Ab3);
+        Button other = new Button(null, about3);
+        other.setBackground(null);
+
+        other.setTranslateX(500);
+        other.setTranslateY(320);
 
             Button back = getButton();
 
 
-            others.setOnAction(e -> {
+            other.setOnAction(e -> {
 
                 try {
 //                    HelloWorld hl=new HelloWorld();
 //                    hl.speech(stage);
+
+
 
                 } catch (Exception excep) {
                     excep.printStackTrace();
                 }
             });
 
-            Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
+            Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
             Pane root = new Pane();
 
-            root.getChildren().addAll(back, pro, application);
+            root.getChildren().addAll(back, pro, application,other);
+            int scroll=0;
+
+    pro.setOnMouseEntered(e->{
+    try {
+        experimentDescription ex=new experimentDescription();
+        ex.experimentdescription();
+
+    } catch (Exception excep) {
+        excep.printStackTrace();
+    }
+});
+
+
             pro.setOnAction(e -> {
                 try {
                     Language PMenu = new Language();

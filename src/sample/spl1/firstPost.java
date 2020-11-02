@@ -1,5 +1,9 @@
 package sample.spl1;
 
+import com.restfb.Connection;
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.types.Post;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -13,12 +17,15 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import sample.spl1.emotioncal.EmotionCalculation;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 public class firstPost {
-    private String  accessToken;
+    private final String  accessToken;
 
    public   firstPost(String accessToken)
     {
@@ -32,7 +39,7 @@ public class firstPost {
         int numbers=0;
         TextArea textField = new TextArea();
         textField.setLayoutX(520);
-        textField.setLayoutY(250);
+        textField.setLayoutY(180);
         textField.setPrefRowCount(2);
         textField.setPrefColumnCount(2);
         textField.setWrapText(true);
@@ -42,13 +49,66 @@ public class firstPost {
         headning.setScaleX(3);
         headning.setScaleY(3);
         headning.setTranslateX(320);
-        headning.setTranslateY(210);
-        headning.setFill(Color.BLACK);
+        headning.setTranslateY(200);
+        headning.setFill(Color.WHITE);
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 9));
 
 
 
         headning.setCache(true);
+
+
+
+        FacebookClient fbClient = new DefaultFacebookClient(accessToken);
+        //   FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("668106823992484 ", "f63f747f31e390a44f93891920364794");
+
+        Connection<Post> result;
+        result = fbClient.fetchConnection("me/feed", Post.class);
+
+
+        String userInput = null;
+        EmotionCalculation emCal = new EmotionCalculation();
+        try
+        {
+            File file=new File(Name);
+            emCal.fileOpen(file);
+
+        }catch (Exception e)
+        {
+            thirdPage tp=new thirdPage();
+            tp.app(stage,Name);
+            System.out.println("Exception in openning file");
+        }
+
+
+        int counter=0;
+        String status=null;
+        int flag=-1;
+        for (List<Post> apost : result) {
+            for (Post aPost : apost) {
+                counter++;
+        if(aPost.getIsPublished()==null)
+        {
+            flag=0;
+            break;
+
+        }
+            }
+
+            if( flag==0)break;
+
+
+        }
+        Text postNo = new Text("Available Posts "+counter+1);
+        postNo.setScaleX(4);
+        postNo.setScaleY(4);
+        postNo.setTranslateX(180);
+        postNo.setTranslateY(340);
+        postNo.setFill(Color.WHITE);
+        postNo.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 9));
+
+
+
 
         Button back = new Button("");
         back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
@@ -63,8 +123,8 @@ public class firstPost {
         back.setTextFill(Color.WHITE);
         back.setOnAction(e -> {
             try {
-               thirdPage tp=new thirdPage();
-               tp.app(stage,Name);
+               AnalysisPage ap=new AnalysisPage(stage,Name);
+               ap.analysis();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -76,7 +136,7 @@ public class firstPost {
         button.setBackground(null);
 
         button.setTranslateX(400);
-        button.setTranslateY(320);
+        button.setTranslateY(250);
         button.setOnAction(action -> {
 
                     try {
@@ -90,9 +150,9 @@ public class firstPost {
             );
 
 
-        stage.setTitle("FB Post No");
-        stat.getChildren().addAll(button,textField,headning,back);
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
+        stage.setTitle("FB Post No ");
+        stat.getChildren().addAll(button,textField,headning,back,postNo);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
 
 
 

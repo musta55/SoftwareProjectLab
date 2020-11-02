@@ -16,12 +16,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import sample.spl1.firstPost;
 import sample.spl1.login.loginOrReg;
 
 import java.awt.*;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -30,7 +28,6 @@ public class accessToken {
     String tok=null;
     public String token(Stage stage, String Name,int num)
     {
-
 
         try {
             stage.setTitle("Text Input");
@@ -53,7 +50,7 @@ public class accessToken {
                 headning.setScaleY(6);
                 headning.setTranslateX(650);
                 headning.setTranslateY(90);
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/emoBg3.png").toString(), true);
+                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
                 Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);
@@ -63,7 +60,7 @@ public class accessToken {
                 textFields.setPrefRowCount(5);
                 textFields.setPrefColumnCount(6);
                 textFields.setWrapText(true);
-                textFields.setMinSize(1125,150);
+                textFields.setMinSize(1125,80);
                  tok=textFields.getText();
 
 
@@ -129,24 +126,21 @@ public class accessToken {
             button.setOnAction(action -> {
 
 
-               if(num==1 || num==0)
+               if(num==1)
                 {
-                    firstPost fp=new firstPost(textFields.getText());
-                    try {
-                        fp.firstpost(stage,Name);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
+
                 }
-                else if(num==2)
+
+                if(num==0)
                 {
-                    visualoutputfb vf=new visualoutputfb();
+                    Progression statusProg =new Progression();
 
-                    double sentimentTot[]= vf.outData("fb"+Name);
+                    statusProg.statusProgress(stage,textFields.getText(),Name);
+                }
+                else if(num==2 )
+                {
 
-                    System.out.println("Here name is "+Name);
-                    double finalTempTotal=vf.tempTotal;
-                    finalReport fr=new finalReport(stage,textFields.getText(),sentimentTot,finalTempTotal,Name);
+
 //                    Progression p=new Progression();
 //                    p.statusProgress(stage,textFields.getText());
                 }

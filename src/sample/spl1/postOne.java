@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import sample.spl1.emotioncal.EmotionCalculation;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.Arrays;
@@ -34,7 +35,15 @@ public class postOne {
 
         String userInput = null;
         EmotionCalculation emCal = new EmotionCalculation();
-        emCal.fileOpen(Name);
+        try{
+            File file=new File(Name);
+            emCal.fileOpen(file);
+        }catch(Exception e)
+        {
+            File file=new File(Name);
+            System.out.println("file name is"+Name);
+        }
+
         int counter=0;
         String status=null;
         for (List<Post> apost : result) {
@@ -118,8 +127,8 @@ public class postOne {
 
 
                         }
-                        operations.splitInput(inp);
 
+                        operations.splitInput(inp);
                         operations.removeWord();
                         operations.search();
                         emCal.searchEmotion();
@@ -127,7 +136,7 @@ public class postOne {
                         emCal.DataOutputStream(Name);
 
                     } catch (Exception ea) {
-                        System.out.println("");
+                        System.out.println();
                     }
                     emCal.VisualOutputs(stages,accessToken,Name,status, integers[0], integers[1], integers[2], integers[3], integers[4], integers[5]);
 

@@ -17,16 +17,16 @@ public class loginOrReg {
 
         Text headning = new Text("1.Click the Link\n2.Log In To Your Facebook\n3.Create a new app\n4.From Tools click GRAPH API EXPLORER\n5.Generate access Token \n6.Copy the token & paste it here \n7.Enjoy");
         headning.setScaleX(6);
-        headning.setScaleY(6);
-        headning.setTranslateX(650);
-        headning.setTranslateY(100);
-        headning.setFill(Color.rgb(237, 134, 18));
+        headning.setScaleY(8);
+        headning.setX(650);
+        headning.setY(400);
+        headning.setFill(Color.WHITE);
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.ITALIC, 7));
 
 
         headning.setCache(true);
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
 
         BackgroundImage bi = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,

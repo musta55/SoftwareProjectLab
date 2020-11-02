@@ -21,11 +21,11 @@ import java.text.DecimalFormat;
 import static java.lang.Math.abs;
 public class finalReport {
     DecimalFormat df = new DecimalFormat("0.00");
-    private Stage stage;
-    private String accessToken;
-    private double[] sentimentTot;
+    private final Stage stage;
+    private final String accessToken;
+    private final double[] sentimentTot;
 
-    private  double finalTempTotal;
+    private final double finalTempTotal;
     private String Name;
     public finalReport(Stage stage,String accessToken,double[] sentimentTot,double finalTempTotal,String Name){
         this.stage=stage;
@@ -190,7 +190,7 @@ public class finalReport {
         String report = null;
 
         EmotionCalculation emcal = new EmotionCalculation();
-        double stdDev = emcal.calculateSD(sentimentTot);
+        double stdDev = EmotionCalculation.calculateSD(sentimentTot);
         System.out.println("std dev is :" + stdDev);
 
         double[] personalityTest =new double[4];
@@ -198,14 +198,14 @@ public class finalReport {
 
         if (stdDev < 1) {
             txt = " Low";
-            report += "\nYou have difficulty connecting with feelings — others’ and your own; give the impression of being snobby, withholding, or cold; obsess about problems; sometimes too serious.";
+            report += "You have difficulty connecting with feelings — others’ and your own; give the impression of being snobby, withholding, or cold; obsess about problems; sometimes too serious.";
         } else if (stdDev < 5) {
             txt = "Medium";
-            report += "\nYou are emotionally strong for self and others, practical, able to stay cool in a crisis, nonjudgmental.";
+            report += "You are emotionally strong for self and others, practical, able to stay cool in a crisis, nonjudgmental.";
         } else {
             txt = " High";
 
-            report += "\nYou are highly sensitive, naturally giving and a good listener.";
+            report += "You are highly sensitive, naturally giving and a good listener.";
         }
 
         textInt.setText(txt);
@@ -246,7 +246,7 @@ public class finalReport {
 
         textStab.setText(txtstab);
         textStab.setFill(Color.BLACK);
-        textStab.setFont(javafx.scene.text.Font.font("MyriadPro", FontWeight.BOLD, 10));
+        textStab.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.BOLD, 10));
         textStab.setStyle("-fx-font-size: 12px;");
         textStab.setX(129);
         textStab.setY(150);

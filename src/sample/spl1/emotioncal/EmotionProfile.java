@@ -3,6 +3,8 @@ package sample.spl1.emotioncal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -15,6 +17,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import sample.spl1.AnalysisPage;
 import sample.spl1.DoughnutChart;
 import sample.spl1.FuzzyLogic.FuzzyController;
 import sample.spl1.thirdPage;
@@ -27,8 +30,8 @@ import java.util.Scanner;
 
 public class EmotionProfile {
 
-   private String name;
-    private Stage stage;
+   private final String name;
+    private final Stage stage;
 
 
     double[] out3 = new double[100];
@@ -37,12 +40,11 @@ public class EmotionProfile {
        this.name=name;
        this.stage=stage;
    }
-    public double[] fileInput(String Inname)
+    public double[] fileInput(  File file )
     {
         double[] fileData = new double[300];
         Scanner scan;
         int m = 0;
-        File file = new File(Inname);
         try {
             scan = new Scanner(file);
                 String currentLine = scan.nextLine();
@@ -74,14 +76,22 @@ public class EmotionProfile {
         double[] emo = new double[10];
         double[] emo2 = new double[10];
         double[] emo3 = new double[10];
+
+        double[] out ;
         int m = 0,count=0;
-        double[] out;
-         out =fileInput("web"+name);
+
+        System.out.println("emotion profile e file name "+name);
+        File file = new File("web"+name);
+         out =fileInput(file);
 
         double[] out2;
-         out2 =fileInput("article"+name);
+        File file2 = new File("article"+name);
+         out2 =fileInput(file2);
         double[] out3;
-         out3 =fileInput("fb"+name);
+
+        File file3 = new File("fb"+name);
+        out3 =fileInput(file3);
+
 
         System.out.println("Web file name is :"+"web"+name);
 
@@ -259,32 +269,20 @@ else
     }
 
     public void VisualProfile(double[] em,String text,double[] personalityTest) throws FileNotFoundException {
-       Stage stage=new Stage();
 
         Button back = new Button("");
-        back.setTranslateX(1100);
-        back.setTranslateY(650);
-        back.setTextFill(Color.WHITE);
-        back.setStyle("-fx-padding: 8 15 15 15;\n" +
-                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                "    -fx-background-radius: 8;\n" +
-                "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
-                "        #8d9092,\n" +
-                "        #717375,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #2471A3    , #17202A);\n" +
-                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 1.1em;");
-        back.setPrefSize(60, 30);
+        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+        back.setTranslateX(10);
+        back.setTranslateY(150);
+        back.setPrefSize(1, 5);
+        back.setTextFill(Color.YELLOW);
 
-     Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
+     Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
         Pane root = new Pane();
         back.setOnAction(e -> {
             try {
-
-                thirdPage tp=new thirdPage();
-                tp.app(stage,name);
+                AnalysisPage ap=new AnalysisPage(stage,name);
+                ap.analysis();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -295,25 +293,26 @@ else
 
         HeadText.setFill(Color.BLACK);
         HeadText.setX(900);
-        HeadText.setY(200);
+        HeadText.setY(100);
         HeadText.setScaleX(5);
         HeadText.setScaleY(5);
 
         TextArea textField = new TextArea();
         textField.setLayoutX(630);
-        textField.setLayoutY(260);
+        textField.setLayoutY(160);
         textField.setPrefRowCount(10);
         textField.setPrefColumnCount(12);
         textField.setWrapText(true);
         textField.setMinSize(725, 350);
-
-        textField.setStyle("-fx-text-fill: black; -fx-font-size: 20px;");
-
-        textField.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 22));
         textField.setText(text);
+        textField.setStyle("-fx-text-fill: black; -fx-font-size: 20px;");
+        textField.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.BOLD, 10));
+
+
+
 
         CategoryAxis xAxises = new CategoryAxis();
-        xAxises.setCategories(FXCollections.<String>
+        xAxises.setCategories(FXCollections.
                 observableArrayList(Arrays.asList("Joy", "Surprise", "Fear", "Sadness", "Trust", "Disgust", "anticipation", "Anger")));
         xAxises.setLabel("EMOTION");
 
@@ -322,6 +321,8 @@ else
 
         //Creating the Bar chart
         BarChart<String, Number> barChart = new BarChart<>(xAxises, yAxises);
+        barChart.setLayoutX(40);
+        barChart.setLayoutY(100);
         barChart.setTitle("Final Emotion");
         //Prepare XYChart.Series objects by setting data
         XYChart.Series<String, Number> series1 = new XYChart.Series<>();
@@ -345,13 +346,13 @@ else
 
         Image Ab = new Image(new FileInputStream("src/Pictures/personality test.png"));
         ImageView about = new ImageView(Ab);
-        Button personalilty = new Button(null,about);
-        personalilty.setBackground(null);
+        Button per = new Button(null,about);
+        per.setBackground(null);
 
-        personalilty.setTranslateX(880);
-        personalilty.setTranslateY(620);
+        per.setTranslateX(720);
+        per.setTranslateY(520);
 
-        personalilty.setOnAction(esb->{
+        per.setOnAction(esb->{
             try {
                 FuzzyController t = new FuzzyController(personalityTest,stage);
 
@@ -377,18 +378,9 @@ else
         Background bg = new Background(bi);
         root.setBackground(bg);
         stage.setTitle("Final report");
-        root.getChildren().addAll(barChart, back,textField,HeadText,personalilty);
-        //Adding scene to the stage
+        root.getChildren().addAll(barChart, back,textField,HeadText,per);
         stage.setScene(scene);
 
-        //Displaying the contents of the stage
-        stage.show();
-
-
-
-        // Scene scene = new Scene(root, 1600, 800);
-        stage.setScene(scene);
-        //primaryStage.setFullScreen(true);
         stage.show();
 
     }
@@ -426,7 +418,7 @@ else
         back.setPrefSize(1, 5);
         back.setTextFill(Color.YELLOW);
 
-      //  Image background = new Image(getClass().getClassLoader().getResource("Pictures/blueprint-grid-paper.jpg").toString(), true);
+      Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
         Pane root = new Pane();
         back.setOnAction(e -> {
             try {
@@ -483,8 +475,8 @@ else
 
 
         CategoryAxis xAxises3 = new CategoryAxis();
-        xAxises3.setCategories(FXCollections.<String>
-                observableArrayList(Arrays.asList("Joy", "Surprise", "Fear", "Sadness", "Trust", "Disgust", "anticipation", "Anger")));
+        xAxises3.setCategories(FXCollections.
+                observableArrayList(Arrays.asList("Joy", "Surprise", "Fear", "Sadness", "Trust", "Disgust", "Anticipation", "Anger")));
         xAxises3.setLabel("FaceBook");
 
         NumberAxis yAxises3 = new NumberAxis();
@@ -501,7 +493,7 @@ else
         series3.getData().add(new XYChart.Data<>("Sadness",  em3[3]));
         series3.getData().add(new XYChart.Data<>("Trust",  em3[4]));
         series3.getData().add(new XYChart.Data<>("Disgust",  em3[5]));
-        series3.getData().add(new XYChart.Data<>("anticipation",  em3[6]));
+        series3.getData().add(new XYChart.Data<>("Anticipation",  em3[6]));
         series3.getData().add(new XYChart.Data<>("Anger",  em3[7]));
 
 
@@ -546,16 +538,29 @@ else
         chart.setTitle("Article");
 
         Text visu = new Text("Emotion Visualization");
-        visu.setScaleX(6);
-        visu.setScaleY(6);
+        visu.setScaleX(4);
+        visu.setScaleY(4);
         visu.setTranslateX(650);
-        visu.setTranslateY(20);
-        visu.setFill(Color.rgb(237, 134, 18));
-        visu.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 12));
+        visu.setTranslateY(18);
+        visu.setFill(Color.WHITE);
+        visu.setFont(Font.font(Font.getFontNames().get(8), FontPosture.REGULAR, 8));
 
 
 
         barChart3.getData().addAll(series3);
+
+
+
+        Canvas canvas = new Canvas(1400,750);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.drawImage(background,0,0);
+        BackgroundImage bi = new BackgroundImage(background,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        Background bg = new Background(bi);
+        root.setBackground(bg);
         //Creating a scene object
         Scene scene = new Scene(root, 1400, 755);
 

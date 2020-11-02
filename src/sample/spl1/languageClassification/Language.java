@@ -71,7 +71,7 @@ public class Language extends secondPage{
 
 
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
         Pane root = new Pane();
         root.getChildren().addAll(eng,back,ab,abi,text);
         //       TextField nameInput=new TextField();

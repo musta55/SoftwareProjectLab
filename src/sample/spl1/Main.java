@@ -30,7 +30,7 @@ public class Main extends Application {
         BtPlay.setBackground(null);
         BtPlay.setTranslateX(500);
         BtPlay.setTranslateY(300);
-        BtPlay.setOnAction(e->{
+        BtPlay.setOnMouseEntered(e->{
             secondPage SP = new secondPage();
             try {
                 SP.TheSecond(primaryStage);
@@ -96,7 +96,7 @@ public class Main extends Application {
             }
         }.start();
 
-        Image background = new Image(new FileInputStream("src/Pictures/emoBg.png"));
+        Image background = new Image(new FileInputStream("src/Pictures/frontPage.png"));
 
         BackgroundImage bi = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,

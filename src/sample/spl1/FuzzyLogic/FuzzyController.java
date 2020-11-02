@@ -3,6 +3,8 @@ package sample.spl1.FuzzyLogic;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -14,18 +16,18 @@ import java.util.ArrayList;
 
 public class FuzzyController {
   // private FuzzyFrame frame;
-    private FuzzyVariable POW;
-    private FuzzyVariable CON;
-    private FuzzyVariable REC;
-    private FuzzyVariable STAB;
-    private FuzzyVariable decision;
-    private double conEvaluate[];
-    private double powEvaluate[];
-    private double personalityTest[];
+    private final FuzzyVariable POW;
+    private final FuzzyVariable CON;
+    private final FuzzyVariable REC;
+    private final FuzzyVariable STAB;
+    private final FuzzyVariable decision;
+    private double[] conEvaluate;
+    private double[] powEvaluate;
+    private final double[] personalityTest;
 
-    private double recEvaluate[];
-    private double stabEvaluate[];
-    private Stage stage;
+    private double[] recEvaluate;
+    private double[] stabEvaluate;
+    private final Stage stage;
     private ArrayList<FuzzySet> fuzzySets;
     private ArrayList<FuzzySet> fuzzySets2;
 
@@ -252,14 +254,11 @@ public class FuzzyController {
 //        frame.appendCustomText("Crisp decision index = " + result+"\n");
 //        frame.appendCustomText("Fuzzy decision index :\n");
 
-        int variable=-1;
+        int variable=-1,variable2=-1;
+        double temporary=0,temporary2=0;
 
         System.out.println("Crisp decision index = " + result+"\n"+"Fuzzy decision index :\n");
 
-        Pane root=new Pane();
-        Scene scene = new Scene(root,1400,750);
-        stage.setScene(scene);
-        stage.show();
 
         for (int i=0 ; i < fuzzySets2.size() ; i++) {
 
@@ -278,7 +277,10 @@ public class FuzzyController {
                 percentage = round(percentage, 2);
      //           frame.appendCustomText(fuzzySets2.get(i).name +" = "+ percentage*100 + "%\n");
                 System.out.println(fuzzySets2.get(i).name +" = "+ percentage*100 + "%\n");
-                variable=i;
+                temporary=percentage*100;
+                System.out.println("1st one "+ temporary);
+
+                variable=i+1;
                 found = true;
             }
 
@@ -287,61 +289,290 @@ public class FuzzyController {
                 percentage = round(percentage, 2);
           //      frame.appendCustomText(fuzzySets2.get(i+1).name +" = "+ percentage*100 + "%\n");
                 System.out.println(fuzzySets2.get(i+1).name +" = "+ percentage*100 + "%\n");
-                variable=i;
+                temporary2=percentage*100;
+                System.out.println("2nd one "+ temporary2);
+
+                variable2=i+1;
+
+                System.out.println("2nd one variable is "+ variable2);
+
                 found = true;
             }
 
             if(found)
-                return;
+                break;
         }
 
 
 
-        Image background = new Image(new FileInputStream("Pictures/Personality Page.png"));
+        Image background = new Image(new FileInputStream("src/Pictures/Personality Page.png"));
 
-        Text textstrng=null;
-        Text textWeak=null;
+        Text textstrng=new Text();
+        textstrng.setFill(Color.WHITE);
+        textstrng.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.BOLD, 20));
+        textstrng.setStyle("-fx-font-size: 20px;");
+        textstrng.setX(540);
+        textstrng.setY(300);
 
-        Text textPerson=null;
+        Text textWeak=new Text();
 
 
+        textWeak.setFill(Color.WHITE);
+        textWeak.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.BOLD, 20));
+        textWeak.setStyle("-fx-font-size: 20px;");
+        textWeak.setX(960);
+        textWeak.setY(300);
 
-        if(variable==0)
+        Text textPerson=new Text();
+        textPerson.setFill(Color.WHITE);
+        textPerson.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.BOLD, 30));
+        textPerson.setStyle("-fx-font-size: 30px;");
+        textPerson.setX(190);
+        textPerson.setY(430);
+
+
+        System.out.println(temporary +" and temp 2 is "+temporary2);
+
+        if(temporary>temporary2)
         {
-            textPerson.setText("The Thinker");
+
+            if(variable==0)
+            {
+                textPerson.setText("The Thinker");
+                textstrng.setText(
+                        "Creative\n" +
+                        "Dependable\n" +
+                        "Imaginative\n" +
+                        "Independent\n" +
+                        "Detailed\n" +
+                        "Organized\n" +
+                        "Intelligent\n" +
+                        "Analytical\n" +
+                        "Critical thinker\n" +
+                        "Thoughtful");
+
+                textWeak.setText("Worry about progress\n" +
+                        "Can appear unsocial\n" +
+                        "Critical behavior\n" +
+                        "Likes to do things \n"+"their own way\n" +
+                        "Detached behavior\n" +
+                        "Can see the glass \n"+" half empty\n" +
+                        "Skeptical, disbelieving\n" +
+                        "May never have   \n"+"personal expectations met\n" +
+                        "Disengagement");
+
+            }
+
+
+            else    if(variable==1)
+            {
+                textPerson.setText("The Supporter");
+
+                textstrng.setText(
+                        "Caring\n" +
+                        "Sincere\n" +
+                        "Compassionate\n" +
+                        "Stable\n" +
+                        "Fair and equitable\n" +
+                        "Looks approachable\n" +
+                        "Dependable\n" +
+                        "Appearance of strength\n" +
+                        "Trusting\n" +
+                        "Minimal mood swings\n" +
+                        "Self-confident\n" +
+                        "Reliable\n" +
+                        "Consistent\n" +
+                        "Observant\n"
+                      );
+
+                textWeak.setText("Not speaking up\n" +
+                        "Easily used by others\n" +
+                        "Going along when \n"+" they don’t agree\n" +
+                        "Uncomfortable with  \n"+" constant change\n" +
+                        "Going along \n"+"  to avoid confrontation\n" +
+                        "Less assertive\n" +
+                        "Gets hurt feelings\n" +
+                        "Shy\n" +
+                        "Resistant to change");
 
 
 
+            }
+
+            else    if(variable==2)
+            {
+                textPerson.setText("The Socializer");
+                textstrng.setText("Enthusiasm\n" +
+                        "Easily liked by \n"+"most people\n" +
+                        "Friendliness\n" +
+                        "Charismatic\n" +
+                        "motivator\n" +
+                        "Dreamer\n" +
+                        "People-oriented\n" +
+                        "Faster-paced\n" +
+                        "Self-confident");
+
+                textWeak.setText("Too self-involved\n" +
+                        "Impatient\n" +
+                        "Sometimes unrealistic\n" +
+                        "Trouble being alone\n" +
+                        "Doesn’t finish  \n"+"what was started\n" +
+                        "Short attention span\n" +
+                        "Arrogant or cocky\n" +
+                        "Easily bored\n" +
+                        "Self-indulgent\n" +
+                        "Prone to sweeping \n"+" generalizations\n" +
+                        "Impulsive\n"
+                     );
+
+
+
+
+            }
+            else
+            {
+                textPerson.setText("The Director");
+                textstrng.setText("Goal-oriented\n" +
+                        "Risk-taking\n" +
+                        "Good under stress\n"+"Ambitious\n" +
+                        "Passionate\n" +
+                        "Dominant\n" +
+                        "Good administrative skills\n" +
+                        "Highly competitive\n" +
+                        "Multitasking");
+
+                textWeak.setText("Stubborn\n" +
+                        "Workaholic\n" +
+                        "Impatient\n" +
+                        "Tough\n"
+                     +"Insensitive\n" +
+                        "Ill-tempered \n" +
+                        "Intolerant");
+
+
+            }
 
         }
-
-
-    else    if(variable==1)
+        if(temporary<=temporary2)
         {
-            textPerson.setText("The Supporter");
+
+            if(variable2==0)
+            {
+                textPerson.setText("The Thinker");
+                textstrng.setText(
+                        "Creative\n" +
+                                "Dependable\n" +
+                                "Imaginative\n" +
+                                "Independent\n" +
+                                "Detailed\n" +
+                                "Organized\n" +
+                                "Intelligent\n" +
+                                "Analytical\n" +
+                                "Critical thinker\n" +
+                                "Thoughtful");
+
+                textWeak.setText("Worry about progress\n" +
+                        "Can appear unsocial\n" +
+                        "Critical behavior\n" +
+                        "Likes to do things \n"+"their own way\n" +
+                        "Detached behavior\n" +
+                        "Can see the glass \n"+" half empty\n" +
+                        "Skeptical, disbelieving\n" +
+                        "May never have   \n"+"personal expectations met\n" +
+                        "Disengagement");
+
+            }
+
+
+            else    if(variable2==1)
+            {
+                textPerson.setText("The Supporter");
+
+                textstrng.setText(
+                        "Caring\n" +
+                                "Sincere\n" +
+                                "Compassionate\n" +
+                                "Stable\n" +
+                                "Fair and equitable\n" +
+                                "Looks approachable\n" +
+                                "Dependable\n" +
+                                "Appearance of strength\n" +
+                                "Trusting\n" +
+                                "Minimal mood swings\n" +
+                                "Self-confident\n" +
+                                "Reliable\n" +
+                                "Consistent\n" +
+                                "Observant\n"
+                );
+
+                textWeak.setText("Not speaking up\n" +
+                        "Easily used by others\n" +
+                        "Going along when \n"+" they don’t agree\n" +
+                        "Uncomfortable with  \n"+" constant change\n" +
+                        "Going along \n"+"  to avoid confrontation\n" +
+                        "Less assertive\n" +
+                        "Gets hurt feelings\n" +
+                        "Shy\n" +
+                        "Resistant to change");
 
 
 
+            }
+
+            else    if(variable2==2)
+            {
+                textPerson.setText("The Socializer");
+                textstrng.setText("Enthusiasm\n" +
+                        "Easily liked by \n"+"most people\n" +
+                        "Friendliness\n" +
+                        "Charismatic\n" +
+                        "motivator\n" +
+                        "Dreamer\n" +
+                        "People-oriented\n" +
+                        "Faster-paced\n" +
+                        "Self-confident");
+
+                textWeak.setText("Too self-involved\n" +
+                        "Impatient\n" +
+                        "Sometimes unrealistic\n" +
+                        "Trouble being alone\n" +
+                        "Doesn’t finish  \n"+"what was started\n" +
+                        "Short attention span\n" +
+                        "Arrogant or cocky\n" +
+                        "Easily bored\n" +
+                        "Self-indulgent\n" +
+                        "Prone to sweeping \n"+" generalizations\n" +
+                        "Impulsive\n"
+                );
+
+
+
+
+            }
+            else
+            {
+                textPerson.setText("The Director");
+                textstrng.setText("Goal-oriented\n" +
+                        "Risk-taking\n" +
+                        "Good under stress\n"+"Ambitious\n" +
+                        "Passionate\n" +
+                        "Dominant\n" +
+                        "Good administrative skills\n" +
+                        "Highly competitive\n" +
+                        "Multitasking");
+
+                textWeak.setText("Stubborn\n" +
+                        "Workaholic\n" +
+                        "Impatient\n" +
+                        "Tough\n"
+                        +"Insensitive\n" +
+                        "Ill-tempered \n" +
+                        "Intolerant");
+
+
+            }
 
         }
-
-    else    if(variable==2)
-        {
-            textPerson.setText("The Socializer");
-
-
-
-
-        }
-      else  if(variable==0)
-        {
-            textPerson.setText("The Director");
-
-
-
-
-        }
-
 
         BackgroundImage bi = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,
@@ -349,10 +580,16 @@ public class FuzzyController {
                 BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
         Background bg = new Background(bi);
+
+        Pane root=new Pane();
+
         root.setBackground(bg);
         root.getChildren().addAll(textstrng,textWeak,textPerson);
 
 
+        Scene scene = new Scene(root,1400,750);
+        stage.setScene(scene);
+        stage.show();
 
         System.out.println("stage must be shown");
 

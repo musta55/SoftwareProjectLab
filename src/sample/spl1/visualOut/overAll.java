@@ -117,7 +117,7 @@ public class overAll {
                     //    System.out.println("fb.com/"+aPost.getId());
 
                 } catch (Exception ea) {
-                    System.out.println("");
+                    System.out.println();
                 }
             }
 //                    if(counter>=7)
@@ -125,7 +125,7 @@ public class overAll {
 
         }
 
-        EmotionCalculation emCal = new EmotionCalculation(Name,3);
+        EmotionCalculation emCal = new EmotionCalculation(Name);
         try {
             emCal.searchEmotion();
         } catch (IOException ex) {

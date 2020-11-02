@@ -32,7 +32,7 @@ public class logIn {
             UIControls(gridPane,stage);
             // Create a scene with registration form grid pane as the root node
             Scene scene = new Scene(gridPane, 1402, 752);
-            Image background = new Image(getClass().getClassLoader().getResource("Pictures/emoBg2.png").toString(), true);
+            Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
 
 
 
@@ -89,15 +89,17 @@ public class logIn {
     private final void UIControls(GridPane gridPane, Stage stage) {
         // Add Header
         Label headerLabel = new Label("Log In Form");
-        headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-        headerLabel.setTextFill(Color.WHITE);
+        headerLabel.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 28));
+        headerLabel.setTextFill(Color.BLACK);
         gridPane.add(headerLabel, 0,0,2,1);
         GridPane.setHalignment(headerLabel, HPos.CENTER);
         GridPane.setMargin(headerLabel, new Insets(20, 0,20,0));
 
         // Add Name Label
         Label nameLabel = new Label("Full Name : ");
-        nameLabel.setTextFill(Color.WHITE);
+        nameLabel.setTextFill(Color.BLACK);
+        nameLabel.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 20));
+
         gridPane.add(nameLabel, 0,1);
 
         // Add Name Text Field
@@ -108,7 +110,9 @@ public class logIn {
 
 
         Label passwordLabel = new Label("Password : ");
-        passwordLabel.setTextFill(Color.WHITE);
+        passwordLabel.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 20));
+
+        passwordLabel.setTextFill(Color.BLACK);
         gridPane.add(passwordLabel, 0, 3);
 
         // Add Age Field
@@ -131,7 +135,7 @@ public class logIn {
         Hyperlink link = new Hyperlink("New Member! Create new account");
 
         link.setPrefHeight(40);
-        link.setPrefWidth(120);
+        link.setPrefWidth(320);
         gridPane.add(link, 1, 6, 5, 3);
         GridPane.setHalignment(link, HPos.CENTER);
         GridPane.setMargin(link, new Insets(40, 0,40,0));

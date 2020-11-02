@@ -63,17 +63,17 @@ public class WebPage {
                 headning.setScaleY(6);
                 headning.setTranslateX(650);
                 headning.setTranslateY(90);
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/emoBg3.png").toString(), true);
+                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
                 Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);
 
                 textFields.setLayoutX(280);
-                textFields.setLayoutY(180);
+                textFields.setLayoutY(240);
                 textFields.setPrefRowCount(5);
                 textFields.setPrefColumnCount(6);
                 textFields.setWrapText(true);
-                textFields.setMinSize(865,135);
+                textFields.setMinSize(865,30);
                 Pane roots = new Pane();
                 BackgroundImage bi = new BackgroundImage(backgrounds,
                         BackgroundRepeat.NO_REPEAT,
@@ -104,7 +104,7 @@ public class WebPage {
                     String s=document.text().substring(700,x-551);
 
                     String t=null;
-                   String text[]= s.split("[.,]",0);
+                   String[] text = s.split("[.,]",0);
                     for(int i=0;i<text.length;i++)
                     {
                       t=t+text[i]+"\n";
@@ -117,7 +117,7 @@ public class WebPage {
                     operations.search();
 
 
-                    EmotionCalculation emCal = new EmotionCalculation(Name,2);
+                    EmotionCalculation emCal = new EmotionCalculation(Name);
 
 
                         emCal.searchEmotion();

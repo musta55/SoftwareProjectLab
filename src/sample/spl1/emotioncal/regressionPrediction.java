@@ -6,6 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -16,10 +17,7 @@ import sample.spl1.Dictionary;
 import sample.spl1.Operations;
 import sample.spl1.OperationsBangla;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class regressionPrediction {
@@ -33,51 +31,49 @@ public class regressionPrediction {
 
             primaryStage.setTitle("Text Input");
 
+
             TextArea textFields = new TextArea();
+            Image Ab = new Image(new FileInputStream("src/Pictures/enter.png"));
+            ImageView about = new ImageView(Ab);
+            Button button = new Button(null,about);
+            button.setBackground(null);
 
-            Button button = new Button("Enter");
-            button.setTextFill(Color.WHITE);
-            setStyle(button);
-            button.setTranslateX(620);
-            button.setTranslateY(350);
-            button.setPrefSize(150,70);
+            button.setTranslateX(580);
+            button.setTranslateY(520);
 
-            try {
-                Text headning = new Text("TEXT INPUT");
-                headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 11));
-                headning.setFill(Color.YELLOWGREEN);
-                headning.setScaleX(6);
-                headning.setScaleY(6);
-                headning.setTranslateX(650);
-                headning.setTranslateY(90);
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("emotion(16-9).png").toString(), true);
-                Canvas canvas = new Canvas(1600,900);
-                GraphicsContext gc = canvas.getGraphicsContext2D();
-                //gc.drawImage(backgrounds,0,0);
+            Text headning = new Text("TEXT INPUT");
+            headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 11));
+            headning.setFill(Color.WHITE);
+            headning.setScaleX(6);
+            headning.setScaleY(6);
+            headning.setTranslateX(700);
+            headning.setTranslateY(190);
+            Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+            Canvas canvas = new Canvas(1600,900);
+            GraphicsContext gc = canvas.getGraphicsContext2D();
+            //gc.drawImage(backgrounds,0,0);
 
-                textFields.setLayoutX(150);
-                textFields.setLayoutY(180);
-                textFields.setPrefRowCount(5);
-                textFields.setPrefColumnCount(6);
-                textFields.setWrapText(true);
-                textFields.setMinSize(1125,150);
-                Pane roots = new Pane();
-                BackgroundImage bi = new BackgroundImage(backgrounds,
-                        BackgroundRepeat.NO_REPEAT,
-                        BackgroundRepeat.NO_REPEAT,
-                        BackgroundPosition.DEFAULT,
-                        BackgroundSize.DEFAULT);
-                Background bg = new Background(bi);
-                roots.setBackground(bg);
-                roots.getChildren().addAll(canvas,textFields,button,headning);
-                Scene scene = new Scene(roots,1400,750);
-                primaryStage.setScene(scene);
-                //primaryStage.setFullScreen(true);
-                primaryStage.show();
-            }catch (Exception ex)
-            {
-                System.out.println("Picture url Problem");
-            }
+
+            textFields.setLayoutX(150);
+            textFields.setLayoutY(280);
+            textFields.setPrefRowCount(5);
+            textFields.setPrefColumnCount(6);
+            textFields.setWrapText(true);
+            textFields.setMinSize(1025,200);
+            Pane roots = new Pane();
+            BackgroundImage bi = new BackgroundImage(backgrounds,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.DEFAULT,
+                    BackgroundSize.DEFAULT);
+            Background bg = new Background(bi);
+            roots.setBackground(bg);
+            roots.getChildren().addAll(canvas,textFields,button,headning);
+            Scene scene = new Scene(roots,1400,750);
+            primaryStage.setScene(scene);
+            //primaryStage.setFullScreen(true);
+            primaryStage.show();
+
 
             button.setOnAction(action -> {
                 Operations operations = new Operations();
@@ -159,23 +155,6 @@ public class regressionPrediction {
             excep.printStackTrace();
         }
 
-    }
-
-
-    public Button setStyle ( Button b)
-    {
-        b.setStyle("-fx-padding: 8 15 15 15;\n" +
-                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                "    -fx-background-radius: 8;\n" +
-                "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 93% to 0% 100%, #0B2058 0%, #030B21 100%),\n" +
-                "        #030B21,\n" +
-                "        #0B2058,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #2471A3    , #17202A);\n" +
-                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 2.1em;");
-        return b;
     }
 
 }
