@@ -23,7 +23,7 @@ public class viewPost {
 
         Pane root = new Pane();
 
-        Image background = new Image(new FileInputStream("Pictures/rectangle.png"));
+        Image background = new Image(new FileInputStream("src/Pictures/rectangle.png"));
 
         BackgroundImage bi = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,
@@ -33,7 +33,7 @@ public class viewPost {
         Background bg = new Background(bi);
         root.setBackground(bg);
 
-        Scene scene = new Scene(root,1400,750);
+        Scene scene = new Scene(root,400,400);
         st.setScene(scene);
         st.show();
 
@@ -53,12 +53,12 @@ public class viewPost {
         }
 
         TextArea textArea = new TextArea();
-        textArea.setLayoutX(150);
-        textArea.setLayoutY(180);
+
+        textArea.setPrefSize(400, 400);
         textArea.setPrefRowCount(5);
         textArea.setPrefColumnCount(6);
         textArea.setWrapText(true);
-        textArea.setMinSize(1125, 80);
+        textArea.setMinSize(400, 400);
         textArea.setText(str);
         root.getChildren().add(textArea);
 

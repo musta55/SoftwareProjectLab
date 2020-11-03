@@ -146,6 +146,8 @@ public class fourthPage {
                         fp.firstpost(stages,Name);
                     } catch (FileNotFoundException fileNotFoundException) {
                         fileNotFoundException.printStackTrace();
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
                     }
                 }
         );

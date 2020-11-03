@@ -1,6 +1,5 @@
 package sample.spl1;
 
-import javafx.animation.PauseTransition;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -10,7 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.util.Duration;
+import sample.spl1.additionalClass.algorithm;
 import sample.spl1.additionalClass.experimentDescription;
 import sample.spl1.languageClassification.Language;
 import sample.spl1.login.logIn;
@@ -89,6 +88,8 @@ public class secondPage {
 //                    HelloWorld hl=new HelloWorld();
 //                    hl.speech(stage);
 
+                    algorithm al=new algorithm();
+                    al.algo();
 
 
                 } catch (Exception excep) {

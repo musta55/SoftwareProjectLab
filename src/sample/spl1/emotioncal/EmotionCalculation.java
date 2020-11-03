@@ -61,7 +61,7 @@ public class EmotionCalculation {
     public double TrustCal = 0;
     public double DisgustCal = 0;
     public String sf = null;
-    private static final DecimalFormat df = new DecimalFormat("0.00");
+    private static final DecimalFormat df = new DecimalFormat("#.##");
 
 
     public void searchEmotion() throws IOException {
@@ -987,8 +987,11 @@ public class EmotionCalculation {
         back.setOnAction(e -> {
             try {
 
-                firstPost fp=new firstPost(accessToken);
-                fp.firstpost(stage,Names);
+//                firstPost fp=new firstPost(accessToken);
+//                fp.firstpost(stage,Names);
+
+                AnalysisPage ap=new AnalysisPage(stage,Names,accessToken);
+                ap.analysis();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

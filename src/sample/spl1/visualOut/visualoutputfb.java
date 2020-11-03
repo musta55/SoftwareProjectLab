@@ -333,7 +333,7 @@ public class visualoutputfb {
         StackedBarChart lineChart = new StackedBarChart(xAxisq, yAxisq);
         lineChart.setPrefSize(750,400);
 
-        lineChart.setLayoutX(200);
+        lineChart.setLayoutX(400);
         lineChart.setLayoutY(200);
 
 
@@ -396,8 +396,8 @@ public class visualoutputfb {
 
 
         TextArea textField = new TextArea();
-        textField.setLayoutX(120);
-        textField.setLayoutY(650);
+        textField.setLayoutX(220);
+        textField.setLayoutY(520);
         textField.setPrefRowCount(2);
         textField.setPrefColumnCount(2);
         textField.setWrapText(true);
@@ -406,8 +406,8 @@ public class visualoutputfb {
         Text headnings = new Text("Enter Status No.");
         headnings.setScaleX(3);
         headnings.setScaleY(3);
-        headnings.setTranslateX(30);
-        headnings.setTranslateY(650);
+        headnings.setTranslateX(70);
+        headnings.setTranslateY(550);
         headnings.setFill(Color.WHITE);
         headnings.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 9));
 
@@ -419,13 +419,13 @@ public class visualoutputfb {
         Button button = new Button(null,about);
         button.setBackground(null);
 
-        button.setTranslateX(400);
-        button.setTranslateY(250);
+        button.setTranslateX(100);
+        button.setTranslateY(610);
         button.setOnAction(action -> {
 
                     try {
                       viewPost vp=new viewPost();
-                   vp.view(Integer.parseInt(textField.getText())-1,accessToken);
+                   vp.view(Integer.parseInt(textField.getText()),accessToken);
                     } catch (Exception exc) {
                         exc.printStackTrace();
                     }
@@ -463,9 +463,9 @@ public class visualoutputfb {
 
 
 
-        lineChart.setPrefSize(1000, 500);
+        lineChart.setPrefSize(800, 500);
 
-        root.getChildren().addAll(headning, lineChart, more,back,textField,headnings);
+        root.getChildren().addAll(headning, lineChart, more,back,textField,headnings,button);
 
 
     }

@@ -19,19 +19,17 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.spl1.emotioncal.EmotionCalculation;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.List;
 
 public class firstPost {
-    private final String  accessToken;
+    private final String  accessToken2;
 
    public   firstPost(String accessToken)
     {
-            this.accessToken=accessToken;
+            this.accessToken2=accessToken;
     }
-    public void firstpost(Stage stages,String Name) throws FileNotFoundException {
+    public void firstpost(Stage stages,String Name) throws IOException {
         Pane stat = new Pane();
         Stage stage =new Stage();
         Scene scen = new Scene(stat, 880, 437);
@@ -57,9 +55,24 @@ public class firstPost {
 
         headning.setCache(true);
 
+        File file = new File("tokenfb"+Name);
+
+        System.out.println("file Name :"+"tokenfb"+Name);
+
+        BufferedReader br = new BufferedReader(new FileReader(file));
+
+        String st,tok = "";
+        while ((st = br.readLine()) != null)
+        {
+            System.out.print(st);
+            tok+=st;
+        }
+        
+        System.out.print("First post e access Token : "+tok);
 
 
-        FacebookClient fbClient = new DefaultFacebookClient(accessToken);
+     FacebookClient fbClient = new DefaultFacebookClient(tok);
+     //   FacebookClient fbClient = new DefaultFacebookClient("EAADoSRqMjgEBAE46YlWViaAFvekennjF4sMplaxwUroVVrLA0kD3jwQOHBxZClRJZBOLEiZAfSw3tDGvaA1BquxFq1IBMgO1lPqAZAdo4MFX8geCUOk53DwoKfqNALnaANFjw4uwIvSBElKHl06eUTwWZBMdE4fZAgrGGr3ot0W92NKs98E0LAzoVvPxnWuLcZD");
         //   FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("668106823992484 ", "f63f747f31e390a44f93891920364794");
 
         Connection<Post> result;
@@ -70,8 +83,8 @@ public class firstPost {
         EmotionCalculation emCal = new EmotionCalculation();
         try
         {
-            File file=new File(Name);
-            emCal.fileOpen(file);
+            File file2=new File(Name);
+            emCal.fileOpen(file2);
 
         }catch (Exception e)
         {
@@ -113,7 +126,7 @@ public class firstPost {
         Button back = new Button("");
         back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
         back.setTranslateX(10);
-        back.setTranslateY(150);
+        back.setTranslateY(250);
         back.setPrefSize(1, 5);
         back.setTextFill(Color.YELLOW);
 
@@ -123,7 +136,7 @@ public class firstPost {
         back.setTextFill(Color.WHITE);
         back.setOnAction(e -> {
             try {
-               AnalysisPage ap=new AnalysisPage(stage,Name,accessToken);
+               AnalysisPage ap=new AnalysisPage(stage,Name,accessToken2);
                ap.analysis();
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -141,7 +154,7 @@ public class firstPost {
 
                     try {
                         postOne po = new postOne();
-                        po.postone(stages, accessToken, Name,Integer.parseInt(textField.getText())-1);
+                        po.postone(stages, accessToken2, Name,Integer.parseInt(textField.getText())-1);
                         stage.close();
                     } catch (Exception exc) {
                         exc.printStackTrace();

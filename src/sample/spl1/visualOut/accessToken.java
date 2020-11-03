@@ -19,8 +19,7 @@ import javafx.stage.Stage;
 import sample.spl1.login.loginOrReg;
 
 import java.awt.*;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
 
@@ -40,7 +39,7 @@ public class accessToken {
             button.setBackground(null);
 
             button.setTranslateX(580);
-            button.setTranslateY(438);
+            button.setTranslateY(538);
 
             try {
                 Text headning = new Text("Enter Access Token");
@@ -49,14 +48,14 @@ public class accessToken {
                 headning.setScaleX(6);
                 headning.setScaleY(6);
                 headning.setTranslateX(650);
-                headning.setTranslateY(90);
+                headning.setTranslateY(250);
                 Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
                 Canvas canvas = new Canvas(1600, 900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);
 
                 textFields.setLayoutX(150);
-                textFields.setLayoutY(180);
+                textFields.setLayoutY(290);
                 textFields.setPrefRowCount(5);
                 textFields.setPrefColumnCount(6);
                 textFields.setWrapText(true);
@@ -123,7 +122,43 @@ public class accessToken {
             button.setOnAction(action -> {
                 Progression statusProg = new Progression();
                 statusProg.statusProgress(stage, textFields.getText(), Name);
+                try {
+                    System.out.println("token er vitre name "+Name);
+                    FileWriter myWriter = new FileWriter("token"+Name);
+                    myWriter.write( textFields.getText());
+                   myWriter.close();
+                    System.out.println("Successfully wrote to the file.");
+
+
+                    File file2 = new File("token"+Name);
+
+                    BufferedReader br = new BufferedReader(new FileReader(file2));
+
+                    String st;
+                    String finalSt = "";
+                    while ((st = br.readLine()) != null)
+                    {
+                        System.out.print(st);
+                        finalSt+=st;
+                    }
+
+
+                    System.out.print("Access Token page e access Token : "+finalSt);
+
+
+
+
+
+
+
+
+                } catch (IOException e) {
+                    System.out.println("An error occurred.");
+                    e.printStackTrace();
+                }
             });
+
+
 
             return textFields.getText();
         } catch (Exception excep) {

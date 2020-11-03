@@ -9,10 +9,7 @@ import com.restfb.types.Post;
 import javafx.stage.Stage;
 import sample.spl1.emotioncal.EmotionCalculation;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -20,13 +17,27 @@ import java.util.List;
 public class postOne {
     int[] integers = new int[1000];
 
-    public void postone(Stage stages,String accessToken,String Name,int numbers) throws FileNotFoundException {
+    public void postone(Stage stages,String accessToken,String Name,int numbers) throws IOException {
 
 
         Operations operations = new Operations();
 
+        File file2 = new File("tokenfb"+Name);
 
-        FacebookClient fbClient = new DefaultFacebookClient(accessToken);
+        BufferedReader br = new BufferedReader(new FileReader(file2));
+
+        String st,token="";
+        while ((st = br.readLine()) != null)
+        {
+            System.out.print(st);
+            token+=st;
+        }
+
+        String finalSt = st;
+        System.out.print(" post one e access Token : "+token);
+
+
+        FacebookClient fbClient = new DefaultFacebookClient(token);
         //   FacebookClient.AccessToken exAccessToken = fbClient.obtainExtendedAccessToken("668106823992484 ", "f63f747f31e390a44f93891920364794");
 
         Connection<Post> result;

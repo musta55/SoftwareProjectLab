@@ -1,6 +1,7 @@
 package sample.spl1;
 
 //import demo.sphinx.helloworld.HelloWorld;
+
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -11,13 +12,10 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sample.spl1.emotioncal.EmotionProfile;
-import sample.spl1.visualOut.accessToken;
 import sample.spl1.visualOut.finalReport;
 import sample.spl1.visualOut.visualoutputfb;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 
 public class AnalysisPage {
     private final Stage stage;
@@ -30,7 +28,7 @@ public class AnalysisPage {
         this.tok=tok;
 
     }
-    public void analysis() throws FileNotFoundException {
+    public void analysis() throws IOException {
 
         Image Ab = null;
 
@@ -108,14 +106,26 @@ public class AnalysisPage {
                 ex.printStackTrace();
             }
         });
-        accessToken at=new accessToken();
 
+        File file = new File("tokenfb"+Name);
+
+        BufferedReader br = new BufferedReader(new FileReader(file));
+
+        String st,token="";
+        while ((st = br.readLine()) != null)
+        {
+            System.out.print(st);
+            token+=st;
+    }
+
+
+        String finalToken = token;
         reactionPrediction.setOnAction(e -> {
             {
-                firstPost fp=new firstPost(tok);
+                firstPost fp=new firstPost(finalToken);
                 try {
                     fp.firstpost(stage,Name);
-                } catch (FileNotFoundException ed) {
+                } catch (IOException ed) {
                     ed.printStackTrace();
                 }
             }
@@ -126,8 +136,8 @@ public class AnalysisPage {
             visualoutputfb vf=new visualoutputfb();
 
             System.out.println("Here name is "+Name);
-            File file = new File("fb"+Name);
-            double[] sentimentTot = vf.outData(file);
+            File file2 = new File("fb"+Name);
+            double[] sentimentTot = vf.outData(file2);
 
 
              double finalTempTotal=vf.tempTotal;
