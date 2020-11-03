@@ -51,7 +51,7 @@ public class experimentDescription {
         stage.setScene(scene);
         stage.show();
 
-        PauseTransition delay = new PauseTransition(Duration.seconds(5));
+        PauseTransition delay = new PauseTransition(Duration.seconds(3));
         delay.setOnFinished( event -> stage.close() );
         delay.play();
     }

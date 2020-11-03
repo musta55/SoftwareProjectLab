@@ -17,7 +17,6 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import sample.spl1.AnalysisPage;
 import sample.spl1.DoughnutChart;
 import sample.spl1.FuzzyLogic.FuzzyController;
 import sample.spl1.thirdPage;
@@ -281,8 +280,8 @@ else
         Pane root = new Pane();
         back.setOnAction(e -> {
             try {
-                AnalysisPage ap=new AnalysisPage(stage,name);
-                ap.analysis();
+                thirdPage tp=new thirdPage();
+                tp.app(stage,name);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

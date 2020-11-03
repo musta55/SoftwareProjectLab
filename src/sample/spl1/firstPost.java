@@ -123,7 +123,7 @@ public class firstPost {
         back.setTextFill(Color.WHITE);
         back.setOnAction(e -> {
             try {
-               AnalysisPage ap=new AnalysisPage(stage,Name);
+               AnalysisPage ap=new AnalysisPage(stage,Name,accessToken);
                ap.analysis();
             } catch (Exception ex) {
                 ex.printStackTrace();

@@ -6,6 +6,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -389,6 +390,51 @@ public class visualoutputfb {
 
 
         lineChart.getData().addAll(dataSeries1, dataSeries2, dataSeries3, dataSeries4, dataSeries5, dataSeries6, dataSeries7, dataSeries8);
+
+
+
+
+
+        TextArea textField = new TextArea();
+        textField.setLayoutX(120);
+        textField.setLayoutY(650);
+        textField.setPrefRowCount(2);
+        textField.setPrefColumnCount(2);
+        textField.setWrapText(true);
+        textField.setMinSize(105,3);
+
+        Text headnings = new Text("Enter Status No.");
+        headnings.setScaleX(3);
+        headnings.setScaleY(3);
+        headnings.setTranslateX(30);
+        headnings.setTranslateY(650);
+        headnings.setFill(Color.WHITE);
+        headnings.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 9));
+
+
+
+        headnings.setCache(true);
+        Image Ab = new Image(new FileInputStream("src/Pictures/enter.png"));
+        ImageView about = new ImageView(Ab);
+        Button button = new Button(null,about);
+        button.setBackground(null);
+
+        button.setTranslateX(400);
+        button.setTranslateY(250);
+        button.setOnAction(action -> {
+
+                    try {
+                      viewPost vp=new viewPost();
+                   vp.view(Integer.parseInt(textField.getText())-1,accessToken);
+                    } catch (Exception exc) {
+                        exc.printStackTrace();
+                    }
+                }
+        );
+
+
+
+
         File fileDate = new File(Name+"date.txt");
 
         BufferedReader br = new BufferedReader(new FileReader(file));
@@ -419,7 +465,7 @@ public class visualoutputfb {
 
         lineChart.setPrefSize(1000, 500);
 
-        root.getChildren().addAll(headning, lineChart, more,back);
+        root.getChildren().addAll(headning, lineChart, more,back,textField,headnings);
 
 
     }

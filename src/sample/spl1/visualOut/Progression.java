@@ -42,9 +42,7 @@ public class Progression {
                 emCal.fileOpen(file);
 
                 System.out.println(aPost.getMessage());
-                System.out.println("Post like is :"+aPost.getLikesCount());
-                System.out.println("Post Source is :"+aPost.getSource());
-                System.out.println("Post link is :"+aPost.getLink());
+
                 try {
 
                         OperationsBangla operationsBangla = new OperationsBangla();

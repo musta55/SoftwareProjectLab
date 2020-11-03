@@ -25,18 +25,18 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 public class accessToken {
-    String tok=null;
-    public String token(Stage stage, String Name,int num)
-    {
 
+    public String token(Stage stage, String Name) {
+        String accessToken;
         try {
+
             stage.setTitle("Text Input");
 
             TextArea textFields = new TextArea();
 
             Image Ab = new Image(new FileInputStream("src/Pictures/enter.png"));
             ImageView about = new ImageView(Ab);
-            Button button = new Button(null,about);
+            Button button = new Button(null, about);
             button.setBackground(null);
 
             button.setTranslateX(580);
@@ -51,7 +51,7 @@ public class accessToken {
                 headning.setTranslateX(650);
                 headning.setTranslateY(90);
                 Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
-                Canvas canvas = new Canvas(1600,900);
+                Canvas canvas = new Canvas(1600, 900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);
 
@@ -60,8 +60,7 @@ public class accessToken {
                 textFields.setPrefRowCount(5);
                 textFields.setPrefColumnCount(6);
                 textFields.setWrapText(true);
-                textFields.setMinSize(1125,80);
-                 tok=textFields.getText();
+                textFields.setMinSize(1125, 80);
 
 
                 Hyperlink link = new Hyperlink();
@@ -83,7 +82,6 @@ public class accessToken {
                 });
 
 
-
                 Hyperlink link2 = new Hyperlink();
                 link2.setText("Help");
 
@@ -93,8 +91,8 @@ public class accessToken {
                     @Override
                     public void handle(ActionEvent e) {
                         try {
-                          loginOrReg lg=new loginOrReg();
-                          lg.logOrReg();
+                            loginOrReg lg = new loginOrReg();
+                            lg.logOrReg();
                         } catch (IOException eq) {
                             eq.printStackTrace();
                         } catch (URISyntaxException ee) {
@@ -112,47 +110,26 @@ public class accessToken {
                         BackgroundSize.DEFAULT);
                 Background bg = new Background(bi);
                 roots.setBackground(bg);
-                roots.getChildren().addAll(canvas,textFields,button,headning,link,link2);
+                roots.getChildren().addAll(canvas, textFields, button, headning, link, link2);
 
-                Scene scene = new Scene(roots,1400,750);
+                Scene scene = new Scene(roots, 1400, 750);
                 stage.setScene(scene);
                 //primaryStage.setFullScreen(true);
                 stage.show();
-            }catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 System.out.println("Picture url Problem");
             }
 
             button.setOnAction(action -> {
-
-
-               if(num==1)
-                {
-
-                }
-
-                if(num==0)
-                {
-                    Progression statusProg =new Progression();
-
-                    statusProg.statusProgress(stage,textFields.getText(),Name);
-                }
-                else if(num==2 )
-                {
-
-
-//                    Progression p=new Progression();
-//                    p.statusProgress(stage,textFields.getText());
-                }
+                Progression statusProg = new Progression();
+                statusProg.statusProgress(stage, textFields.getText(), Name);
             });
 
-
-
+            return textFields.getText();
         } catch (Exception excep) {
             excep.printStackTrace();
         }
-
-        return tok;
+        return "EAADoSRqMjgEBAIfyZAZAZAh6ZCBmWJlduubOzRg9R6k4jhClsZCDcYFFSldrPVAnUZBSJAXvljFkdrpc9fWu9s4XZB92jZAzwZBr1SxTxThZC1n3nBa2sKVygH4t46k1XOX9YuxrtvxTDnQczq5iDwZBhdG06bZAgC9rWvewGhZCLdzNsZCgZDZD\n";
     }
     public Button setStyle ( Button b)
     {

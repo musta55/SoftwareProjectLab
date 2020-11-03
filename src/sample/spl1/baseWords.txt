@@ -29137,6 +29137,7 @@ rizla/21 -> rizlas
 role-model/21 -> role-models
 romanticize/21 -> romanticized,romanticizes,romanticizing
 ruble/21 -> rubles
+feel/21 -> feeling
 rugosa/21 -> rugosas
 running-mate/21 -> running-mates
 samosa/21 -> samosas

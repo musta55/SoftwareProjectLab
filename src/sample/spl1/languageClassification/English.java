@@ -55,16 +55,16 @@ public class English {
             button.setOnAction(action -> {
 
                 try {
-                    operations.splitInput(textField.getText());
+                    operations.splitInput(textField.getText());         //Tokenization
                 } catch (FileNotFoundException exc) {
                     exc.printStackTrace();
                 }
                 try {
-                    operations.removeWord();
+                    operations.removeWord();                            //Stop word removal
                 } catch (FileNotFoundException exc) {
                     exc.printStackTrace();
                 }
-                operations.search();
+                operations.search();                                    //Lemmatization
 
                 try {
                     EmotionCalculation emCal = new EmotionCalculation();

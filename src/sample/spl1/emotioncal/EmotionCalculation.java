@@ -3,12 +3,15 @@ package sample.spl1.emotioncal;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -63,11 +66,7 @@ public class EmotionCalculation {
 
     public void searchEmotion() throws IOException {
 
-//        EmotionSearch emse=new EmotionSearch();
-//        emse.emotionSearch();
 
-        //get the file
-      //  System.out.print("After Lemmatization : ");
         for (i = 0; i < Operations.outList.size(); i++) {
           //  System.out.print(Operations.outList.get(i) + " ");
             if (Operations.outList.get(i).contains("!")) {
@@ -87,9 +86,7 @@ public class EmotionCalculation {
         //   FileReader fr = new FileReader(files);
         //   BufferedReader br = new BufferedReader(fr);
 
-        try (BufferedReader br = new BufferedReader(new FileReader(files))) {              //Exception With Resources
-
-
+        try (BufferedReader br = new BufferedReader(new FileReader(files))) {
             String currentLine = "";
 
 
@@ -122,29 +119,25 @@ public class EmotionCalculation {
         Boolean found = false;
         for (int w = 0; w < 8; w++) Frequency[w] = 0;
 
+        for (i = 0; i < Operations.outList.size();i++ ) {
 
-        //      FileWriter fw=new FileWriter("sample/spl1/emotionOutput.txt");
-        //   fw.close();
-
-
-        for (i = 0; i < Operations.outList.size(); ) {
+            if(Operations.outList.isEmpty())break;
+            if(Operations.outList.size()<=i)break;
 
             found = false;
             NEW:
-            //   for (int j = 0; j < wordList.size(); j++) {
 
-            //   System.out.println(wordList.get(j)+"  ");
+            if (Operations.outList.get(i).equals("so") || Operations.outList.get(i).equals("more") || Operations.outList.get(i).equals("most") || Operations.outList.get(i).equals("quite") || Operations.outList.get(i).equals("very") || Operations.outList.get(i).equals("extremely") || Operations.outList.get(i).equals("quite") || Operations.outList.get(i).equals("just") || Operations.outList.get(i).equals("almost") || Operations.outList.get(i).equals("too") || Operations.outList.get(i).equals("enough") || Operations.outList.get(i).equals("very") || Operations.outList.get(i).equals("extremely") || Operations.outList.get(i).equals("terribly") || Operations.outList.get(i).equals("amazingly") || Operations.outList.get(i).equals("wonderfully") || Operations.outList.get(i).equals("insanely"))
+            {
+                if(Operations.outList.isEmpty())break;
+                if(Operations.outList.size()<=i)break;
 
-            if (Operations.outList.get(i).equals("so") || Operations.outList.get(i).equals("more") || Operations.outList.get(i).equals("most") || Operations.outList.get(i).equals("quite") || Operations.outList.get(i).equals("very") || Operations.outList.get(i).equals("extremely") || Operations.outList.get(i).equals("quite") || Operations.outList.get(i).equals("just") || Operations.outList.get(i).equals("almost") || Operations.outList.get(i).equals("too") || Operations.outList.get(i).equals("enough") || Operations.outList.get(i).equals("very") || Operations.outList.get(i).equals("extremely") || Operations.outList.get(i).equals("terribly") || Operations.outList.get(i).equals("amazingly") || Operations.outList.get(i).equals("wonderfully") || Operations.outList.get(i).equals("insanely")) {
+                i++;
+                for(int q=0;q<5;q++)
+                {
 
-                int q = 0;
-                //   System.out.println("intensity");
-                while (q < 2) {
-
-                    // i++;
-                    System.out.println(Operations.outList.get(i));
-
-                    int j = 0, a = 0;
+                    int flag=0;
+                    int j = 0;
                     for (; j < wordList.size(); j++) {
 
                         if (Operations.outList.get(i).equals(wordList.get(j))) {
@@ -154,65 +147,75 @@ public class EmotionCalculation {
 
                             //     System.out.println("Intensity");
                             if (emotionList.get(j).equalsIgnoreCase("joy")) {
-                                Frequency[0]++;
+                                Frequency[0]+=2;
                                 intensity += 4;
                             }
                             if (emotionList.get(j).equalsIgnoreCase("surprise")) {
-                                Frequency[1]++;
+                                Frequency[1]+=2;
                                 intensity += 3;
                             }
                             if (emotionList.get(j).equalsIgnoreCase("fear")) {
-                                Frequency[2]++;
+                                Frequency[2]+=2;
                                 intensity -= 1;
                             }
 
                             if (emotionList.get(j).equalsIgnoreCase("sadness")) {
-                                Frequency[3]++;
+                                Frequency[3]+=2;
                                 intensity -= 2;
                             }
                             if (emotionList.get(j).equalsIgnoreCase("trust")) {
-                                Frequency[4]++;
+                                Frequency[4]+=2;
                                 intensity += 4;
                             }
                             if (emotionList.get(j).equalsIgnoreCase("disgust")) {
-                                Frequency[5]++;
+                                Frequency[5]+=2;
                                 intensity -= 4;
                             }
 
                             if (emotionList.get(j).equalsIgnoreCase("anticipation")) {
-                                Frequency[6]++;
+                                Frequency[6]+=2;
                                 intensity += 2;
                                 //  System.out.println("INtensity is" + intensity);
                             }
                             if (emotionList.get(j).equalsIgnoreCase("anger")) {
-                                Frequency[7]++;
+                                Frequency[7]+=2;
                                 intensity -= 3;
                             }
+                            intensity*=2;
+
                             found = true;
                             //  break NEW;
                         } else {
-                            a++;
+
                         }
                     }
-                    if (a == j) {
-                        i++;
-                        q++;
-                    } else break;
+                    i++;
+                    if(flag==1)continue ;
+                    if(found==true)break;
+
                 }
+            }
 
-            } else if (Operations.outList.get(i).equals("never") || Operations.outList.get(i).equals("rarely") || Operations.outList.get(i).equals("not") || Operations.outList.get(i).equals("no") || Operations.outList.get(i).equals("rare") || Operations.outList.get(i).equals("scarcely") || Operations.outList.get(i).equals("seldom") || Operations.outList.get(i).equals("few") || Operations.outList.get(i).equals("little") || Operations.outList.get(i).equals("bad") || Operations.outList.get(i).equals("sad") || Operations.outList.get(i).equals("dont") || Operations.outList.get(i).equals("") || Operations.outList.get(i).equals("poor")) {
-                //   System.out.println("negative");
-                int q = 0;
-                while (q < 5) {
+            else if (Operations.outList.get(i).equals("never") || Operations.outList.get(i).equals("rarely") || Operations.outList.get(i).equals("don") || Operations.outList.get(i).equals("not") || Operations.outList.get(i).equals("haven") || Operations.outList.get(i).equals("couldn") || Operations.outList.get(i).equals("shouldn t") || Operations.outList.get(i).equals("no") || Operations.outList.get(i).equals("rare") || Operations.outList.get(i).equals("scarcely") || Operations.outList.get(i).equals("seldom") || Operations.outList.get(i).equals("few") || Operations.outList.get(i).equals("little") || Operations.outList.get(i).equals("bad") || Operations.outList.get(i).equals("sad") || Operations.outList.get(i).equals("dont") || Operations.outList.get(i).equals("") || Operations.outList.get(i).equals("poor"))
+            {
+                if(Operations.outList.isEmpty())break;
+                if(Operations.outList.size()<=i)break;
+                  System.out.println("negative");
 
+                  i++;
+               for(int q=0;q<5;q++)
+               {
 
-                    // i++;
-                    //  NEWS:
-
-                    int j = 0, a = 0;
+                int flag=0;
+                    int j = 0;
                     for (; j < wordList.size(); j++) {
 
+                        if(Operations.outList.isEmpty())break;
+                        if(Operations.outList.size()<=i)break;
+
+                   //     System.out.println("checking "+Operations.outList.get(i));
                         if (Operations.outList.get(i).equals(wordList.get(j))) {
+
 
                             System.out.print("Word :" + wordList.get(j));
                             System.out.print("Emotion :" + emotionList.get(j) + " ");
@@ -257,20 +260,26 @@ public class EmotionCalculation {
                             //     break NEWS;
 
 
+                            break;
                         } else {
-                            a++;
-                            q++;
+
+                            flag=1;
                         }
                     }
-                    if (a == j) {
-                        i++;
-                    } else break;
+                    i++;
+                    if(flag==1)continue ;
+                    if(found==true)break;
+
+
                 }
-            } else {
+            }
+            else {
+                if(Operations.outList.isEmpty())break;
+                if(Operations.outList.size()<=i)break;
 
                 for (int j = 0; j < wordList.size(); j++) {
                     if (Operations.outList.get(i).equals(wordList.get(j))) {
-                        //   System.out.println("sadsa");
+                           System.out.println("else ");
                         System.out.print("Word :" + wordList.get(j) + " ");
                         System.out.print("Emotion :" + emotionList.get(j) + " ");
                         //    fw.write(emotionList.get(j)+" ");
@@ -298,7 +307,7 @@ public class EmotionCalculation {
                 //     System.out.print(outList.get(i) + " ");
                 //     System.out.print("Emotion : Neutral ");
             }
-            i++;
+
         }
         //   fw.close();
         Operations.outList.clear();
@@ -486,15 +495,16 @@ public class EmotionCalculation {
     PieChart pieChart(double []value)
     {
 
+
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("Joy", JoyCal),
-                new PieChart.Data("Surprise", SurpriseCal),
+                new PieChart.Data("Joy ", JoyCal),
+                new PieChart.Data("Surprise ", SurpriseCal),
                 new PieChart.Data("Anger", AngerCal),
-                new PieChart.Data("Anticipation", anticipationCal),
-                new PieChart.Data("Sadness", SadnessCal),
+                new PieChart.Data("Anticipation ", anticipationCal),
+                new PieChart.Data("Sadness ", SadnessCal),
                 new PieChart.Data("Disgust", DisgustCal),
-                new PieChart.Data("Fear", FearCal),
-                new PieChart.Data("Trust", TrustCal));
+                new PieChart.Data("Fear ", FearCal),
+                new PieChart.Data("Trust ", TrustCal));
 
         //Creating a Pie chart
         PieChart pieChart = new PieChart(pieChartData);
@@ -504,9 +514,6 @@ public class EmotionCalculation {
 
 
 
-        //setting the direction to arrange the data
-        pieChart.setClockwise(true);
-
         //Setting the length of the label line
         pieChart.setLabelLineLength(20);
 
@@ -514,9 +521,9 @@ public class EmotionCalculation {
         pieChart.setLabelsVisible(true);
 
         //Setting the start angle of the pie chart
-        pieChart.setStartAngle(180);
+        pieChart.setStartAngle(150);
 
-        pieChart.setTranslateX(780);
+        pieChart.setTranslateX(680);
         pieChart.setTranslateY(150);
         pieChart.setScaleX(1.3);
         pieChart.setScaleY(1.4);
@@ -557,30 +564,34 @@ public class EmotionCalculation {
 
         TextArea textField = new TextArea();
         textField.setLayoutX(80);
-        textField.setLayoutY(200);
+        textField.setLayoutY(160);
         textField.setPrefRowCount(5);
         textField.setPrefColumnCount(6);
         textField.setWrapText(true);
-        textField.setMinSize(425, 450);
+        textField.setMinSize(425, 470);
         textField.setText(status);
         textField.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.BOLD, 18));
 
 
 
         double []value=new double[8];
-        value[0]=JoyCal;  value[1]=SurpriseCal;  value[2]=AngerCal;  value[3]=anticipationCal;  value[4]=SadnessCal;  value[5]=DisgustCal;  value[6]=FearCal;  value[7]=TrustCal;  value[0]=JoyCal;
+        value[0]=JoyCal;  value[1]=SurpriseCal;  value[2]=AngerCal;  value[3]=anticipationCal;  value[4]=SadnessCal;  value[5]=DisgustCal;  value[6]=FearCal;  value[7]=TrustCal;
         PieChart pieChart = pieChart(value);
-        int max=0;
+        double max=0,maxIt=0;
 
         for(int i=0;i<8;i++)
         {
-           if(max<value[i])max=i;
+           if(maxIt<value[i])
+           {
+               maxIt=value[i];
+               max=i;
+           }
         }
 
         Image happy = new Image(new FileInputStream("src/Pictures/gif/happy.gif"));
         ImageView ivH = new ImageView(happy);
         ivH.setX(480);
-        ivH.setY(320);
+        ivH.setY(300);
         ivH.setScaleX(0.7);
         ivH.setScaleY(0.7);
         ivH.setPreserveRatio(true);
@@ -588,7 +599,7 @@ public class EmotionCalculation {
         Image sad = new Image(new FileInputStream("src/Pictures/gif/sad.gif"));
         ImageView ivS = new ImageView(sad);
         ivS.setX(480);
-        ivS.setY(320);
+        ivS.setY(300);
         ivS.setScaleX(0.7);
         ivS.setScaleY(0.7);
         ivS.setPreserveRatio(true);
@@ -596,7 +607,7 @@ public class EmotionCalculation {
         Image disgust = new Image(new FileInputStream("src/Pictures/gif/disgust.gif"));
         ImageView ivD = new ImageView(disgust);
         ivD.setX(480);
-        ivD.setY(320);
+        ivD.setY(300);
         ivD.setScaleX(0.7);
         ivD.setScaleY(0.7);
         ivD.setPreserveRatio(true);
@@ -604,34 +615,50 @@ public class EmotionCalculation {
         Image angry = new Image(new FileInputStream("src/Pictures/gif/angry.gif"));
         ImageView ivA = new ImageView(angry);
         ivA.setX(480);
-        ivA.setY(320);
+        ivA.setY(300);
         ivA.setScaleX(0.7);
         ivA.setScaleY(0.7);
         ivA.setPreserveRatio(true);
+
+
+
+
+        final Label caption = new Label("");
+        caption.setTextFill(Color.WHITE);
+        caption.setStyle("-fx-font: 17 arial;");
+
+        for (final PieChart.Data data : pieChart.getData()) {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                    new EventHandler<MouseEvent>() {
+                        @Override public void handle(MouseEvent e) {
+                            caption.setTranslateX(e.getSceneX());
+                            caption.setTranslateY(e.getSceneY());
+                            caption.setText(data.getPieValue() + "%");
+                        }
+                    });
+        }
         if(max==0 || max==1 || max==3 || max==7)
         {
-            root.getChildren().addAll(pieChart, back,textField,headning,ivH);
+            root.getChildren().addAll(pieChart, back,textField,headning,ivH,caption);
         }
 
         else  if(max==2 )
         {
-            root.getChildren().addAll(pieChart, back,textField,headning,ivA);
+            root.getChildren().addAll(pieChart, back,textField,headning,ivA,caption);
         }
-        else  if(max==4 )
+        else  if(max==4 || max==6)
         {
-            root.getChildren().addAll(pieChart, back,textField,headning,ivS);
+            root.getChildren().addAll(pieChart, back,textField,headning,ivS,caption);
         }
 
         else  if(max==5 )
         {
-            root.getChildren().addAll(pieChart, back,textField,headning,ivD);
+            root.getChildren().addAll(pieChart, back,textField,headning,ivD,caption);
         }
 
-        else  if(max==6 )
-        {
-            root.getChildren().addAll(pieChart, back,textField,headning,ivS);
-        }
 
+
+        System.out.println("max in emcalOutput :"+max);
         Scene scene = new Scene(root, 1400, 750);
 
         //Setting title to the Stage
@@ -752,28 +779,44 @@ public class EmotionCalculation {
         ivA.setScaleX(0.7);
         ivA.setScaleY(0.7);
         ivA.setPreserveRatio(true);
+
+
+        final Label caption = new Label("");
+        caption.setTextFill(Color.WHITE);
+        caption.setStyle("-fx-font: 17 arial;");
+
+        for (final PieChart.Data data : pieChart.getData()) {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                    new EventHandler<MouseEvent>() {
+                        @Override public void handle(MouseEvent e) {
+                            caption.setTranslateX(e.getSceneX());
+                            caption.setTranslateY(e.getSceneY());
+                            caption.setText(data.getPieValue() + "%");
+                        }
+                    });
+        }
         if(max==0 || max==1 || max==3 || max==7)
         {
-            root.getChildren().addAll(pieChart, backs,textField,headning,ivH);
+            root.getChildren().addAll(pieChart, backs,textField,headning,ivH,caption);
         }
 
         else  if(max==2 )
         {
-            root.getChildren().addAll(pieChart, backs,textField,headning,ivA);
+            root.getChildren().addAll(pieChart, backs,textField,headning,ivA,caption);
         }
         else  if(max==4 )
         {
-            root.getChildren().addAll(pieChart, backs,textField,headning,ivS);
+            root.getChildren().addAll(pieChart, backs,textField,headning,ivS,caption);
         }
 
         else  if(max==5 )
         {
-            root.getChildren().addAll(pieChart, backs,textField,headning,ivD);
+            root.getChildren().addAll(pieChart, backs,textField,headning,ivD,caption);
         }
 
         else  if(max==6 )
         {
-            root.getChildren().addAll(pieChart, backs,textField,headning,ivS);
+            root.getChildren().addAll(pieChart, backs,textField,headning,ivS,caption);
         }
 
 
@@ -818,7 +861,7 @@ public class EmotionCalculation {
         back.setOnAction(e -> {
             try {
 
-                AnalysisPage ap=new AnalysisPage(stage,Names);
+                AnalysisPage ap=new AnalysisPage(stage,Names,accessToken);
                 ap.analysis();
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -874,6 +917,28 @@ public class EmotionCalculation {
         pieChart1.setTranslateY(160);
         pieChart1.setScaleX(1.5);
         pieChart1.setScaleY(1.5);
+
+
+        final Label caption = new Label("");
+        caption.setTextFill(Color.WHITE);
+        caption.setStyle("-fx-font: 17 arial;");
+
+        for (final PieChart.Data data : pieChart1.getData()) {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                    new EventHandler<MouseEvent>() {
+                        @Override public void handle(MouseEvent e) {
+                            caption.setTranslateX(e.getSceneX());
+                            caption.setTranslateY(e.getSceneY());
+                            caption.setText(data.getPieValue() + "%");
+                        }
+                    });
+        }
+
+
+
+
+
+
         PieChart pieChart2 = new PieChart(pieChartData2);
         pieChart2.setTitle("Emotion ");
         pieChart2.setClockwise(true);
@@ -885,6 +950,22 @@ public class EmotionCalculation {
         pieChart2.setTranslateY(160);
         pieChart2.setScaleX(1.5);
         pieChart2.setScaleY(1.5);
+
+        final Label caption2 = new Label("");
+        caption2.setTextFill(Color.WHITE);
+        caption2.setStyle("-fx-font: 17 arial;");
+
+        for (final PieChart.Data data : pieChart2.getData()) {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                    new EventHandler<MouseEvent>() {
+                        @Override public void handle(MouseEvent e) {
+                            caption2.setTranslateX(e.getSceneX());
+                            caption2.setTranslateY(e.getSceneY());
+                            caption2.setText(data.getPieValue() + "%");
+                        }
+                    });
+        }
+
 
         Scene scene = new Scene(root, 1400, 750);
 
@@ -900,7 +981,7 @@ public class EmotionCalculation {
 
         root.setBackground(bg);
         stage.setTitle("Pie Chart");
-        root.getChildren().addAll(pieChart1,pieChart2,line,text, back);
+        root.getChildren().addAll(pieChart1,pieChart2,line,text, back,caption,caption2);
         stage.setScene(scene);
         stage.show();
         back.setOnAction(e -> {

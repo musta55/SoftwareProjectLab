@@ -2,11 +2,12 @@ package sample.spl1;
 
 
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 
 
@@ -17,7 +18,7 @@ public class Operations {
     public String[] stop= new String[85000];        //to remove stop word
     public ArrayList<ArrayList<String>> aList = new ArrayList<ArrayList<String> >(85000);//to store all the words
     public ArrayList<String> inList = new ArrayList<String>();//to store the input words
-    public static ArrayList<String> outList = new ArrayList<String>();
+    public static ArrayList<String> outList = new ArrayList<String>(1000000);
     int i=0;
 
     public Operations() {
@@ -25,7 +26,7 @@ public class Operations {
     }
 
     public Operations(ArrayList<String> outList) {
-        this.outList = outList;
+        Operations.outList = outList;
     }
 
 
@@ -43,7 +44,7 @@ public class Operations {
             for (int j=0; j<aList.size(); j++){
                 for (int k=0; k<aList.get(j).size(); k++){
                     if(aList.get(j).get(k).equals(inList.get(i))){
-                        //   System.out.print(words[j]+" ");
+                          System.out.print(words[j]+" ");
                         outList.add(outIt,words[j]);
                         outIt++;
                         found = true;
@@ -57,6 +58,12 @@ public class Operations {
                 outIt++;
             }
         }
+        System.out.println("\n\nAfter Lemmatization:\n----------------------\n\n\n");
+
+        for(String outLemma: outList)
+        {
+            System.out.print(outLemma+" ");
+        }
         inList.clear();
 
     }
@@ -65,12 +72,12 @@ public class Operations {
     public void splitInput(String inputString) throws FileNotFoundException{
 
         String[] inArray=null;
-       //   inArray = inputString.split("[ ,/;>.*'|\"(){+></@$%^&_=}]",0);
-        inArray = inputString.split("[ ]",0);
+          inArray = inputString.split("[ ,/;>.*'|\"(){+></@$%^&_=}]",0);
+     //   inArray = inputString.split("[ ]",0);
         for(int j=0;j<inArray.length;j++){
             //inArray[j].
 
-            char str[]=inArray[j].toCharArray();
+            char[] str =inArray[j].toCharArray();
             for(i=0;i<str.length;i++)
             {
                 if(str[i]>='A' && str[i]<='Z')
@@ -86,13 +93,13 @@ public class Operations {
                 inArray[j]+= Character.toString(str[i]);
             }
 
-         //   inArray[j] = inArray[j].toLowerCase();
             inList.add(inArray[j]);
 
         }
     }
     public void removeWord() throws FileNotFoundException
     {
+
         File files = new File("src/sample/spl1/removablewords.txt");
         Scanner sc = new Scanner(files);
 
@@ -103,6 +110,13 @@ public class Operations {
         ArrayList <String> stopWordList =new ArrayList<>();
         stopWordList.addAll(Arrays.asList(stop));
         inList.removeAll(stopWordList);
+
+        System.out.println("After removing stop words:\n------------------------------------\n");
+
+        for(String arr: inList)
+        {
+            System.out.print(arr+" ");
+        }
 
     }
 
@@ -139,6 +153,7 @@ public class Operations {
             i++;
 
         }
+
     }
 
 }

@@ -48,8 +48,8 @@ public class WebPage {
             back.setTextFill(Color.YELLOW);
             back.setOnAction(esb->{
                 try {
-
-                    AnalysisPage ap=new AnalysisPage(stage,Name);
+                    thirdPage tp=new thirdPage();
+                    tp.app(stage,Name);
                 }catch (Exception ex)
                 {
                     ex.printStackTrace();

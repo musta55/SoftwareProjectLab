@@ -18,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class thirdPage extends secondPage{
+   public  String  tok;
     public void app(Stage stage,String FileName) throws FileNotFoundException {
 
 
@@ -79,6 +80,7 @@ public class thirdPage extends secondPage{
         text.setTranslateY(480);
 
 
+
         Button back = getButton();
 
         if(FileName.contains("fb") )
@@ -95,9 +97,30 @@ public class thirdPage extends secondPage{
         }
 
         String finalFileName = FileName;
+
+        socialMedia.setOnAction(e -> {
+            try
+            {
+                accessToken at=new accessToken();
+                String socFile="fb"+finalFileName;
+               tok=at.token(stage, socFile);
+            }catch (Exception ea)
+            {
+                System.out.println("Fourth Page Problem");
+            }
+
+        });
+        liveUrl.setOnAction(e -> {
+            WebPage wb=new WebPage();
+            String webFile="web"+finalFileName;
+            wb.web(stage,webFile);
+        });
+
+
         analysis.setOnAction(e -> {
             try {
-                AnalysisPage ap=new AnalysisPage(stage, finalFileName);
+                System.out.println("analysis e click korle token "+tok);
+                AnalysisPage ap=new AnalysisPage(stage, finalFileName,tok);
                 ap.analysis();
 
             } catch (Exception excep) {
@@ -134,24 +157,6 @@ public class thirdPage extends secondPage{
         Pane root = new Pane();
 
         root.getChildren().addAll(socialMedia,back,article,liveUrl,analysis,text);
-
-        socialMedia.setOnAction(e -> {
-            try
-            {
-               accessToken at=new accessToken();
-               String socFile="fb"+finalFileName;
-            String  tok= at.token(stage,socFile,0);
-            }catch (Exception ea)
-            {
-                System.out.println("Fourth Page Problem");
-            }
-
-        });
-        liveUrl.setOnAction(e -> {
-            WebPage wb=new WebPage();
-            String webFile="web"+finalFileName;
-            wb.web(stage,webFile);
-        });
 
         Canvas canvas = new Canvas(1400,750);
         GraphicsContext gc = canvas.getGraphicsContext2D();

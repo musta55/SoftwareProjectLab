@@ -22,11 +22,12 @@ import java.io.FileNotFoundException;
 public class AnalysisPage {
     private final Stage stage;
     private final String Name;
-    private String accessToken;
-    public  AnalysisPage (Stage stage,String Name)
+    private final String tok;
+    public  AnalysisPage (Stage stage,String Name,String tok)
     {
         this.stage=stage;
         this.Name=Name;
+        this.tok=tok;
 
     }
     public void analysis() throws FileNotFoundException {
@@ -108,11 +109,10 @@ public class AnalysisPage {
             }
         });
         accessToken at=new accessToken();
-        accessToken= at.token(stage,Name,1);
 
         reactionPrediction.setOnAction(e -> {
             {
-                firstPost fp=new firstPost(accessToken);
+                firstPost fp=new firstPost(tok);
                 try {
                     fp.firstpost(stage,Name);
                 } catch (FileNotFoundException ed) {
@@ -132,7 +132,7 @@ public class AnalysisPage {
 
              double finalTempTotal=vf.tempTotal;
 
-            sample.spl1.visualOut.finalReport fr=new finalReport(stage,accessToken,sentimentTot,finalTempTotal,Name);
+            sample.spl1.visualOut.finalReport fr=new finalReport(stage,tok,sentimentTot,finalTempTotal,Name);
         });
 
         Canvas canvas = new Canvas(1400,750);

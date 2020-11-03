@@ -72,7 +72,7 @@ public class finalReport {
 
         backa.setOnAction(esb -> {
             try {
-                AnalysisPage goBack = new AnalysisPage(stage, Name);
+                AnalysisPage goBack = new AnalysisPage(stage, Name,accessToken);
                 goBack.analysis();
             } catch (Exception ex) {
                 ex.printStackTrace();
