@@ -13,8 +13,6 @@ public class algorithm {
     {
         Stage stage=new Stage();
 
-
-
         Image background = new Image(getClass().getClassLoader().getResource("Pictures/algorithm.png").toString(), true);
 
         BackgroundImage bi = new BackgroundImage(background,
