@@ -62,7 +62,7 @@ public class WebPage {
                 headning.setScaleX(6);
                 headning.setScaleY(6);
                 headning.setTranslateX(650);
-                headning.setTranslateY(90);
+                headning.setTranslateY(190);
                 Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
                 Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
