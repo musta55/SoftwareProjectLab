@@ -29,7 +29,7 @@ public class Progression {
 
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         Connection<Post> result;
-        result = fbClient.fetchConnection("me/feed", Post.class);
+        result = fbClient. fetchConnection("me/feed", Post.class);
 
         for (List<Post> apost : result) {
             for (Post aPost : apost) {
@@ -83,6 +83,9 @@ public class Progression {
                 } catch (Exception ea) {
                     System.out.println();
                 }
+            }
+            if (counter >= 11) {
+                break;
             }
         }
         try {

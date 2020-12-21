@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sample.spl1.Main;
 
-public class algorithm {
+public class fuzzyabout {
 
 
     public Button getButton()
@@ -18,17 +18,17 @@ public class algorithm {
         Button back = new Button("");
         back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
         back.setTranslateX(0);
-        back.setTranslateY(440);
+        back.setTranslateY(340);
         back.setPrefSize(1, 5);
         back.setTextFill(Color.YELLOW);
         return back;
     }
 
-    public void algo(Stage stage)
+    public void fuzz(Stage stage)
     {
 
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/algorithm.png").toString(), true);
+        Image background = new Image(getClass().getClassLoader().getResource("Pictures/fuzzification.png").toString(), true);
 
 
         Button back = getButton();
@@ -51,12 +51,12 @@ public class algorithm {
 
 
         Pane root = new Pane();
-        root.getChildren().addAll(back);
         root.setBackground(bg);
-        Scene scene = new Scene(root, 1200, 750);
-        stage.setX(400);
+        Scene scene = new Scene(root, 1200, 770);
+        stage.setX(200);
         stage.setY(70);
         scene.setFill(Color.BLACK);
+        root.getChildren().addAll(back);
 
         stage.setScene(scene);
         stage.show();

@@ -205,7 +205,7 @@ public class logIn {
                                       else {
                                           showAlerts(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "LogIn Error!", "Please enter valid password");
                                             return;
-                                      }
+                                          }
 
                         }
 

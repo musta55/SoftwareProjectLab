@@ -9,7 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import sample.spl1.additionalClass.algorithm;
+import sample.spl1.additionalClass.aboutLogic;
 import sample.spl1.additionalClass.experimentDescription;
 import sample.spl1.languageClassification.Language;
 import sample.spl1.login.logIn;
@@ -36,7 +36,7 @@ public class secondPage {
 
         Image Ab = null;
 
-        Ab = new Image(new FileInputStream("src/Pictures/exp.png"));
+        Ab = new Image(new FileInputStream("src/Pictures/experiment.png"));
         ImageView about = new ImageView(Ab);
         Button pro = new Button(null, about);
         pro.setBackground(null);
@@ -64,14 +64,13 @@ public class secondPage {
                     ioException.printStackTrace();
                 }
 
-
             });
 
 
 
         Image Ab3 = null;
 
-        Ab3 = new Image(new FileInputStream("src/Pictures/about.png"));
+        Ab3 = new Image(new FileInputStream("src/Pictures/spch.png"));
         ImageView about3 = new ImageView(Ab3);
         Button other = new Button(null, about3);
         other.setBackground(null);
@@ -88,9 +87,8 @@ public class secondPage {
 //                    HelloWorld hl=new HelloWorld();
 //                    hl.speech(stage);
 
-                    algorithm al=new algorithm();
-                    al.algo();
-
+                   aboutLogic al=new aboutLogic();
+                   al.aboutlogic(stage);
 
                 } catch (Exception excep) {
                     excep.printStackTrace();
@@ -100,7 +98,7 @@ public class secondPage {
             Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
             Pane root = new Pane();
 
-            root.getChildren().addAll(back, pro, application,other);
+         root.getChildren().addAll(back, pro, application,other);
             int scroll=0;
 
     pro.setOnMouseEntered(e->{

@@ -30,7 +30,7 @@ public class Main extends Application {
         BtPlay.setBackground(null);
         BtPlay.setTranslateX(500);
         BtPlay.setTranslateY(300);
-        BtPlay.setOnMouseEntered(e->{
+        BtPlay.setOnAction(e->{
             secondPage SP = new secondPage();
             try {
                 SP.TheSecond(primaryStage);
