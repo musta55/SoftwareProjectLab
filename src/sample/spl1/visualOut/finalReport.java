@@ -195,23 +195,46 @@ public class finalReport {
 
         double[] personalityTest =new double[4];
        personalityTest[0] = stdDev / 10;
+       double rand=Math.random()%5;
 
         if (stdDev < 1) {
             txt = " Low";
+
+            if(rand==0)
             report += "You have difficulty connecting with feelings — others’ and your own; give the impression of being snobby, withholding, or cold; obsess about problems; sometimes too serious.";
+            else if(rand==1) report += "You Do Not Want To Step Out Of Your Comfort Zone";
+            else if(rand==2) report += "It is likely that you do not take  other people’s opinions into account";
+            else if(rand==3) report += "Sorry to say but You Get Angry Too Quickly!!";
+            else if(rand==4) report += "You have difficulty connecting with feelings — others’ and your own; give the impression of being snobby, withholding, or cold; obsess about problems; sometimes too serious.";
+
+
         } else if (stdDev < 5) {
             txt = "Medium";
-            report += "You are emotionally strong for self and others, practical, able to stay cool in a crisis, nonjudgmental.";
+            if(rand==0)
+                report += "   You remember feeling or seeing spirits as a child. Seeing spirits and/or having an imaginary friend when you were young are early signs you have mediumship abilities.\n";
+            else if(rand==1) report += "You have anxiety - It’s not really explainable.";
+            else if(rand==2) report += "A spiritual awakening makes your gift stronger. The more spiritual you are, the stronger the feelings become.";
+            else if(rand==3) report += "You don’t sleep well and/or wake up around 3am. This is thought to happen because it’s an easier time of day for the spirit world to connect with you.";
+            else if(rand==4) report += " You are related to someone with the gift. It is thought that the gift can skip a generation or be passed on directly.";
+
+
+
         } else {
             txt = " High";
 
-            report += "You are highly sensitive, naturally giving and a good listener.";
+            if(rand==0)
+                report += "You are emotionally strong for self and others, practical, able to stay cool in a crisis, nonjudgmental.";
+            else if(rand==1) report += "You are greatly affected by others’ moods, which is confirmed by your study";
+            else if(rand==2) report += "You had an increased awareness of opportunities such as food, mates, and alliances within their environment";
+            else if(rand==3) report += "You are easily overwhelmed by social situation.";
+            else if(rand==4) report += " You prefer spending time with alone rather than others.";
+
         }
 
         textInt.setText(txt);
         textInt.setFill(Color.BLACK);
-        textInt.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.BOLD, 5));
-        textInt.setStyle("-fx-font-size: 10px;");
+        textInt.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.BOLD, 4));
+        textInt.setStyle("-fx-font-size: 7px;");
         textInt.setX(335);
         textInt.setY(162);
 
@@ -228,7 +251,14 @@ public class finalReport {
 
         if (highSt >= mediumSt && highSt >= lowSt) {
             txtstab = "Unstable";
-            report += "\n\nYou tend to be a drama king or queen,seek external feedback rather than relying on own intuition, excessive need to share.";
+
+            if(rand==0)
+                report += "\n\nYou tend to be a drama king or queen,seek external feedback rather than relying on own intuition, excessive need to share.";
+
+            else if(rand==1) report += "You are greatly affected by others’ moods, which is confirmed by your study";
+            else if(rand==2) report += "Moreover, it seems that your mood changes rapidly";
+            else if(rand==3) report += "You are easily overwhelmed by social situation.";
+            else if(rand==4) report += "You prefer spending time with alone rather than others.";
 
             personalityTest[3] = (highSt) * 1 / (highSt + mediumSt + lowSt);
         } else {
@@ -417,15 +447,14 @@ public class finalReport {
         String finalReport = report;
         next.setOnAction(e ->
         {
-            EmotionProfile emp = new EmotionProfile(Name, stage);
+            EmotionProfile emp = new EmotionProfile(Name, stage,accessToken);
             try {
-                emp.profileScore(1, finalReport, personalityTest);
+                emp.profileScore(1, finalReport, personalityTest,accessToken);
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
 
         });
-
 
         roota.getChildren().addAll(lineChart, backa, textInt, barChart, textStab, textMean, textRec, textCon, HeadText, next,text);
 

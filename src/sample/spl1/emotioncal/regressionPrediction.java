@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class regressionPrediction {
 
-    public void prediction(Stage primaryStage,String accessToken,double[]a,double[]b)
+    public void prediction(Stage primaryStage,String accessToken,String Name,double[]a,double[]b)
     {
 
 
@@ -144,7 +144,7 @@ public class regressionPrediction {
                     ex.printStackTrace();
                 }
                 try {
-                    emCal.VisualOutputPred(primaryStage,accessToken,a,b);
+                    emCal.VisualOutputPred(primaryStage,accessToken,Name,a,b);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

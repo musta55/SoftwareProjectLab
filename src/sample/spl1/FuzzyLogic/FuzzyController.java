@@ -1,12 +1,15 @@
 package sample.spl1.FuzzyLogic;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import sample.spl1.AnalysisPage;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,7 +34,7 @@ public class FuzzyController {
     private ArrayList<FuzzySet> fuzzySets;
     private ArrayList<FuzzySet> fuzzySets2;
 
-    public FuzzyController(double[] personalityTest, Stage stage) throws FileNotFoundException {
+    public FuzzyController(double[] personalityTest, Stage stage,String Name,String accessToken2) throws FileNotFoundException {
      //   frame = new FuzzyFrame();
         POW = new FuzzyVariable();
         CON = new FuzzyVariable();
@@ -41,14 +44,14 @@ public class FuzzyController {
         this.stage=stage;
 
         decision = new FuzzyVariable();
-        initialiazeVariable(stage);
+        initialiazeVariable(stage,Name,accessToken2);
   //      initializeListener();
     //    frame.setVisible(true);
     }
 
 
 
-    private void initialiazeVariable(Stage stage) throws FileNotFoundException {
+    private void initialiazeVariable(Stage stage,String Name,String accessToken) throws FileNotFoundException {
         fuzzySets = new ArrayList<>();
 
         TriangleFuzzySet powerLow = new TriangleFuzzySet(Double.NEGATIVE_INFINITY, 0.7, 0.5, 1);
@@ -91,11 +94,11 @@ public class FuzzyController {
         fuzzySets2.add(new FuzzySet("The Socializer", 0.0, 0.8));
         fuzzySets2.add(new FuzzySet("The Director", 0.0,0.9));
 
-        personalityTest(stage);
+        personalityTest(stage,Name,accessToken);
 
     }
 
-    public void personalityTest(Stage stage) throws FileNotFoundException {
+    public void personalityTest(Stage stage,String Name,String accessToken) throws FileNotFoundException {
 
         double pow =personalityTest[0];
         double con = personalityTest[1];
@@ -114,7 +117,7 @@ public class FuzzyController {
         //greEvaluatePrint();
 
         andOperatorRules();
-        centroidDefuzz(stage);
+        centroidDefuzz(stage,Name,accessToken);
 
 
     }
@@ -239,7 +242,7 @@ public class FuzzyController {
 
     }
 
-    public void centroidDefuzz(Stage stage) throws FileNotFoundException {
+    public void centroidDefuzz(Stage stage,String Name,String accessToken2) throws FileNotFoundException {
   //      frame.appendCustomText("\n\nMethod Centroids\n");
 
         System.out.println("\n\nMethod Centroids\n");
@@ -574,6 +577,23 @@ public class FuzzyController {
 
         }
 
+
+        Button back = new Button("");
+        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+        back.setTranslateX(10);
+        back.setTranslateY(250);
+        back.setPrefSize(1, 5);
+        back.setTextFill(Color.YELLOW);
+        back.setTextFill(Color.WHITE);
+        back.setOnAction(e -> {
+            try {
+                AnalysisPage ap=new AnalysisPage(stage,Name,accessToken2);
+                ap.analysis();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
         BackgroundImage bi = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
@@ -584,7 +604,7 @@ public class FuzzyController {
         Pane root=new Pane();
 
         root.setBackground(bg);
-        root.getChildren().addAll(textstrng,textWeak,textPerson);
+        root.getChildren().addAll(textstrng,textWeak,textPerson,back);
 
 
         Scene scene = new Scene(root,1400,750);

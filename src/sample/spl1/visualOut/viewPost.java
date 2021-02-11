@@ -61,6 +61,5 @@ public class viewPost {
         textArea.setMinSize(400, 400);
         textArea.setText(str);
         root.getChildren().add(textArea);
-
     }
 }

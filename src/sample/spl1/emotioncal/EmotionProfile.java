@@ -2,14 +2,17 @@ package sample.spl1.emotioncal;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -31,13 +34,15 @@ public class EmotionProfile {
 
    private final String name;
     private final Stage stage;
+    private final String accessToken;
 
 
     double[] out3 = new double[100];
-   public EmotionProfile(String name,Stage stage)
+   public EmotionProfile(String name,Stage stage,String accessToken)
    {
        this.name=name;
        this.stage=stage;
+       this.accessToken=accessToken;
    }
     public double[] fileInput(  File file )
     {
@@ -69,7 +74,7 @@ public class EmotionProfile {
             return fileData;
         }
     }
-    public  void profileScore(int t,String report,double[] personalityTest) throws FileNotFoundException {
+    public  void profileScore(int t,String report,double[] personalityTest,String accessToken) throws FileNotFoundException {
 
 
         double[] emo = new double[10];
@@ -208,7 +213,7 @@ public class EmotionProfile {
 
         System.out.println("Highest is " + temp + " Second is " + temp2);
 if(t==1)
-       VisualProfile(emo,comment(temp,temp2)+report,personalityTest);
+       VisualProfile(emo,comment(temp,temp2)+report,personalityTest,accessToken);
 else
        IndividualVisualProfile(emo,emo2,emo3);
 
@@ -267,7 +272,7 @@ else
 
     }
 
-    public void VisualProfile(double[] em,String text,double[] personalityTest) throws FileNotFoundException {
+    public void VisualProfile(double[] em,String text,double[] personalityTest,String accessToken) throws FileNotFoundException {
 
         Button back = new Button("");
         back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
@@ -288,13 +293,13 @@ else
         });
 
         Text HeadText= new Text();
-        HeadText.setText("Your Final Report");
+        HeadText.setText(" Final Report");
 
-        HeadText.setFill(Color.BLACK);
+        HeadText.setFill(Color.WHITE);
         HeadText.setX(900);
         HeadText.setY(100);
-        HeadText.setScaleX(5);
-        HeadText.setScaleY(5);
+        HeadText.setScaleX(3);
+        HeadText.setScaleY(3);
 
         TextArea textField = new TextArea();
         textField.setLayoutX(630);
@@ -305,7 +310,7 @@ else
         textField.setMinSize(725, 350);
         textField.setText(text);
         textField.setStyle("-fx-text-fill: black; -fx-font-size: 20px;");
-        textField.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.BOLD, 10));
+        textField.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.BLACK, 10));
 
 
 
@@ -353,7 +358,7 @@ else
 
         per.setOnAction(esb->{
             try {
-                FuzzyController t = new FuzzyController(personalityTest,stage);
+                FuzzyController t = new FuzzyController(personalityTest,stage,name,accessToken);
 
             }catch (Exception ex)
             {
@@ -450,6 +455,21 @@ else
         pieChart.setScaleX(0.8);
         pieChart.setScaleY(0.8);
 
+        final Label caption = new Label("");
+        caption.setTextFill(Color.WHITE);
+        caption.setStyle("-fx-font: 17 arial;");
+
+        for (final PieChart.Data data : pieChart.getData()) {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                    new EventHandler<MouseEvent>() {
+                        @Override public void handle(MouseEvent e) {
+                            caption.setTranslateX(e.getSceneX());
+                            caption.setTranslateY(e.getSceneY());
+                            caption.setText(data.getPieValue() + "%");
+                        }
+                    });
+        }
+
 
         ObservableList<PieChart.Data> pieChartData2 = FXCollections.observableArrayList(
                 new PieChart.Data("Joy", em2[0]),
@@ -472,10 +492,25 @@ else
         pieChart2.setScaleX(0.8);
         pieChart2.setScaleY(0.8);
 
+        final Label caption2 = new Label("");
+        caption2.setTextFill(Color.WHITE);
+        caption2.setStyle("-fx-font: 17 arial;");
+
+        for (final PieChart.Data data : pieChart2.getData()) {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                    new EventHandler<MouseEvent>() {
+                        @Override public void handle(MouseEvent e) {
+                            caption2.setTranslateX(e.getSceneX());
+                            caption2.setTranslateY(e.getSceneY());
+                            caption2.setText(data.getPieValue() + "%");
+                        }
+                    });
+        }
+
 
         CategoryAxis xAxises3 = new CategoryAxis();
         xAxises3.setCategories(FXCollections.
-                observableArrayList(Arrays.asList("Joy", "Surprise", "Fear", "Sadness", "Trust", "Disgust", "Anticipation", "Anger")));
+                observableArrayList(Arrays.asList("Joy", "Surprise", "Fear", "Sadness", "Trust", "Disgust", "Happy", "Anger")));
         xAxises3.setLabel("FaceBook");
 
         NumberAxis yAxises3 = new NumberAxis();
@@ -492,7 +527,7 @@ else
         series3.getData().add(new XYChart.Data<>("Sadness",  em3[3]));
         series3.getData().add(new XYChart.Data<>("Trust",  em3[4]));
         series3.getData().add(new XYChart.Data<>("Disgust",  em3[5]));
-        series3.getData().add(new XYChart.Data<>("Anticipation",  em3[6]));
+        series3.getData().add(new XYChart.Data<>("Happy",  em3[6]));
         series3.getData().add(new XYChart.Data<>("Anger",  em3[7]));
 
 
@@ -504,6 +539,8 @@ else
         ObservableList<PieChart.Data> sentChartData3 =  FXCollections.observableArrayList(
                 new PieChart.Data("Positive", em3[0]+em3[1]+em3[4]+em3[6]),
                 new PieChart.Data("Negative", em3[2]+em3[3]+em3[5]+em3[7]));
+
+
 
         final DoughnutChart chart3 = new DoughnutChart(sentChartData3);
         chart3.setTranslateX(400);
@@ -564,7 +601,7 @@ else
         Scene scene = new Scene(root, 1400, 755);
 
         stage.setTitle("Bar Chart");
-        root.getChildren().addAll(pieChart,pieChart2,barChart3, back,headning,headning2,headning3,chart,chart2,chart3,visu);
+        root.getChildren().addAll(pieChart,pieChart2,barChart3, back,headning,headning2,headning3,chart,chart2,chart3,visu,caption,caption2);
         stage.setScene(scene);
 
         stage.show();

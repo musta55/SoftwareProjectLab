@@ -100,15 +100,15 @@ public class AnalysisPage {
         double [] per=new double[10];
         visualization.setOnAction(e->{
             try {
-                EmotionProfile emp=new EmotionProfile(Name,stage);
-                emp.profileScore(0,"",per);
+                EmotionProfile emp=new EmotionProfile(Name,stage,tok);
+                emp.profileScore(0,"",per,tok);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         });
 
         File file = new File("tokenfb"+Name);
-
+        System.out.println("Prediction theke ashar por file name :"+file);
         BufferedReader br = new BufferedReader(new FileReader(file));
 
         String st,token="";

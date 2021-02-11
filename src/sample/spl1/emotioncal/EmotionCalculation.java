@@ -846,7 +846,7 @@ public class EmotionCalculation {
 
     }
 
-    public void VisualOutputPred(Stage stage, String accessToken, double[]a, double[]b)  {
+    public void VisualOutputPred(Stage stage, String accessToken, String Name,double[]a, double[]b)  {
 
         Button back = new Button("");
         back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
@@ -860,8 +860,7 @@ public class EmotionCalculation {
 
         back.setOnAction(e -> {
             try {
-
-                AnalysisPage ap=new AnalysisPage(stage,Names,accessToken);
+                AnalysisPage ap=new AnalysisPage(stage,Name,accessToken);
                 ap.analysis();
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -990,7 +989,7 @@ public class EmotionCalculation {
 //                firstPost fp=new firstPost(accessToken);
 //                fp.firstpost(stage,Names);
 
-                AnalysisPage ap=new AnalysisPage(stage,Names,accessToken);
+                AnalysisPage ap=new AnalysisPage(stage,Name,accessToken);
                 ap.analysis();
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -1125,7 +1124,7 @@ barChart.setLayoutX(50);
             try {
                 try {
                     regressionPrediction rp=new regressionPrediction();
-                    rp.prediction(stage,accessToken,em,b);
+                    rp.prediction(stage,accessToken,Name,em,b);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

@@ -90,7 +90,7 @@ public class firstPost {
         {
             thirdPage tp=new thirdPage();
             tp.app(stage,Name);
-            System.out.println("Exception in openning file");
+            System.out.println("Exception in opening file");
         }
 
 
