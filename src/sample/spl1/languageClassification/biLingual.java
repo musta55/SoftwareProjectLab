@@ -13,29 +13,46 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import sample.spl1.Dictionary;
-import sample.spl1.Operations;
-import sample.spl1.OperationsBangla;
 import sample.spl1.emotioncal.EmotionCalculation;
 
-import java.io.*;
-import java.util.ArrayList;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class biLingual {
     private String Name;
     private Stage primaryStage;
     public String texts=null;
+    public Text textAtt()
+    {
+        Text headning =new Text("Text Input");
+        headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 11));
+        headning.setFill(Color.WHITE);
+        headning.setScaleX(6);
+        headning.setScaleY(6);
+        headning.setTranslateX(650);
+        headning.setTranslateY(190);
+        return headning;
+
+    }
+    public TextArea txtarea()
+    {
+        TextArea textFields = new TextArea();
+        textFields.setLayoutX(150);
+        textFields.setLayoutY(280);
+        textFields.setPrefRowCount(5);
+        textFields.setPrefColumnCount(6);
+        textFields.setWrapText(true);
+        textFields.setMinSize(1025,200);
+        return textFields;
+    }
 
 
     public void biLanguage()
     {
-
+        Language lang=new Language();
         try {
             primaryStage.setTitle("Text Input");
-
-            TextArea textFields = new TextArea();
-
-
+            TextArea textFields =lang.txtarea();
             Image Ab = new Image(new FileInputStream("src/Pictures/enter.png"));
             ImageView about = new ImageView(Ab);
             Button button = new Button(null,about);
@@ -44,107 +61,24 @@ public class biLingual {
             button.setTranslateX(580);
             button.setTranslateY(520);
 
+                Text headning =lang.textAtt();
 
-                Text headning = new Text("USER INPUT");
-                headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 11));
-                headning.setFill(Color.WHITE);
-                headning.setScaleX(6);
-                headning.setScaleY(6);
-                headning.setTranslateX(650);
-                headning.setTranslateY(190);
                 Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
                 Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
-                //gc.drawImage(backgrounds,0,0);
-
-                textFields.setLayoutX(150);
-                textFields.setLayoutY(280);
-                textFields.setPrefRowCount(5);
-                textFields.setPrefColumnCount(6);
-                textFields.setWrapText(true);
-                textFields.setMinSize(1125,200);
                 Pane roots = new Pane();
-                BackgroundImage bi = new BackgroundImage(backgrounds,
-                        BackgroundRepeat.NO_REPEAT,
-                        BackgroundRepeat.NO_REPEAT,
-                        BackgroundPosition.DEFAULT,
-                        BackgroundSize.DEFAULT);
-                Background bg = new Background(bi);
+            BackgroundImage bi = new BackgroundImage(backgrounds,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+            Background bg = new Background(bi);
                 roots.setBackground(bg);
                 roots.getChildren().addAll(canvas,textFields,button,headning);
                 Scene scene = new Scene(roots,1400,750);
                 primaryStage.setScene(scene);
-                //primaryStage.setFullScreen(true);
                 primaryStage.show();
 
             button.setOnAction(action -> {
-                Operations operations = new Operations();
-
-                OperationsBangla operationsBangla = new OperationsBangla();
-
-                operationsBangla.splitInputBangla();
-                String inputStringBan = "";
-                ArrayList<String> inListBan = new ArrayList<String>();//to store the input words
-                String[] inArray = new String[10000];
-                String[] inArray2 = new String[10000];
-
-
-                BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-                Dictionary dictionary = null;
-                try {
-                    dictionary = new Dictionary("isrc/spl1/Translaton.txt");
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-
-
-                //     while ((inputStringBan = in.readLine()) != null) {
-                //     while (nameInput.getText() != null) {
-
-                // operations.splitInput(inputStringBan);
-                //     if (inputStringBan.contains("###")) break;
-                //     if( nameInput.getText().contains("###") )break;
-                inArray = textFields.getText().split("[ ,/;>.*'|\"(){+></@$%^&_=}]", 0);
-
-                for (int j = 0; j < inArray.length; j++) {
-                    //    System.out.println("askdas");
-                    inArray2[j] = operationsBangla.searchBan(inArray[j]);
-                    //    System.out.print("Bangla Language is ###################"+inArray2[j] + " ");
-                }
-                String inp = "";
-                for (int j = 0; j < inArray.length; j++) {
-
-
-                    inArray2[j] = dictionary.search(inArray[j]);
-                    //  inListBan.add(inArray2[j]);
-
-                    //   System.out.print(inArray2[4]+" ");
-
-                    inp = inp + inArray2[j] + " ";
-
-
-                }
-
-
-                //        System.out.println("\n\n\nTotal input in Bilingual is :"+inp);
-                try {
-                    operations.splitInput(inp);
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
-
-                try {
-                    operations.removeWord();
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
-                operations.search();
+                lang.NaturalLanguageProcessing(textFields);
                 texts=textFields.getText();
 
-
-
-
-                //     System.out.println("\n"+textFields.getText());
             });
 
         } catch (Exception excep) {
@@ -157,12 +91,11 @@ public class biLingual {
 
  public   biLingual(Stage primaryStage,String Name)
     {
+        Language lang=new Language();
         this.Name=Name;
-
-
         try {
 
-            TextArea textFields = new TextArea();
+            TextArea textFields = txtarea();
             Image Ab = new Image(new FileInputStream("src/Pictures/enter.png"));
             ImageView about = new ImageView(Ab);
             Button button = new Button(null,about);
@@ -171,25 +104,14 @@ public class biLingual {
             button.setTranslateX(580);
             button.setTranslateY(520);
 
-                Text headning = new Text("TEXT INPUT");
-                headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 11));
-                headning.setFill(Color.WHITE);
-                headning.setScaleX(6);
-                headning.setScaleY(6);
-                headning.setTranslateX(700);
-                headning.setTranslateY(190);
+                Text headning = textAtt();
                 Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
                 Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);
 
 
-                textFields.setLayoutX(150);
-                textFields.setLayoutY(280);
-                textFields.setPrefRowCount(5);
-                textFields.setPrefColumnCount(6);
-                textFields.setWrapText(true);
-                textFields.setMinSize(1025,200);
+
                 Pane roots = new Pane();
                 BackgroundImage bi = new BackgroundImage(backgrounds,
                         BackgroundRepeat.NO_REPEAT,
@@ -206,52 +128,7 @@ public class biLingual {
 
 
             button.setOnAction(action -> {
-                Operations operations = new Operations();
-
-                OperationsBangla operationsBangla = new OperationsBangla();
-
-                operationsBangla.splitInputBangla();
-                String inputStringBan = "";
-                ArrayList<String> inListBan = new ArrayList<String>();//to store the input words
-                String[] inArray = new String[10000];
-                String[] inArray2 = new String[10000];
-
-
-                BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-                Dictionary dictionary = null;
-                try {
-                    dictionary = new Dictionary("isrc/spl1/Translaton.txt");
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-
-                inArray = textFields.getText().split("[ ,/;>.*'|\"(){+></@$%^&_=}]", 0);
-
-                for (int j = 0; j < inArray.length; j++) {
-                    //    System.out.println("askdas");
-                    inArray2[j] = operationsBangla.searchBan(inArray[j]);
-                    //    System.out.print("Bangla Language is ###################"+inArray2[j] + " ");
-                }
-                String inp = "";
-                for (int j = 0; j < inArray.length; j++) {
-
-
-                    inArray2[j] = dictionary.search(inArray[j]);
-
-                    inp = inp + inArray2[j] + " ";
-                }
-                try {
-                    operations.splitInput(inp);
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
-
-                try {
-                    operations.removeWord();
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
-                operations.search();
+                lang.NaturalLanguageProcessing(textFields);
                 texts=textFields.getText();
                 EmotionCalculation emCal = new EmotionCalculation(Name);
                 try {
@@ -271,62 +148,40 @@ public class biLingual {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-
             });
 
         } catch (Exception excep) {
             excep.printStackTrace();
         }
-
-
     }
 
 public    biLingual(Stage primaryStage)
     {
+        Language lang=new Language();
         this.primaryStage=primaryStage;
         try {
             primaryStage.setTitle("Text Input");
-
-            TextArea textFields = new TextArea();
+            TextArea textFields =txtarea();
             Image Ab = new Image(new FileInputStream("src/Pictures/enter.png"));
             ImageView about = new ImageView(Ab);
             Button button = new Button(null,about);
             button.setBackground(null);
-
             button.setTranslateX(580);
             button.setTranslateY(520);
 
             try {
-                Text headning = new Text("TEXT INPUT");
-                headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 11));
-                headning.setFill(Color.WHITE);
-                headning.setScaleX(6);
-                headning.setScaleY(6);
-                headning.setTranslateX(650);
-                headning.setTranslateY(190);
+                Text headning =textAtt();
                 Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
                 Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
-                //gc.drawImage(backgrounds,0,0);
 
-                textFields.setLayoutX(150);
-                textFields.setLayoutY(280);
-                textFields.setPrefRowCount(5);
-                textFields.setPrefColumnCount(6);
-                textFields.setWrapText(true);
-                textFields.setMinSize(1125,200);
                 Pane roots = new Pane();
-                BackgroundImage bi = new BackgroundImage(backgrounds,
-                        BackgroundRepeat.NO_REPEAT,
-                        BackgroundRepeat.NO_REPEAT,
-                        BackgroundPosition.DEFAULT,
-                        BackgroundSize.DEFAULT);
+                BackgroundImage bi = new BackgroundImage(backgrounds, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
                 Background bg = new Background(bi);
                 roots.setBackground(bg);
                 roots.getChildren().addAll(canvas,textFields,button,headning);
                 Scene scene = new Scene(roots,1400,750);
                 primaryStage.setScene(scene);
-                //primaryStage.setFullScreen(true);
                 primaryStage.show();
             }catch (Exception ex)
             {
@@ -334,89 +189,24 @@ public    biLingual(Stage primaryStage)
             }
 
             button.setOnAction(action -> {
-                Operations operations = new Operations();
-
-                OperationsBangla operationsBangla = new OperationsBangla();
-
-                operationsBangla.splitInputBangla();
-                String inputStringBan = "";
-                ArrayList<String> inListBan = new ArrayList<String>();//to store the input words
-                String[] inArray = new String[10000];
-                String[] inArray2 = new String[10000];
-
-
-                BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-                Dictionary dictionary = null;
-                try {
-                    dictionary = new Dictionary("isrc/spl1/Translaton.txt");
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-                inArray = textFields.getText().split("[ ,/;>.*'|\"(){+></@$%^&_=}]", 0);
-
-                for (int j = 0; j < inArray.length; j++) {
-                    inArray2[j] = operationsBangla.searchBan(inArray[j]);                }
-                String inp = "";
-                for (int j = 0; j < inArray.length; j++) {
-
-
-                    inArray2[j] = dictionary.search(inArray[j]);
-                    inp = inp + inArray2[j] + " ";
-
-
-                }
-                try {
-                    operations.splitInput(inp);
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
-
-                try {
-                    operations.removeWord();
-                } catch (FileNotFoundException ex) {
-                    ex.printStackTrace();
-                }
-                operations.search();
+                lang.NaturalLanguageProcessing(textFields);
                 texts=textFields.getText();
                 EmotionCalculation emCal = new EmotionCalculation();
                 try {
                     emCal.searchEmotion();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-                try {
                     emCal.emotionCalc(primaryStage);
                     if(Name!=null)
                         emCal.DataOutputStreamProf();
-                } catch (Exception ex) {
+                        emCal.VisualOutput(primaryStage,texts);
+                } catch (IOException ex) {
                     ex.printStackTrace();
-                }
-                try {
-                    emCal.VisualOutput(primaryStage,texts);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             });
 
         } catch (Exception excep) {
             excep.printStackTrace();
         }
-    }
-
-    public Button setStyle ( Button b)
-    {
-        b.setStyle("-fx-background-color: \n" +
-                "        linear-gradient(\t#FFFFFF, \t#FFFFFF),\n" +
-                "        linear-gradient(#FFFFFF, #FFFFFF),\n" +
-                "        linear-gradient(\t#FFFFFF, #efaa22),\n" +
-                "        linear-gradient(#ffe657 0%, #3CF53C 50%, #1ED71E 100%),\n" +
-                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
-                "    -fx-background-radius: 30;\n" +
-                "    -fx-background-insets: 0,1,2,3,0;\n" +
-                "    -fx-text-fill: #654b00;\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 2.1em;\n" +
-                "    -fx-padding: 10 20 10 20;");
-        return b;
     }
 }

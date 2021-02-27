@@ -1,0 +1,6 @@
+Emotion Detection API can accurately detect the emotion from any textual data.
+People voice their opinion, feedback and reviews on social media, blogs and forums.
+Marketers and customer support can leverage the power of Emotion Detection to read and analyze emotions attached with the textual data.
+
+Sometimes the three classes of sentiment (positive, negative and neutral) are not sufficient to understand the nuances regarding the underlying tone of a sentence.
+Our Emotion Analysis classifier is trained on our proprietary dataset and tells whether the underlying emotion behind a message is: Happy, Sad, Angry, Fearful, Excited or Bored.

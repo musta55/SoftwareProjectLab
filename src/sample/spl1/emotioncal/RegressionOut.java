@@ -64,10 +64,6 @@ public class RegressionOut {
 
         });
 
-
-
-
-
         LinearRegression lr=   new LinearRegression(a,b);
         System.out.println("Linear Regression is :"+ lr.toString());
 
