@@ -3,6 +3,7 @@ package sample.spl1;
 
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
+import com.restfb.Version;
 import javafx.scene.Scene;
 
 import javafx.scene.control.Button;
@@ -16,17 +17,17 @@ import sample.spl1.login.RegistrationFrormApplication;
 import sample.spl1.visualOut.Progression;
 import sample.spl1.visualOut.overAll;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class fourthPage {
 
-    public void runs(Stage stages,String accessToken,String Name)
-    {
+    public void runs(Stage stages,String accessToken,String Name) throws FileNotFoundException {
 
         // String accessToken = "EAADoSRqMjgEBAAmg9aWgK5AvAjkFvZBvpn10r3kLzcbPmHkGlBWer1bsoBix7ZBceTCfZBIz4CTEjPVImS23NM0ZCMmeOxTz4ooS2wrt2ergNcdvTX6k83DnR8TCQfHnE70mVcfkAB0ssoCXT86qjfEWFCiWuX6obQhqvyCa6QZDZD";
         //  String accessToken="EAAMF6lCN2rABANG7fFJVwktoiJjKiZCDP7k1v4uZB48GRH1J2GCU1HAJMPc6389TS6EwTdp9ilfqZBZABNGobGhy3bH0zhYh5x2LQ55SicVEOtVmLO8poNvPVpZB3F3aSperHycu8VZAEQY4jfNxVsWrG7ZBZCP1L6bnYTvqrXb5EEIumHvpZBAFT79hR0r67ZCGoZD";
-        FacebookClient fbClient = new DefaultFacebookClient(accessToken);
+        FacebookClient fbClient = new DefaultFacebookClient(Version.getVersionFromString(accessToken));
         Button proa = new Button("Total Emotion");
         proa.setTranslateX(70);
         proa.setTranslateY(150);
@@ -76,12 +77,7 @@ public class fourthPage {
 
 
 
-        Button back = new Button("");
-        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
-        back.setTranslateX(0);
-        back.setTranslateY(340);
-        back.setPrefSize(1, 5);
-        back.setTextFill(Color.YELLOW);
+        Button back =getButton();
 
         application.setOnAction(e -> {
             try {
@@ -158,7 +154,8 @@ public class fourthPage {
         stages.setScene(scene);
         stages.setFullScreen(true);
         stages.show();
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/1x/emotion(16-9)-0-3.jpg").toString(), true);
+
+        Image background = new Image(new FileInputStream("src/Pictures/newbg.png"));
 
         BackgroundImage bi = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,
@@ -171,7 +168,16 @@ public class fourthPage {
         roots.getChildren().addAll(proa,progression,reaction,back,pro,application,others);
 
     }
-
+    public Button getButton() throws FileNotFoundException {
+        Image i = new Image(new FileInputStream("Pictures/backArrow - Copy.png"));
+        ImageView iv = new ImageView(i);
+        Button back = new Button("",iv);
+        back.setTranslateX(0);
+        back.setTranslateY(340);
+        back.setPrefSize(1, 5);
+        back.setTextFill(Color.YELLOW);
+        return back;
+    }
 
     public Button setStyle ( Button b)
     {

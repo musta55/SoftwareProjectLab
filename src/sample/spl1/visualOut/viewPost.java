@@ -3,6 +3,7 @@ package sample.spl1.visualOut;
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
+import com.restfb.Version;
 import com.restfb.types.Post;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;

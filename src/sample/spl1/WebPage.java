@@ -18,11 +18,21 @@ import org.jsoup.nodes.Document;
 import sample.spl1.emotioncal.EmotionCalculation;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
 public class WebPage {
-
+    public Button getButton() throws FileNotFoundException {
+        Image i = new Image(new FileInputStream("Pictures/backArrow - Copy.png"));
+        ImageView iv = new ImageView(i);
+        Button back = new Button("",iv);
+        back.setTranslateX(0);
+        back.setTranslateY(340);
+        back.setPrefSize(1, 5);
+        back.setTextFill(Color.YELLOW);
+        return back;
+    }
     public void web(Stage stage,String Name)
     {
 
@@ -40,12 +50,8 @@ public class WebPage {
             button.setTranslateY(520);
 
 
-            Button back = new Button("");
-            back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
-            back.setTranslateX(0);
-            back.setTranslateY(340);
-            back.setPrefSize(1, 5);
-            back.setTextFill(Color.YELLOW);
+            Button back =getButton();
+
             back.setOnAction(esb->{
                 try {
                     thirdPage tp=new thirdPage();
@@ -63,7 +69,8 @@ public class WebPage {
                 headning.setScaleY(6);
                 headning.setTranslateX(650);
                 headning.setTranslateY(190);
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+
+                Image backgrounds= new Image(new FileInputStream("src/Pictures/newbg.png"));
                 Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);

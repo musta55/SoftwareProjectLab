@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import sample.spl1.thirdPage;
 
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -33,8 +34,8 @@ public class RegistrationFrormApplication  {
         addUIControls(gridPane,stage);
         // Create a scene with registration form grid pane as the root node
         Scene scene = new Scene(gridPane, 1400, 750);
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
 
+        Image background = new Image(new FileInputStream("src/Pictures/newbg.png"));
         BackgroundImage bi = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,

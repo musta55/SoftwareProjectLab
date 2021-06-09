@@ -34,7 +34,8 @@ public class Bengali {
             try {
 
                 Text headning =  lang.textAtt();
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+
+                Image backgrounds = new Image(new FileInputStream("src/Pictures/newbg.png"));
                 Canvas canvas = new Canvas(1600,900);
                 Pane roots = new Pane();
                 BackgroundImage bi = new BackgroundImage(backgrounds,BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);

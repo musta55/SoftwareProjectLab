@@ -274,14 +274,9 @@ else
 
     public void VisualProfile(double[] em,String text,double[] personalityTest,String accessToken) throws FileNotFoundException {
 
-        Button back = new Button("");
-        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
-        back.setTranslateX(10);
-        back.setTranslateY(150);
-        back.setPrefSize(1, 5);
-        back.setTextFill(Color.YELLOW);
+        Button back = getButton();
 
-     Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+        Image background = new Image(new FileInputStream("src/Pictures/newbg.png"));
         Pane root = new Pane();
         back.setOnAction(e -> {
             try {
@@ -388,8 +383,17 @@ else
         stage.show();
 
     }
-
-    public void IndividualVisualProfile(double[] em,double[] em2,double[] em3) {
+    public Button getButton() throws FileNotFoundException {
+        Image i = new Image(new FileInputStream("Pictures/backArrow - Copy.png"));
+        ImageView iv = new ImageView(i);
+        Button back = new Button("",iv);
+        back.setTranslateX(0);
+        back.setTranslateY(340);
+        back.setPrefSize(1, 5);
+        back.setTextFill(Color.YELLOW);
+        return back;
+    }
+    public void IndividualVisualProfile(double[] em,double[] em2,double[] em3) throws FileNotFoundException {
         Text headning = new Text("Article");
         headning.setScaleX(2);
         headning.setScaleY(2);
@@ -415,14 +419,9 @@ else
         headning.setFill(Color.rgb(150, 170, 130 ));
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 14));
 
-        Button back = new Button("");
-        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
-        back.setTranslateX(0);
-        back.setTranslateY(340);
-        back.setPrefSize(1, 5);
-        back.setTextFill(Color.YELLOW);
+        Button back =getButton();
 
-      Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+        Image background = new Image(new FileInputStream("src/Pictures/newbg.png"));
         Pane root = new Pane();
         back.setOnAction(e -> {
             try {

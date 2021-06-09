@@ -9,6 +9,8 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.FileInputStream;
+
 public class loginOrReg {
 
     public void logOrReg() throws Exception {
@@ -26,7 +28,7 @@ public class loginOrReg {
 
         headning.setCache(true);
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+        Image background = new Image(new FileInputStream("src/Pictures/newbg.png"));
 
         BackgroundImage bi = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,

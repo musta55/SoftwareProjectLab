@@ -3,6 +3,7 @@ package sample.spl1.visualOut;
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
+import com.restfb.Version;
 import com.restfb.types.Post;
 import javafx.stage.Stage;
 import sample.spl1.Dictionary;
@@ -29,7 +30,7 @@ public class Progression {
 
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         Connection<Post> result;
-        result = fbClient. fetchConnection("me/feed", Post.class);
+        result = fbClient.fetchConnection("me/feed", Post.class);
 
         for (List<Post> apost : result) {
             for (Post aPost : apost) {

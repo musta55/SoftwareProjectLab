@@ -17,6 +17,7 @@ import javafx.stage.Window;
 import sample.spl1.thirdPage;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -32,8 +33,8 @@ public class logIn {
             UIControls(gridPane,stage);
             // Create a scene with registration form grid pane as the root node
             Scene scene = new Scene(gridPane, 1402, 752);
-            Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
 
+            Image background = new Image(new FileInputStream("src/Pictures/newbg.png"));
 
 
 
@@ -174,8 +175,8 @@ public class logIn {
 
                 String name =nameField.getText()+passwordField.getText()+".txt";
 
-                System.out.println("file name"+name);
-                String directory = "C:\\Users\\User\\IdeaProjects\\SoftwareProjectLab";
+                System.out.println("file name "+name);
+                String directory = "C:\\Users\\SAKIB\\IdeaProjects\\SoftwareProjectLab";
 
                                       if( findFile(name,new File(directory))==0)
                                       {

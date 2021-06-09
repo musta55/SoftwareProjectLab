@@ -1,6 +1,9 @@
 <component name="ArtifactManager">
   <artifact type="javafx" name="SoftwareProjectLab:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/SoftwareProjectLab_jar</output-path>
+    <properties id="ant-preprocessing">
+      <options enabled="true" />
+    </properties>
     <properties id="javafx-properties">
       <options>
         <option name="appClass" value="Main" />

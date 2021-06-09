@@ -21,10 +21,10 @@ import java.io.IOException;
 
 public class secondPage {
 
-    public Button getButton()
-    {
-        Button back = new Button("");
-        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+    public Button getButton() throws FileNotFoundException {
+        Image i = new Image(new FileInputStream("Pictures/backArrow - Copy.png"));
+        ImageView iv = new ImageView(i);
+        Button back = new Button("",iv);
         back.setTranslateX(0);
         back.setTranslateY(340);
         back.setPrefSize(1, 5);
@@ -47,24 +47,24 @@ public class secondPage {
 
         Image Ab2 = null;
 
-            Ab2 = new Image(new FileInputStream("src/Pictures/app.png"));
-            ImageView about2 = new ImageView(Ab2);
-            Button application = new Button(null, about2);
-            application.setBackground(null);
+        Ab2 = new Image(new FileInputStream("src/Pictures/app.png"));
+        ImageView about2 = new ImageView(Ab2);
+        Button application = new Button(null, about2);
+        application.setBackground(null);
 
-            application.setTranslateX(500);
-            application.setTranslateY(520);
+        application.setTranslateX(500);
+        application.setTranslateY(520);
 
-            application.setOnAction(e -> {
+        application.setOnAction(e -> {
 
-                logIn log = new logIn();
-                try {
-                    log.login(stage);
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
+            logIn log = new logIn();
+            try {
+                log.login(stage);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
 
-            });
+        });
 
 
 
@@ -78,75 +78,75 @@ public class secondPage {
         other.setTranslateX(500);
         other.setTranslateY(320);
 
-            Button back = getButton();
+        Button back = getButton();
 
 
-            other.setOnAction(e -> {
+        other.setOnAction(e -> {
 
-                try {
+            try {
 //                    HelloWorld hl=new HelloWorld();
 //                    hl.speech(stage);
 
-                   aboutLogic al=new aboutLogic();
-                   al.aboutlogic(stage);
+                aboutLogic al=new aboutLogic();
+                al.aboutlogic(stage);
 
-                } catch (Exception excep) {
-                    excep.printStackTrace();
-                }
-            });
+            } catch (Exception excep) {
+                excep.printStackTrace();
+            }
+        });
 
-            Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
-            Pane root = new Pane();
+        Image background = new Image(new FileInputStream("src/Pictures/newbg.png"));
+        Pane root = new Pane();
 
-         root.getChildren().addAll(back, pro, application,other);
-            int scroll=0;
+        root.getChildren().addAll(back, pro, application,other);
+        int scroll=0;
 
-    pro.setOnMouseEntered(e->{
-    try {
-        experimentDescription ex=new experimentDescription();
-        ex.experimentdescription();
+        pro.setOnMouseEntered(e->{
+            try {
+                experimentDescription ex=new experimentDescription();
+                ex.experimentdescription();
 
-    } catch (Exception excep) {
-        excep.printStackTrace();
+            } catch (Exception excep) {
+                excep.printStackTrace();
+            }
+        });
+
+
+        pro.setOnAction(e -> {
+            try {
+                Language PMenu = new Language();
+                PMenu.TheThird(stage);
+            } catch (Exception excep) {
+                excep.printStackTrace();
+            }
+        });
+
+        back.setOnAction(e -> {
+            try {
+                Main goBack = new Main();
+                goBack.start(stage);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        Canvas canvas = new Canvas(1400, 750);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.drawImage(background, 0, 0);
+        BackgroundImage bi = new BackgroundImage(background,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        Background bg = new Background(bi);
+        root.setBackground(bg);
+
+
+        Scene scene = new Scene(root, 1408, 752);
+        stage.setScene(scene);
+        //stage.setFullScreen(true);
+        stage.show();
     }
-});
-
-
-            pro.setOnAction(e -> {
-                try {
-                    Language PMenu = new Language();
-                    PMenu.TheThird(stage);
-                } catch (Exception excep) {
-                    excep.printStackTrace();
-                }
-            });
-
-            back.setOnAction(e -> {
-                try {
-                    Main goBack = new Main();
-                    goBack.start(stage);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            });
-
-            Canvas canvas = new Canvas(1400, 750);
-            GraphicsContext gc = canvas.getGraphicsContext2D();
-            gc.drawImage(background, 0, 0);
-            BackgroundImage bi = new BackgroundImage(background,
-                    BackgroundRepeat.NO_REPEAT,
-                    BackgroundRepeat.NO_REPEAT,
-                    BackgroundPosition.DEFAULT,
-                    BackgroundSize.DEFAULT);
-            Background bg = new Background(bi);
-            root.setBackground(bg);
-
-
-            Scene scene = new Scene(root, 1408, 752);
-            stage.setScene(scene);
-            //stage.setFullScreen(true);
-            stage.show();
-        }
 
 
 

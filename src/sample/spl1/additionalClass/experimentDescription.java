@@ -12,6 +12,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.FileInputStream;
+
 public class experimentDescription {
 
 
@@ -30,7 +32,8 @@ public class experimentDescription {
 
         headning.setCache(true);
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/rectangle.png").toString(), true);
+
+        Image background = new Image(new FileInputStream("src/Pictures/rectangle.png"));
 
         BackgroundImage bi = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,

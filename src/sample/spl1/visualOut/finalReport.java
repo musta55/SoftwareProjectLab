@@ -15,6 +15,7 @@ import sample.spl1.AnalysisPage;
 import sample.spl1.emotioncal.EmotionCalculation;
 import sample.spl1.emotioncal.EmotionProfile;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 
@@ -27,7 +28,7 @@ public class finalReport {
 
     private final double finalTempTotal;
     private String Name;
-    public finalReport(Stage stage,String accessToken,double[] sentimentTot,double finalTempTotal,String Name){
+    public finalReport(Stage stage,String accessToken,double[] sentimentTot,double finalTempTotal,String Name) throws FileNotFoundException {
         this.stage=stage;
         this.accessToken=accessToken;
         this.finalTempTotal=finalTempTotal;
@@ -37,7 +38,7 @@ public class finalReport {
 
     }
 
-    public finalReport(Stage stage,String accessToken,double[] sentimentTot,double finalTempTotal){
+    public finalReport(Stage stage,String accessToken,double[] sentimentTot,double finalTempTotal) throws FileNotFoundException {
         this.stage=stage;
         this.accessToken=accessToken;
         this.finalTempTotal=finalTempTotal;
@@ -45,10 +46,21 @@ public class finalReport {
         finalreport();
 
     }
-    private void finalreport() {
+    public Button getButton() throws FileNotFoundException {
+        Image i = new Image(new FileInputStream("Pictures/backArrow.png"));
+        ImageView iv = new ImageView(i);
+        Button back = new Button("",iv);
+        back.setTranslateX(0);
+        back.setTranslateY(340);
+        back.setPrefSize(1, 5);
+        back.setTextFill(Color.YELLOW);
+        return back;
+    }
+    private void finalreport() throws FileNotFoundException {
 
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/wheel.png").toString(), true);
+
+        Image background = new Image(new FileInputStream("src/Pictures/wheel.png"));
 
 
         BackgroundImage bi = new BackgroundImage(background,
@@ -61,8 +73,10 @@ public class finalReport {
         roota.setBackground(bg);
 
 
-        Button backa = new Button("");
-        backa.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+
+        Image i = new Image(new FileInputStream("Pictures/backArrow - Copy.png"));
+        ImageView iv = new ImageView(i);
+        Button backa = new Button("",iv);
         backa.setTranslateX(0);
         backa.setTranslateY(340);
         backa.setPrefSize(1, 5);
@@ -438,8 +452,8 @@ public class finalReport {
         barChart.setAnimated(false);
 
 
-        Button next = new Button();
-        next.setGraphic(new ImageView("Pictures/backArrow.png"));
+        Button next =getButton();
+
         next.setTranslateX(1290);
         next.setTranslateY(340);
         next.setPrefSize(1, 5);

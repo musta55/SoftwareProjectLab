@@ -34,6 +34,7 @@ public class accessToken {
             TextArea textFields = new TextArea();
 
             Image Ab = new Image(new FileInputStream("src/Pictures/enter.png"));
+
             ImageView about = new ImageView(Ab);
             Button button = new Button(null, about);
             button.setBackground(null);
@@ -49,7 +50,8 @@ public class accessToken {
                 headning.setScaleY(6);
                 headning.setTranslateX(650);
                 headning.setTranslateY(250);
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+
+                Image backgrounds = new Image(new FileInputStream("src/Pictures/newbg.png"));
                 Canvas canvas = new Canvas(1600, 900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);

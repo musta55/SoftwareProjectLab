@@ -17,6 +17,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+import static sample.spl1.visualOut.visualoutputfb.getButton;
+
 public class FuzzyController {
   // private FuzzyFrame frame;
     private final FuzzyVariable POW;
@@ -578,8 +580,8 @@ public class FuzzyController {
         }
 
 
-        Button back = new Button("");
-        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+        Button back = getButton();
+
         back.setTranslateX(10);
         back.setTranslateY(250);
         back.setPrefSize(1, 5);

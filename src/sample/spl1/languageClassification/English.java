@@ -61,7 +61,7 @@ public class English {
             }); try {
                 Text headning = lang.textAtt();
 
-                Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+                Image backgrounds = new Image(new FileInputStream("src/Pictures/newbg.png"));
                 Canvas canvas = new Canvas(1400,750);
 
                 Pane roots = new Pane();

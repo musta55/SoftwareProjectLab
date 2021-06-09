@@ -10,13 +10,16 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sample.spl1.Main;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 public class person {
 
 
-    public Button getButton()
-    {
-        Button back = new Button("");
-        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+    public Button getButton() throws FileNotFoundException {
+        Image i = new Image(new FileInputStream("Pictures/backArrow - Copy.png"));
+        ImageView iv = new ImageView(i);
+        Button back = new Button("",iv);
         back.setTranslateX(0);
         back.setTranslateY(340);
         back.setPrefSize(1, 5);
@@ -24,12 +27,11 @@ public class person {
         return back;
     }
 
-    public void Person(Stage stage)
-    {
+    public void Person(Stage stage) throws FileNotFoundException {
 
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/personal.png").toString(), true);
 
+        Image background = new Image(new FileInputStream("src/Pictures/personal.png"));
 
         Button back = getButton();
         BackgroundImage bi = new BackgroundImage(background,

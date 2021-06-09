@@ -490,7 +490,16 @@ public class EmotionCalculation {
         }
 
     }
-
+    public Button getButton() throws FileNotFoundException {
+        Image i = new Image(new FileInputStream("Pictures/backArrow - Copy.png"));
+        ImageView iv = new ImageView(i);
+        Button back = new Button("",iv);
+        back.setTranslateX(0);
+        back.setTranslateY(340);
+        back.setPrefSize(1, 5);
+        back.setTextFill(Color.YELLOW);
+        return back;
+    }
 
     PieChart pieChart(double []value)
     {
@@ -543,15 +552,11 @@ public class EmotionCalculation {
 
 
 
-        Button back = new Button("");
+        Button back = getButton();
 
-        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
-        back.setTranslateX(0);
-        back.setTranslateY(340);
-        back.setPrefSize(1, 5);
-        back.setTextFill(Color.YELLOW);
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+
+        Image background = new Image(new FileInputStream("src/Pictures/newbg.png"));
         Pane root = new Pane();
         back.setOnAction(e -> {
             try {
@@ -697,18 +702,13 @@ public class EmotionCalculation {
         headning.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 17));
 
 
-        Button backs = new Button("");
-
-        backs.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
-        backs.setTranslateX(0);
-        backs.setTranslateY(340);
-        backs.setPrefSize(1, 5);
-        backs.setTextFill(Color.YELLOW);
+        Button backs = getButton();
 
 
 
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+
+        Image background = new Image(new FileInputStream("src/Pictures/newbg.png"));
         Pane root = new Pane();
         backs.setOnAction(e -> {
             try {
@@ -846,10 +846,9 @@ public class EmotionCalculation {
 
     }
 
-    public void VisualOutputPred(Stage stage, String accessToken, String Name,double[]a, double[]b)  {
+    public void VisualOutputPred(Stage stage, String accessToken, String Name,double[]a, double[]b) throws FileNotFoundException {
 
-        Button back = new Button("");
-        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+        Button back =getButton();
         back.setTranslateX(0);
         back.setTranslateY(340);
         back.setPrefSize(1, 5);
@@ -969,7 +968,7 @@ public class EmotionCalculation {
         Scene scene = new Scene(root, 1400, 750);
 
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+        Image background = new Image(new FileInputStream("src/Pictures/newbg.png"));
 
         BackgroundImage bi = new BackgroundImage(background,
                 BackgroundRepeat.NO_REPEAT,
@@ -1006,8 +1005,7 @@ public class EmotionCalculation {
 
 
 
-        Button back = new Button("");
-        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+        Button back=getButton();
         back.setTranslateX(10);
         back.setTranslateY(150);
         back.setPrefSize(1, 5);
@@ -1018,7 +1016,7 @@ public class EmotionCalculation {
 
         back.setTextFill(Color.WHITE);
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+        Image background = new Image(new FileInputStream("src/Pictures/newbg.png"));
         back.setOnAction(e -> {
             try {
                 firstPost  fp=new firstPost(accessToken);
@@ -1171,7 +1169,22 @@ barChart.setLayoutX(50);
         stage.show();
 
     }
-
+    public Button setStyle ( Button b)
+    {
+        b.setStyle("-fx-background-color: \n" +
+                "        linear-gradient(#ffd65b, #e68400),\n" +
+                "        linear-gradient(#ffef84, #f2ba44),\n" +
+                "        linear-gradient(#ffea6a, #efaa22),\n" +
+                "        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\n" +
+                "        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));\n" +
+                "    -fx-background-radius: 30;\n" +
+                "    -fx-background-insets: 0,1,2,3,0;\n" +
+                "    -fx-text-fill: #654b00;\n" +
+                "    -fx-font-weight: bold;\n" +
+                "    -fx-font-size: 2.1em;\n" +
+                "    -fx-padding: 10 20 10 20;");
+        return b;
+    }
 
 }
 

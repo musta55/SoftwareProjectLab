@@ -1,19 +1,7 @@
 <component name="libraryTable">
   <library name="Java-Speech-Recognizer-Tutorial--Calculator-master">
-    <CLASSES>
-      <root url="file://$PROJECT_DIR$/../Java-Speech-Recognizer-Tutorial--Calculator-master" />
-    </CLASSES>
+    <CLASSES />
     <JAVADOC />
-    <SOURCES>
-      <root url="file://$PROJECT_DIR$/../Java-Speech-Recognizer-Tutorial--Calculator-master/!!New Specific Tutorial For JavaFX/!/!/src" />
-      <root url="file://$PROJECT_DIR$/../Java-Speech-Recognizer-Tutorial--Calculator-master/Tutorial 1.1 Hindi LanguageTutorial/src" />
-      <root url="file://$PROJECT_DIR$/../Java-Speech-Recognizer-Tutorial--Calculator-master/Tutorial 1.2 Italian LanguageTutorial/src" />
-      <root url="file://$PROJECT_DIR$/../Java-Speech-Recognizer-Tutorial--Calculator-master/Tutorial 1.3 GERMAN LanguageTutorial/src" />
-      <root url="file://$PROJECT_DIR$/../Java-Speech-Recognizer-Tutorial--Calculator-master/Tutorial 1/src" />
-      <root url="file://$PROJECT_DIR$/../Java-Speech-Recognizer-Tutorial--Calculator-master/Tutorial 2/src" />
-      <root url="file://$PROJECT_DIR$/../Java-Speech-Recognizer-Tutorial--Calculator-master/Tutorial 3/src" />
-      <root url="file://$PROJECT_DIR$/../Java-Speech-Recognizer-Tutorial--Calculator-master/Tutorial 4/src" />
-      <root url="file://$PROJECT_DIR$/../Java-Speech-Recognizer-Tutorial--Calculator-master/javaSpeech1/src" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>

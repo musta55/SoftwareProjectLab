@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="restfb-1.18.1">
+  <library name="restfb-3.18.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Downloads/restfb-1.18.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/restfb-3.18.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

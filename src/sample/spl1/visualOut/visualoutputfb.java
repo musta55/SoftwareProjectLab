@@ -80,7 +80,17 @@ public class visualoutputfb {
         tempTotal /= 10;
         return sentimentTot;
     }
-    public static void VisualOutputFacebook(Stage stage, String accessToken,String Name) throws FileNotFoundException {
+    public static Button getButton() throws FileNotFoundException {
+        Image i = new Image(new FileInputStream("Pictures/backArrow - Copy.png"));
+        ImageView iv = new ImageView(i);
+        Button back = new Button("",iv);
+        back.setTranslateX(0);
+        back.setTranslateY(340);
+        back.setPrefSize(1, 5);
+        back.setTextFill(Color.YELLOW);
+        return back;
+    }
+    public static void VisualOutputFacebook(Stage stage, String accessToken, String Name) throws FileNotFoundException {
 
         DecimalFormat df = new DecimalFormat("0.00");
         Scanner scan;
@@ -110,7 +120,8 @@ public class visualoutputfb {
             }
         }
         Pane root = new Pane();
-        Image background = new Image(visualoutputfb.class.getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+        Image background = new Image(new FileInputStream("src/Pictures/newbg.png"));
+
         Canvas canvas = new Canvas(1400,750);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.drawImage(background,0,0);
@@ -131,12 +142,7 @@ public class visualoutputfb {
 
         // CategoryAxis xAxis = new CategoryAxis("Emotions\n"+"1.Joy\n"+"2.Surprise\n"+"3.Fear\n"+"4.Sadness\n"+"5.Trust\n"+"6.Disgust\n"+"7.anticipation\n"+"8.Disgust\n");
         NumberAxis yAxis = new NumberAxis("INTENSITY", 0, 100, 10);
-        Button back = new Button("");
-        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
-        back.setTranslateX(0);
-        back.setTranslateY(340);
-        back.setPrefSize(1, 5);
-        back.setTextFill(Color.YELLOW);
+        Button back = getButton();
 
         back.setOnAction(e -> {
             try {
@@ -166,8 +172,7 @@ public class visualoutputfb {
         more.setOnAction(e -> {
             try {
 
-                Button backs = new Button("");
-                backs.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+                Button backs =getButton();
                 backs.setTranslateX(0);
                 backs.setTranslateY(340);
                 backs.setPrefSize(1, 5);

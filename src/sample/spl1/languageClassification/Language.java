@@ -149,14 +149,15 @@ public class Language extends secondPage{
         eng.setTranslateX(380);
         eng.setTranslateY(400);
 
-        Button back = new Button("");
-        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+        Button back = getButton();
+
         back.setTranslateX(0);
         back.setTranslateY(340);
         back.setPrefSize(1, 5);
         back.setTextFill(Color.YELLOW);
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+
+        Image background = new Image(new FileInputStream("src/Pictures/newbg.png"));
         Pane root = new Pane();
         root.getChildren().addAll(eng,back,ab,abi,text);
         //       TextField nameInput=new TextField();

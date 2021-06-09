@@ -18,10 +18,11 @@ import java.io.FileNotFoundException;
 
 public class aboutLogic {
 
-    public Button getButton()
-    {
-        Button back = new Button("");
-        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+
+    public Button getButton() throws FileNotFoundException {
+        Image i = new Image(new FileInputStream("Pictures/backArrow - Copy.png"));
+        ImageView iv = new ImageView(i);
+        Button back = new Button("",iv);
         back.setTranslateX(0);
         back.setTranslateY(340);
         back.setPrefSize(1, 5);
@@ -54,7 +55,11 @@ public class aboutLogic {
 
         person.setOnAction(e -> {
     person per=new person();
-    per.Person(stage);
+            try {
+                per.Person(stage);
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
 
         });
 
@@ -87,7 +92,8 @@ public class aboutLogic {
             }
         });
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+
+        Image background = new Image(new FileInputStream("src/Pictures/newbg.png"));
         Pane root = new Pane();
 
         root.getChildren().addAll(back, algo, fuzzy,person);

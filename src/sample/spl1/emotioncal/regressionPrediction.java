@@ -48,7 +48,7 @@ public class regressionPrediction {
             headning.setScaleY(6);
             headning.setTranslateX(700);
             headning.setTranslateY(190);
-            Image backgrounds = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+            Image backgrounds = new Image(new FileInputStream("src/Pictures/newbg.png"));
             Canvas canvas = new Canvas(1600,900);
             GraphicsContext gc = canvas.getGraphicsContext2D();
             //gc.drawImage(backgrounds,0,0);

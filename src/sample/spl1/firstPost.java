@@ -3,6 +3,7 @@ package sample.spl1;
 import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
+import com.restfb.Version;
 import com.restfb.types.Post;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -123,8 +124,7 @@ public class firstPost {
 
 
 
-        Button back = new Button("");
-        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
+        Button back = getButton();
         back.setTranslateX(10);
         back.setTranslateY(250);
         back.setPrefSize(1, 5);
@@ -165,7 +165,8 @@ public class firstPost {
 
         stage.setTitle("FB Post No ");
         stat.getChildren().addAll(button,textField,headning,back,postNo);
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+
+        Image background = new Image(new FileInputStream("src/Pictures/newbg.png"));
 
 
 
@@ -182,6 +183,16 @@ public class firstPost {
         stage.setScene(scen);
         stage.show();
 
+    }
+    public Button getButton() throws FileNotFoundException {
+        Image i = new Image(new FileInputStream("Pictures/backArrow - Copy.png"));
+        ImageView iv = new ImageView(i);
+        Button back = new Button("",iv);
+        back.setTranslateX(0);
+        back.setTranslateY(340);
+        back.setPrefSize(1, 5);
+        back.setTextFill(Color.YELLOW);
+        return back;
     }
     public Button setStyle ( Button b)
     {

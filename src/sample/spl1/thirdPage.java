@@ -153,7 +153,8 @@ public class thirdPage extends secondPage{
 
 
 
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+        Image background = new Image(new FileInputStream("src/Pictures/newbg.png"));
+
         Pane root = new Pane();
 
         root.getChildren().addAll(socialMedia,back,article,liveUrl,analysis,text);

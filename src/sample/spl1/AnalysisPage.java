@@ -62,13 +62,7 @@ public class AnalysisPage {
         finalReport.setTranslateX(980);
         finalReport.setTranslateY(270);
 
-        Button back = new Button("");
-        back.setGraphic(new ImageView("Pictures/backArrow - Copy.png"));
-        back.setTranslateX(0);
-        back.setTranslateY(340);
-        back.setPrefSize(1, 5);
-        back.setTextFill(Color.YELLOW);
-
+        Button back = getButton();
 
 
 
@@ -87,11 +81,7 @@ public class AnalysisPage {
         });
 
 
-
-
-
-
-        Image background = new Image(getClass().getClassLoader().getResource("Pictures/newbg.png").toString(), true);
+        Image background = new Image(new FileInputStream("src/Pictures/newbg.png"));
         Pane root = new Pane();
 
         root.getChildren().addAll(visualization,back,reactionPrediction,finalReport);
@@ -142,7 +132,11 @@ public class AnalysisPage {
 
              double finalTempTotal=vf.tempTotal;
 
-            sample.spl1.visualOut.finalReport fr=new finalReport(stage,tok,sentimentTot,finalTempTotal,Name);
+            try {
+                sample.spl1.visualOut.finalReport fr=new finalReport(stage,tok,sentimentTot,finalTempTotal,Name);
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
         });
 
         Canvas canvas = new Canvas(1400,750);
@@ -160,6 +154,16 @@ public class AnalysisPage {
         stage.setScene(scene);
         stage.show();
 
+    }
+    public Button getButton() throws FileNotFoundException {
+        Image i = new Image(new FileInputStream("Pictures/backArrow - Copy.png"));
+        ImageView iv = new ImageView(i);
+        Button back = new Button("",iv);
+        back.setTranslateX(0);
+        back.setTranslateY(340);
+        back.setPrefSize(1, 5);
+        back.setTextFill(Color.YELLOW);
+        return back;
     }
     public Button setStyle ( Button b)
     {
