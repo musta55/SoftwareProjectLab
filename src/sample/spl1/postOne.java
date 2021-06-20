@@ -44,8 +44,8 @@ public class postOne {
         String userInput = null;
         EmotionCalculation emCal = new EmotionCalculation();
         try{
-            File file=new File(Name);
-            emCal.fileOpen(file);
+//            File file=new File(Name);
+            emCal.fileOpen(Name);
         }catch(Exception e)
         {
             File file=new File(Name);

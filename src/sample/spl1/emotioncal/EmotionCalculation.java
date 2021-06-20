@@ -388,10 +388,7 @@ public class EmotionCalculation {
 
 
 
-
-
-
-//     DataOutputStream();
+     //DataOutputStream(Names);
 
         // pieChartExample.start(Stage stage);
 
@@ -433,13 +430,13 @@ public class EmotionCalculation {
 
     }
 
-    public void fileOpen(  File myObj) {
+    public void fileOpen(  String Name) {
 
         try {
-//            File myObj = new File(Name);
+            File myObj = new File(Name);
 
 
-
+            myObj.createNewFile();
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
@@ -479,14 +476,30 @@ public class EmotionCalculation {
 
         String[] dbuf = {String.valueOf(JoyCal), String.valueOf(SurpriseCal), String.valueOf(FearCal), String.valueOf(SadnessCal), String.valueOf(TrustCal), String.valueOf(DisgustCal), String.valueOf(anticipationCal), String.valueOf(AngerCal)};
 
-        try {
-            Path path = Paths.get(Name);
+//        try {
+//            Path path = Paths.get(Name);
+//            String textToAppend = dbuf[0] + " " + dbuf[1] + " " + dbuf[2] + " " + dbuf[3] + " " + dbuf[4] + " " + dbuf[5] + " " + dbuf[6] + " " + dbuf[7] + " ";
+//            Files.write(path, textToAppend.getBytes(), StandardOpenOption.APPEND);
+//            System.out.println("Successfully wrote to the file 1st method."+Name);
+//        } catch (IOException e) {
+//            System.out.println("An error occurred.");
+//            e.printStackTrace();
+//        }
+
+        //Now edited 21/6/21
+
+        try
+        {
+            FileWriter fw = new FileWriter(Name,true); //the true will append the new data
+            System.out.println("Fb file e write kora hocche  using 2nd method"+Name);
             String textToAppend = dbuf[0] + " " + dbuf[1] + " " + dbuf[2] + " " + dbuf[3] + " " + dbuf[4] + " " + dbuf[5] + " " + dbuf[6] + " " + dbuf[7] + " ";
-            Files.write(path, textToAppend.getBytes(), StandardOpenOption.APPEND);
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+
+            fw.write(textToAppend+" ");
+            fw.close();
+        }
+        catch(IOException ioe)
+        {
+            System.err.println("IOException: " + ioe.getMessage());
         }
 
     }

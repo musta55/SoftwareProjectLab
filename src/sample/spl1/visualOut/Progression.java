@@ -32,15 +32,16 @@ public class Progression {
         Connection<Post> result;
         result = fbClient.fetchConnection("me/feed", Post.class);
 
+        EmotionCalculation emCal = new EmotionCalculation();
+        System.out.println("File create hoise emcal e");
+        emCal.fileOpen(Name);
         for (List<Post> apost : result) {
             for (Post aPost : apost) {
                 counter++;
                 if (counter >= 11) {
                     break;
                 }
-                EmotionCalculation emCal = new EmotionCalculation();
-                File file=new File(Name);
-                emCal.fileOpen(file);
+                emCal.fileOpen(Name);
 
                 System.out.println(aPost.getMessage());
 
@@ -76,7 +77,7 @@ public class Progression {
                     try {
                         Path path = Paths.get(Name+"date.txt");
                         Files.write(path, (Iterable<? extends CharSequence>) aPost.getCreatedTime(), StandardOpenOption.APPEND);
-                        System.out.println("Successfully wrote to the file.");
+                        System.out.println("Successfully wrote to the date file.");
                     } catch (IOException e) {
                         System.out.println("An error occurred.");
                         e.printStackTrace();

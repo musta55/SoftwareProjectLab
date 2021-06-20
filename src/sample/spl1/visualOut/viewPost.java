@@ -37,7 +37,7 @@ public class viewPost {
 
         Scene scene = new Scene(root,400,400);
         st.setScene(scene);
-        st.showAndWait();
+
 
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         Connection<Post> result;
@@ -63,5 +63,6 @@ public class viewPost {
         textArea.setMinSize(400, 400);
         textArea.setText(str);
         root.getChildren().add(textArea);
+        st.showAndWait();
     }
 }

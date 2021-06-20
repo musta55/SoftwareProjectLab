@@ -128,7 +128,7 @@ public class accessToken {
                     System.out.println("token er vitre name "+Name);
                     FileWriter myWriter = new FileWriter("token"+Name);
                     myWriter.write( textFields.getText());
-                   myWriter.close();
+                    myWriter.close();
                     System.out.println("Successfully wrote to the file.");
 
 

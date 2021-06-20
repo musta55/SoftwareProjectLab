@@ -50,6 +50,7 @@ public class EmotionProfile {
         Scanner scan;
         int m = 0;
         try {
+            System.out.println("Emotion profile e file name :"+file.toString());
             scan = new Scanner(file);
                 String currentLine = scan.nextLine();
                 String[] firstSplits = currentLine.split(" ", 0);
@@ -62,7 +63,7 @@ public class EmotionProfile {
                             System.out.print("i = "+m+ " "+fileData[m] + "          ");
                         }
                     } catch (Exception q) {
-                        System.out.println("File data input error");
+                        System.out.println("File data input error in Emotion Profile");
                     }
                     //     System.out.println("Value is " + out[m]);
                 }

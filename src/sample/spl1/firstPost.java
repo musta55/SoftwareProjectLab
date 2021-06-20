@@ -84,8 +84,8 @@ public class firstPost {
         EmotionCalculation emCal = new EmotionCalculation();
         try
         {
-            File file2=new File(Name);
-            emCal.fileOpen(file2);
+//            File file2=new File(Name);
+            emCal.fileOpen(Name);
 
         }catch (Exception e)
         {

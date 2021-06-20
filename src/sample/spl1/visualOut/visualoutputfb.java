@@ -33,8 +33,6 @@ public class visualoutputfb {
     public double[] outData( File file)
     {
 
-
-
         try {
             Scanner    scan = new Scanner(file);
 
@@ -93,22 +91,21 @@ public class visualoutputfb {
     public static void VisualOutputFacebook(Stage stage, String accessToken, String Name) throws FileNotFoundException {
 
         DecimalFormat df = new DecimalFormat("0.00");
-        Scanner scan;
         File file = null;
 
-
-        File fileTest = new File("C:\\Users\\Lenovo\\IdeaProjects\\SoftwareProjectLab");
-        for(String fileNames : fileTest.list()) System.out.println(fileNames);
+//
+//        File fileTest = new File("C:\\Users\\Lenovo\\IdeaProjects\\SoftwareProjectLab");
+//        for(String fileNames : fileTest.list()) System.out.println(fileNames);
 
         System.out.println("file name in fb "+Name);
         file = new File(Name);
-        scan = new Scanner(file);
+        Scanner scan2 = new Scanner(file);
         double[] out = new double[10000];
         int i = 0;
         int m = 0;
-        while (scan.hasNextLine()) {
+        while (scan2.hasNextLine()) {
             //
-            String currentLine = scan.nextLine();
+            String currentLine = scan2.nextLine();
             String[] firstSplits = currentLine.split(" ", 0);
             for (; m < firstSplits.length; m++) {
                 try {
