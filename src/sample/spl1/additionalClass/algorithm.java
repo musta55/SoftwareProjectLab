@@ -53,8 +53,8 @@ public class algorithm {
         root.getChildren().addAll(back);
         root.setBackground(bg);
         Scene scene = new Scene(root, 1200, 750);
-        stage.setX(400);
-        stage.setY(70);
+        stage.setX(100);
+        stage.setY(0);
         scene.setFill(Color.BLACK);
 
         stage.setScene(scene);

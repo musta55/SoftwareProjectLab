@@ -55,8 +55,8 @@ public class person {
         Pane root = new Pane();
         root.setBackground(bg);
         Scene scene = new Scene(root, 1200, 750);
-        stage.setX(400);
-        stage.setY(70);
+        stage.setX(100);
+        stage.setY(0);
         scene.setFill(Color.BLACK);
         root.getChildren().addAll(back);
 

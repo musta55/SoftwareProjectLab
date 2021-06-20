@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
@@ -20,7 +21,7 @@ public class viewPost {
     public void view(int number,String accessToken) throws FileNotFoundException {
 
         Stage st=new Stage();
-
+        st.initModality(Modality.APPLICATION_MODAL);
 
         Pane root = new Pane();
 
@@ -36,7 +37,7 @@ public class viewPost {
 
         Scene scene = new Scene(root,400,400);
         st.setScene(scene);
-        st.show();
+        st.showAndWait();
 
         FacebookClient fbClient = new DefaultFacebookClient(accessToken);
         Connection<Post> result;

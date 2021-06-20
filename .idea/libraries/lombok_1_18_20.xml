@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="restfb-1.18.0">
+  <library name="lombok-1.18.20">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Downloads/restfb-1.18.0.jar!/" />
+      <root url="jar://E:/SoftwareProjectLab/Library/lombok-1.18.20.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

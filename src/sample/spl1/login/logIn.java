@@ -105,6 +105,7 @@ public class logIn {
 
         // Add Name Text Field
         TextField nameField = new TextField();
+        nameField.setPromptText("Name");
         nameField.setPrefHeight(40);
         nameField.setPrefWidth(40);
         gridPane.add(nameField, 1,1);
@@ -120,6 +121,7 @@ public class logIn {
         PasswordField passwordField = new PasswordField();
         passwordField.setPrefHeight(40);
         passwordField.setPrefWidth(120);
+        passwordField.setPromptText("Password");
         gridPane.add(passwordField, 1, 3);
 
 
@@ -176,7 +178,8 @@ public class logIn {
                 String name =nameField.getText()+passwordField.getText()+".txt";
 
                 System.out.println("file name "+name);
-                String directory = "C:\\Users\\SAKIB\\IdeaProjects\\SoftwareProjectLab";
+                String directory = "C:\\Users\\Lenovo\\IdeaProjects\\SoftwareProjectLab";
+
 
                                       if( findFile(name,new File(directory))==0)
                                       {

@@ -101,8 +101,9 @@ public class RegistrationFrormApplication  {
 
         // Add Name Text Field
         TextField nameField = new TextField();
+        nameField.setPromptText("Name");
         nameField.setPrefHeight(40);
-        nameField.setPrefWidth(140);
+        nameField.setPrefWidth(80);
         gridPane.add(nameField, 1,2);
 
 
@@ -115,20 +116,23 @@ public class RegistrationFrormApplication  {
 
         // Add Email Text Field
         TextField emailField = new TextField();
+        emailField.setPromptText("Email");
         emailField.setPrefHeight(40);
-        emailField.setPrefWidth(140);
+        emailField.setPrefWidth(80);
         gridPane.add(emailField, 1, 4);
 
         // Add Password Label
         Label passwordLabel = new Label("Password : ");
+
         passwordLabel.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 20));
         passwordLabel.setTextFill(Color.BLACK);
         gridPane.add(passwordLabel, 0, 6);
 
         // Add Age Field
         PasswordField passwordField = new PasswordField();
+        passwordField.setPromptText("Password");
         passwordField.setPrefHeight(40);
-        passwordField.setPrefWidth(140);
+        passwordField.setPrefWidth(80);
         gridPane.add(passwordField, 1, 6);
 
 
@@ -141,8 +145,9 @@ public class RegistrationFrormApplication  {
 
         // Add Password Field
         TextField ageField = new TextField();
+        ageField.setPromptText("Age");
         ageField.setPrefHeight(40);
-        ageField.setPrefWidth(140);
+        ageField.setPrefWidth(80);
         gridPane.add(ageField, 1, 8);
 
 

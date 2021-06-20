@@ -97,6 +97,9 @@ public class visualoutputfb {
         File file = null;
 
 
+        File fileTest = new File("C:\\Users\\Lenovo\\IdeaProjects\\SoftwareProjectLab");
+        for(String fileNames : fileTest.list()) System.out.println(fileNames);
+
         System.out.println("file name in fb "+Name);
         file = new File(Name);
         scan = new Scanner(file);
