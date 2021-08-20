@@ -21,7 +21,7 @@ public class algorithm {
         ImageView iv = new ImageView(i);
         Button back = new Button("",iv);
         back.setTranslateX(0);
-        back.setTranslateY(340);
+        back.setTranslateY(390);
         back.setPrefSize(1, 5);
         back.setTextFill(Color.YELLOW);
         return back;
