@@ -117,7 +117,6 @@ public class WebPage {
                       t=t+text[i]+"\n";
                     }
 
-
                     System.out.println("  Title: " + t); //Print title.
                     operations.splitInput(t);
                     operations.removeWord();
@@ -125,12 +124,10 @@ public class WebPage {
 
 
                     EmotionCalculation emCal = new EmotionCalculation(Name);
+                    emCal.searchEmotion();
 
-
-                        emCal.searchEmotion();
-
-                        emCal.emotionCalc(stage);
-                        emCal.DataOutputStreamProf();
+                    emCal.emotionCalc(stage);
+                    emCal.DataOutputStreamProf();
 
                     emCal.VisualOutputProf(stage,t);
 

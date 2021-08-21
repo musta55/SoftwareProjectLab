@@ -39,7 +39,7 @@ public class English {
             button.setTranslateX(580);
             button.setTranslateY(520);
             button.setOnAction(action -> {
-
+                    // NLP
                 try {
                     operations.splitInput(textField.getText());         //Tokenization
                     operations.removeWord();                            //Stop word removal
@@ -49,6 +49,8 @@ public class English {
                 }
                 operations.search();                                    //Lemmatization
                 try {
+
+                    //Lexical Affinity Method
                     EmotionCalculation emCal = new EmotionCalculation();
                     emCal.searchEmotion();
                     emCal.emotionCalc(primaryStage);

@@ -6,32 +6,27 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import sample.spl1.firstPost;
 import sample.spl1.visualOut.LinearRegression;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+import static sample.spl1.visualOut.visualoutputfb.getButton;
+
+//To print the regression line
 public class RegressionOut {
 
-    public RegressionOut(Stage stage,String accessToken,String Name, double[] a, double[] b) {
+    public void Regressionout(Stage sge,String accessToken,String Name, double[] a, double[] b) throws FileNotFoundException {
 
-        Button back = new Button("Back");
-        back.setTranslateX(1100);
-        back.setTranslateY(650);
-        back.setStyle("-fx-padding: 8 15 15 15;\n" +
-                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                "    -fx-background-radius: 8;\n" +
-                "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
-                "        #8d9092,\n" +
-                "        #717375,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #ffffff, #a1a3a6);\n" +
-                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 1.1em;");
-        back.setPrefSize(60, 30);
+        Button back =getButton();
 
-        Image background = new Image(getClass().getClassLoader().getResource("emotionSide.png").toString(), true);
+          Pane stat = new Pane();
+        Stage stage =new Stage();
+
+
         back.setOnAction(e -> {
             try {
 
@@ -43,26 +38,6 @@ public class RegressionOut {
         });
 
 
-        Button prediction = new Button("prediction");
-        prediction.setTranslateX(1100);
-        prediction.setTranslateY(450);
-        prediction.setStyle("-fx-padding: 8 15 15 15;\n" +
-                "    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;\n" +
-                "    -fx-background-radius: 8;\n" +
-                "    -fx-background-color: \n" +
-                "        linear-gradient(from 0% 93% to 0% 100%, #8d9092 0%, #717375 100%),\n" +
-                "        #8d9092,\n" +
-                "        #717375,\n" +
-                "        radial-gradient(center 50% 50%, radius 100%, #ffffff, #a1a3a6);\n" +
-                "    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );\n" +
-                "    -fx-font-weight: bold;\n" +
-                "    -fx-font-size: 1.1em;");
-        prediction.setPrefSize(150, 40);
-
-        prediction.setOnAction(e -> {
-            RegressionOut ro=new RegressionOut(stage,accessToken,Name,a,b);
-
-        });
 
         LinearRegression lr=   new LinearRegression(a,b);
         System.out.println("Linear Regression is :"+ lr.toString());
@@ -89,16 +64,30 @@ public class RegressionOut {
         sc.setCreateSymbols(true);
 
         sc.getData().addAll(seriess2,seriess1);
-        sc.setPrefSize(1000, 700);
+        sc.setLayoutX(100);
+        sc.setLayoutY(100);
+        sc.setPrefSize(800, 500);
         Pane root = new Pane();
-        root.getChildren().addAll(sc,back,prediction);
-        Scene scene = new Scene(root, 2000, 900);
+
+        Image background = new Image(new FileInputStream("src/Pictures/newbg.png"));
+        BackgroundImage bi = new BackgroundImage(background,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        Background bg = new Background(bi);
+        root.setBackground(bg);
+
+
+        root.getChildren().addAll(sc,back);
+      //  Scene scen = new Scene(root, 2000, 900);
 
         //Setting title to the Stage
         stage.setTitle("Linear Regression");
+        Scene scen = new Scene(root, 950, 637);
 
         //Adding scene to the stage
-        stage.setScene(scene);
+        stage.setScene(scen);
 
         //Displaying the contents of the stage
         stage.show();

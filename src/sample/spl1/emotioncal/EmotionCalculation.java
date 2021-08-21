@@ -95,14 +95,11 @@ public class EmotionCalculation {
             while ((currentLine = br.readLine()) != null) {
 
                 String[] firstSplit = currentLine.split("\t", 0);
-                //  System.out.println(firstSplit[0]);
+
 
                 if (firstSplit[2].matches("1")) {
                     if (!(firstSplit[1].matches("positive"))) {
                         if (!(firstSplit[1].matches("negative"))) {
-                            //  System.out.println(firstSplit[0] + "\t" + firstSplit[1] );
-                            //     newDb.write(firstSplit[0] + "\t" + firstSplit[1] + "\n");
-
                             wordList.add(firstSplit[0]);
                             emotionList.add(firstSplit[1]);
                             p++;
@@ -282,8 +279,7 @@ public class EmotionCalculation {
                            System.out.println("else ");
                         System.out.print("Word :" + wordList.get(j) + " ");
                         System.out.print("Emotion :" + emotionList.get(j) + " ");
-                        //    fw.write(emotionList.get(j)+" ");
-                        //     System.out.println("normal");
+
                         if (emotionList.get(j).equalsIgnoreCase("joy")) Frequency[0] += 2;
                         if (emotionList.get(j).equalsIgnoreCase("surprise")) Frequency[1] += 3;
                         if (emotionList.get(j).equalsIgnoreCase("fear")) Frequency[2]++;
@@ -304,8 +300,7 @@ public class EmotionCalculation {
 //            }
 
             if (!found) {
-                //     System.out.print(outList.get(i) + " ");
-                //     System.out.print("Emotion : Neutral ");
+
             }
 
         }
@@ -1128,7 +1123,29 @@ barChart.setLayoutX(50);
         em[0]=JoyCal; em[1]=SurpriseCal; em[2]=AngerCal; em[3]=DisgustCal; em[4]=anticipationCal; em[5]=SadnessCal; em[6]=FearCal; em[7]=TrustCal;
 
 
+        Image Abs = null;
 
+        Abs = new Image(new FileInputStream("src/Pictures/tech7.PNG"));
+        ImageView aboutline = new ImageView(Abs);
+        Button line = new Button(null, aboutline);
+        line.setBackground(null);
+
+        line.setTranslateX(200);
+        line.setTranslateY(640);
+
+        line.setOnAction(e -> {
+            try {
+                try {
+                    RegressionOut ro=new RegressionOut();
+                    ro.Regressionout(stage,accessToken,Name,em,b);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
 
 
         regression.setOnAction(e -> {
@@ -1167,7 +1184,7 @@ barChart.setLayoutX(50);
 
 
         Pane root = new Pane();
-        root.getChildren().addAll(barChart,back,regression,textField,postNo);
+        root.getChildren().addAll(barChart,back,regression,textField,postNo,line);
 
         //Creating a scene object
         Scene scene = new Scene(root, 1408, 752);

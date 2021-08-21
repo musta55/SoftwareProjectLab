@@ -148,12 +148,6 @@ public class accessToken {
                     System.out.print("Access Token page e access Token : "+finalSt);
 
 
-
-
-
-
-
-
                 } catch (IOException e) {
                     System.out.println("An error occurred.");
                     e.printStackTrace();
@@ -166,8 +160,7 @@ public class accessToken {
         } catch (Exception excep) {
             excep.printStackTrace();
         }
-        return "EAADoSRqMjgEBAIfyZAZAZAh6ZCBmWJlduubOzRg9R6k4jhClsZCDcYFFSldrPVAnUZBSJAXvljFkdrpc9fWu9s4XZB92jZAzwZBr1SxTxThZC1n3nBa2sKVygH4t46k1XOX9YuxrtvxTDnQczq5iDwZBhdG06bZAgC9rWvewGhZCLdzNsZCgZDZD\n";
-    }
+        return "EAAMF6lCN2rABAKKZC9fE7WDoEG90nDuQVJ6XCHdz069H39NEQhNNFm1jo520R8PI1HNZB9amFlLUJ6rn9ukZBGhqZAU9MmbUxFwHkwl3h6ib8RWj9i1ZBxZA9utz7LloSIZBKGJ76lVlKStkG7D3M4zJ9FZAs2ZBVX5ermlwJkXzm17P0d4ZAr2wqG";   }
     public Button setStyle ( Button b)
     {
         b.setStyle("-fx-background-color: \n" +

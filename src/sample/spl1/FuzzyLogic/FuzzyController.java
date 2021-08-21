@@ -92,7 +92,6 @@ public class FuzzyController {
         fuzzySets2 = new ArrayList<>();
         fuzzySets2.add(new FuzzySet("The Thinker", 0.0,0.6));
         fuzzySets2.add(new FuzzySet("The Supporter",0.0 ,0.7));
-        //  fuzzySets2.add(new FuzzySet("Good", 0.0,0.8));
         fuzzySets2.add(new FuzzySet("The Socializer", 0.0, 0.8));
         fuzzySets2.add(new FuzzySet("The Director", 0.0,0.9));
 
@@ -115,8 +114,7 @@ public class FuzzyController {
         recEvaluate = REC.evaluate(rec);
         stabEvaluate = STAB.evaluate(stab);
 
-        //gpaEvaluatePrint();
-        //greEvaluatePrint();
+
 
         andOperatorRules();
         centroidDefuzz(stage,Name,accessToken);
@@ -314,7 +312,7 @@ public class FuzzyController {
 
         Text textstrng=new Text();
         textstrng.setFill(Color.WHITE);
-        textstrng.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.BOLD, 20));
+        textstrng.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 20));
         textstrng.setStyle("-fx-font-size: 20px;");
         textstrng.setX(540);
         textstrng.setY(300);
@@ -323,7 +321,7 @@ public class FuzzyController {
 
 
         textWeak.setFill(Color.WHITE);
-        textWeak.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.BOLD, 20));
+        textWeak.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, 20));
         textWeak.setStyle("-fx-font-size: 20px;");
         textWeak.setX(960);
         textWeak.setY(300);
@@ -628,10 +626,6 @@ public class FuzzyController {
                 index = i;
             }
         }
-//        frame.appendCustomText("\n\nMethod max\n");
-//        frame.appendCustomText("Crisp decision index = " + round(fuzzySets.get(index).value, 2) +"\n");
-//        frame.appendCustomText("Fuzzy decision index = "+ fuzzySets.get(index).name +"\n");
-
 
         System.out.println("\n\nMethod max\n");
         System.out.println("Crisp decision index = " + round(fuzzySets.get(index).value, 2) +"\n");
@@ -639,37 +633,4 @@ public class FuzzyController {
 
     }
 
-    private class centroidButtonPress implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {
-//            double pow = frame.getPowValue();
-//            double con = frame.getConValue();
-
-
-        }
-
-    }
-
-    private class maxButtonPress implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            double pow =personalityTest[0];
-            double con = personalityTest[1];
-
-            conEvaluate = CON.evaluate(con);
-            powEvaluate = POW.evaluate(pow);
-
-
-            double rec = personalityTest[2];
-            double stab = personalityTest[3];
-
-            recEvaluate = REC.evaluate(rec);
-            stabEvaluate = STAB.evaluate(stab);
-
-            andOperatorRules();
-            maxDefuzz();
-        }
-
-    }
 }

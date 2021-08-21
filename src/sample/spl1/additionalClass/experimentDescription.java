@@ -47,7 +47,7 @@ public class experimentDescription {
        root.setBackground(bg);
         root.getChildren().addAll(headning);
         Scene scene = new Scene(root, 400, 50);
-        stage.setX(1200);
+        stage.setX(700);
         stage.setY(200);
         scene.setFill(Color.BLACK);
 

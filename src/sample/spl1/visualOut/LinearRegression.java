@@ -6,7 +6,8 @@ public class LinearRegression {
     private final double svar0, svar1;
 
     public LinearRegression(double[] x, double[] y) {
-        if (x.length != y.length) {
+
+        if (x.length != y.length){
             throw new IllegalArgumentException("array lengths are not equal");
         }
         int n = x.length;

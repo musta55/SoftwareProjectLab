@@ -22,6 +22,7 @@ public class TriangleFuzzySet {
 
     public double evaluate(double in)
     {
+        //binary search
         if ( in<=min || in>=max )
             return 0;
         else if (in==mid)

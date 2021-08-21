@@ -82,7 +82,7 @@ public class OperationsBangla {
     public String searchBan(String str)  {
 
         String str2=str;
-        //  System.out.println("kisssssssssssssssssssssssssssssssse jjjjjjjjjjjj");
+
 
         int c=0;
         int j = 0;

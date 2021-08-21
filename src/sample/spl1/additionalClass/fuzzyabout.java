@@ -55,7 +55,7 @@ public class fuzzyabout {
 
         Pane root = new Pane();
         root.setBackground(bg);
-        Scene scene = new Scene(root, 1200, 770);
+        Scene scene = new Scene(root, 1136, 564);
         stage.setX(100);
         stage.setY(0);
         scene.setFill(Color.BLACK);

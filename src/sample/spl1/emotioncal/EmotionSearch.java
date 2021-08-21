@@ -7,10 +7,6 @@ import java.util.ArrayList;
 
 public class EmotionSearch {
 
-
-
-
-
     public String[] emotion = new String[85000];
     public String[] word = new String[85000];
 
@@ -37,10 +33,6 @@ public class EmotionSearch {
                 exClaimCount++;
             }
         }
-
-        //  System.out.println("Hey What's up");
-
-        //   FileWriter newDb = new FileWriter("src/spl1/emotions.txt");
 
         File files = new File("src/sample/spl1/emotion.txt");
 
@@ -83,34 +75,16 @@ public class EmotionSearch {
             e.printStackTrace();
         }
 
-//        for(int j=0;j<wordList.size();j++)
-//        {
-//            System.out.println("word="+wordList.get(j));
-//        }
-//
-//        for(int j=0;j<emotionList.size();j++)
-//        {
-//            System.out.println(" emotion="+emotionList.get(j));
-//        }
 
-        //   Operations op=new Operations(outList);
-
-        //   outList=op.getOutList();
         Boolean found = false;
         for (int w = 0; w < 8; w++) Frequency[w] = 0;
 
-
-        //      FileWriter fw=new FileWriter("sample/spl1/emotionOutput.txt");
-        //   fw.close();
 
 
         for (i = 0; i < Operations.outList.size(); ) {
 
             found = false;
             NEW:
-            //   for (int j = 0; j < wordList.size(); j++) {
-
-            //   System.out.println(wordList.get(j)+"  ");
 
             if (Operations.outList.get(i).equals("so") || Operations.outList.get(i).equals("more") || Operations.outList.get(i).equals("most") || Operations.outList.get(i).equals("quite") || Operations.outList.get(i).equals("very") || Operations.outList.get(i).equals("extremely") || Operations.outList.get(i).equals("quite") || Operations.outList.get(i).equals("just") || Operations.outList.get(i).equals("almost") || Operations.outList.get(i).equals("too") || Operations.outList.get(i).equals("enough") || Operations.outList.get(i).equals("very") || Operations.outList.get(i).equals("extremely") || Operations.outList.get(i).equals("terribly") || Operations.outList.get(i).equals("amazingly") || Operations.outList.get(i).equals("wonderfully") || Operations.outList.get(i).equals("insanely")) {
 

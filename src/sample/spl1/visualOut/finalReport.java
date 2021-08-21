@@ -99,76 +99,8 @@ public class finalReport {
         stage.show();
         stage.setTitle("Sentiment Analysis");
 
-//            CategoryAxis xAxiss = new CategoryAxis();
-//            xAxiss.setLabel("Sentiment");
-//            xAxiss.getCategories().addAll("Positive", "Negative");
-//
-//            NumberAxis yAxiss = new NumberAxis();
-//            yAxiss.setLabel("Intensity");
-//
-//            StackedBarChart    stackedBarChart = new StackedBarChart(xAxiss, yAxiss);
-//            stackedBarChart.getAnimated();
-//
-//            XYChart.Series dataSeriesSenti1 = new XYChart.Series();
-//            dataSeriesSenti1.setName("Positive Sentiment");
-//
-//            for(int a=1;a<10;a++)
-//                dataSeriesSenti1.getData().add(new XYChart.Data("Status "+a, sentimentPos[a]));
-//            //    dataSeries1.getData().add(new XYChart.Data("Negative", 540));
-//
-//            stackedBarChart.getData().add(dataSeriesSenti1);
-//
-//
-//            XYChart.Series dataSeriesSenti2 = new XYChart.Series();
-//            dataSeriesSenti2.setName("Negative Sentiment");
-//            for(int a=1;a<10 ;a++)
-//                dataSeriesSenti2.getData().add(new XYChart.Data("Status "+a  ,sentimentNeg[a]));
-//
-//
-//            stackedBarChart.getData().add(dataSeriesSenti2);
-//
-//            stackedBarChart.setPrefSize(1100,700);
-        // roota.getChildren().addAll(canvasa,stackedBarChart,backa);
 
         stage.setTitle("Sentiment Progression Over Status");
-
-//            NumberAxis xAxisa = new NumberAxis();
-//            xAxisa.setLabel("No of status");
-//
-//            NumberAxis yAxisa = new NumberAxis();
-//            yAxisa.setLabel("Overall Sentiment Score");
-//
-//            ScatterChart scatterChart = new ScatterChart(xAxisa, yAxisa);
-//
-//            LineChart linechart =new LineChart(xAxisa, yAxisa);
-//            XYChart.Series dataSeriessenti = new XYChart.Series();
-//            dataSeriessenti.setName("SENTIMENT SCORE");
-//
-//            XYChart.Series dataSeriessenti2 = new XYChart.Series();
-//
-//            dataSeriessenti2.setName("MEAN VALUE");
-//
-//            for(int t=1;t<=7;t++)
-//                dataSeriessenti2.getData().add(new XYChart.Data( t, finalTempTotal));
-//            for(int t=1;t<=7;t++)
-//            dataSeriessenti.getData().add(new XYChart.Data( t, sentimentTot[t]));
-//
-//
-//            linechart.getData().addAll(dataSeriessenti2);
-//            scatterChart.getData().addAll(dataSeriessenti);
-//
-//            linechart.setPrefSize(1000,700);
-//            scatterChart.setPrefSize(1000,700);
-
-
-//        final LineChart<Number, Number> sc = new LineChart<>(new NumberAxis(), new NumberAxis());
-//        sc.setPrefSize(400,400);
-//        sc.setScaleX(600);
-//        sc.setScaleY(20);
-//
-//        XYChart.Series series1 = new XYChart.Series();
-//        series1.setName("Sentimental Progress");
-//
 
         NumberAxis xAxis = new NumberAxis();
         xAxis.setLabel("No of articles");
@@ -306,14 +238,6 @@ public class finalReport {
         else if (finalTempTotal < -50 && finalTempTotal >= -75) txtmean = "Anger";
         else if (finalTempTotal < -75 && finalTempTotal >= -100) txtmean = "Disgust";
 
-
-//        Text textMean= new Text();
-//        textMean.setText(txtmean);
-//        textMean.setFill(Color.GREEN);
-//        textMean.setScaleX(1.5);
-//        textMean.setScaleY(3);
-//        textMean.setX(800);
-//        textMean.setY(450);
 
         Text textMean = new Text(txtmean);
         textMean.setFill(Color.BLACK);
