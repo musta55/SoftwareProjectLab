@@ -333,6 +333,14 @@ public class FuzzyController {
         textPerson.setX(190);
         textPerson.setY(430);
 
+        Image happy = new Image(new FileInputStream("src/Pictures/gif/happy.gif"));
+        ImageView ivH = new ImageView(happy);
+        ivH.setX(100);
+        ivH.setY(420);
+        ivH.setScaleX(0.7);
+        ivH.setScaleY(0.7);
+        ivH.setPreserveRatio(true);
+
 
         System.out.println(temporary +" and temp 2 is "+temporary2);
 
@@ -456,7 +464,7 @@ public class FuzzyController {
             }
 
         }
-        if(temporary<=temporary2)
+        else
         {
 
             if(variable2==0)
@@ -604,7 +612,7 @@ public class FuzzyController {
         Pane root=new Pane();
 
         root.setBackground(bg);
-        root.getChildren().addAll(textstrng,textWeak,textPerson,back);
+        root.getChildren().addAll(textstrng,textWeak,textPerson,back,ivH);
 
 
         Scene scene = new Scene(root,1400,750);
@@ -614,22 +622,6 @@ public class FuzzyController {
         System.out.println("stage must be shown");
 
 
-
-    }
-
-    public  void maxDefuzz(){
-        Double max = 0.0;
-        int index =0 ;
-        for (int i=0 ; i < fuzzySets.size() ; i++) {
-            if(Double.compare(fuzzySets.get(i).value , max) > 0){
-                max = fuzzySets.get(i).value;
-                index = i;
-            }
-        }
-
-        System.out.println("\n\nMethod max\n");
-        System.out.println("Crisp decision index = " + round(fuzzySets.get(index).value, 2) +"\n");
-        System.out.println("Fuzzy decision index = "+ fuzzySets.get(index).name +"\n");
 
     }
 

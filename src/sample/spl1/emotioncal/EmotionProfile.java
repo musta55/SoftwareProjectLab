@@ -394,6 +394,8 @@ else
         back.setTextFill(Color.YELLOW);
         return back;
     }
+
+    //Dashboard
     public void IndividualVisualProfile(double[] em,double[] em2,double[] em3) throws FileNotFoundException {
         Text headning = new Text("Article");
         headning.setScaleX(2);
