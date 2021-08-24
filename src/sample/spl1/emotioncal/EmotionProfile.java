@@ -44,36 +44,29 @@ public class EmotionProfile {
        this.stage=stage;
        this.accessToken=accessToken;
    }
-    public double[] fileInput(  File file )
-    {
+    public double[] fileInput(  File file ) throws FileNotFoundException {
         double[] fileData = new double[300];
-        Scanner scan;
         int m = 0;
-        try {
-            System.out.println("Emotion profile e file name :"+file.toString());
-            scan = new Scanner(file);
-                String currentLine = scan.nextLine();
-                String[] firstSplits = currentLine.split(" ", 0);
-                for (; m < firstSplits.length; m++) {
-                    //     System.out.println("String is " + firstSplits[m]);
-                    try {
-                        if (firstSplits[m] == "NaN" || firstSplits[m] == "Infinity");
-                        else {
-                            fileData[m] = Double.parseDouble(firstSplits[m]);
-                            System.out.print("i = "+m+ " "+fileData[m] + "          ");
-                        }
-                    } catch (Exception q) {
-                        System.out.println("File data input error in Emotion Profile");
-                    }
-                    //     System.out.println("Value is " + out[m]);
+        System.out.println("Emotion profile e file name :"+file.toString());
+        Scanner scan = new Scanner(file);
+        String currentLine = scan.nextLine();
+        String[] firstSplits = currentLine.split(" ", 0);
+        for (; m < firstSplits.length; m++) {
+            //     System.out.println("String is " + firstSplits[m]);
+            try {
+                if (firstSplits[m] == "NaN" || firstSplits[m] == "Infinity");
+                else {
+                    fileData[m] = Double.parseDouble(firstSplits[m]);
+                    System.out.print("i = "+m+ " "+fileData[m] + "          ");
                 }
-                // double d = Double.parseDouble();
-            return fileData;
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return fileData;
+            } catch (Exception q) {
+                System.out.println("File data input error in Emotion Profile");
+            }
+            //     System.out.println("Value is " + out[m]);
         }
+        // double d = Double.parseDouble();
+        return fileData;
+
     }
     public  void profileScore(int t,String report,double[] personalityTest,String accessToken) throws FileNotFoundException {
 
@@ -110,6 +103,9 @@ public class EmotionProfile {
 
 
         int j=0;
+
+        //Web Article
+
         for(int i=0,k=0;i<8;i++)
         {
             for( j=k;j<out.length;j+=8)
@@ -118,7 +114,7 @@ public class EmotionProfile {
             }
             k++;
         }
-        double tot=0;                       //Web Article
+        double tot=0;
         for(int i=0;i<8;i++)
         {
             tot+=emo[i];
@@ -128,6 +124,9 @@ public class EmotionProfile {
         {
             emo[i]=emo[i]*100/tot;
         }
+
+
+        //Article
 
         for(int i=0,k=0;i<8;i++)
         {
@@ -139,7 +138,7 @@ public class EmotionProfile {
 
         }
 
-        double tot2=0;                  //Article
+        double tot2=0;
         for(int i=0;i<8;i++)
         {
             tot2+=emo2[i];
@@ -149,6 +148,10 @@ public class EmotionProfile {
         {
             emo2[i]=emo2[i]*100/tot2;
         }
+
+
+
+        //Facebook
 
 
         for(int i=0,k=0;i<8;i++)
@@ -161,7 +164,7 @@ public class EmotionProfile {
 
         }
 
-        double tot3=0;                                       //Facebook
+        double tot3=0;
         for(int i=0;i<8;i++)
         {
             tot3+=emo3[i];
@@ -175,8 +178,8 @@ public class EmotionProfile {
 
       for(int i=0;i<8;i++)
       {
-          System.out.println("article :"+emo[i]);
-          System.out.println("Web :"+emo2[i]);
+          System.out.println("article :"+emo2[i]);
+          System.out.println("Web :"+emo[i]);
           System.out.println("Facebook :"+emo3[i]);
       }
 
@@ -214,15 +217,15 @@ public class EmotionProfile {
 
         System.out.println("Highest is " + temp + " Second is " + temp2);
 if(t==1)
-       VisualProfile(emo,comment(temp,temp2)+report,personalityTest,accessToken);
+       VisualProfile(emo,comment(temp,temp2)+report,personalityTest,accessToken);       //final report page
 else
-       IndividualVisualProfile(emo,emo2,emo3);
+       IndividualVisualProfile(emo,emo2,emo3);      //Visual output page
 
     }
 
 
 
-
+    //Normal feedback
     public String comment(int temp,int temp2)
     {
         String text = null;
@@ -273,6 +276,8 @@ else
 
     }
 
+
+    // Final report page
     public void VisualProfile(double[] em,String text,double[] personalityTest,String accessToken) throws FileNotFoundException {
 
         Button back = getButton();
@@ -384,16 +389,7 @@ else
         stage.show();
 
     }
-    public Button getButton() throws FileNotFoundException {
-        Image i = new Image(new FileInputStream("Pictures/backArrow - Copy.png"));
-        ImageView iv = new ImageView(i);
-        Button back = new Button("",iv);
-        back.setTranslateX(0);
-        back.setTranslateY(340);
-        back.setPrefSize(1, 5);
-        back.setTextFill(Color.YELLOW);
-        return back;
-    }
+
 
     //Dashboard
     public void IndividualVisualProfile(double[] em,double[] em2,double[] em3) throws FileNotFoundException {
@@ -613,5 +609,14 @@ else
 
     }
 
-
+    public Button getButton() throws FileNotFoundException {
+        Image i = new Image(new FileInputStream("Pictures/backArrow - Copy.png"));
+        ImageView iv = new ImageView(i);
+        Button back = new Button("",iv);
+        back.setTranslateX(0);
+        back.setTranslateY(340);
+        back.setPrefSize(1, 5);
+        back.setTextFill(Color.YELLOW);
+        return back;
+    }
 }

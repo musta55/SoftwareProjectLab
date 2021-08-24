@@ -488,8 +488,6 @@ public class FuzzyController {
                         "Likes to do things \n"+"their own way\n" +
                         "Detached behavior\n" +
                         "Can see the glass \n"+" half empty\n" +
-                        "Skeptical, disbelieving\n" +
-                        "May never have   \n"+"personal expectations met\n" +
                         "Disengagement");
 
             }
@@ -507,20 +505,12 @@ public class FuzzyController {
                                 "Fair and equitable\n" +
                                 "Looks approachable\n" +
                                 "Dependable\n" +
-                                "Appearance of strength\n" +
-                                "Trusting\n" +
-                                "Minimal mood swings\n" +
-                                "Self-confident\n" +
-                                "Reliable\n" +
-                                "Consistent\n" +
                                 "Observant\n"
                 );
 
                 textWeak.setText("Not speaking up\n" +
                         "Easily used by others\n" +
                         "Going along when \n"+" they don’t agree\n" +
-                        "Uncomfortable with  \n"+" constant change\n" +
-                        "Going along \n"+"  to avoid confrontation\n" +
                         "Less assertive\n" +
                         "Gets hurt feelings\n" +
                         "Shy\n" +
@@ -537,23 +527,13 @@ public class FuzzyController {
                         "Easily liked by \n"+"most people\n" +
                         "Friendliness\n" +
                         "Charismatic\n" +
-                        "motivator\n" +
-                        "Dreamer\n" +
-                        "People-oriented\n" +
-                        "Faster-paced\n" +
                         "Self-confident");
 
                 textWeak.setText("Too self-involved\n" +
                         "Impatient\n" +
                         "Sometimes unrealistic\n" +
                         "Trouble being alone\n" +
-                        "Doesn’t finish  \n"+"what was started\n" +
-                        "Short attention span\n" +
-                        "Arrogant or cocky\n" +
-                        "Easily bored\n" +
-                        "Self-indulgent\n" +
-                        "Prone to sweeping \n"+" generalizations\n" +
-                        "Impulsive\n"
+                        "Doesn’t finish  \n"+"what was started\n" 
                 );
 
 

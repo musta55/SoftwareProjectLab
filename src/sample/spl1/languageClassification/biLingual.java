@@ -62,6 +62,7 @@ public class biLingual {
             button.setTranslateY(520);
 
                 Text headning =lang.textAtt();
+            System.out.println("so, this is you");
 
             Image backgrounds = new Image(new FileInputStream("src/Pictures/newbg.png"));
                 Canvas canvas = new Canvas(1600,900);

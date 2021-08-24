@@ -115,6 +115,18 @@ public class thirdPage extends secondPage{
             String webFile="web"+finalFileName;
             wb.web(stage,webFile);
         });
+        article.setOnAction(e->{
+            try {
+                String articleFile="article"+finalFileName;
+                biLingual bl =new biLingual(stage,articleFile);
+                bl.biLanguage();
+            }catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+        });
+
+
 
 
         analysis.setOnAction(e -> {
@@ -141,15 +153,6 @@ public class thirdPage extends secondPage{
         });
 
 
-        article.setOnAction(e->{
-            try {
-                String articleFile="article"+finalFileName;
-                biLingual bl =new biLingual(stage,articleFile);
-            }catch (Exception ex)
-            {
-                ex.printStackTrace();
-            }
-        });
 
 
 
