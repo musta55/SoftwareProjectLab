@@ -1015,7 +1015,7 @@ public class EmotionCalculation {
 
         Button back=getButton();
         back.setTranslateX(10);
-        back.setTranslateY(150);
+        back.setTranslateY(400);
         back.setPrefSize(1, 5);
         back.setTextFill(Color.YELLOW);
 
@@ -1108,7 +1108,7 @@ public class EmotionCalculation {
         series2.getData().add(new XYChart.Data<>("Trust", like));
         series2.getData().add(new XYChart.Data<>("Disgust", angry));
 
-barChart.setLayoutX(50);
+        barChart.setLayoutX(50);
         barChart.setLayoutY(200);
 
 
@@ -1140,7 +1140,7 @@ barChart.setLayoutX(50);
         acc.setScaleX(3);
         acc.setScaleY(3);
         acc.setTranslateX(250);
-        acc.setTranslateY(110);
+        acc.setTranslateY(130);
         acc.setFill(Color.WHITE);
         acc.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 9));
 
