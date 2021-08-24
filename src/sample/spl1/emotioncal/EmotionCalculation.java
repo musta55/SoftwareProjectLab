@@ -1119,8 +1119,34 @@ barChart.setLayoutX(50);
 
         double []b ={haha,wow,angry, sad, sad,love,like,angry};
 
+        double []diff=new double[8];
+
+
+
 
         em[0]=JoyCal; em[1]=SurpriseCal; em[2]=AngerCal; em[3]=DisgustCal; em[4]=anticipationCal; em[5]=SadnessCal; em[6]=FearCal; em[7]=TrustCal;
+        double sumOfDif=0;
+        //Correctness
+        for(int i=0;i<8;i++)
+        {
+            diff[i]=Math.abs(b[i]-em[i]);
+            sumOfDif+=diff[i];
+        }
+
+        double correctness=100-(sumOfDif/8);
+        System.out.println("Accuracy :"+correctness+"%");
+
+        Text acc = new Text("Accuracy :"+correctness+"%");
+        acc.setScaleX(3);
+        acc.setScaleY(3);
+        acc.setTranslateX(250);
+        acc.setTranslateY(110);
+        acc.setFill(Color.WHITE);
+        acc.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 9));
+
+
+
+        acc.setCache(true);
 
 
         Image Abs = null;
@@ -1166,8 +1192,8 @@ barChart.setLayoutX(50);
         postNo.setScaleX(4);
         postNo.setScaleY(4);
         postNo.setTranslateX(780);
-        postNo.setTranslateY(40);
-        postNo.setFill(Color.BLACK);
+        postNo.setTranslateY(80);
+        postNo.setFill(Color.WHITE);
         postNo.setFont(Font.font(Font.getFontNames().get(12), FontPosture.REGULAR, 9));
 
 
@@ -1184,7 +1210,7 @@ barChart.setLayoutX(50);
 
 
         Pane root = new Pane();
-        root.getChildren().addAll(barChart,back,regression,textField,postNo,line);
+        root.getChildren().addAll(barChart,back,regression,textField,postNo,line,acc);
 
         //Creating a scene object
         Scene scene = new Scene(root, 1408, 752);

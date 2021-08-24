@@ -131,22 +131,22 @@ public class accessToken {
                     myWriter.close();
                     System.out.println("Successfully wrote to the file.");
 
-
-                    File file2 = new File("token"+Name);
-
-                    BufferedReader br = new BufferedReader(new FileReader(file2));
-
-                    String st;
-                    String finalSt = "";
-                    while ((st = br.readLine()) != null)
-                    {
-                        System.out.print(st);
-                        finalSt+=st;
-                    }
-
-
-                    System.out.print("Access Token page e access Token : "+finalSt);
-
+//
+//                    File file2 = new File("token"+Name);
+//
+//                    BufferedReader br = new BufferedReader(new FileReader(file2));
+//
+//                    String st;
+//                    String finalSt = "";
+//                    while ((st = br.readLine()) != null)
+//                    {
+//                        System.out.print(st);
+//                        finalSt+=st;
+//                    }
+//
+//
+//                    System.out.print("Access Token page e access Token : "+finalSt);
+//
 
                 } catch (IOException e) {
                     System.out.println("An error occurred.");
@@ -154,13 +154,25 @@ public class accessToken {
                 }
             });
 
+            File file2 = new File("token"+Name);
 
+            BufferedReader br = new BufferedReader(new FileReader(file2));
 
-            return textFields.getText();
+            String st;
+            String finalSt = "";
+            while ((st = br.readLine()) != null)
+            {
+                System.out.print(st);
+                finalSt+=st;
+            }
+
+            return finalSt;
         } catch (Exception excep) {
             excep.printStackTrace();
         }
-        return "EAAMF6lCN2rABAKKZC9fE7WDoEG90nDuQVJ6XCHdz069H39NEQhNNFm1jo520R8PI1HNZB9amFlLUJ6rn9ukZBGhqZAU9MmbUxFwHkwl3h6ib8RWj9i1ZBxZA9utz7LloSIZBKGJ76lVlKStkG7D3M4zJ9FZAs2ZBVX5ermlwJkXzm17P0d4ZAr2wqG";   }
+
+
+        return "EAAMF6lCN2rABAKr2D9xCQGdoaCgWq2MNYZCaQFGUZAEX4XPHKkUvYrELZBKwHjQ8w4yMJinLH4zUEa1tdZCDH9SQP6B4B6aJU8ZCFm20HZCPs3iUxceSAHZA5MpRKFKSHiLZBMMDgQPKX6XjnRVCAZBoPMXf2OeU6PbgqWpvhe0d76jFUekIOlPpH";   }
     public Button setStyle ( Button b)
     {
         b.setStyle("-fx-background-color: \n" +
