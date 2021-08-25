@@ -72,6 +72,8 @@ public class postOne {
                         writer.write(String.valueOf(textToAppend));
                         writer.close();
 
+
+                            //Reaction fetching with json object
                         JsonObject obj = fbClient.fetchObject(aPost.getId(), JsonObject.class,
                                 Parameter.with("fields",
                                         "reactions.type(LOVE).limit(0).summary(total_count).as(reactions_love)," +
