@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import sample.spl1.OperationsBangla;
 import sample.spl1.emotioncal.EmotionCalculation;
 
 import java.io.FileInputStream;
@@ -50,13 +51,16 @@ public class Bengali {
                 System.out.println("Picture url Problem");
             }
 
+            OperationsBangla ob=new OperationsBangla();
+            ob.splitInputBangla();
             button.setOnAction(action -> {
                 lang.NaturalLanguageProcessing(textFields);
+                String banlem= ob.searchBan(textFields.getText());
                 EmotionCalculation emCal = new EmotionCalculation();
                 try {
                     emCal.searchEmotion();
                     emCal.emotionCalc(primaryStage);
-                    emCal.VisualOutput(primaryStage,textFields.getText());
+                    emCal.VisualOutput(primaryStage,banlem);
 
                 } catch (IOException ex) {
                     ex.printStackTrace();

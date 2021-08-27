@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import sample.spl1.emotioncal.EmotionCalculation;
+import sample.spl1.languageClassification.Language;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -108,7 +109,7 @@ public class WebPage {
                     Operations operations=new Operations();
                     document = Jsoup.connect(textFields.getText()).get();
                     int x=document.text().length();
-                    String s=document.text().substring(700,x-551);
+                   String s=document.text().substring(700,x-551);
 
                     String t=null;
                    String[] text = s.split("[.,]",0);
@@ -118,9 +119,11 @@ public class WebPage {
                     }
 
                     System.out.println("  Title: " + t); //Print title.
-                    operations.splitInput(t);
-                    operations.removeWord();
-                    operations.search();
+                    Language lang=new Language();
+                    lang.NaturalLanguageProcessing(t);      //Full nlp implementation
+//                    operations.splitInput(t);
+//                    operations.removeWord();
+//                    operations.search();
 
 
                     EmotionCalculation emCal = new EmotionCalculation(Name);

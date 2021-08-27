@@ -12,10 +12,10 @@ import java.util.Scanner;
 public class OperationsBangla {
     public ArrayList<String> baseList = new ArrayList<String>();      // Emotion Word List
     public ArrayList<String> wordList = new ArrayList<String>();         //Finding emotion from word
-
-    public String[] words = new String[85000]; //to store the base words
+    public ArrayList<String> nl = new ArrayList<String>();
+    public String[] words = new String[10000]; //to store the base words
     public String[][] word = new String[20000][5]; //to store the base words
-    public String[] base = new String[85000]; //to store the base words
+    public String[] base = new String[10000]; //to store the base words
     public ArrayList<String> aList = new ArrayList<>(85000);//to store all the words
 
     int i = 0;
@@ -41,7 +41,7 @@ public class OperationsBangla {
 
         {
             try {
-                String[] words = new String[85000]; //to store the base words
+                String[] words = new String[10000]; //to store the base words
 
                 int i = 0, m = 0, n = 0;
                 sc = new Scanner(file);
@@ -88,7 +88,7 @@ public class OperationsBangla {
         int j = 0;
         for (; j < wordList.size(); j++) {
             if (wordList.get(j).equals(str)) {
-             //       System.out.print("WOrd Paisi eta lemma theke"+baseList.get(j) + " ");
+                    System.out.print("Word Paisi eta lemma theke"+baseList.get(j) + " ");
 
                 return baseList.get(j);
 

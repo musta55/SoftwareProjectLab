@@ -113,7 +113,7 @@ public class firstPost {
 
 
         }
-        Text postNo = new Text("Available Posts "+counter);
+        Text postNo = new Text("Available Posts "+counter+1);
         postNo.setScaleX(4);
         postNo.setScaleY(4);
         postNo.setTranslateX(180);

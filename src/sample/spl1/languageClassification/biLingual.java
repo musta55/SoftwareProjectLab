@@ -62,7 +62,7 @@ public class biLingual {
             button.setTranslateY(520);
 
                 Text headning =lang.textAtt();
-            System.out.println("so, this is you");
+            System.out.println("so, this is you bilingual");
 
             Image backgrounds = new Image(new FileInputStream("src/Pictures/newbg.png"));
                 Canvas canvas = new Canvas(1600,900);
@@ -106,7 +106,7 @@ public class biLingual {
             button.setTranslateY(520);
 
                 Text headning = textAtt();
-            Image backgrounds = new Image(new FileInputStream("src/Pictures/newbg.png"));
+                 Image backgrounds = new Image(new FileInputStream("src/Pictures/newbg.png"));
                 Canvas canvas = new Canvas(1600,900);
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 //gc.drawImage(backgrounds,0,0);
@@ -131,6 +131,7 @@ public class biLingual {
             button.setOnAction(action -> {
                 lang.NaturalLanguageProcessing(textFields);
                 texts=textFields.getText();
+                System.out.println("Emcal e dhukar age text "+texts);
                 EmotionCalculation emCal = new EmotionCalculation(Name);
                 try {
                     emCal.searchEmotion();
@@ -161,7 +162,7 @@ public    biLingual(Stage primaryStage)
         Language lang=new Language();
         this.primaryStage=primaryStage;
         try {
-            primaryStage.setTitle("Text Input");
+            primaryStage.setTitle("Text not Input");
             TextArea textFields =txtarea();
             Image Ab = new Image(new FileInputStream("src/Pictures/enter.png"));
             ImageView about = new ImageView(Ab);

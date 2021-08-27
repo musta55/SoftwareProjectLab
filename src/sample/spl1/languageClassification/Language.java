@@ -77,7 +77,7 @@ public class Language extends secondPage{
         String inputStringBan = "";
         ArrayList<String> inListBan = new ArrayList<String>();//to store the input words
         String[] inArray = new String[10000];
-        String[] inArray2 = new String[10000];
+
 
 
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -88,29 +88,82 @@ public class Language extends secondPage{
             ex.printStackTrace();
         }
 
-        inArray = textFields.getText().split("[ ,/;>.*'|\"(){+></@$%^&_=}]", 0);
+        inArray = textFields.getText().split("[ ,/;>.*'|\"(){+></@$%^&_=}]", 0);         //Bangla tokenization
+        String[] inArray2 = new String[inArray.length];
+        String[] inArray3 = new String[inArray.length];
 
-        for (int j = 0; j < inArray.length; j++) {
-            inArray2[j] = operationsBangla.searchBan(inArray[j]);
-        }
+//        for (int j = 0; j < inArray.length; j++) {
+//            inArray2[j] = operationsBangla.searchBan(inArray[j]);       //Bangla lemmatization word by word
+//        }
+
         String inp = "";
         for (int j = 0; j < inArray.length; j++) {
-            inArray2[j] = dictionary.search(inArray[j]);
-            inp = inp + inArray2[j] + " ";
+            inArray3[j] = dictionary.search(inArray[j]);
+            inp = inp + inArray3[j] + " ";
         }
+
+//        System.out.println("nlp theke bangla r value"+inp);
         try {
-            operations.splitInput(inp);
+            operations.splitInput(inp);         //English tokenization
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
 
         try {
-            operations.removeWord();
+            operations.removeWord();        //English stop word removal
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
         operations.search();
     }
+    public void NaturalLanguageProcessing(String Texts)
+    {
+        Operations operations = new Operations();
+
+        OperationsBangla operationsBangla = new OperationsBangla();
+
+        operationsBangla.splitInputBangla();
+        String inputStringBan = "";
+        ArrayList<String> inListBan = new ArrayList<String>();//to store the input words
+        String[] inArray = new String[10000];
+
+
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        Dictionary dictionary = null;
+        try {
+            dictionary = new Dictionary("isrc/spl1/Translaton.txt");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        inArray = Texts.split("[ ,/;>.*'|\"(){+></@$%^&_=}]", 0);         //Bangla tokenization
+        String[] inArray2 = new String[inArray.length];
+        for (int j = 0; j < inArray.length; j++) {
+            inArray2[j] = operationsBangla.searchBan(inArray[j]);       //Bangla lemmatization word by word
+        }
+
+        String inp = "";
+        for (int j = 0; j < inArray2.length; j++) {
+            inArray2[j] = dictionary.search(inArray2[j]);
+            inp = inp + inArray2[j] + " ";
+        }
+
+//        System.out.println("nlp theke bangla r value"+inp);
+        try {
+            operations.splitInput(inp);         //English tokenization
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            operations.removeWord();        //English stop word removal
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        operations.search();
+    }
+
 
     public void TheThird(Stage primaryStage) throws FileNotFoundException {
 

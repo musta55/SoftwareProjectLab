@@ -19181,6 +19181,8 @@ celebrant	positive	0
 celebrant	sadness	0
 celebrant	surprise	0
 celebrant	trust	0
+celebrate	joy	1
+celebrate	anticipation	1
 celebrated	anger	0
 celebrated	anticipation	1
 celebrated	disgust	0
@@ -140204,6 +140206,8 @@ wink	positive	0
 wink	sadness	0
 wink	surprise	0
 wink	trust	0
+win	anticipation	1
+win	trust	1
 winner	anger	0
 winner	anticipation	1
 winner	disgust	0
