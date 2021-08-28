@@ -139,9 +139,10 @@ public class Language extends secondPage{
 
         inArray = Texts.split("[ ,/;>.*'|\"(){+></@$%^&_=}]", 0);         //Bangla tokenization
         String[] inArray2 = new String[inArray.length];
-        for (int j = 0; j < inArray.length; j++) {
-            inArray2[j] = operationsBangla.searchBan(inArray[j]);       //Bangla lemmatization word by word
-        }
+        
+//        for (int j = 0; j < inArray.length; j++) {
+//            inArray2[j] = operationsBangla.searchBan(inArray[j]);       //Bangla lemmatization word by word
+//        }
 
         String inp = "";
         for (int j = 0; j < inArray2.length; j++) {

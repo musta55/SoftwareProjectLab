@@ -237,7 +237,7 @@ else
         } else if (temp == 1) {
             text = "Your emotion is full of surprises. As a person,you are curious.Surprising things happening around you.\n";
         } else if (temp == 2) {
-            text = "Fear emotion is your primary emotion.\n\n";
+            text = "Fear emotion is your primary emotion.\n";
         } else if (temp == 3) {
             text = "You seemed a bit depressed.Sadness grabs you severely.\n";
         } else if (temp == 4) {
@@ -257,19 +257,19 @@ else
 
 
         if (temp2 == 0) {
-            text2 = "Also Joyful emotion is partially focused on your text.\n\n";
+            text2 = "Also Joyful emotion is partially focused on your text.\n";
         } else if (temp2 == 1) {
-            text2 = "Also Surprise  emotion is partially focused on your text.\n\n";
+            text2 = "Also Surprise  emotion is partially focused on your text.\n";
         } else if (temp2 == 2) {
-            text2 = "Also sadness is particularly reflected on your posts.\n\n";
+            text2 = "Also sadness is particularly reflected on your posts.\n";
         } else if (temp2 == 4) {
-            text2 = "Besides, trust emotion is reflected greatly on your articles.\n\n";
+            text2 = "Besides, trust emotion is reflected greatly on your articles.\n";
         } else if (temp2 == 5) {
             text2 = "Moreover, disgust and boredom is the key of your articles.Hate speeches are consistently found in your articles.\n\n";
         } else if (temp2 == 6) {
             text2 = "Furthermore,It is really pleased to say that you seems like a happy person.\n";
         } else if (temp2 == 7) {
-            text2 = "Apart from this, anger emotion plays a vital role.May be you don't realize it.But your mind reflects it.\n\n";
+            text2 = "Apart from this, anger emotion plays a vital role.May be you don't realize it.But your mind reflects it.\n";
 
         }
         return text+text2;
@@ -311,7 +311,7 @@ else
         textField.setMinSize(725, 350);
         textField.setText(text);
         textField.setStyle("-fx-text-fill: black; -fx-font-size: 20px;");
-        textField.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.BLACK, 10));
+        textField.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.MEDIUM, 10));
 
 
 

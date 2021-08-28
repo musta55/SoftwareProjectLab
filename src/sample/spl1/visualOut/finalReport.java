@@ -133,7 +133,7 @@ public class finalReport {
         }
         Text textInt = new Text();
         String txt = "";
-        String report = null;
+        String report = "";
 
         EmotionCalculation emcal = new EmotionCalculation();
         double stdDev = EmotionCalculation.calculateSD(sentimentTot);
@@ -199,7 +199,7 @@ public class finalReport {
             txtstab = "Unstable";
 
             if(rand==0)
-                report += "\n\nYou tend to be a drama king or queen,seek external feedback rather than relying on own intuition, excessive need to share.";
+                report += "\nYou tend to be a drama king or queen,seek external feedback rather than relying on own intuition, excessive need to share.";
 
             else if(rand==1) report += "You are greatly affected by others’ moods, which is confirmed by your study";
             else if(rand==2) report += "Moreover, it seems that your mood changes rapidly";
@@ -210,12 +210,12 @@ public class finalReport {
         } else {
             if (mediumSt >= lowSt) {
                 txtstab = "Medium";
-                report += "\n\nYou tend to be extremely logical, comfortable with fixing problems logically and intellectually, able to stay calm in emotionally heated situations.";
+                report += "\nYou tend to be extremely logical, comfortable with fixing problems logically and intellectually, able to stay calm in emotionally heated situations.";
                 personalityTest[3] = (mediumSt) * 1 / (highSt + mediumSt + lowSt);
 
             } else if (mediumSt < lowSt) {
                 txtstab = "Stable";
-                report += "\n\nYou are extremely consistent and loyal, respectful, get along with nearly everyone.";
+                report += "\nYou are extremely consistent and loyal, respectful, get along with nearly everyone.";
                 personalityTest[3] = (lowSt) * 1 / (highSt + mediumSt + lowSt);
             }
         }
@@ -252,11 +252,11 @@ public class finalReport {
         if (sentimentTot[1] >= 0) {
             personalityTest[2] = 0.8;
             txtRec = " Positive";
-            report += "\n\nAlso you are likely a gifted healer, helper, and friend; intuitive about others’ thoughts and feelings; emotionally responsive; in touch with your body and emotions.";
+            report += "\nAlso you are likely a gifted healer, helper, and friend; intuitive about others’ thoughts and feelings; emotionally responsive; in touch with your body and emotions.";
         } else {
             personalityTest[2] = 0.3;
             txtRec = " Negative";
-            report += "\n\nAlso you easily absorb others’ negativity; prone to anxiety, depression, and fatigue; easily feel hemmed in when living with others; difficulty setting boundaries with draining people.";
+            report += "\nAlso you easily absorb others’ negativity; prone to anxiety, depression, and fatigue; easily feel hemmed in when living with others; difficulty setting boundaries with draining people.";
         }
 
         Text textRec = new Text(txtRec);
@@ -282,7 +282,7 @@ public class finalReport {
                 txtCon = "";
                 txtCon = "Positive";
                 txtper="Good";
-                report += "\n\nLast but not the least, you are likely to be practical, able to stay cool in a crisis, nonjudgmental.";
+                report += "\nLast but not the least, you are likely to be practical, able to stay cool in a crisis, nonjudgmental.";
                 personalityTest[1] = 0.5;
                 break;
             }
@@ -294,7 +294,7 @@ public class finalReport {
                 txtCon = "";
                 txtper="Bad";
                 txtCon = "Negative";
-                report += "\n\nBut your emotional consistency is downward.";
+                report += "\nBut your emotional consistency is downward.";
                 personalityTest[1] = 0.8;
                 break;
             }
@@ -303,7 +303,7 @@ public class finalReport {
         if (pos <= 2 || neg <= 2) {
             txtCon = "No";
             txtper="Bad";
-            report += "\n\nAlso,you are likely tend to be a drama king or queen as you react too much.";
+            report += "\nAlso,you are likely tend to be a drama king or queen as you react too much.";
             personalityTest[1] = 0.2;
         }
 
