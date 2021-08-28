@@ -119,11 +119,11 @@ public class WebPage {
                     }
 
                     System.out.println("  Title: " + t); //Print title.
-                    Language lang=new Language();
-                    lang.NaturalLanguageProcessing(t);      //Full nlp implementation
-//                    operations.splitInput(t);
-//                    operations.removeWord();
-//                    operations.search();
+//                    Language lang=new Language();
+//                    lang.NaturalLanguageProcessing(t);      //Full nlp implementation
+                    operations.splitInput(t);
+                    operations.removeWord();
+                    operations.search();
 
 
                     EmotionCalculation emCal = new EmotionCalculation(Name);
