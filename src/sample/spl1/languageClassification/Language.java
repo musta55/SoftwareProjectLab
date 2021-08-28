@@ -98,7 +98,7 @@ public class Language extends secondPage{
 
         String inp = "";
         for (int j = 0; j < inArray.length; j++) {
-            inArray3[j] = dictionary.search(inArray[j]);
+            inArray3[j] = dictionary.search(inArray[j]);            //Translate
             inp = inp + inArray3[j] + " ";
         }
 

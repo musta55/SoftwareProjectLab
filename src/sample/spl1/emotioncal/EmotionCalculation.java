@@ -543,12 +543,12 @@ public class EmotionCalculation {
         pieChart.setTranslateX(680);
         pieChart.setTranslateY(150);
         pieChart.setScaleX(1.3);
-        pieChart.setScaleY(1.4);
+        pieChart.setScaleY(1.3);
 
         return pieChart;
     }
 
-
+    // For experimenting this tool
     public void VisualOutput(Stage stage,String status) throws FileNotFoundException {
         Text headning = new Text("Text");
         headning.setScaleX(2);
@@ -583,7 +583,7 @@ public class EmotionCalculation {
         textField.setWrapText(true);
         textField.setMinSize(425, 470);
         textField.setText(status);
-        textField.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.BOLD, 18));
+        textField.setFont(javafx.scene.text.Font.font("Comic Sans MS", FontWeight.MEDIUM, 18));
 
 
 
@@ -698,7 +698,7 @@ public class EmotionCalculation {
         stage.show();
 
     }
-
+    //Application part file handling
     public void VisualOutputProf(Stage stage,String status) throws FileNotFoundException {
 
         Text headning = new Text("Text");
@@ -853,7 +853,7 @@ public class EmotionCalculation {
         stage.show();
 
     }
-
+    //Accuracy check and reacion prediction
     public void VisualOutputPred(Stage stage, String accessToken, String Name,double[]a, double[]b) throws FileNotFoundException {
 
         Button back =getButton();
@@ -1008,7 +1008,7 @@ public class EmotionCalculation {
 
     }
 
-
+    //For showing all facebook posts' emotion
     public void VisualOutputs(Stage stage,String accessToken,String Name,String status,int haha,int angry,int sad,int like ,int love,int wow) throws FileNotFoundException {
 
 

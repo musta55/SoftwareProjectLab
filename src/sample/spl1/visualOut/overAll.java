@@ -13,7 +13,7 @@ import sample.spl1.emotioncal.EmotionCalculation;
 
 import java.io.IOException;
 import java.util.List;
-
+//Calls overall facebook post
 public class overAll {
     public static int counter = 0;
     String OverAllText=null;

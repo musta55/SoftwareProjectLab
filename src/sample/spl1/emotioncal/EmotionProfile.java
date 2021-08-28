@@ -93,12 +93,12 @@ public class EmotionProfile {
 
         System.out.println("Web file name is :"+"web"+name);
 
-        System.out.println("\nWeb File reading "+out);
-        for(int i=0;i<out.length;i++) System.out.print(out[i]+" ");
-        System.out.println("\nArticle file reading "+out);
-        for(int i=0;i<out2.length;i++) System.out.print(out2[i]+" ");
-        System.out.println("\nFacebook file reading "+out);
-        for(int i=0;i<out3.length;i++) System.out.print(out3[i]+" ");
+//        System.out.println("\nWeb File reading "+out);
+//        for(int i=0;i<out.length;i++) System.out.print(out[i]+" ");
+//        System.out.println("\nArticle file reading "+out);
+//        for(int i=0;i<out2.length;i++) System.out.print(out2[i]+" ");
+//        System.out.println("\nFacebook file reading "+out);
+//        for(int i=0;i<out3.length;i++) System.out.print(out3[i]+" ");
 
 
 
@@ -214,7 +214,7 @@ public class EmotionProfile {
                 temp2=i;
             }
         }
-
+        //for feedback
         System.out.println("Highest is " + temp + " Second is " + temp2);
 if(t==1)
        VisualProfile(emo,comment(temp,temp2)+report,personalityTest,accessToken);       //final report page
